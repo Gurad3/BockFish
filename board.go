@@ -40,10 +40,6 @@ type piece struct {
 	isWhite bool
 }
 
-func (board *board) getLegalMoves(onlyCaptures bool) []move {
-	return []move{}
-}
-
 func (board *board) loadAllMasks() {
 	for ColrID, ColpieceArrays := range board.pieceArrays {
 		for PieceType, pieceArray := range ColpieceArrays {
@@ -63,10 +59,27 @@ func (board *board) UpdateAllMasks(Move move) {
 
 	//board.pieceMask |= 1 << piece.square
 
-	sourcePiece := board.squareArray[Move%MoveSourceMask]
+	sourceIndex := Move & MoveSourceMask
+	targetIndex := (Move & MoveTargetMask) >> 6
+
+	targetPiece := board.squareArray[targetIndex]
+	if targetPiece.typeID != 0 {
+		colr := 0
+		if targetPiece.isWhite {
+			colr = 1
+		}
+		board.pieceMasks[colr][targetPiece.typeID] ^= 1 << targetIndex
+	}
+
+	sourcePiece := board.squareArray[sourceIndex]
+	board.squareArray[targetIndex] = sourcePiece
+	board.squareArray[sourceIndex] = new(piece)
+
 	colr := 0
-	if !sourcePiece.isWhite {
+	if sourcePiece.isWhite {
 		colr = 1
 	}
-	board.pieceMasks[colr][sourcePiece.typeID]
+	board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex
+	board.pieceMasks[colr][sourcePiece.typeID] |= 1 << targetIndex
+
 }

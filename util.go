@@ -58,7 +58,7 @@ func (board *board) loadFromFEN(fen string) {
 		board.squareArray[newPeice.square] = newPeice
 
 		colID := 0
-		if !newPeice.isWhite {
+		if newPeice.isWhite {
 			colID = 1
 		}
 

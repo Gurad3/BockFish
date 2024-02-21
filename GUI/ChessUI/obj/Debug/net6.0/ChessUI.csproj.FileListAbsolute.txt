@@ -39,3 +39,4 @@ C:\Users\matoc\go\src\BockFish\GUI\ChessUI\bin\Debug\net6.0\Content\white-knight
 C:\Users\matoc\go\src\BockFish\GUI\ChessUI\bin\Debug\net6.0\Content\white-pawn.xnb
 C:\Users\matoc\go\src\BockFish\GUI\ChessUI\bin\Debug\net6.0\Content\white-queen.xnb
 C:\Users\matoc\go\src\BockFish\GUI\ChessUI\bin\Debug\net6.0\Content\white-rook.xnb
+C:\Users\matoc\go\src\BockFish\GUI\CHessUI\obj\Debug\net6.0\ChessUI.sourcelink.json

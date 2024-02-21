@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/white-knight.png</SourceFile>
+  <SourceFile>C:/Users/matoc/go/src/BockFish/GUI/CHessUI/Content/white-knight.png</SourceFile>
   <SourceTime>2024-02-20T12:36:18.9507959+01:00</SourceTime>
-  <DestFile>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/bin/DesktopGL/Content/white-knight.xnb</DestFile>
-  <DestTime>2024-02-20T13:04:17.2910137+01:00</DestTime>
+  <DestFile>C:/Users/matoc/go/src/BockFish/GUI/CHessUI/Content/bin/DesktopGL/Content/white-knight.xnb</DestFile>
+  <DestTime>2024-02-21T13:28:28.3726224+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

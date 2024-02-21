@@ -17,9 +17,9 @@ type board struct {
 	zobrist     uint64
 
 	pieceMask  uint64
-	pieceMasks [7]uint64
+	pieceMasks [2][7]uint64
 
-	pieceArray  [2][6][]*piece
+	pieceArrays [2][7][]*piece
 	squareArray [64]*piece
 
 	WQCastle bool
@@ -42,4 +42,31 @@ type piece struct {
 
 func (board *board) getLegalMoves(onlyCaptures bool) []move {
 	return []move{}
+}
+
+func (board *board) loadAllMasks() {
+	for ColrID, ColpieceArrays := range board.pieceArrays {
+		for PieceType, pieceArray := range ColpieceArrays {
+			for _, piece := range pieceArray {
+				board.pieceMasks[ColrID][PieceType] |= 1 << piece.square
+				board.pieceMask |= 1 << piece.square
+			}
+		}
+	}
+}
+
+const MoveSourceMask move = 0b0000000000111111
+const MoveTargetMask move = 0b0000111111000000
+const FlagMask move = 0b1111000000000000
+
+func (board *board) UpdateAllMasks(Move move) {
+
+	//board.pieceMask |= 1 << piece.square
+
+	sourcePiece := board.squareArray[Move%MoveSourceMask]
+	colr := 0
+	if !sourcePiece.isWhite {
+		colr = 1
+	}
+	board.pieceMasks[colr][sourcePiece.typeID]
 }

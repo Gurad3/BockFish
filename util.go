@@ -62,10 +62,10 @@ func (board *board) loadFromFEN(fen string) {
 			colID = 1
 		}
 
-		board.pieceArray[colID][newPeice.typeID] = append(board.pieceArray[colID][newPeice.typeID], newPeice)
+		board.pieceArrays[colID][newPeice.typeID] = append(board.pieceArrays[colID][newPeice.typeID], newPeice)
 
 	}
-
+	board.loadAllMasks()
 }
 
 /*

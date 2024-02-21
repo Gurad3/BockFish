@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+var currentBoard board
+
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 
@@ -35,9 +37,9 @@ func main() {
 		case "isready":
 			fmt.Println("readyok")
 		case "ucinewgame":
-			// Initialize any necessary data structures for a new game
+			loadTables()
 		case "position":
-			// Parse position command and update internal board representation
+			test(parts[1])
 		case "go":
 			// Implement search algorithm and find the best move
 			// Once found, send the best move using the "bestmove" command
@@ -48,4 +50,13 @@ func main() {
 			os.Exit(0)
 		}
 	}
+
+}
+
+func loadTables() {
+	currentBoard = board{}
+}
+
+func test(fen string) {
+	currentBoard.loadFromFEN(fen)
 }

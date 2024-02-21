@@ -16,23 +16,27 @@ type board struct {
 	isWhiteTurn bool
 	zobrist     uint64
 
-	pieceMask uint64
-
+	pieceMask  uint64
 	pieceMasks [7]uint64
 
-	pieceArray [32]piece
+	pieceArray  [2][6][]*piece
+	squareArray [64]*piece
+
+	WQCastle bool
+	BQCastle bool
+	WKCastle bool
+	BKCastle bool
+
+	halfMoves int
+	fullMoves int
+	ply       int
 }
 
-type move struct {
-	isCapture bool
-
-	sourceSquare uint64
-	targetSquare uint64
-}
+type move uint16
 
 type piece struct {
 	typeID  uint8
-	square  uint64
+	square  uint8
 	isWhite bool
 }
 

@@ -91,5 +91,5 @@ func (board *board) PlayMove(Move move) {
 	board.pieceMask[colr] |= 1 << targetIndex
 
 	sourcePiece.square = uint8(targetIndex)
-
+	board.isWhiteTurn = !board.isWhiteTurn
 }

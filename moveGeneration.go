@@ -1,5 +1,9 @@
 package main
 
+import (
+	"math"
+)
+
 func (board *board) getLegalMoves(onlyCaptures bool) []move {
 
 	legalMoves := make([]move, 0, 218)
@@ -53,16 +57,16 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 					moveMask = (KingAttackMasks[piece.square] & board.pieceMask[colID]) ^ KingAttackMasks[piece.square] //Cretae movemask
 				}
 
-				for i := move(0); i < 64; i++ {
-					if moveMask&1 == 1 {
-						var newMove move
+				for moveMask > 0 {
 
-						newMove = i << 6
-						newMove += move(piece.square)
+					targetIndex := popLSB(moveMask)
+					moveMask ^= 1 << targetIndex
 
-						legalMoves = append(legalMoves, newMove)
-					}
-					moveMask >>= 1
+					var newMove move
+					newMove = move(targetIndex) << 6
+					newMove += move(piece.square)
+
+					legalMoves = append(legalMoves, newMove)
 				}
 
 			}
@@ -70,6 +74,33 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 	}
 
 	return legalMoves
+}
+
+/*
+func (board *board) isCeck(col bool) bool {
+
+}
+
+	func (board *board) filterOutPsudoLegal(moves []move) []move {
+		newList := make([]move, 0, cap(moves))
+		for _, mo := range moves {
+
+			board.PlayMove(mo)
+			if !board.isCeck(!board.isWhiteTurn) {
+				newList = append(newList, mo)
+			}
+			board.UndoMove(mo)
+
+		}
+		return newList
+	}
+*/
+func popLSB(n uint64) int {
+	// Take two's complement of the given number
+	complement := n & ^(n - 1)
+	// Take the log2 of the complement
+	pos := int(math.Log2(float64(complement)))
+	return pos
 }
 
 /*

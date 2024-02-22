@@ -52,7 +52,7 @@ func main() {
 		case "test":
 			loadTables()
 			loadFen(strings.Split(startfen, " "))
-			fmt.Println("legalmoves" + moveArrayTOstring(currentBoard.getLegalMoves(false)))
+			fmt.Println("legalmoves " + moveArrayTOstring(currentBoard.getLegalMoves(false)))
 			//fmt.Println(KnightAttackMasks[18])
 		case "go":
 			// Implement search algorithm and find the best move
@@ -62,6 +62,9 @@ func main() {
 		case "stop":
 			// Stop searching (if applicable)
 		case "quit":
+			os.Exit(0)
+
+		case "exit":
 			os.Exit(0)
 		}
 	}

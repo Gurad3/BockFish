@@ -16,7 +16,7 @@ type board struct {
 	isWhiteTurn bool
 	zobrist     uint64
 
-	pieceMask  uint64
+	pieceMask  [2]uint64
 	pieceMasks [2][7]uint64
 
 	pieceArrays [2][7][]*piece
@@ -45,30 +45,32 @@ func (board *board) loadAllMasks() {
 		for PieceType, pieceArray := range ColpieceArrays {
 			for _, piece := range pieceArray {
 				board.pieceMasks[ColrID][PieceType] |= 1 << piece.square
-				board.pieceMask |= 1 << piece.square
+				board.pieceMask[ColrID] |= 1 << piece.square
 			}
 		}
 	}
+
 }
 
 const MoveSourceMask move = 0b0000000000111111
 const MoveTargetMask move = 0b0000111111000000
 const FlagMask move = 0b1111000000000000
 
-func (board *board) UpdateAllMasks(Move move) {
+func (board *board) PlayMove(Move move) {
 
 	//board.pieceMask |= 1 << piece.square
-
 	sourceIndex := Move & MoveSourceMask
 	targetIndex := (Move & MoveTargetMask) >> 6
 
-	targetPiece := board.squareArray[targetIndex]
+	targetPiece := *board.squareArray[targetIndex]
+
 	if targetPiece.typeID != 0 {
-		colr := 0
+		opCOl := 0
 		if targetPiece.isWhite {
-			colr = 1
+			opCOl = 1
 		}
-		board.pieceMasks[colr][targetPiece.typeID] ^= 1 << targetIndex
+		board.pieceMasks[opCOl][targetPiece.typeID] ^= 1 << targetIndex
+		board.pieceMask[opCOl] ^= 1 << targetIndex
 	}
 
 	sourcePiece := board.squareArray[sourceIndex]
@@ -81,5 +83,10 @@ func (board *board) UpdateAllMasks(Move move) {
 	}
 	board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex
 	board.pieceMasks[colr][sourcePiece.typeID] |= 1 << targetIndex
+
+	board.pieceMask[colr] ^= 1 << sourceIndex
+	board.pieceMask[colr] |= 1 << targetIndex
+
+	sourcePiece.square = uint8(targetIndex)
 
 }

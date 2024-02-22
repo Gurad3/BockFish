@@ -98,12 +98,11 @@ public class Game1 : Game
         AppDomain.CurrentDomain.ProcessExit += closeBockFish;
         // Communicate with the other process
       
-
+/*
         sendCommand("uci");
         Console.WriteLine("Received: " + readAnswer());
         Console.WriteLine("Received: " + readAnswer());
-
-        
+*/ 
 
         base.Initialize();
     }

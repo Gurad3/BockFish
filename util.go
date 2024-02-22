@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-//rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+var startfen string = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
 var stringToType = map[string]uint8{
 	"p": 1,
@@ -45,7 +45,17 @@ func (board *board) loadFromFEN(fen []string) {
 		}
 		if isNumber(st) {
 			val, _ := strconv.Atoi(st)
-			x += val
+
+			for i := 0; i < val; i++ {
+				newPeice := new(piece)
+				newPeice.typeID = 0
+				newPeice.isWhite = true
+				newPeice.square = uint8(x + y*8)
+
+				board.squareArray[newPeice.square] = newPeice
+				x++
+			}
+
 			continue
 		}
 
@@ -62,7 +72,7 @@ func (board *board) loadFromFEN(fen []string) {
 		}
 
 		board.pieceArrays[colID][newPeice.typeID] = append(board.pieceArrays[colID][newPeice.typeID], newPeice)
-
+		x++
 	}
 	board.loadAllMasks()
 }
@@ -86,8 +96,9 @@ func StringMoveToMove(mo string) move {
 func moveArrayTOstring(array []move) string {
 	retString := ""
 	for _, Move := range array {
-		SIndex := (MoveSourceMask & Move) >> 6
-		TIndex := (MoveTargetMask & Move)
+
+		SIndex := (MoveSourceMask & Move)
+		TIndex := (MoveTargetMask & Move) >> 6
 
 		moveString := ""
 
@@ -102,6 +113,8 @@ func moveArrayTOstring(array []move) string {
 		moveString += strconv.Itoa(int(TY))
 
 		retString += moveString + " "
+
+		//fmt.Println(SIndex, TIndex, strconv.Itoa(int(SX)), moveString)
 	}
 	return retString
 }

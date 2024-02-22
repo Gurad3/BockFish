@@ -38,12 +38,27 @@ func main() {
 			fmt.Println("readyok")
 		case "ucinewgame":
 			loadTables()
+			fmt.Println("done")
 		case "position":
-			test(parts[1:])
+			loadFen(parts[1:])
+			fmt.Println("done")
+		case "getlegal":
+			fmt.Println(moveArrayTOstring(currentBoard.getLegalMoves(false)))
+
+		case "play":
+			currentBoard.PlayMove(StringMoveToMove(parts[1]))
+			fmt.Println("done")
+
+		case "test":
+			loadTables()
+			loadFen(strings.Split(startfen, " "))
+			fmt.Println("legalmoves" + moveArrayTOstring(currentBoard.getLegalMoves(false)))
+			//fmt.Println(KnightAttackMasks[18])
 		case "go":
 			// Implement search algorithm and find the best move
 			// Once found, send the best move using the "bestmove" command
 			fmt.Println("e2e4")
+
 		case "stop":
 			// Stop searching (if applicable)
 		case "quit":
@@ -58,6 +73,6 @@ func loadTables() {
 	loadPreCalculations()
 }
 
-func test(fen []string) {
+func loadFen(fen []string) {
 	currentBoard.loadFromFEN(fen)
 }

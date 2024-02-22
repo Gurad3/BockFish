@@ -25,18 +25,19 @@ var PawnAttackMasks = [64]uint64{}
 
 func loadPreCalculations() {
 	for i := 0; i < 64; i++ {
-		CurrentX := 64 % 8
-		CurrentY := 64 / 8
+		CurrentX := i % 8
+		CurrentY := i / 8
 
-		CurrentKnightMask := 0
+		CurrentKnightMask := uint64(0)
 		for _, offsets := range knightAttacks {
 			tmpX := CurrentX + offsets[0]
 			tmpY := CurrentY + offsets[1]
 			if (tmpX < 8 && tmpX >= 0) && (tmpY < 8 && tmpY >= 0) {
+
 				CurrentKnightMask |= (1 << (tmpY*8 + tmpX))
 			}
 		}
-		KnightAttackMasks[i] = uint64(CurrentKnightMask)
+		KnightAttackMasks[i] = CurrentKnightMask
 
 		CurrentKingMask := 0
 		for _, offsets := range kingAttacks {

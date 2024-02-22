@@ -33,7 +33,9 @@ public class Game1 : Game
     Texture2D dotTexture;
     SpriteFont currentFont;
     Piece[][] boardArray;
-   
+    
+    int[,] legalMoves;
+
     bool pToMove;
     string wCastleK;
     string wCastleQ;
@@ -44,7 +46,7 @@ public class Game1 : Game
     int fullMoves;
     int halfMoves;
     FloatingPiece currentlyHeldPiece;
-    Dictionary<int, Dictionary<int, int[][]>> legalMoves;
+
    // bool canStart;
 
     public static Process bockFish;
@@ -103,10 +105,13 @@ public class Game1 : Game
         Console.WriteLine("Received: " + readAnswer());
         Console.WriteLine("Received: " + readAnswer());
 */ 
-
+        sendCommand("ucinewgame");
+        readAnswer();
+        sendCommand("position rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+        readAnswer();
+        legalMoves =  getLegalMoves();
         base.Initialize();
     }
-
     static void closeBockFish(object sender, EventArgs e){
         Console.WriteLine("Closing bockfish");
         bockFish.StandardInput.WriteLine("quit");
@@ -121,6 +126,47 @@ public class Game1 : Game
     static string readAnswer(){
         return bockFish.StandardOutput.ReadLine();
     }
+
+    int[,] getLegalMoves(){
+        sendCommand("getlegal");
+        string answer = readAnswer();
+        Console.WriteLine(answer);
+        string[] moves = answer.Split(" ");
+        if (moves[0] != "legalmoves"){
+            Console.WriteLine("NotWorking");
+            //return getLegalMoves();
+        }
+
+       int[,] newLegal = new int[64,28];
+
+        for (int i = 0; i < moves.Length-1; i++)
+        {
+            int SourceIndex = Int32.Parse(Char.ToString(moves[i][0])) + Int32.Parse(Char.ToString(moves[i][1])) *8 ;
+            int TargetIndex = Int32.Parse(Char.ToString(moves[i][2]))  + Int32.Parse(Char.ToString(moves[i][3])) *8 ;
+            for (int i2 = 0; i2 < 28; i2++)
+            {
+                if (newLegal[SourceIndex, i2] == 0) {
+                    
+                    newLegal[SourceIndex, i2] = TargetIndex+1;
+                    break;
+                }
+            }
+        }
+
+        return newLegal;
+    }
+
+    void sendMoveToBock(Vector2 origin, Vector2 target){
+
+        string SourceX = ((int)origin.X).ToString();
+        string SourceY = ((int)origin.Y).ToString();
+        string TargetX = ((int)target.X).ToString();
+        string TargetY = ((int)target.Y).ToString();
+
+        sendCommand("play " + SourceX + SourceY + TargetX + TargetY);
+        readAnswer();
+    }
+
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -201,7 +247,7 @@ public class Game1 : Game
         var isClicked = mstate.LeftButton == ButtonState.Pressed;
         if (isClicked)
         {
-            System.Console.WriteLine("X: " + mstate.X + "  Y: "+ mstate.Y);
+            //System.Console.WriteLine("X: " + mstate.X + "  Y: "+ mstate.Y);
             currentlyHeldPiece = findClosestPiece(mstate);
             try
             {
@@ -283,11 +329,11 @@ public class Game1 : Game
         Vector2 origin = heldPiece.origin;
         float x = System.MathF.Floor( (mstate.X - xOffset) / squareSize ) ;
         float y = System.MathF.Floor( (mstate.Y - yOffset) / squareSize ) ;
-        bool validMove = true;
+        bool validMove = false;
         try{
-            for (int i = 0; i < legalMoves[(int)origin.Y][(int)origin.X].Length; i++) 
+            for (int i = 0; i < 28; i++) 
             {
-                if (legalMoves[(int)origin.Y][(int)origin.X][i][0] == x && legalMoves[(int)origin.Y][(int)origin.X][i][1] == y)
+                if (legalMoves[(int)origin.Y*8 + (int)origin.X, i  ] == y*8+x+1)
                 {
                     validMove = true;
                 }
@@ -297,6 +343,8 @@ public class Game1 : Game
         
         if (validMove)
         {
+          Vector2 target = new Vector2(x,y); 
+
           updateSpecialMoves(heldPiece, x, y);
          
           if (heldPiece.c == "b") fullMoves++;
@@ -305,6 +353,10 @@ public class Game1 : Game
           currentlyHeldPiece = null;
           pToMove = !pToMove;
           Console.WriteLine(convertPosToFen());
+
+          
+          sendMoveToBock(origin, target);
+          legalMoves = getLegalMoves();
         } else 
         {
             currentlyHeldPiece = null;
@@ -314,18 +366,18 @@ public class Game1 : Game
 
     void drawFloatingPiece(FloatingPiece piece)
     {
-        /*
+        Vector2 origin = piece.origin;
           try 
           {
-              int boardWidth = _graphics.PreferredBackBufferWidth - offsetX;
-              int boardHeight = _graphics.PreferredBackBufferHeight - offsetY;
-              int[][] lMove = legalMoves[(int)System.MathF.Round(((currentlyHeldPiece.origin.Y + placeOffsetY) * 8 + 280) / boardHeight - 1)][(int)System.MathF.Round(((currentlyHeldPiece.origin.X + placeOffsetX) * 8 + 160) / boardWidth - 1)];
-             
-              foreach (int[] item in lMove)
-              {
-                  _spriteBatch.Draw(
+            for (int i = 0; i < 28; i++)
+            {
+                if (legalMoves[(int)origin.Y*8 + (int)origin.X, i  ] != 0){
+                    int x = (legalMoves[(int)origin.Y*8 + (int)origin.X, i] - 1) % 8;
+                    int y = (legalMoves[(int)origin.Y*8 + (int)origin.X, i] - 1) / 8;
+
+                    _spriteBatch.Draw(
                       dotTexture,
-                      new Vector2(((boardWidth / 8) * (item[0] + 1)) - placeOffsetX, ((boardHeight / 8) * (item[1] + 1)) - placeOffsetY),
+                      new Vector2(squareSize*x + xOffset + squareSize/2, squareSize*y + yOffset + squareSize/2 ),
                       null,
                       Color.White,
                       0f,
@@ -334,13 +386,14 @@ public class Game1 : Game
                       SpriteEffects.None,
                       0f
                       );
+
+
+                 
+                }
               }
           }
-          catch (System.Exception)
-          {
-              
-          }
-        */
+          catch (System.Exception) {}
+        
         _spriteBatch.Draw(
             piece.sprite,
             piece.pos,

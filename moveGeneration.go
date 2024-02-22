@@ -8,6 +8,9 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 		for TypeID, pieceArray := range AllPieceArray {
 			for _, piece := range pieceArray {
 
+				if piece.dead {
+					continue
+				}
 				var moveMask uint64
 
 				opCOl := 0

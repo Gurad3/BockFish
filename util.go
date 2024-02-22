@@ -63,7 +63,7 @@ func (board *board) loadFromFEN(fen []string) {
 		newPeice.typeID = stringToType[strings.ToLower(st)]
 		newPeice.isWhite = st == strings.ToUpper(st)
 		newPeice.square = uint8(x + y*8)
-
+		newPeice.dead = false
 		board.squareArray[newPeice.square] = newPeice
 
 		colID := 0

@@ -38,6 +38,7 @@ type piece struct {
 	typeID  uint8
 	square  uint8
 	isWhite bool
+	dead    bool
 }
 
 func (board *board) loadAllMasks() {
@@ -62,7 +63,7 @@ func (board *board) PlayMove(Move move) {
 	sourceIndex := Move & MoveSourceMask
 	targetIndex := (Move & MoveTargetMask) >> 6
 
-	targetPiece := *board.squareArray[targetIndex]
+	targetPiece := board.squareArray[targetIndex]
 
 	if targetPiece.typeID != 0 {
 		opCOl := 0
@@ -71,6 +72,8 @@ func (board *board) PlayMove(Move move) {
 		}
 		board.pieceMasks[opCOl][targetPiece.typeID] ^= 1 << targetIndex
 		board.pieceMask[opCOl] ^= 1 << targetIndex
+
+		targetPiece.dead = true
 	}
 
 	sourcePiece := board.squareArray[sourceIndex]

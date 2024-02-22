@@ -21,13 +21,12 @@ func isNumber(s string) bool {
 	return err == nil
 }
 
-func (board *board) loadFromFEN(fen string) {
-	stringParts := strings.Split(fen, " ")
+func (board *board) loadFromFEN(fen []string) {
 
-	board.isWhiteTurn = stringParts[1] == "w"
+	board.isWhiteTurn = fen[1] == "w"
 
-	board.halfMoves, _ = strconv.Atoi(stringParts[4])
-	board.fullMoves, _ = strconv.Atoi(stringParts[5])
+	board.halfMoves, _ = strconv.Atoi(fen[4])
+	board.fullMoves, _ = strconv.Atoi(fen[5])
 	board.ply = board.fullMoves * 2
 	if !board.isWhiteTurn {
 		board.ply++
@@ -36,7 +35,7 @@ func (board *board) loadFromFEN(fen string) {
 	x := 0
 	y := 0
 
-	FenPos := stringParts[0]
+	FenPos := fen[0]
 	for i := range FenPos {
 		st := string([]byte{FenPos[i]})
 		if st == "/" {
@@ -66,6 +65,45 @@ func (board *board) loadFromFEN(fen string) {
 
 	}
 	board.loadAllMasks()
+}
+
+func StringMoveToMove(mo string) move {
+	newMove := move(0)
+	splited := strings.Split(mo, "")
+	SX, _ := strconv.Atoi(splited[0])
+	SY, _ := strconv.Atoi(splited[1])
+
+	TX, _ := strconv.Atoi(splited[2])
+	TY, _ := strconv.Atoi(splited[3])
+
+	newMove += move(TX) + move(TY)*8
+	newMove <<= 6
+
+	newMove += move(SX) + move(SY)*8
+	return newMove
+}
+
+func moveArrayTOstring(array []move) string {
+	retString := ""
+	for _, Move := range array {
+		SIndex := (MoveSourceMask & Move) >> 6
+		TIndex := (MoveTargetMask & Move)
+
+		moveString := ""
+
+		SX := SIndex % 8
+		SY := SIndex / 8
+		TX := TIndex % 8
+		TY := TIndex / 8
+
+		moveString += strconv.Itoa(int(SX))
+		moveString += strconv.Itoa(int(SY))
+		moveString += strconv.Itoa(int(TX))
+		moveString += strconv.Itoa(int(TY))
+
+		retString += moveString + " "
+	}
+	return retString
 }
 
 /*

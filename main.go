@@ -39,7 +39,7 @@ func main() {
 		case "ucinewgame":
 			loadTables()
 		case "position":
-			test(parts[1])
+			test(parts[1:])
 		case "go":
 			// Implement search algorithm and find the best move
 			// Once found, send the best move using the "bestmove" command
@@ -55,8 +55,9 @@ func main() {
 
 func loadTables() {
 	currentBoard = board{}
+	loadPreCalculations()
 }
 
-func test(fen string) {
+func test(fen []string) {
 	currentBoard.loadFromFEN(fen)
 }

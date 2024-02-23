@@ -22,6 +22,10 @@ type board struct {
 	pieceArrays [2][7][]*piece
 	squareArray [64]*piece
 
+	kings [2]*piece
+
+	deadPieces []*piece
+
 	WQCastle bool
 	BQCastle bool
 	WKCastle bool
@@ -35,10 +39,11 @@ type board struct {
 type move uint16
 
 type piece struct {
-	typeID  uint8
-	square  uint8
-	isWhite bool
-	dead    bool
+	typeID             uint8
+	square             uint8
+	isWhite            bool
+	dead               bool
+	indexInPiecesArray uint8
 }
 
 func (board *board) loadAllMasks() {
@@ -57,6 +62,8 @@ const MoveSourceMask move = 0b0000000000111111
 const MoveTargetMask move = 0b0000111111000000
 const FlagMask move = 0b1111000000000000
 
+const PromFlag move = 0b1111000000000000
+
 func (board *board) PlayMove(Move move) {
 
 	//board.pieceMask |= 1 << piece.square
@@ -65,7 +72,7 @@ func (board *board) PlayMove(Move move) {
 
 	targetPiece := board.squareArray[targetIndex]
 
-	if targetPiece.typeID != 0 {
+	if !targetPiece.dead {
 		opCOl := 0
 		if targetPiece.isWhite {
 			opCOl = 1
@@ -73,16 +80,75 @@ func (board *board) PlayMove(Move move) {
 		board.pieceMasks[opCOl][targetPiece.typeID] ^= 1 << targetIndex
 		board.pieceMask[opCOl] ^= 1 << targetIndex
 
+		//Tar sista itemet i sliceen sätter den på index positionen och resizar
+
+		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
+		board.pieceArrays[opCOl][targetPiece.typeID] = board.pieceArrays[opCOl][targetPiece.typeID][:len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
+
+		//Updatera den andra piecens index
+		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
 		targetPiece.dead = true
+
 	}
+	board.deadPieces = append(board.deadPieces, targetPiece)
+	sourcePiece := board.squareArray[sourceIndex]
+
+	colr := 1
+	if sourcePiece.isWhite {
+		colr = 0
+	}
+
+	board.squareArray[targetIndex] = sourcePiece
+	board.squareArray[sourceIndex] = targetPiece
+
+	board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex
+
+	if (Move & PromFlag) > 10 {
+		sourcePiece.typeID = uint8((Move&PromFlag)>>12) - 2
+		board.pieceArrays[colr][sourcePiece.typeID] = append(board.pieceArrays[colr][sourcePiece.typeID], sourcePiece)
+	}
+
+	board.pieceMasks[colr][sourcePiece.typeID] |= 1 << targetIndex
+
+	board.pieceMask[colr] ^= 1 << sourceIndex
+	board.pieceMask[colr] |= 1 << targetIndex
+
+	sourcePiece.square = uint8(targetIndex)
+	board.isWhiteTurn = !board.isWhiteTurn
+
+}
+
+func (board *board) UndoMove(Move move) {
+
+	sourceIndex := (Move & MoveTargetMask) >> 6
+	targetIndex := Move & MoveSourceMask
 
 	sourcePiece := board.squareArray[sourceIndex]
 	board.squareArray[targetIndex] = sourcePiece
-	board.squareArray[sourceIndex] = new(piece)
 
 	colr := 0
-	if sourcePiece.isWhite {
+	opCOL := 1
+	if board.isWhiteTurn {
 		colr = 1
+		opCOL = 0
+	}
+
+	targetPiece := board.deadPieces[len(board.deadPieces)-1]
+	board.deadPieces = board.deadPieces[:len(board.deadPieces)-1]
+	board.squareArray[sourceIndex] = targetPiece
+
+	if targetPiece.typeID != 0 {
+		board.pieceArrays[opCOL][targetPiece.typeID] = append(board.pieceArrays[opCOL][targetPiece.typeID], targetPiece)
+		targetPiece.indexInPiecesArray = uint8(len(board.pieceArrays[opCOL][targetPiece.typeID]) - 1)
+
+		board.pieceMask[opCOL] |= 1 << sourceIndex
+		board.pieceMasks[opCOL][targetPiece.typeID] |= 1 << sourceIndex
+		targetPiece.dead = false
+	}
+
+	if (Move & PromFlag) > 0 {
+		sourcePiece.typeID = uint8((Move&PromFlag)>>12) - 2
+		board.pieceArrays[colr][sourcePiece.typeID] = append(board.pieceArrays[colr][sourcePiece.typeID], sourcePiece)
 	}
 	board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex
 	board.pieceMasks[colr][sourcePiece.typeID] |= 1 << targetIndex
@@ -91,5 +157,10 @@ func (board *board) PlayMove(Move move) {
 	board.pieceMask[colr] |= 1 << targetIndex
 
 	sourcePiece.square = uint8(targetIndex)
+	targetPiece.square = uint8(sourceIndex)
 	board.isWhiteTurn = !board.isWhiteTurn
+}
+
+func (board *board) clearDeadArray() {
+	board.deadPieces = board.deadPieces[:0]
 }

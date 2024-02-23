@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 namespace ChessUI;
 
 public class Game1 : Game
@@ -43,6 +44,10 @@ public class Game1 : Game
     string bCastleQ;
     string enPass;
     char[] squareLetter;
+
+    Texture2D[] wTyToText;
+    Texture2D[] bTyToText;
+
     int fullMoves;
     int halfMoves;
     FloatingPiece currentlyHeldPiece;
@@ -88,6 +93,7 @@ public class Game1 : Game
             'h'
         };
 
+   
         fullMoves = 0;
 
 
@@ -107,9 +113,10 @@ public class Game1 : Game
 */ 
         sendCommand("ucinewgame");
         readAnswer();
-        sendCommand("position rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR hum KQkq - 0 1");
+        sendCommand("position rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
         readAnswer();
         legalMoves =  getLegalMoves();
+       // getNewPos();
         base.Initialize();
     }
     static void closeBockFish(object sender, EventArgs e){
@@ -130,12 +137,9 @@ public class Game1 : Game
     int[,] getLegalMoves(){
         sendCommand("getlegal");
         string answer = readAnswer();
-        Console.WriteLine(answer);
+        Console.WriteLine("RecivedLegal: "+ answer);
         string[] moves = answer.Split(" ");
-        if (moves[0] != "legalmoves"){
-            Console.WriteLine("NotWorking");
-            //return getLegalMoves();
-        }
+        
 
        int[,] newLegal = new int[64,28];
 
@@ -165,6 +169,60 @@ public class Game1 : Game
 
         sendCommand("play " + SourceX + SourceY + TargetX + TargetY);
         readAnswer();
+    }
+
+    void getNewPos(){
+        sendCommand("getpos");
+        string answer = readAnswer();
+        Console.WriteLine("receviedPos: "+ answer);
+        string[] pie = answer.Split(" ");
+        
+        string[] squareL = new string[] 
+        {
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h"
+        };
+
+        for (int i = 1; i < pie.Length-1; i++)
+        {
+          //  Console.WriteLine(pie[i]);
+            int sqareX = Int32.Parse(Char.ToString(pie[i][0]));
+            int sqareY = Int32.Parse(Char.ToString(pie[i][1]));
+            string col = Char.ToString(pie[i][2]);
+            
+            int type = Int32.Parse(Char.ToString(pie[i][3]));
+
+            if (type == 0){
+                boardArray[sqareY][sqareX] = null;
+                continue;
+            }
+
+            string ty = squareL[type];
+
+            if (col == "w"){
+                ty = ty.ToUpper();
+            }
+
+           // boardArray[sqareY][sqareX].type = ty;
+           // boardArray[sqareY][sqareX].c = col;
+            Texture2D tex;
+
+            if (col == "w"){
+                tex = wTyToText[type];
+            }else{
+                tex = bTyToText[type];
+            }
+            //boardArray[sqareY][sqareX].sprite = tex;
+
+            boardArray[sqareY][sqareX] = new Piece(ty, tex, col);
+
+        }
     }
 
     protected override void LoadContent()
@@ -232,8 +290,29 @@ public class Game1 : Game
             new Piece("N", knightTextureW, "w"),
             new Piece("R", rookTextureW, "w")
             }};
+
+        wTyToText = new Texture2D[]{
+            pawnTextureW,
+            pawnTextureW,
+            knightTextureW,
+            bishopTextureW,
+            rookTextureW,
+            queenTextureW,
+            kingTextureW,
+        };
+
+        bTyToText = new Texture2D[]{
+            pawnTextureB,
+            pawnTextureB,
+            knightTextureB,
+            bishopTextureB,
+            rookTextureB,
+            queenTextureB,
+            kingTextureB,
+        };
     }
 
+    bool pressed = false;
     protected override void Update(GameTime gameTime)
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -263,6 +342,21 @@ public class Game1 : Game
             dropPiece(currentlyHeldPiece, mstate);
         }
 
+
+        if (kstate.IsKeyUp(Keys.U)){
+            pressed = false;
+           
+        }
+
+        if (kstate.IsKeyDown(Keys.U)&& !pressed){
+            pressed = true;
+            Console.WriteLine("U");
+            sendCommand("undo");
+            Console.WriteLine(readAnswer());
+
+            getNewPos();
+            legalMoves =  getLegalMoves();
+        }
         base.Update(gameTime);
     }
 
@@ -350,6 +444,7 @@ public class Game1 : Game
           if (heldPiece.c == "b") fullMoves++;
           if (heldPiece.type.ToUpper() != "P" && boardArray[(int)y][(int)x] == null) halfMoves++; else halfMoves = 0;
           boardArray[(int)y][(int)x] = new Piece(heldPiece.type, heldPiece.sprite, heldPiece.c);
+          //boardArray[(int)origin.Y][(int)origin.X] = new Piece(heldPiece.type, heldPiece.sprite, heldPiece.c);
           currentlyHeldPiece = null;
           pToMove = !pToMove;
           Console.WriteLine(convertPosToFen());
@@ -357,6 +452,7 @@ public class Game1 : Game
           
           sendMoveToBock(origin, target);
           legalMoves = getLegalMoves();
+          getNewPos();
         } else 
         {
             currentlyHeldPiece = null;

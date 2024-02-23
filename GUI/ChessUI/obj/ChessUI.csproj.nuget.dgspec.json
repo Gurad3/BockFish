@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nathan.marchand-mato\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj": {}
+    "C:\\Users\\matoc\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nathan.marchand-mato\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj": {
+    "C:\\Users\\matoc\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nathan.marchand-mato\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj",
+        "projectUniqueName": "C:\\Users\\matoc\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj",
         "projectName": "ChessUI",
-        "projectPath": "C:\\Users\\nathan.marchand-mato\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj",
-        "packagesPath": "C:\\Users\\nathan.marchand-mato\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nathan.marchand-mato\\go\\src\\BockFish\\GUI\\ChessUI\\obj\\",
+        "projectPath": "C:\\Users\\matoc\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj",
+        "packagesPath": "C:\\Users\\matoc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\matoc\\go\\src\\BockFish\\GUI\\ChessUI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nathan.marchand-mato\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\matoc\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

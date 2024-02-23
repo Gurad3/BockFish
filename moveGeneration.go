@@ -17,7 +17,9 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 			if piece.dead {
 				continue
 			}
+
 			var moveMask uint64
+			pawnUpTwo := false
 			opCOl := 0
 			if colID == 0 {
 				opCOl = 1
@@ -33,6 +35,7 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 						if piece.square > 47 { //not moved, check if dual is possible
 							if (1<<(piece.square-16))&(board.pieceMask[opCOl]|board.pieceMask[colID]) == 0 { //Nothin infront og pawn
 								moveMask |= (1 << (piece.square - 16))
+								pawnUpTwo = true
 							}
 						}
 
@@ -47,6 +50,7 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 						if piece.square < 16 { //not moved, check if dual is possible
 							if (1<<(piece.square+16))&(board.pieceMask[opCOl]|board.pieceMask[colID]) == 0 { //Nothin infront og pawn
 								moveMask |= (1 << (piece.square + 16))
+								pawnUpTwo = true
 							}
 						}
 					}
@@ -60,13 +64,27 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 
 			for moveMask > 0 {
 				targetIndex := popLSB(moveMask)
-				moveMask ^= 1 << targetIndex
 
-				var newMove move
-				newMove = move(targetIndex) << 6
+				flag := move(0)
+				newMove := move(targetIndex) << 6
 				newMove += move(piece.square)
 
-				legalMoves = append(legalMoves, newMove)
+				if TypeID == 1 {
+
+					if pawnUpTwo {
+						//flag = PawnTwoUpFlag
+					} else if targetIndex == 7 || targetIndex == 0 { //Pawn is promoting
+
+						for i := move(12); i < 16; i++ {
+							legalMoves = append(legalMoves, newMove|i)
+						}
+						moveMask ^= 1 << targetIndex
+						continue
+					}
+				}
+
+				legalMoves = append(legalMoves, newMove|flag)
+				moveMask ^= 1 << targetIndex
 			}
 
 		}
@@ -76,25 +94,40 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 	return legalMoves
 }
 
-/*
-func (board *board) isCheck(col bool) {
+func (board *board) isCheck(col bool) bool {
+	colID := 0
+	opCol := 1
 
+	if !col {
+		colID = 1
+		opCol = 0
+	}
+
+	kingIndex := board.kings[colID].square
+	tmpMask := (board.pieceMasks[opCol][2] & KnightAttackMasks[kingIndex]) | (board.pieceMasks[opCol][6] & KingAttackMasks[kingIndex]) //King and Knights
+	if col {
+		tmpMask |= board.pieceMasks[opCol][1] & PawnAttackMasks[kingIndex] //Pawns
+	} else {
+		tmpMask |= board.pieceMasks[opCol][1] & (PawnAttackMasks[kingIndex] << 16) //Pawns
+	}
+
+	return tmpMask == 0
 }
 
-	func (board *board) filterOutPsudoLegal(moves []move) []move {
-		newList := make([]move, 0, cap(moves))
-		for _, mo := range moves {
+func (board *board) filterOutPsudoLegal(moves []move) []move {
+	newList := make([]move, 0, cap(moves))
+	for _, mo := range moves {
 
-			board.PlayMove(mo)
-			if !board.isCheck(!board.isWhiteTurn) {
-				newList = append(newList, mo)
-			}
-			board.UndoMove(mo)
-
+		board.PlayMove(mo)
+		if !board.isCheck(!board.isWhiteTurn) {
+			newList = append(newList, mo)
 		}
-		return newList
+		board.UndoMove(mo)
+
 	}
-*/
+	return newList
+}
+
 func popLSB(n uint64) int {
 	// Take two's complement of the given number
 	complement := n & ^(n - 1)
@@ -102,6 +135,18 @@ func popLSB(n uint64) int {
 	pos := int(math.Log2(float64(complement)))
 	return pos
 }
+
+const NoFlag move = 0b0000
+const EnPassant move = 0b0001
+const CastleFlag move = 0b0010
+const PawnTwoUpFlag move = 0b0011
+
+const PromoteToKnightFlag move = 0b1100
+const PromoteToBishopFlag move = 0b1101
+const PromoteToRookFlag move = 0b1110
+const PromoteToQueenFlag move = 0b1111
+
+//var PromotFlags [4]move = [4]move{PromoteToKnightFlag, PromoteToBishopFlag, PromoteToRookFlag, PromoteToQueenFlag}
 
 /*
 
@@ -112,5 +157,6 @@ func popLSB(n uint64) int {
 4 = rook
 5 = queen
 6 = king
+
 
 */

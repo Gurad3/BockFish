@@ -22,6 +22,7 @@ func isNumber(s string) bool {
 }
 
 func (board *board) loadFromFEN(fen []string) {
+	board.deadPieces = make([]*piece, 0, 256) //Buffer på 256, borde inte nås så ofta, om det nårs kmr ju den att utökas, men kan slöa ned om det händer
 
 	board.isWhiteTurn = fen[1] == "w"
 
@@ -51,7 +52,7 @@ func (board *board) loadFromFEN(fen []string) {
 				newPeice.typeID = 0
 				newPeice.isWhite = true
 				newPeice.square = uint8(x + y*8)
-
+				newPeice.dead = true
 				board.squareArray[newPeice.square] = newPeice
 				x++
 			}
@@ -66,12 +67,20 @@ func (board *board) loadFromFEN(fen []string) {
 		newPeice.dead = false
 		board.squareArray[newPeice.square] = newPeice
 
-		colID := 0
+		if st == "K" {
+			board.kings[0] = newPeice
+		}
+		if st == "k" {
+			board.kings[1] = newPeice
+		}
+
+		colID := 1
 		if newPeice.isWhite {
-			colID = 1
+			colID = 0
 		}
 
 		board.pieceArrays[colID][newPeice.typeID] = append(board.pieceArrays[colID][newPeice.typeID], newPeice)
+		newPeice.indexInPiecesArray = uint8(len(board.pieceArrays[colID][newPeice.typeID]) - 1)
 		x++
 	}
 	board.loadAllMasks()
@@ -113,11 +122,36 @@ func moveArrayTOstring(array []move) string {
 		moveString += strconv.Itoa(int(TY))
 
 		retString += moveString + " "
-
+		tmpStringToMove[moveString] = Move
 		//fmt.Println(SIndex, TIndex, strconv.Itoa(int(SX)), moveString)
 	}
 	return retString
 }
+func sendPosAsString() string {
+	retString := ""
+	for i := 0; i < 64; i++ {
+		partString := ""
+		SX := i % 8
+		SY := i / 8
+		partString += strconv.Itoa(int(SX))
+		partString += strconv.Itoa(int(SY))
+		if currentBoard.squareArray[i].isWhite {
+			partString += "w"
+		} else {
+			partString += "b"
+		}
+		if currentBoard.squareArray[i].dead {
+			partString += "0"
+		} else {
+			partString += strconv.Itoa(int(currentBoard.squareArray[i].typeID))
+		}
+		retString += partString + " "
+	}
+
+	return retString
+}
+
+var tmpStringToMove map[string]move = make(map[string]move, 1000)
 
 /*
 

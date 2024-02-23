@@ -46,7 +46,9 @@ func main() {
 			fmt.Println(moveArrayTOstring(currentBoard.getLegalMoves(false)))
 
 		case "play":
-			currentBoard.PlayMove(StringMoveToMove(parts[1]))
+			//currentBoard.PlayMove(StringMoveToMove(parts[1]))
+			currentBoard.PlayMove(tmpStringToMove[parts[1]])
+			tmpPlayedMoveList = append(tmpPlayedMoveList, tmpStringToMove[parts[1]])
 			fmt.Println("done")
 
 		case "test":
@@ -54,6 +56,15 @@ func main() {
 			loadFen(strings.Split(startfen, " "))
 			fmt.Println("legalmoves " + moveArrayTOstring(currentBoard.getLegalMoves(false)))
 			//fmt.Println(KnightAttackMasks[18])
+
+		case "undo":
+			currentBoard.UndoMove(tmpPlayedMoveList[len(tmpPlayedMoveList)-1])
+			tmpPlayedMoveList = tmpPlayedMoveList[:len(tmpPlayedMoveList)-1]
+			fmt.Println("done")
+
+		case "getpos":
+			fmt.Println("pos " + sendPosAsString())
+
 		case "go":
 			// Implement search algorithm and find the best move
 			// Once found, send the best move using the "bestmove" command
@@ -79,3 +90,5 @@ func loadTables() {
 func loadFen(fen []string) {
 	currentBoard.loadFromFEN(fen)
 }
+
+var tmpPlayedMoveList []move = make([]move, 0, 100)

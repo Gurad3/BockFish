@@ -4,22 +4,22 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/ball.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/black-bishop.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/black-king.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/black-knight.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/black-pawn.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/black-queen.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/black-rook.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/chessboard.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/dot.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/File.spritefont</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/white-bishop.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/white-king.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/white-knight.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/white-pawn.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/white-queen.png</File>
-    <File>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/white-rook.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/ball.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/black-bishop.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/black-king.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/black-knight.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/black-pawn.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/black-queen.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/black-rook.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/chessboard.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/dot.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/File.spritefont</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/white-bishop.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/white-king.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/white-knight.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/white-pawn.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/white-queen.png</File>
+    <File>C:/Users/matoc/go/src/BockFish/GUI/ChessUI/Content/white-rook.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

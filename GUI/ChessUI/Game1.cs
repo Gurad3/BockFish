@@ -127,6 +127,7 @@ public class Game1 : Game
     }
 
     static void sendCommand(string command){
+        Console.WriteLine("Sent: "+ command);
         bockFish.StandardInput.WriteLine(command);
     }
 
@@ -168,7 +169,7 @@ public class Game1 : Game
         string TargetY = ((int)target.Y).ToString();
 
         sendCommand("play " + SourceX + SourceY + TargetX + TargetY);
-        readAnswer();
+        Console.WriteLine("SentPlay: "+ readAnswer() ) ;
     }
 
     void getNewPos(){

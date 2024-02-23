@@ -74,7 +74,7 @@ func (board *board) PlayMove(Move move) {
 
 	if !targetPiece.dead {
 		opCOl := 0
-		if targetPiece.isWhite {
+		if !targetPiece.isWhite {
 			opCOl = 1
 		}
 		board.pieceMasks[opCOl][targetPiece.typeID] ^= 1 << targetIndex
@@ -82,11 +82,14 @@ func (board *board) PlayMove(Move move) {
 
 		//Tar sista itemet i sliceen sätter den på index positionen och resizar
 
+		//fmt.Println(targetPiece.indexInPiecesArray)
 		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
+
+		//board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
+		board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1].indexInPiecesArray = targetPiece.indexInPiecesArray
+
 		board.pieceArrays[opCOl][targetPiece.typeID] = board.pieceArrays[opCOl][targetPiece.typeID][:len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
 
-		//Updatera den andra piecens index
-		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
 		targetPiece.dead = true
 
 	}
@@ -103,9 +106,18 @@ func (board *board) PlayMove(Move move) {
 
 	board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex
 
-	if (Move & PromFlag) > 10 {
-		sourcePiece.typeID = uint8((Move&PromFlag)>>12) - 2
+	if (Move&PromFlag)>>12 > 10 {
+		sourcePiece.typeID = uint8((Move&PromFlag)>>12) - 10
 		board.pieceArrays[colr][sourcePiece.typeID] = append(board.pieceArrays[colr][sourcePiece.typeID], sourcePiece)
+
+		board.pieceArrays[colr][1][sourcePiece.indexInPiecesArray] = board.pieceArrays[colr][1][len(board.pieceArrays[colr][1])-1]
+
+		board.pieceArrays[colr][1][len(board.pieceArrays[colr][1])-1].indexInPiecesArray = sourcePiece.indexInPiecesArray
+		//board.pieceArrays[colr][1][sourcePiece.indexInPiecesArray].indexInPiecesArray = sourcePiece.indexInPiecesArray
+
+		board.pieceArrays[colr][1] = board.pieceArrays[colr][1][:len(board.pieceArrays[colr][1])-1]
+
+		sourcePiece.indexInPiecesArray = uint8(len(board.pieceArrays[colr][sourcePiece.typeID]) - 1)
 	}
 
 	board.pieceMasks[colr][sourcePiece.typeID] |= 1 << targetIndex
@@ -147,7 +159,7 @@ func (board *board) UndoMove(Move move) {
 	}
 
 	if (Move & PromFlag) > 0 {
-		sourcePiece.typeID = uint8((Move&PromFlag)>>12) - 2
+		sourcePiece.typeID = uint8(1)
 		board.pieceArrays[colr][sourcePiece.typeID] = append(board.pieceArrays[colr][sourcePiece.typeID], sourcePiece)
 	}
 	board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex

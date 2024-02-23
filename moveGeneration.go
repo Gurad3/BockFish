@@ -72,11 +72,14 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 				if TypeID == 1 {
 
 					if pawnUpTwo {
-						//flag = PawnTwoUpFlag
-					} else if targetIndex == 7 || targetIndex == 0 { //Pawn is promoting
+						if targetIndex <= 40 && targetIndex >= 25 {
+							//flag = PawnTwoUpFlag
+						}
+
+					} else if targetIndex < 8 || targetIndex > 55 { //Pawn is promoting
 
 						for i := move(12); i < 16; i++ {
-							legalMoves = append(legalMoves, newMove|i)
+							legalMoves = append(legalMoves, newMove|i<<12)
 						}
 						moveMask ^= 1 << targetIndex
 						continue

@@ -69,17 +69,21 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 				newMove := move(targetIndex) << 6
 				newMove += move(piece.square)
 
+				if 1<<targetIndex&board.pieceMask[opCOl] > 0 {
+					flag = CapFlag
+				}
+
 				if TypeID == 1 {
 
 					if pawnUpTwo {
-						if targetIndex <= 40 && targetIndex >= 25 {
-							//flag = PawnTwoUpFlag
+						if targetIndex <= 39 && targetIndex >= 24 {
+							flag = PawnTwoUpFlag
 						}
 
 					} else if targetIndex < 8 || targetIndex > 55 { //Pawn is promoting
 
-						for i := move(12); i < 16; i++ {
-							legalMoves = append(legalMoves, newMove|i<<12)
+						for i := move(4); i < 8; i++ {
+							legalMoves = append(legalMoves, newMove|i<<12|flag)
 						}
 						moveMask ^= 1 << targetIndex
 						continue
@@ -98,12 +102,12 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 }
 
 func (board *board) isCheck(col bool) bool {
-	colID := 0
-	opCol := 1
+	colID := 1
+	opCol := 0
 
-	if !col {
-		colID = 1
-		opCol = 0
+	if col {
+		colID = 0
+		opCol = 1
 	}
 
 	kingIndex := board.kings[colID].square
@@ -114,7 +118,7 @@ func (board *board) isCheck(col bool) bool {
 		tmpMask |= board.pieceMasks[opCol][1] & (PawnAttackMasks[kingIndex] << 16) //Pawns
 	}
 
-	return tmpMask == 0
+	return tmpMask > 0
 }
 
 func (board *board) filterOutPsudoLegal(moves []move) []move {
@@ -139,15 +143,15 @@ func popLSB(n uint64) int {
 	return pos
 }
 
-const NoFlag move = 0b0000
-const EnPassant move = 0b0001
-const CastleFlag move = 0b0010
-const PawnTwoUpFlag move = 0b0011
+const NoFlag move = 0b0000 << 12
+const EnPassant move = 0b0001 << 12
+const CastleFlag move = 0b0010 << 12
+const PawnTwoUpFlag move = 0b0011 << 12
 
-const PromoteToKnightFlag move = 0b1100
-const PromoteToBishopFlag move = 0b1101
-const PromoteToRookFlag move = 0b1110
-const PromoteToQueenFlag move = 0b1111
+const PromoteToKnightFlag move = 0b0100
+const PromoteToBishopFlag move = 0b0101
+const PromoteToRookFlag move = 0b0110
+const PromoteToQueenFlag move = 0b0111
 
 //var PromotFlags [4]move = [4]move{PromoteToKnightFlag, PromoteToBishopFlag, PromoteToRookFlag, PromoteToQueenFlag}
 

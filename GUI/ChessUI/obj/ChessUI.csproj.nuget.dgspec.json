@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\matoc\\go\\src\\BOckFish\\GUI\\ChessUI\\ChessUI.csproj": {}
+    "C:\\Users\\matoc\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\matoc\\go\\src\\BOckFish\\GUI\\ChessUI\\ChessUI.csproj": {
+    "C:\\Users\\matoc\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\matoc\\go\\src\\BOckFish\\GUI\\ChessUI\\ChessUI.csproj",
+        "projectUniqueName": "C:\\Users\\matoc\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj",
         "projectName": "ChessUI",
-        "projectPath": "C:\\Users\\matoc\\go\\src\\BOckFish\\GUI\\ChessUI\\ChessUI.csproj",
+        "projectPath": "C:\\Users\\matoc\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj",
         "packagesPath": "C:\\Users\\matoc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\matoc\\go\\src\\BOckFish\\GUI\\ChessUI\\obj\\",
+        "outputPath": "C:\\Users\\matoc\\go\\src\\BockFish\\GUI\\ChessUI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\matoc\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -45,9 +45,15 @@ func main() {
 		case "getlegal":
 			fmt.Println(moveArrayTOstring(currentBoard.getLegalMoves(false)))
 
+		case "getfullegal":
+			fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMoves(false))))
+
 		case "play":
 			//currentBoard.PlayMove(StringMoveToMove(parts[1]))
 			currentBoard.PlayMove(tmpStringToMove[parts[1]])
+			if tmpStringToMove[parts[1]]&CapFlag > 0 {
+				writeToLogFile("PlayedMove was a capture")
+			}
 			tmpPlayedMoveList = append(tmpPlayedMoveList, tmpStringToMove[parts[1]])
 			fmt.Println("done")
 

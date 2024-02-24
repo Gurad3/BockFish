@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6EcTRIGORHGlnyEgZPsESWXv9uLaZoVr3zmlwx3gWh21GDe1oBEdRYaRfZdhWISjXBGaBHUA/kEbG9EZfvnpAA==",
+  "dgSpecHash": "MuYbpwcI7CeKIXZT8VufKapEDv9wKbELE0vnxhtsqErxOo9AjPnf8BCK4BNSzttnvwfbBdLQaeVRyGJH8wYYGg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\matoc\\go\\src\\BOckFish\\GUI\\ChessUI\\ChessUI.csproj",
+  "projectFilePath": "C:\\Users\\matoc\\go\\src\\BockFish\\GUI\\ChessUI\\ChessUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\matoc\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
     "C:\\Users\\matoc\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",

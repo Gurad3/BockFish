@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -22,7 +24,7 @@ func isNumber(s string) bool {
 }
 
 func (board *board) loadFromFEN(fen []string) {
-	board.deadPieces = make([]*piece, 0, 256) //Buffer på 256, borde inte nås så ofta, om det nårs kmr ju den att utökas, men kan slöa ned om det händer
+	board.deadPieces = make([]*piece, 0, 30)
 
 	board.isWhiteTurn = fen[1] == "w"
 
@@ -164,3 +166,18 @@ var tmpStringToMove map[string]move = make(map[string]move, 1000)
 6 = king
 
 */
+
+func writeToLogFile(message string) {
+	// Open the file in append mode. Create it if it doesn't exist.
+	file, err := os.OpenFile("log.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	// Create a logger that writes to the file
+	logger := log.New(file, "", log.LstdFlags)
+
+	// Write the log message
+	logger.Println(message)
+}

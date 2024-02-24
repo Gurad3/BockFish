@@ -136,7 +136,8 @@ public class Game1 : Game
     }
 
     int[,] getLegalMoves(){
-        sendCommand("getlegal");
+       // sendCommand("getfullegal");
+       sendCommand("getfullegal");
         string answer = readAnswer();
         Console.WriteLine("RecivedLegal: "+ answer);
         string[] moves = answer.Split(" ");

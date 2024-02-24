@@ -104,7 +104,7 @@ public class Game1 : Game
         bockFish.StartInfo.RedirectStandardOutput = true;
         bockFish.Start();
         AppDomain.CurrentDomain.ProcessExit += closeBockFish;
-        // Communicate with the other process
+    
       
 /*
         sendCommand("uci");
@@ -114,9 +114,11 @@ public class Game1 : Game
         sendCommand("ucinewgame");
         readAnswer();
         sendCommand("position rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+        //sendCommand("position 6r1/pp5p/5n1k/2pp4/3n1R2/2PP3b/PP2rP1N/R4K2 w - - 3 30");
         readAnswer();
+
         legalMoves =  getLegalMoves();
-       // getNewPos();
+        
         base.Initialize();
     }
     static void closeBockFish(object sender, EventArgs e){
@@ -132,14 +134,15 @@ public class Game1 : Game
     }
 
     static string readAnswer(){
-        return bockFish.StandardOutput.ReadLine();
+        string answer = bockFish.StandardOutput.ReadLine();
+        Console.WriteLine("Recived:" + answer);
+        return answer;
     }
 
     int[,] getLegalMoves(){
        // sendCommand("getfullegal");
-       sendCommand("getfullegal");
+        sendCommand("getfullegal");
         string answer = readAnswer();
-        Console.WriteLine("RecivedLegal: "+ answer);
         string[] moves = answer.Split(" ");
         
 
@@ -176,7 +179,6 @@ public class Game1 : Game
     void getNewPos(){
         sendCommand("getpos");
         string answer = readAnswer();
-        Console.WriteLine("receviedPos: "+ answer);
         string[] pie = answer.Split(" ");
         
         string[] squareL = new string[] 
@@ -312,6 +314,8 @@ public class Game1 : Game
             queenTextureB,
             kingTextureB,
         };
+
+        getNewPos();
     }
 
     bool pressed = false;

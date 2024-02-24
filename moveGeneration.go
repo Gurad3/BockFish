@@ -58,6 +58,7 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 
 			} else if TypeID == 2 { //Knight
 				moveMask = (KnightAttackMasks[piece.square] & board.pieceMask[colID]) ^ KnightAttackMasks[piece.square] //Cretae movemask
+
 			} else if TypeID == 6 { //King
 				moveMask = (KingAttackMasks[piece.square] & board.pieceMask[colID]) ^ KingAttackMasks[piece.square] //Cretae movemask
 			}

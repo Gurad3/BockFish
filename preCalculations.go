@@ -18,10 +18,16 @@ var pawnAttack = [][]int{ //Whit pawns, black << 16?
 	{1, -1}, {-1, -1},
 }
 
+var rookDir = [][]int{
+	{1, 0}, {-1, 0}, {0, 1}, {0, -1},
+}
+
 var KnightAttackMasks = [64]uint64{}
 var KingAttackMasks = [64]uint64{}
 
 var PawnAttackMasks = [64]uint64{}
+
+var RookAttackMask = [64]uint64{}
 
 func loadPreCalculations() {
 	for i := 0; i < 64; i++ {
@@ -58,5 +64,18 @@ func loadPreCalculations() {
 			}
 		}
 		PawnAttackMasks[i] = uint64(CurrentPawnMask)
+
+		CurrentRookMask := 0
+		for _, dir := range rookDir {
+			for step := 0; step < 5; step++ {
+				tmpX := CurrentX + dir[0]*step
+				tmpY := CurrentY + dir[1]*step
+				if tmpX >= 0 && tmpX < 8 && tmpY >= 0 && tmpY < 8 {
+
+				}
+
+			}
+		}
+
 	}
 }

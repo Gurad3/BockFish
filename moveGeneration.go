@@ -2,7 +2,6 @@ package main
 
 import (
 	"math"
-	"strconv"
 )
 
 func (board *board) getLegalMoves(onlyCaptures bool) []move {
@@ -19,7 +18,7 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 				continue
 			}
 
-			var moveMask uint64
+			moveMask := uint64(0)
 			pawnUpTwo := false
 			opCOl := 0
 			if colID == 0 {
@@ -28,7 +27,7 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 
 			if TypeID == 1 { //Pawn
 				if piece.isWhite {
-					moveMask = (PawnAttackMasks[piece.square] & board.pieceMask[opCOl])
+					moveMask |= (PawnAttackMasks[piece.square] & board.pieceMask[opCOl])
 
 					if (1<<(piece.square-8))&(board.pieceMask[opCOl]|board.pieceMask[colID]) == 0 { //Nothin infront og pawn
 						moveMask |= (1 << (piece.square - 8))
@@ -43,7 +42,7 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 					}
 
 				} else {
-					moveMask = ((PawnAttackMasks[piece.square] << 16) & board.pieceMask[opCOl])
+					moveMask |= ((PawnAttackMasks[piece.square] << 16) & board.pieceMask[opCOl])
 
 					if (1<<(piece.square+8))&(board.pieceMask[opCOl]|board.pieceMask[colID]) == 0 { //Nothin infront og pawn
 						moveMask |= (1 << (piece.square + 8))
@@ -58,14 +57,19 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 				}
 
 			} else if TypeID == 2 { //Knight
-				moveMask = (KnightAttackMasks[piece.square] & board.pieceMask[colID]) ^ KnightAttackMasks[piece.square] //Cretae movemask
+				moveMask |= (KnightAttackMasks[piece.square] | board.pieceMask[colID]) ^ board.pieceMask[colID] //Cretae movemask
 
 			} else if TypeID == 6 { //King
-				moveMask = (KingAttackMasks[piece.square] & board.pieceMask[colID]) ^ KingAttackMasks[piece.square] //Cretae movemask
-			} else if TypeID == 4 {
-				moveMask = RookMagicDict[piece.square][RookAttackMask[piece.square]&(board.pieceMask[0]|board.pieceMask[1])]
-				writeToLogFile(strconv.Itoa(int(moveMask)))
-				writeToLogFile(strconv.Itoa(int(RookAttackMask[piece.square])))
+				moveMask |= (KingAttackMasks[piece.square] | board.pieceMask[colID]) ^ board.pieceMask[colID] //Cretae movemask
+			} else if TypeID == 3 { //Bishop
+				moveMask |= (BishMagicDict[piece.square][BishAttackMask[piece.square]&(board.pieceMask[0]|board.pieceMask[1])] | board.pieceMask[colID]) ^ board.pieceMask[colID]
+			} else if TypeID == 4 { //Rook
+				moveMask |= (RookMagicDict[piece.square][RookAttackMask[piece.square]&(board.pieceMask[0]|board.pieceMask[1])] | board.pieceMask[colID]) ^ board.pieceMask[colID]
+			} else if TypeID == 5 { //Queen
+				moveMask |= RookMagicDict[piece.square][RookAttackMask[piece.square]&(board.pieceMask[0]|board.pieceMask[1])]
+				moveMask |= BishMagicDict[piece.square][BishAttackMask[piece.square]&(board.pieceMask[0]|board.pieceMask[1])]
+				moveMask |= board.pieceMask[colID]
+				moveMask ^= board.pieceMask[colID]
 			}
 
 			for moveMask > 0 {
@@ -123,6 +127,8 @@ func (board *board) isCheck(col bool) bool {
 	} else {
 		tmpMask |= board.pieceMasks[opCol][1] & (PawnAttackMasks[kingIndex] << 16) //Pawns
 	}
+	tmpMask |= RookMagicDict[kingIndex][RookAttackMask[kingIndex]&(board.pieceMask[0]|board.pieceMask[1])] & (board.pieceMasks[opCol][4] | board.pieceMasks[opCol][5]) //Rook + Queen
+	tmpMask |= BishMagicDict[kingIndex][BishAttackMask[kingIndex]&(board.pieceMask[0]|board.pieceMask[1])] & (board.pieceMasks[opCol][3] | board.pieceMasks[opCol][5]) //Bish + Queen
 
 	return tmpMask > 0
 }

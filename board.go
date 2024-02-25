@@ -176,6 +176,9 @@ func (board *board) UndoMove(Move move) {
 		board.pieceArrays[colr][sourcePiece.typeID][sourcePiece.indexInPiecesArray].indexInPiecesArray = sourcePiece.indexInPiecesArray
 		board.pieceArrays[colr][sourcePiece.typeID] = board.pieceArrays[colr][sourcePiece.typeID][:len(board.pieceArrays[colr][sourcePiece.typeID])-1]
 
+		board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex
+		board.pieceMask[colr] ^= 1 << sourceIndex
+
 		sourcePiece.typeID = uint8(1)
 		board.pieceArrays[colr][sourcePiece.typeID] = append(board.pieceArrays[colr][sourcePiece.typeID], sourcePiece)
 		sourcePiece.indexInPiecesArray = uint8(len(board.pieceArrays[colr][sourcePiece.typeID]) - 1)

@@ -140,8 +140,8 @@ public class Game1 : Game
     }
 
     int[,] getLegalMoves(){
-        sendCommand("getfullegal");
-        //sendCommand("getlegal");
+        //sendCommand("getfullegal");
+        sendCommand("getlegal");
         string answer = readAnswer();
         string[] moves = answer.Split(" ");
         

@@ -2,6 +2,7 @@ package main
 
 import (
 	"math"
+	"strconv"
 )
 
 func (board *board) getLegalMoves(onlyCaptures bool) []move {
@@ -61,6 +62,10 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 
 			} else if TypeID == 6 { //King
 				moveMask = (KingAttackMasks[piece.square] & board.pieceMask[colID]) ^ KingAttackMasks[piece.square] //Cretae movemask
+			} else if TypeID == 4 {
+				moveMask = RookMagicDict[piece.square][RookAttackMask[piece.square]&(board.pieceMask[0]|board.pieceMask[1])]
+				writeToLogFile(strconv.Itoa(int(moveMask)))
+				writeToLogFile(strconv.Itoa(int(RookAttackMask[piece.square])))
 			}
 
 			for moveMask > 0 {

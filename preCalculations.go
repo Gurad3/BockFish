@@ -71,7 +71,7 @@ func loadPreCalculations() {
 				tmpX := CurrentX + dir[0]*step
 				tmpY := CurrentY + dir[1]*step
 				if tmpX >= 0 && tmpX < 8 && tmpY >= 0 && tmpY < 8 {
-
+					CurrentRookMask |= (1 << (tmpY*8 + tmpX))
 				}
 
 			}

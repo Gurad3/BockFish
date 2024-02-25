@@ -1,0 +1,10 @@
+2024/02/25 17:10:32 PlayedMove was a capture
+2024/02/25 17:10:33 PlayedMove was a capture
+2024/02/25 17:43:03 PlayedMove was a capture
+2024/02/25 17:43:08 PlayedMove was a capture
+2024/02/25 17:43:10 PlayedMove was a capture
+2024/02/25 17:43:11 PlayedMove was a capture
+2024/02/25 17:43:26 PlayedMove was a capture
+2024/02/25 17:43:31 PlayedMove was a capture
+2024/02/25 17:43:40 PlayedMove was a capture
+2024/02/25 17:43:41 PlayedMove was a capture

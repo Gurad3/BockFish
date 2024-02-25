@@ -71,6 +71,9 @@ func main() {
 		case "getpos":
 			fmt.Println("pos " + sendPosAsString())
 
+		case "searchmagic":
+			fmt.Println("g")
+			loadPreCalculations(true)
 		case "go":
 			// Implement search algorithm and find the best move
 			// Once found, send the best move using the "bestmove" command
@@ -90,7 +93,7 @@ func main() {
 
 func loadTables() {
 	currentBoard = board{}
-	loadPreCalculations()
+	loadPreCalculations(false)
 }
 
 func loadFen(fen []string) {

@@ -1,5 +1,12 @@
 package main
 
+import (
+	"encoding/json"
+	"fmt"
+	"math/rand"
+	"os"
+)
+
 var knightAttacks = [][]int{
 	{1, 2}, {2, 1},
 	{2, -1}, {1, -2},
@@ -34,15 +41,19 @@ var PawnAttackMasks = [64]uint64{}
 var RookAttackMask = [64]uint64{}
 var BishAttackMask = [64]uint64{}
 
-var RookMagicDict []map[uint64]uint64
-var BishMagicDict []map[uint64]uint64
+var RookMagicDict [][]uint64
+var BishMagicDict [][]uint64
 
-func loadPreCalculations() {
-	RookMagicDict = make([]map[uint64]uint64, 64)
-	BishMagicDict = make([]map[uint64]uint64, 64)
+func loadPreCalculations(searchForMagic bool) {
+	RookMagicDict = make([][]uint64, 64)
+	BishMagicDict = make([][]uint64, 64)
+
+	var RookAlBlockers = [64][]uint64{}
+	var BishAlBlockers = [64][]uint64{}
+
 	for i := 0; i < 64; i++ {
-		RookMagicDict[i] = make(map[uint64]uint64)
-		BishMagicDict[i] = make(map[uint64]uint64)
+		RookMagicDict[i] = make([]uint64, 1<<(64-rookShifts[i]))
+		BishMagicDict[i] = make([]uint64, 1<<(64-bishopShifts[i]))
 		CurrentX := i % 8
 		CurrentY := i / 8
 
@@ -131,7 +142,7 @@ func loadPreCalculations() {
 				}
 			}
 
-			RookMagicDict[i][position] = CurrentRookMoveMask
+			RookMagicDict[i][(position*rookMagics[i])>>rookShifts[i]] = CurrentRookMoveMask
 		}
 
 		//Bishop
@@ -186,8 +197,151 @@ func loadPreCalculations() {
 				}
 			}
 
-			BishMagicDict[i][position] = CurrentBishMoveMask
+			BishMagicDict[i][(position*bishopMagics[i])>>bishopShifts[i]] = CurrentBishMoveMask
+		}
+
+		if searchForMagic {
+			RookAlBlockers[i] = rookBlockersBitboard
+			BishAlBlockers[i] = bishBlockersBitboard
 		}
 	}
 
+	if !searchForMagic {
+		return
+	}
+
+	currentMagic, currentShift, BcurrentMagic, BcurrentShift := loadMagics()
+	/*
+		currentMagic := rookMagics
+		currentShift := rookShifts
+		BcurrentMagic := bishopMagics
+		BcurrentShift := bishopShifts
+	*/
+	/*
+		currentMagic := make([]uint64, 64)
+		currentShift := make([]int, 64)
+		BcurrentMagic := make([]uint64, 64)
+		BcurrentShift := make([]int, 64)
+
+		for i := 0; i < 64; i++ {
+			currentShift[i] = 50
+			BcurrentShift[i] = 50
+		}
+	*/
+	//Seaching for bettermagic
+	fmt.Println("Starting Searchs")
+
+	for {
+		for i := 0; i < 64; i++ {
+			seen := make(map[uint64]bool)
+			testMagic := uint64(rand.Uint32())<<32 + uint64(rand.Uint32())
+			magicWorks := true
+			for _, position := range RookAlBlockers[i] {
+
+				if _, ok := seen[(position*testMagic)>>(currentShift[i]+1)]; ok {
+					magicWorks = false
+					break
+				} else {
+					seen[(position*testMagic)>>(currentShift[i]+1)] = true
+				}
+
+			}
+
+			if magicWorks {
+				currentShift[i] += 1
+				fmt.Println("(Rook) Square: ", i, " Shifts: ", currentShift[i])
+				currentMagic[i] = testMagic
+				SaveMagics(currentMagic, currentShift, BcurrentMagic, BcurrentShift)
+			}
+
+			seen = make(map[uint64]bool)
+			testMagic = uint64(rand.Uint32())<<32 + uint64(rand.Uint32())
+			magicWorks = true
+			for _, position := range BishAlBlockers[i] {
+
+				if _, ok := seen[(position*testMagic)>>(BcurrentShift[i]+1)]; ok {
+					magicWorks = false
+					break
+				} else {
+					seen[(position*testMagic)>>(BcurrentShift[i]+1)] = true
+				}
+
+			}
+
+			if magicWorks {
+				BcurrentShift[i] += 1
+				fmt.Println("(Bish) Square: ", i, " Shifts: ", BcurrentShift[i])
+				BcurrentMagic[i] = testMagic
+				SaveMagics(currentMagic, currentShift, BcurrentMagic, BcurrentShift)
+			}
+		}
+	}
+
+}
+
+func SaveMagics(Magics []uint64, Shifts []int, BMagics []uint64, BShifts []int) {
+	// Two sample arrays
+
+	// Marshalling arrays to JSON
+	data := map[string]interface{}{
+		"Magics":  Magics,
+		"Shifts":  Shifts,
+		"BMagics": BMagics,
+		"BShifts": BShifts,
+	}
+	jsonData, err := json.MarshalIndent(data, "", "    ")
+	if err != nil {
+		fmt.Println("Error marshalling JSON:", err)
+		return
+	}
+
+	// Writing JSON data to a file
+	err = os.WriteFile("magics.json", jsonData, 0644)
+	if err != nil {
+		fmt.Println("Error writing to file:", err)
+		return
+	}
+
+}
+
+func loadMagics() ([]uint64, []int, []uint64, []int) {
+	jsonData, _ := os.ReadFile("magics.json")
+
+	// Define structs to unmarshal JSON data into
+	var data map[string]interface{}
+
+	// Unmarshal JSON data into structs
+	if err := json.Unmarshal(jsonData, &data); err != nil {
+		fmt.Println("Error unmarshalling JSON:", err)
+
+	}
+
+	// Extract arrays from the data map
+	MagicsTMP := data["Magics"].([]interface{})
+	ShiftsTMP := data["Shifts"].([]interface{})
+	BMagicsTMP := data["BMagics"].([]interface{})
+	BShiftsTMP := data["BShifts"].([]interface{})
+	// Convert arrays to their respective types
+	var Magics []uint64
+	var Shifts []int
+	var BMagics []uint64
+	var BShifts []int
+
+	for _, item := range MagicsTMP {
+		Magics = append(Magics, uint64(item.(float64)))
+	}
+
+	for _, item := range ShiftsTMP {
+		Shifts = append(Shifts, int(item.(float64)))
+	}
+
+	for _, item := range BMagicsTMP {
+		BMagics = append(BMagics, uint64(item.(float64)))
+	}
+
+	for _, item := range BShiftsTMP {
+		BShifts = append(BShifts, int(item.(float64)))
+	}
+
+	return Magics, Shifts, BMagics, BShifts
 }

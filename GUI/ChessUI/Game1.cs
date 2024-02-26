@@ -319,6 +319,8 @@ public class Game1 : Game
     }
 
     bool pressed = false;
+
+    
     protected override void Update(GameTime gameTime)
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -349,7 +351,7 @@ public class Game1 : Game
         }
 
 
-        if (kstate.IsKeyUp(Keys.U)){
+        if (kstate.IsKeyUp(Keys.U) && kstate.IsKeyUp(Keys.P)){
             pressed = false;
            
         }
@@ -358,6 +360,16 @@ public class Game1 : Game
             pressed = true;
             Console.WriteLine("U");
             sendCommand("undo");
+            Console.WriteLine(readAnswer());
+
+            getNewPos();
+            legalMoves =  getLegalMoves();
+        }
+
+         if (kstate.IsKeyDown(Keys.P)&& !pressed){
+            pressed = true;
+            Console.WriteLine("U");
+            sendCommand("plabest");
             Console.WriteLine(readAnswer());
 
             getNewPos();

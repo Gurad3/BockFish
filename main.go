@@ -30,8 +30,8 @@ func main() {
 		}
 		switch parts[0] {
 		case "uci":
-			fmt.Println("id name YourChessEngineName")
-			fmt.Println("id author YourName")
+			//fmt.Println("id name YourChessEngineName")
+			//fmt.Println("id author YourName")
 			// Add any supported options here
 			fmt.Println("uciok")
 		case "isready":
@@ -70,6 +70,12 @@ func main() {
 
 		case "getpos":
 			fmt.Println("pos " + sendPosAsString())
+
+		case "plabest":
+			mov := currentBoard.searchMove()
+			currentBoard.PlayMove(mov)
+			tmpPlayedMoveList = append(tmpPlayedMoveList, mov)
+			fmt.Println("done")
 
 		case "searchmagic":
 			fmt.Println("g")

@@ -45,6 +45,7 @@ var RookMagicDict [][]uint64
 var BishMagicDict [][]uint64
 
 func loadPreCalculations(searchForMagic bool) {
+
 	RookMagicDict = make([][]uint64, 64)
 	BishMagicDict = make([][]uint64, 64)
 
@@ -54,6 +55,7 @@ func loadPreCalculations(searchForMagic bool) {
 	for i := 0; i < 64; i++ {
 		RookMagicDict[i] = make([]uint64, 1<<(64-rookShifts[i]))
 		BishMagicDict[i] = make([]uint64, 1<<(64-bishopShifts[i]))
+
 		CurrentX := i % 8
 		CurrentY := i / 8
 
@@ -95,9 +97,6 @@ func loadPreCalculations(searchForMagic bool) {
 			for step := 1; step < 9; step++ {
 				tmpX := CurrentX + dir[0]*step
 				tmpY := CurrentY + dir[1]*step
-
-				//absX := int(math.Abs(float64(dir[0])))
-				//	absY := int(math.Abs(float64(dir[1])))
 				if (tmpX == CurrentX || (tmpX >= 1 && tmpX <= 6)) && ((tmpY >= 1 && tmpY <= 6) || tmpY == CurrentY) {
 					CurrentRookMask |= 1 << (tmpY*8 + tmpX)
 					numRookBits++
@@ -210,29 +209,29 @@ func loadPreCalculations(searchForMagic bool) {
 		return
 	}
 
-	currentMagic, currentShift, BcurrentMagic, BcurrentShift := loadMagics()
+	//currentMagic, currentShift, BcurrentMagic, BcurrentShift := loadMagics()
 	/*
 		currentMagic := rookMagics
 		currentShift := rookShifts
 		BcurrentMagic := bishopMagics
 		BcurrentShift := bishopShifts
 	*/
-	/*
-		currentMagic := make([]uint64, 64)
-		currentShift := make([]int, 64)
-		BcurrentMagic := make([]uint64, 64)
-		BcurrentShift := make([]int, 64)
 
-		for i := 0; i < 64; i++ {
-			currentShift[i] = 50
-			BcurrentShift[i] = 50
-		}
-	*/
+	currentMagic := make([]uint64, 64)
+	currentShift := make([]int, 64)
+	BcurrentMagic := make([]uint64, 64)
+	BcurrentShift := make([]int, 64)
+
+	for i := 0; i < 64; i++ {
+		currentShift[i] = 50
+		BcurrentShift[i] = 50
+	}
+
 	//Seaching for bettermagic
 	fmt.Println("Starting Searchs")
 
 	for {
-		for i := 0; i < 64; i++ {
+		for i := 0; i < 1; i++ {
 			seen := make(map[uint64]bool)
 			testMagic := uint64(rand.Uint32())<<32 + uint64(rand.Uint32())
 			magicWorks := true
@@ -254,24 +253,24 @@ func loadPreCalculations(searchForMagic bool) {
 				SaveMagics(currentMagic, currentShift, BcurrentMagic, BcurrentShift)
 			}
 
-			seen = make(map[uint64]bool)
-			testMagic = uint64(rand.Uint32())<<32 + uint64(rand.Uint32())
-			magicWorks = true
+			seen2 := make(map[uint64]bool)
+			testMagic2 := uint64(rand.Uint32())<<32 + uint64(rand.Uint32())
+			magicWorks2 := true
 			for _, position := range BishAlBlockers[i] {
 
-				if _, ok := seen[(position*testMagic)>>(BcurrentShift[i]+1)]; ok {
-					magicWorks = false
+				if _, ok := seen2[(position*testMagic2)>>(BcurrentShift[i]+1)]; ok {
+					magicWorks2 = false
 					break
 				} else {
-					seen[(position*testMagic)>>(BcurrentShift[i]+1)] = true
+					seen2[(position*testMagic2)>>(BcurrentShift[i]+1)] = true
 				}
 
 			}
 
-			if magicWorks {
+			if magicWorks2 {
 				BcurrentShift[i] += 1
 				fmt.Println("(Bish) Square: ", i, " Shifts: ", BcurrentShift[i])
-				BcurrentMagic[i] = testMagic
+				BcurrentMagic[i] = testMagic2
 				SaveMagics(currentMagic, currentShift, BcurrentMagic, BcurrentShift)
 			}
 		}

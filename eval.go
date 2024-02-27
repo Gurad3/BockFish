@@ -4,7 +4,7 @@ var pieceVals = []int{
 	0, 100, 300, 350, 500, 900, 9999999,
 }
 
-func (board *board) EvalCurrentPos(perSpect bool) int {
+func (board *board) EvalCurrentPos() int {
 
 	score := 0
 
@@ -20,7 +20,7 @@ func (board *board) EvalCurrentPos(perSpect bool) int {
 		}
 	}
 
-	if perSpect {
+	if board.isWhiteTurn {
 		return score
 	} else {
 		return -score

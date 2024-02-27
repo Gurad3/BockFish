@@ -24,7 +24,7 @@ func isNumber(s string) bool {
 }
 
 func (board *board) loadFromFEN(fen []string) {
-	board.deadPieces = make([]*piece, 0, 30)
+	board.deadPieces = make([]uint8, 0, 30)
 
 	board.isWhiteTurn = fen[1] == "w"
 

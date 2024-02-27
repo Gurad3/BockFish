@@ -79,7 +79,7 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 				newMove := move(targetIndex) << 6
 				newMove += move(piece.square)
 
-				if 1<<targetIndex&board.pieceMask[opCOl] > 0 {
+				if (1<<targetIndex)&board.pieceMask[opCOl] > 0 {
 					flag = CapFlag
 				}
 
@@ -90,7 +90,7 @@ func (board *board) getLegalMoves(onlyCaptures bool) []move {
 							flag = PawnTwoUpFlag
 						}
 
-					} else if targetIndex < 8 || targetIndex > 55 { //Pawn is promoting
+					} else if targetIndex < 8 || targetIndex > 55 && false { //Pawn is promoting
 
 						for i := move(4); i < 8; i++ {
 							legalMoves = append(legalMoves, newMove|i<<12|flag)

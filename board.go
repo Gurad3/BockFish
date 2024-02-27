@@ -24,7 +24,7 @@ type board struct {
 
 	kings [2]*piece
 
-	deadPieces []*piece
+	deadPieces []uint8
 
 	WQCastle bool
 	BQCastle bool
@@ -73,7 +73,7 @@ func (board *board) PlayMove(Move move) {
 
 	targetPiece := board.squareArray[targetIndex]
 
-	if !targetPiece.dead {
+	if Move&CapFlag > 0 {
 		opCOl := 0
 		if !targetPiece.isWhite {
 			opCOl = 1
@@ -84,15 +84,20 @@ func (board *board) PlayMove(Move move) {
 		//Tar sista itemet i sliceen sätter den på index positionen och resizar
 
 		//fmt.Println(targetPiece.indexInPiecesArray)
-		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
+		//writeToLogFile(strconv.Itoa(int(targetPiece.indexInPiecesArray)))
+		//writeToLogFile(strconv.Itoa(int(targetPiece.typeID)))
 
-		//board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
-		board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1].indexInPiecesArray = targetPiece.indexInPiecesArray
+		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
+		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
+
+		//board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1].indexInPiecesArray = targetPiece.indexInPiecesArray
 
 		board.pieceArrays[opCOl][targetPiece.typeID] = board.pieceArrays[opCOl][targetPiece.typeID][:len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
 
 		targetPiece.dead = true
-		board.deadPieces = append(board.deadPieces, targetPiece)
+		board.deadPieces = append(board.deadPieces, targetPiece.typeID)
+
+		targetPiece.typeID = 0
 	}
 
 	sourcePiece := board.squareArray[sourceIndex]
@@ -106,6 +111,7 @@ func (board *board) PlayMove(Move move) {
 	board.squareArray[sourceIndex] = targetPiece
 
 	board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex
+	board.pieceMask[colr] ^= 1 << sourceIndex
 
 	if (Move&PromFlag)>>12 > 3 {
 		sourcePiece.typeID = uint8((Move&PromFlag)>>12) - 2
@@ -123,7 +129,6 @@ func (board *board) PlayMove(Move move) {
 
 	board.pieceMasks[colr][sourcePiece.typeID] |= 1 << targetIndex
 
-	board.pieceMask[colr] ^= 1 << sourceIndex
 	board.pieceMask[colr] |= 1 << targetIndex
 
 	sourcePiece.square = uint8(targetIndex)
@@ -140,6 +145,7 @@ func (board *board) UndoMove(Move move) {
 	targetPiece := board.squareArray[targetIndex]
 
 	board.squareArray[targetIndex] = sourcePiece
+	board.squareArray[sourceIndex] = targetPiece
 
 	board.isWhiteTurn = !board.isWhiteTurn
 
@@ -150,13 +156,15 @@ func (board *board) UndoMove(Move move) {
 		opCOL = 1
 	}
 
-	board.squareArray[sourceIndex] = targetPiece
-
 	//writeToLogFile("Revived from dead: " + strconv.Itoa(int(targetPiece.typeID)))
 
 	if Move&CapFlag > 0 {
 
-		targetPiece := board.deadPieces[len(board.deadPieces)-1]
+		targetPiece.typeID = board.deadPieces[len(board.deadPieces)-1]
+		if targetPiece.typeID == 0 {
+			writeToLogFile("Huu")
+		}
+		board.deadPieces = board.deadPieces[:len(board.deadPieces)-1]
 
 		board.pieceArrays[opCOL][targetPiece.typeID] = append(board.pieceArrays[opCOL][targetPiece.typeID], targetPiece)
 		targetPiece.indexInPiecesArray = uint8(len(board.pieceArrays[opCOL][targetPiece.typeID]) - 1)
@@ -165,10 +173,11 @@ func (board *board) UndoMove(Move move) {
 		board.pieceMasks[opCOL][targetPiece.typeID] |= 1 << sourceIndex
 		targetPiece.dead = false
 
-		targetPiece.square = uint8(sourceIndex)
-		board.deadPieces = board.deadPieces[:len(board.deadPieces)-1]
 		//writeToLogFile("Revived from dead: " + strconv.Itoa(int(targetPiece.typeID)) + "Pos: " + strconv.Itoa(int(sourceIndex)))
 	}
+
+	board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex
+	board.pieceMask[colr] ^= 1 << sourceIndex
 
 	if (Move&PromFlag)>>12 > 3 {
 
@@ -176,23 +185,14 @@ func (board *board) UndoMove(Move move) {
 		board.pieceArrays[colr][sourcePiece.typeID][sourcePiece.indexInPiecesArray].indexInPiecesArray = sourcePiece.indexInPiecesArray
 		board.pieceArrays[colr][sourcePiece.typeID] = board.pieceArrays[colr][sourcePiece.typeID][:len(board.pieceArrays[colr][sourcePiece.typeID])-1]
 
-		board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex
-		board.pieceMask[colr] ^= 1 << sourceIndex
-
 		sourcePiece.typeID = uint8(1)
 		board.pieceArrays[colr][sourcePiece.typeID] = append(board.pieceArrays[colr][sourcePiece.typeID], sourcePiece)
 		sourcePiece.indexInPiecesArray = uint8(len(board.pieceArrays[colr][sourcePiece.typeID]) - 1)
 	}
-	board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex
-	board.pieceMasks[colr][sourcePiece.typeID] |= 1 << targetIndex
 
-	board.pieceMask[colr] ^= 1 << sourceIndex
+	board.pieceMasks[colr][sourcePiece.typeID] |= 1 << targetIndex
 	board.pieceMask[colr] |= 1 << targetIndex
 
 	sourcePiece.square = uint8(targetIndex)
-
-}
-
-func (board *board) clearDeadArray() {
-	board.deadPieces = board.deadPieces[:0]
+	targetPiece.square = uint8(sourceIndex)
 }

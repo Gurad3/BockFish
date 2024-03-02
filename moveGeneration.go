@@ -4,7 +4,7 @@ import (
 	"math"
 )
 
-func (board *board) getLegalMoves(onlyCaptures bool) []move {
+func (board *board) getLegalMoves() []move {
 
 	legalMoves := make([]move, 0, 218)
 	colID := 1

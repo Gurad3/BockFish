@@ -1,7 +1,7 @@
 package main
 
 var pieceVals = []int{
-	0, 100, 300, 350, 500, 900, 9999999,
+	0, 100, 300, 350, 500, 900, 999999999,
 }
 
 func (board *board) EvalCurrentPos() int {
@@ -19,11 +19,5 @@ func (board *board) EvalCurrentPos() int {
 			}
 		}
 	}
-
-	if board.isWhiteTurn {
-		return score
-	} else {
-		return -score
-	}
-
+	return score
 }

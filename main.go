@@ -43,10 +43,10 @@ func main() {
 			loadFen(parts[1:])
 			fmt.Println("done")
 		case "getlegal":
-			fmt.Println(moveArrayTOstring(currentBoard.getLegalMoves(false)))
+			fmt.Println(moveArrayTOstring(currentBoard.getLegalMoves()))
 
 		case "getfullegal":
-			fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMoves(false))))
+			fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMoves())))
 
 		case "play":
 			//currentBoard.PlayMove(StringMoveToMove(parts[1]))
@@ -57,11 +57,14 @@ func main() {
 			tmpPlayedMoveList = append(tmpPlayedMoveList, tmpStringToMove[parts[1]])
 			fmt.Println("done")
 
-		case "test":
+		case "loaddef":
 			loadTables()
 			loadFen(strings.Split(startfen, " "))
-			fmt.Println("legalmoves " + moveArrayTOstring(currentBoard.getLegalMoves(false)))
+			fmt.Println("legalmoves " + moveArrayTOstring(currentBoard.getLegalMoves()))
 			//fmt.Println(KnightAttackMasks[18])
+
+		case "benchsearch":
+			benchsearch()
 
 		case "undo":
 			currentBoard.UndoMove(tmpPlayedMoveList[len(tmpPlayedMoveList)-1])

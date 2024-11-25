@@ -10,12 +10,12 @@ func (board *board) EvalCurrentPos() int {
 
 	for colID, Allpieces := range board.pieceArrays {
 
-		for typID, pieceArray := range Allpieces {
+		for typID, _ := range Allpieces {
 
 			if colID == 0 {
-				score += pieceVals[typID] * len(pieceArray)
+				score += pieceVals[typID] //* len(pieceArray)
 			} else {
-				score -= pieceVals[typID] * len(pieceArray)
+				score -= pieceVals[typID] //* len(pieceArray)
 			}
 		}
 	}

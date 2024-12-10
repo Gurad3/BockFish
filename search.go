@@ -6,25 +6,27 @@ import (
 )
 
 func (board *board) searchMove() move {
-	depth := 5
+	depth := 2
 
 	moves := board.getLegalMoves()
-	currScore := math.MinInt
 	currMove := moves[0]
 	//White = true
 	col := -1
 	if board.isWhiteTurn {
 		col = 1
 	}
+	currScore := (math.MinInt + 1) //* col
+
 	for _, Move := range moves {
 		board.PlayMove(Move)
-		score := -board.NegaMax(depth, math.MinInt, math.MaxInt, -col)
+		score := -board.NegaMax(depth, math.MinInt+1, math.MaxInt, -col)
 		board.UndoMove(Move)
 		if score > currScore {
 			currScore = score
 			currMove = Move
 		}
 	}
+
 	writeToLogFile(strconv.Itoa(int(currScore)) + " Col:" + strconv.Itoa(col))
 	return currMove
 }
@@ -32,18 +34,18 @@ func (board *board) searchMove() move {
 func (board *board) NegaMax(depth int, alpha int, beta int, col int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
-		return 9999999999999
+		return 99999999
 	}
 
 	if depth == 0 {
 		//return board.EvalCurrentPos() * col
-		return currentBoard.QuinNegaMax(depth, alpha, beta, col)
+		return board.QuinNegaMax(depth, alpha, beta, col)
 	}
 
 	moves := board.getLegalMoves()
 	//MoveOrdering
 
-	score := math.MinInt
+	score := math.MinInt + 1
 	for _, Move := range moves {
 		board.PlayMove(Move)
 		score = intMax(score, -board.NegaMax(depth-1, -beta, -alpha, -col))
@@ -66,12 +68,13 @@ func intMax(a int, b int) int {
 func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
-		return 9999999999999
+		return 99999999
 	}
 
 	//MoveOrdering
 
 	score := board.EvalCurrentPos() * col
+	// writeToLogFile(strconv.Itoa(int(col)))
 
 	if score >= beta {
 		return beta

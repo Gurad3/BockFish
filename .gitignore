@@ -3,3 +3,5 @@
 /GUI/ChessUI/Content/
 /GUI/ChessUI/obj/
 /GUI/ChessUI/.config
+
+/GUI/ChessUI/log.txt

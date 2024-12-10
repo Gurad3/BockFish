@@ -19,7 +19,7 @@ func (board *board) searchMove() move {
 
 	for _, Move := range moves {
 		board.PlayMove(Move)
-		score := -board.NegaMax(depth, math.MinInt+1, math.MaxInt, -col)
+		score := -board.NegaMax(depth, math.MinInt+1, math.MaxInt, -col, col)
 		board.UndoMove(Move)
 		if score > currScore {
 			currScore = score
@@ -34,7 +34,7 @@ func (board *board) searchMove() move {
 	return currMove
 }
 
-func (board *board) NegaMax(depth int, alpha int, beta int, col int) int {
+func (board *board) NegaMax(depth int, alpha int, beta int, col int, root int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
 		return 99999999
@@ -42,7 +42,7 @@ func (board *board) NegaMax(depth int, alpha int, beta int, col int) int {
 
 	if depth == 0 {
 		//return board.EvalCurrentPos() * col
-		return board.QuinNegaMax(depth, alpha, beta, col)
+		return board.QuinNegaMax(depth, alpha, beta, col, root)
 	}
 
 	moves := board.getLegalMoves()
@@ -51,7 +51,7 @@ func (board *board) NegaMax(depth int, alpha int, beta int, col int) int {
 	score := math.MinInt + 1
 	for _, Move := range moves {
 		board.PlayMove(Move)
-		score = intMax(score, -board.NegaMax(depth-1, -beta, -alpha, -col))
+		score = intMax(score, -board.NegaMax(depth-1, -beta, -alpha, -col, root))
 		board.UndoMove(Move)
 		alpha = intMax(alpha, score)
 		if alpha >= beta {
@@ -68,7 +68,7 @@ func intMax(a int, b int) int {
 	return b
 }
 
-func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int) int {
+func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int, root int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
 		return 99999999
@@ -79,7 +79,14 @@ func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int) int {
 		return -900
 	}
 
-	score := board.EvalCurrentPos() * col
+	score := 0
+	//score := board.EvalCurrentPos() * col
+	if root == 1 {
+		score = board.EvalCurrentPos() * col
+	} else {
+		score = board.EvalCurrentPosLegacy() * col
+	}
+
 	// writeToLogFile(strconv.Itoa(int(col)))
 
 	if score >= beta {
@@ -96,7 +103,7 @@ func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int) int {
 		}
 
 		board.PlayMove(Move)
-		score = intMax(score, -board.QuinNegaMax(depth-1, -beta, -alpha, -col))
+		score = intMax(score, -board.QuinNegaMax(depth-1, -beta, -alpha, -col, root))
 		board.UndoMove(Move)
 		alpha = intMax(alpha, score)
 		if alpha >= beta {

@@ -95,6 +95,9 @@ func main() {
 
 		case "exit":
 			os.Exit(0)
+
+		case "tmp":
+			tmp()
 		}
 	}
 
@@ -110,3 +113,11 @@ func loadFen(fen []string) {
 }
 
 var tmpPlayedMoveList []move = make([]move, 0, 100)
+
+func tmp() {
+	loadTables()
+	loadFen(strings.Split(startfen, " "))
+
+	fmt.Println(currentBoard.pieceMasks[0][1])
+	fmt.Println(currentBoard.pieceMasks[1][1])
+}

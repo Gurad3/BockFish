@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/white-pawn.png</SourceFile>
+  <SourceFile>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUi/Content/white-pawn.png</SourceFile>
   <SourceTime>2024-11-20T13:18:26.9135338+01:00</SourceTime>
-  <DestFile>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUI/Content/bin/DesktopGL/Content/white-pawn.xnb</DestFile>
-  <DestTime>2024-11-20T13:40:29.3756526+01:00</DestTime>
+  <DestFile>C:/Users/nathan.marchand-mato/go/src/BockFish/GUI/ChessUi/Content/bin/DesktopGL/Content/white-pawn.xnb</DestFile>
+  <DestTime>2024-12-10T11:47:08.4076231+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

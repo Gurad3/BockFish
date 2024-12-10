@@ -6,7 +6,7 @@ import (
 )
 
 func (board *board) searchMove() move {
-	depth := 2
+	depth := 3
 
 	moves := board.getLegalMoves()
 	currMove := moves[0]
@@ -28,6 +28,9 @@ func (board *board) searchMove() move {
 	}
 
 	writeToLogFile(strconv.Itoa(int(currScore)) + " Col:" + strconv.Itoa(col))
+
+	// board.tmp()
+
 	return currMove
 }
 
@@ -72,6 +75,9 @@ func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int) int {
 	}
 
 	//MoveOrdering
+	if depth <= -3 {
+		return -900
+	}
 
 	score := board.EvalCurrentPos() * col
 	// writeToLogFile(strconv.Itoa(int(col)))
@@ -98,4 +104,23 @@ func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int) int {
 		}
 	}
 	return score
+}
+
+func (board *board) tmp() {
+
+	for colID, Allpieces := range board.pieceArrays {
+
+		for typID, pieceArray := range Allpieces {
+
+			for _, piece := range pieceArray {
+
+				d := "false"
+				if piece.dead {
+					d = "true"
+				}
+				writeToLogFile(strconv.Itoa(colID) + " " + strconv.Itoa(typID) + " " + d)
+			}
+
+		}
+	}
 }

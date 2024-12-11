@@ -39,6 +39,30 @@ func (board *board) NegaMax(depth int, alpha int, beta int, col int, root int) i
 	if board.isCheck(!board.isWhiteTurn) {
 		return 99999999
 	}
+	origAlpha := alpha
+	entry := board.transpostionTable[board.zobrist%uint64(board.transEntries)]
+
+	if entry.key == board.zobrist && entry.depth >= depth {
+
+		score := entry.score
+		// Exact
+		if entry.bound == 1 {
+			// posEvaled++
+			return score
+		}
+
+		// Lowerbound
+		if entry.bound == 3 {
+			alpha = intMax(alpha, score)
+		} else { // Upperbound
+			beta = intMin(beta, score)
+		}
+
+		if alpha >= beta {
+			// posEvaled++
+			return score
+		}
+	}
 
 	if depth == 0 {
 		//return board.EvalCurrentPos() * col
@@ -46,26 +70,40 @@ func (board *board) NegaMax(depth int, alpha int, beta int, col int, root int) i
 	}
 
 	moves := board.getLegalMoves()
+	var bestMove move
 	//MoveOrdering
 
 	score := math.MinInt + 1
 	for _, Move := range moves {
 		board.PlayMove(Move)
-		score = intMax(score, -board.NegaMax(depth-1, -beta, -alpha, -col, root))
+		NewScore := -board.NegaMax(depth-1, -beta, -alpha, -col, root)
 		board.UndoMove(Move)
-		alpha = intMax(alpha, score)
-		if alpha >= beta {
-			break
+
+		if NewScore > score {
+			bestMove = Move
+			score = NewScore
+			alpha = intMax(alpha, score)
+			if alpha >= beta {
+				break
+			}
 		}
-	}
-	return score
-}
-func intMax(a int, b int) int {
-	if a > b {
-		return a
+
 	}
 
-	return b
+	bound := 0
+	if score >= beta {
+		bound = 3
+	} else {
+		if score <= origAlpha {
+			bound = 2
+		} else {
+			bound = 1
+		}
+	}
+	ttEntry := tranEnrty{bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist}
+	board.transpostionTable[board.zobrist%uint64(board.transEntries)] = ttEntry
+
+	return score
 }
 
 func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int, root int) int {

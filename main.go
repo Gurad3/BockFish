@@ -104,8 +104,11 @@ func main() {
 }
 
 func loadTables() {
-	currentBoard = board{}
+	currentBoard = board{transEntries: 50_000}
+	currentBoard.transpostionTable = make([]tranEnrty, currentBoard.transEntries)
 	loadPreCalculations(false)
+
+	currentBoard.initZobristArray()
 }
 
 func loadFen(fen []string) {

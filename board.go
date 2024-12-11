@@ -1,5 +1,7 @@
 package main
 
+import "math/rand"
+
 /*
 
 0 = empty
@@ -14,7 +16,6 @@ package main
 
 type board struct {
 	isWhiteTurn bool
-	zobrist     uint64
 
 	pieceMask  [2]uint64
 	pieceMasks [2][7]uint64
@@ -34,6 +35,13 @@ type board struct {
 	halfMoves int
 	fullMoves int
 	ply       int
+
+	zobrist      uint64
+	zobristVals  [2][7][64]uint64 // empty +
+	zobristBlack uint64
+
+	transEntries      int
+	transpostionTable []tranEnrty
 }
 
 type move uint16
@@ -69,9 +77,18 @@ func (board *board) PlayMove(Move move) {
 
 	//board.pieceMask |= 1 << piece.square
 	sourceIndex := Move & MoveSourceMask
-	targetIndex := (Move & MoveTargetMask) >> 6
+	sourcePiece := board.squareArray[sourceIndex]
 
+	targetIndex := (Move & MoveTargetMask) >> 6
 	targetPiece := board.squareArray[targetIndex]
+
+	srcCol := 1
+	if sourcePiece.isWhite {
+		srcCol = 0
+	}
+	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][sourceIndex]
+	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][targetIndex]
+	board.zobrist ^= board.zobristBlack
 
 	if Move&CapFlag > 0 {
 		opCOl := 0
@@ -80,6 +97,8 @@ func (board *board) PlayMove(Move move) {
 		}
 		board.pieceMasks[opCOl][targetPiece.typeID] ^= 1 << targetIndex
 		board.pieceMask[opCOl] ^= 1 << targetIndex
+
+		board.zobrist ^= board.zobristVals[opCOl][targetPiece.typeID][targetIndex]
 
 		//Tar sista itemet i sliceen sätter den på index positionen och resizar
 
@@ -99,8 +118,6 @@ func (board *board) PlayMove(Move move) {
 
 		targetPiece.typeID = 0
 	}
-
-	sourcePiece := board.squareArray[sourceIndex]
 
 	colr := 1
 	if sourcePiece.isWhite {
@@ -156,14 +173,18 @@ func (board *board) UndoMove(Move move) {
 		opCOL = 1
 	}
 
+	board.zobrist ^= board.zobristVals[colr][sourcePiece.typeID][sourceIndex]
+	board.zobrist ^= board.zobristVals[colr][sourcePiece.typeID][targetIndex]
+	board.zobrist ^= board.zobristBlack
+
 	//writeToLogFile("Revived from dead: " + strconv.Itoa(int(targetPiece.typeID)))
 
 	if Move&CapFlag > 0 {
 
 		targetPiece.typeID = board.deadPieces[len(board.deadPieces)-1]
-		if targetPiece.typeID == 0 {
-			writeToLogFile("Huu")
-		}
+
+		board.zobrist ^= board.zobristVals[opCOL][targetPiece.typeID][sourceIndex]
+
 		board.deadPieces = board.deadPieces[:len(board.deadPieces)-1]
 
 		board.pieceArrays[opCOL][targetPiece.typeID] = append(board.pieceArrays[opCOL][targetPiece.typeID], targetPiece)
@@ -195,4 +216,30 @@ func (board *board) UndoMove(Move move) {
 
 	sourcePiece.square = uint8(targetIndex)
 	targetPiece.square = uint8(sourceIndex)
+}
+
+func (board *board) initZobristArray() {
+	for col := 0; col < 2; col++ {
+		for p := 1; p < 7; p++ { //first = empty
+			for sq := 0; sq < 64; sq++ {
+				board.zobristVals[col][p][sq] = rand.Uint64()
+			}
+		}
+	}
+	board.zobristBlack = rand.Uint64()
+}
+
+func (board *board) calcZobrist() {
+	for col := 0; col < 2; col++ {
+		for i := 1; i < 7; i++ {
+			for pID := 0; pID < len(board.pieceArrays[col][i]); pID++ {
+				currPiece := board.pieceArrays[col][i][pID]
+				piecCol := 1
+				if currPiece.isWhite {
+					piecCol = 0
+				}
+				board.zobrist ^= board.zobristVals[piecCol][currPiece.typeID][currPiece.square]
+			}
+		}
+	}
 }

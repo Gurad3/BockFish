@@ -181,3 +181,18 @@ func writeToLogFile(message string) {
 	// Write the log message
 	logger.Println(message)
 }
+
+func intMin(a int, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func intMax(a int, b int) int {
+	if a > b {
+		return a
+	}
+
+	return b
+}

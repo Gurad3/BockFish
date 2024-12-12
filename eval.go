@@ -38,8 +38,6 @@ func (board *board) EvalCurrentPos() int {
 		}
 
 	}
-	if 0b10000000000000000000000000000000000000000000000000000&board.pieceMasks[0][2] > 0 {
-		score += 5000
-	}
+
 	return score
 }

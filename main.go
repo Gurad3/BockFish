@@ -107,6 +107,7 @@ func loadTables() {
 	currentBoard = board{transEntries: 50_000}
 	currentBoard.transpostionTable = make([]tranEnrty, currentBoard.transEntries)
 	loadPreCalculations(false)
+	eval_loadTables()
 
 	currentBoard.initZobristArray()
 }

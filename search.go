@@ -27,7 +27,7 @@ func (board *board) searchMove() move {
 		}
 	}
 
-	writeToLogFile(strconv.Itoa(int(currScore)) + " Col:" + strconv.Itoa(col))
+	// writeToLogFile(strconv.Itoa(int(currScore)) + " Col:" + strconv.Itoa(col))
 
 	// board.tmp()
 
@@ -117,13 +117,13 @@ func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int, root in
 		return -900
 	}
 
-	score := 0
-	//score := board.EvalCurrentPos() * col
-	if root == 1 {
-		score = board.EvalCurrentPos() * col
-	} else {
-		score = board.EvalCurrentPosLegacy() * col
-	}
+	// score := 0
+	score := board.EvalCurrentPos() * col
+	// if root == 1 {
+	// 	score = board.EvalCurrentPos() * col
+	// } else {
+	// 	score = board.EvalCurrentPosLegacy() * col
+	// }
 
 	// writeToLogFile(strconv.Itoa(int(col)))
 

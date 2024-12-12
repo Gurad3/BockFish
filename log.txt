@@ -1,2 +1,156 @@
-2024/03/02 19:22:43 0 Col:1
-2024/03/02 19:23:58 0 Col:1
+2024/12/12 19:11:40 uci
+2024/12/12 19:11:40 isready
+2024/12/12 19:11:40 ucinewgame
+2024/12/12 19:11:41 position startpos
+2024/12/12 19:11:41 isready
+2024/12/12 19:11:41 go wtime 300000 btime 300000 movestogo 40
+2024/12/12 19:11:47 position startpos moves b1c3 b8c6
+2024/12/12 19:11:47 isready
+2024/12/12 19:11:47 go wtime 299988 btime 293309 movestogo 39
+2024/12/12 19:11:47 isready
+2024/12/12 19:33:54 quit
+2024/12/12 19:34:09 uci
+2024/12/12 19:34:09 isready
+2024/12/12 19:34:09 ucinewgame
+2024/12/12 19:34:09 position startpos
+2024/12/12 19:34:09 isready
+2024/12/12 19:34:09 go wtime 300000 btime 300000 movestogo 40
+2024/12/12 19:34:11 position startpos moves b1c3 b8c6
+2024/12/12 19:34:11 isready
+2024/12/12 19:34:11 go wtime 299988 btime 298113 movestogo 39
+2024/12/12 19:34:30 uci
+2024/12/12 19:34:32 ucinewgame
+2024/12/12 19:34:38 position startpos
+2024/12/12 19:34:40 go
+2024/12/12 19:35:36 position startpos moves b1c3 b8c6
+2024/12/12 19:35:41 go
+2024/12/12 19:37:05 uci
+2024/12/12 19:37:05 isready
+2024/12/12 19:37:05 ucinewgame
+2024/12/12 19:37:05 position startpos
+2024/12/12 19:37:05 isready
+2024/12/12 19:37:05 go wtime 300000 btime 300000 movestogo 40
+2024/12/12 19:37:12 position startpos moves b1c3 b8c6
+2024/12/12 19:37:12 1 8 2 6
+2024/12/12 19:37:12 isready
+2024/12/12 19:37:12 go wtime 299988 btime 293123 movestogo 39
+2024/12/12 19:38:38 uci
+2024/12/12 19:38:38 isready
+2024/12/12 19:38:38 ucinewgame
+2024/12/12 19:38:38 position startpos
+2024/12/12 19:38:38 isready
+2024/12/12 19:38:38 go wtime 300000 btime 300000 movestogo 40
+2024/12/12 19:38:40 position startpos moves b1c3 b8c6
+2024/12/12 19:38:40 1 8 2 6
+2024/12/12 19:38:40 isready
+2024/12/12 19:38:40 go wtime 299988 btime 297678 movestogo 39
+2024/12/12 19:41:02 uci
+2024/12/12 19:41:02 isready
+2024/12/12 19:41:02 ucinewgame
+2024/12/12 19:41:02 position startpos
+2024/12/12 19:41:02 isready
+2024/12/12 19:41:02 go wtime 300000 btime 300000 movestogo 40
+2024/12/12 19:41:05 position startpos moves b1c3 g8f6
+2024/12/12 19:41:05 6 7 5 5
+2024/12/12 19:41:05 isready
+2024/12/12 19:41:05 go wtime 299988 btime 296682 movestogo 39
+2024/12/12 19:52:22 quit
+2024/12/12 19:52:41 uci
+2024/12/12 19:52:41 isready
+2024/12/12 19:52:41 ucinewgame
+2024/12/12 19:52:41 position startpos
+2024/12/12 19:52:41 isready
+2024/12/12 19:52:41 go wtime 300000 btime 300000 movestogo 40
+2024/12/12 19:52:44 position startpos moves b1c3 b8c6
+2024/12/12 19:52:44 isready
+2024/12/12 19:52:44 go wtime 299987 btime 297077 movestogo 39
+2024/12/12 19:53:34 ucinewgame
+2024/12/12 19:53:41 position startpos
+2024/12/12 19:53:47 isready
+2024/12/12 19:53:52 go
+2024/12/12 19:54:09 position startpos b1c3 b8c6
+2024/12/12 19:54:11 go
+2024/12/12 19:54:47 ucinewgame
+2024/12/12 19:54:47 position startpos
+2024/12/12 19:54:49 isready
+2024/12/12 19:54:53 go
+2024/12/12 19:55:11 position startpos moves b1c3 b8c6
+2024/12/12 19:55:15 go
+2024/12/12 19:56:18 ucinewgame
+2024/12/12 19:56:22 position startpos
+2024/12/12 19:56:23 go
+2024/12/12 19:56:43 position startpos moves b1c3 b8c6
+2024/12/12 19:58:31 go
+2024/12/12 19:58:37 ucinewgame
+2024/12/12 19:58:44 position startpos
+2024/12/12 19:58:46 go
+2024/12/12 19:59:00 positon startpos b1c3 b8c6
+2024/12/12 19:59:02 go
+2024/12/12 20:02:08 uci
+2024/12/12 20:02:08 isready
+2024/12/12 20:02:08 ucinewgame
+2024/12/12 20:02:08 position startpos
+2024/12/12 20:02:08 isready
+2024/12/12 20:02:08 go wtime 300000 btime 300000 movestogo 40
+2024/12/12 20:02:10 position startpos moves b1c3 b8c6
+2024/12/12 20:02:10 isready
+2024/12/12 20:02:10 go wtime 299989 btime 298936 movestogo 39
+2024/12/12 20:02:10 isready
+2024/12/12 20:02:16 ucinewgame
+2024/12/12 20:02:22 position startpos
+2024/12/12 20:02:24 go
+2024/12/12 20:02:43 position startpos moves b1c3 b8c6
+2024/12/12 20:02:51 go
+2024/12/12 20:05:12 ucinewgame
+2024/12/12 20:05:17 postion starpos
+2024/12/12 20:05:28 ucinewgame
+2024/12/12 20:05:42 position startpos
+2024/12/12 20:05:46 go
+2024/12/12 20:06:17 position startpos moves b1c3 b8c6
+2024/12/12 20:06:26 go
+2024/12/12 20:07:15 uci
+2024/12/12 20:07:15 isready
+2024/12/12 20:07:15 ucinewgame
+2024/12/12 20:07:15 position startpos
+2024/12/12 20:07:15 isready
+2024/12/12 20:07:15 go wtime 300000 btime 300000 movestogo 40
+2024/12/12 20:07:16 position startpos moves b1c3 b8c6
+2024/12/12 20:07:16 isready
+2024/12/12 20:07:16 go wtime 299989 btime 298802 movestogo 39
+2024/12/12 20:07:24 ucinewgame
+2024/12/12 20:07:28 position startpos
+2024/12/12 20:07:43 go
+2024/12/12 20:07:59 position s moves b1c3 b8c6
+2024/12/12 20:08:01 go
+2024/12/12 20:09:12 ucinewgame
+2024/12/12 20:09:12 position startpos
+2024/12/12 20:09:13 go
+2024/12/12 20:09:29 position startpos moves b1c3 b8c6
+2024/12/12 20:15:01 ucinewgame
+2024/12/12 20:15:01 position startpos
+2024/12/12 20:15:17 ucinewgame
+2024/12/12 20:15:17 position startpos
+2024/12/12 20:15:18 go
+2024/12/12 20:15:23 position startpos moves b1c3 b8c6
+2024/12/12 20:15:29 go
+2024/12/12 20:16:01 ucinewgame
+2024/12/12 20:16:01 position startpos
+2024/12/12 20:16:01 go
+2024/12/12 20:16:01 bestmove b1c3
+2024/12/12 20:16:07 position startpos moves b1c3 b8c6
+2024/12/12 20:18:29 ucinewgame
+2024/12/12 20:18:29 position startpos
+2024/12/12 20:18:29 go
+2024/12/12 20:18:29 bestmove b1c3
+2024/12/12 20:18:31 position startpos moves b1c3 b8c6
+2024/12/12 20:22:36 ucinewgame
+2024/12/12 20:22:36 position startpos
+2024/12/12 20:22:36 go
+2024/12/12 20:22:36 bestmove b1c3
+2024/12/12 20:22:37 position startpos moves b1c3 b8c6
+2024/12/12 20:23:25 fmt.Println(currentBoard.isWhiteTurn)
+2024/12/12 20:23:33 ucinewgame
+2024/12/12 20:23:33 position startpos
+2024/12/12 20:23:34 go
+2024/12/12 20:24:14 position d moves b8c6
+2024/12/12 20:24:19 go

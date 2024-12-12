@@ -22,6 +22,7 @@ func main() {
 		}
 
 		command = strings.TrimSpace(command)
+		writeToLogFile(command)
 
 		// Parse the command
 		parts := strings.Fields(command)
@@ -30,18 +31,37 @@ func main() {
 		}
 		switch parts[0] {
 		case "uci":
-			//fmt.Println("id name YourChessEngineName")
-			//fmt.Println("id author YourName")
+			fmt.Println("id name Bock_Fish")
+			fmt.Println("id author Gurad")
 			// Add any supported options here
 			fmt.Println("uciok")
 		case "isready":
 			fmt.Println("readyok")
 		case "ucinewgame":
 			loadTables()
-			fmt.Println("done")
 		case "position":
-			loadFen(parts[1:])
-			fmt.Println("done")
+
+			if len(parts) > 3 && parts[2] == "moves" {
+
+				currentBoard.PlayMove(UCIMoveToEngineMove(parts[len(parts)-1]))
+
+			} else {
+				if parts[1] == "startpos" {
+					loadFen(strings.Split(startfen, " "))
+				} else {
+					loadFen(parts[1:])
+				}
+			}
+
+		case "go":
+			fmt.Println(currentBoard.isWhiteTurn)
+
+			move := currentBoard.searchMove()
+			// writeToLogFile("bestmove " + engineMoveToUCIMove(move))
+			currentBoard.PlayMove(move)
+
+			fmt.Println("bestmove " + engineMoveToUCIMove(move))
+
 		case "getlegal":
 			fmt.Println(moveArrayTOstring(currentBoard.getLegalMoves()))
 
@@ -83,10 +103,6 @@ func main() {
 		case "searchmagic":
 			fmt.Println("g")
 			loadPreCalculations(true)
-		case "go":
-			// Implement search algorithm and find the best move
-			// Once found, send the best move using the "bestmove" command
-			fmt.Println("e2e4")
 
 		case "stop":
 			// Stop searching (if applicable)

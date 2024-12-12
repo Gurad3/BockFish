@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -166,6 +167,42 @@ var tmpStringToMove map[string]move = make(map[string]move, 1000)
 6 = king
 
 */
+
+const numMoveToUCIMove string = "abcdefgh"
+
+func engineMoveToUCIMove(Move move) string {
+	SIndex := (MoveSourceMask & Move)
+	TIndex := (MoveTargetMask & Move) >> 6
+
+	SX := string(numMoveToUCIMove[(SIndex % 8)])
+	SY := strconv.Itoa(8 - int(SIndex/8))
+	TX := string(numMoveToUCIMove[(TIndex % 8)])
+	TY := strconv.Itoa(8 - int(TIndex/8))
+
+	// fmt.Println(SIndex, TIndex, SX, SY, TX, TY)
+	return SX + SY + TX + TY
+}
+
+func UCIMoveToEngineMove(uciMove string) move {
+
+	SX := strings.IndexRune(numMoveToUCIMove, rune(uciMove[0]))
+	SY := 8 - int(uciMove[1]-'0')
+	TX := strings.IndexRune(numMoveToUCIMove, rune(uciMove[2]))
+	TY := 8 - int(uciMove[3]-'0')
+
+	SIndex := (7-SY)*8 + SX
+	TIndex := (7-TY)*8 + TX
+	fmt.Println(SX, SY, TX, TY, SIndex, TIndex)
+	var Move move = move(SIndex | (TIndex << 6))
+	fmt.Println(Move)
+	for _, v := range currentBoard.getLegalMoves() {
+		fmt.Println(v & 0b111111)
+		if v == Move {
+			fmt.Println("d")
+		}
+	}
+	return Move
+}
 
 func writeToLogFile(message string) {
 	// Open the file in append mode. Create it if it doesn't exist.

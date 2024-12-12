@@ -112,12 +112,12 @@ public class Game1 : Game
         Console.WriteLine("Received: " + readAnswer());
 */ 
         sendCommand("ucinewgame");
-        readAnswer();
         sendCommand("position rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+        sendCommand("isready");
         //sendCommand("position 5r2/pp5p/5n1k/2pp4/3n1R2/2PP3b/PP2rP1N/R4K2 w - - 3 30");
         readAnswer();
 
-        legalMoves =  getLegalMoves();
+        legalMoves = getLegalMoves();
         
         base.Initialize();
     }

@@ -169,6 +169,7 @@ var tmpStringToMove map[string]move = make(map[string]move, 1000)
 
 func writeToLogFile(message string) {
 	// Open the file in append mode. Create it if it doesn't exist.
+
 	file, err := os.OpenFile("log.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal(err)

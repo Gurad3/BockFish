@@ -105,7 +105,7 @@ func eval_loadTables() {
 func eval_addMirror(table *[2][64]int) {
 	for y := 0; y < 8; y++ {
 		for x := 0; x < 8; x++ {
-			table[1][y*8+x] = table[0][(7-y)*8+x]
+			table[1][y*8+x] = table[0][(7-y)*8+x] * -1 //Mirror + Inverse
 		}
 	}
 }

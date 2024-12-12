@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -178,9 +177,10 @@ func engineMoveToUCIMove(Move move) string {
 	SY := strconv.Itoa(8 - int(SIndex/8))
 	TX := string(numMoveToUCIMove[(TIndex % 8)])
 	TY := strconv.Itoa(8 - int(TIndex/8))
+	// fmt.Println(Move, SIndex, TIndex, SX, SY, TX, TY)
 
-	// fmt.Println(SIndex, TIndex, SX, SY, TX, TY)
 	return SX + SY + TX + TY
+
 }
 
 func UCIMoveToEngineMove(uciMove string) move {
@@ -190,17 +190,11 @@ func UCIMoveToEngineMove(uciMove string) move {
 	TX := strings.IndexRune(numMoveToUCIMove, rune(uciMove[2]))
 	TY := 8 - int(uciMove[3]-'0')
 
-	SIndex := (7-SY)*8 + SX
-	TIndex := (7-TY)*8 + TX
-	fmt.Println(SX, SY, TX, TY, SIndex, TIndex)
+	SIndex := (SY)*8 + SX
+	TIndex := (TY)*8 + TX
 	var Move move = move(SIndex | (TIndex << 6))
-	fmt.Println(Move)
-	for _, v := range currentBoard.getLegalMoves() {
-		fmt.Println(v & 0b111111)
-		if v == Move {
-			fmt.Println("d")
-		}
-	}
+	// fmt.Println(Move, SIndex, TIndex, SX, SY, TX, TY)
+
 	return Move
 }
 

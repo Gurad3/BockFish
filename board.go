@@ -90,7 +90,8 @@ func (board *board) PlayMove(Move move) {
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][targetIndex]
 	board.zobrist ^= board.zobristBlack
 
-	if Move&CapFlag > 0 {
+	//if Move&CapFlag > 0 {
+	if targetPiece.typeID != 0 {
 		opCOl := 0
 		if !targetPiece.isWhite {
 			opCOl = 1

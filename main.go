@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -22,7 +23,7 @@ func main() {
 		}
 
 		command = strings.TrimSpace(command)
-		writeToLogFile(command)
+		// writeToLogFile(command)
 
 		// Parse the command
 		parts := strings.Fields(command)
@@ -43,6 +44,11 @@ func main() {
 
 			if len(parts) > 3 && parts[2] == "moves" {
 
+				writeToLogFile("a1 " + parts[len(parts)-1])
+				writeToLogFile("a2 " + strconv.Itoa(int(UCIMoveToEngineMove(parts[len(parts)-1]))))
+				writeToLogFile("a3 " + command)
+				// writeToLogFile("a4 " + strconv.Itoa(int(UCIMoveToEngineMove(parts[len(parts)-1]))))
+
 				currentBoard.PlayMove(UCIMoveToEngineMove(parts[len(parts)-1]))
 
 			} else {
@@ -58,6 +64,7 @@ func main() {
 
 			move := currentBoard.searchMove()
 			// writeToLogFile("bestmove " + engineMoveToUCIMove(move))
+			writeToLogFile("b " + strconv.Itoa(int(move)))
 			currentBoard.PlayMove(move)
 
 			fmt.Println("bestmove " + engineMoveToUCIMove(move))
@@ -70,6 +77,7 @@ func main() {
 
 		case "play":
 			//currentBoard.PlayMove(StringMoveToMove(parts[1]))
+			writeToLogFile("b " + strconv.Itoa(int(tmpStringToMove[parts[1]])))
 			currentBoard.PlayMove(tmpStringToMove[parts[1]])
 			if tmpStringToMove[parts[1]]&CapFlag > 0 {
 				writeToLogFile("PlayedMove was a capture")

@@ -37,7 +37,7 @@ func (board *board) searchMove() move {
 func (board *board) NegaMax(depth int, alpha int, beta int, col int, root int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
-		return 99999999
+		return 99999999 + depth*2
 	}
 	origAlpha := alpha
 	entry := board.transpostionTable[board.zobrist%uint64(board.transEntries)]
@@ -109,7 +109,7 @@ func (board *board) NegaMax(depth int, alpha int, beta int, col int, root int) i
 func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int, root int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
-		return 99999999
+		return 99999999 + depth*2
 	}
 
 	//MoveOrdering

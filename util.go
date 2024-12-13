@@ -9,6 +9,7 @@ import (
 
 var startfen string = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
+var typeToString string = "apnbrqk"
 var stringToType = map[string]uint8{
 	"p": 1,
 	"n": 2,
@@ -179,6 +180,10 @@ func engineMoveToUCIMove(Move move) string {
 	TY := strconv.Itoa(8 - int(TIndex/8))
 	// fmt.Println(Move, SIndex, TIndex, SX, SY, TX, TY)
 
+	if (Move & isPromFlag) > 0 {
+		TY += string(typeToString[((Move&PromFlag)>>12)-2])
+	}
+
 	return SX + SY + TX + TY
 
 }
@@ -194,6 +199,10 @@ func UCIMoveToEngineMove(uciMove string) move {
 	TIndex := (TY)*8 + TX
 	var Move move = move(SIndex | (TIndex << 6))
 	// fmt.Println(Move, SIndex, TIndex, SX, SY, TX, TY)
+
+	if len(uciMove) > 4 {
+		Move |= move(stringToType[string(uciMove[4])]-2) << 12
+	}
 
 	return Move
 }

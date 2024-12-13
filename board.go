@@ -71,6 +71,8 @@ const MoveTargetMask move = 0b0000111111000000
 const FlagMask move = 0b1111000000000000
 
 const CapFlag move = 0b1000000000000000
+
+const isPromFlag move = 0b0100000000000000
 const PromFlag move = 0b0111000000000000
 
 const NoFlag move = 0b0000 << 12

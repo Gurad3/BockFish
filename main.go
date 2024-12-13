@@ -45,16 +45,7 @@ func main() {
 			if len(parts) > 3 && parts[2] == "moves" {
 
 				StringMove := parts[len(parts)-1]
-				writeToLogFile("a1 " + StringMove)
-				writeToLogFile("a2 " + strconv.Itoa(int(UCIMoveToEngineMove(StringMove))))
-				writeToLogFile("a3 " + command)
-				// writeToLogFile("a4 " + strconv.Itoa(int(UCIMoveToEngineMove(parts[len(parts)-1]))))
-
 				Move := UCIMoveToEngineMove(StringMove)
-				if len(StringMove) > 4 {
-					Move |= move(stringToType[string(StringMove[4])]-2) << 12
-				}
-
 				currentBoard.PlayMove(currentBoard.generateCapFlag(Move))
 
 			} else {
@@ -69,8 +60,6 @@ func main() {
 			fmt.Println(currentBoard.isWhiteTurn)
 
 			move := currentBoard.searchMove()
-			// writeToLogFile("bestmove " + engineMoveToUCIMove(move))
-			writeToLogFile("b " + strconv.Itoa(int(move)))
 			currentBoard.PlayMove(move)
 
 			fmt.Println("bestmove " + engineMoveToUCIMove(move))

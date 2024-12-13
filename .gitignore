@@ -2,6 +2,8 @@
 /GUI/ChessUI/bin/
 /GUI/ChessUI/Content/
 /GUI/ChessUI/obj/
+/GUI/ChessUI/obj/Debug
+/GUI/ChessUI/obj/Debug/
 /GUI/ChessUI/.config
 
 /GUI/ChessUI/log.txt

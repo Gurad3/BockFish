@@ -155,15 +155,17 @@ func popLSB(n uint64) int {
 	return pos
 }
 
-const NoFlag move = 0b0000 << 12
-const EnPassant move = 0b0001 << 12
-const CastleFlag move = 0b0010 << 12
-const PawnTwoUpFlag move = 0b0011 << 12
+func (board *board) generateCapFlag(Move move) move {
+	OpColID := 0
+	if board.isWhiteTurn {
+		OpColID = 1
+	}
+	if (uint64(1)<<((Move&MoveTargetMask)>>6))&board.pieceMask[OpColID] > 0 {
+		Move |= CapFlag
+	}
 
-const PromoteToKnightFlag move = 0b0100
-const PromoteToBishopFlag move = 0b0101
-const PromoteToRookFlag move = 0b0110
-const PromoteToQueenFlag move = 0b0111
+	return Move
+}
 
 //var PromotFlags [4]move = [4]move{PromoteToKnightFlag, PromoteToBishopFlag, PromoteToRookFlag, PromoteToQueenFlag}
 

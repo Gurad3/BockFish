@@ -73,6 +73,16 @@ const FlagMask move = 0b1111000000000000
 const CapFlag move = 0b1000000000000000
 const PromFlag move = 0b0111000000000000
 
+const NoFlag move = 0b0000 << 12
+const EnPassant move = 0b0001 << 12
+const CastleFlag move = 0b0010 << 12
+const PawnTwoUpFlag move = 0b0011 << 12
+
+const PromoteToKnightFlag move = 0b0100
+const PromoteToBishopFlag move = 0b0101
+const PromoteToRookFlag move = 0b0110
+const PromoteToQueenFlag move = 0b0111
+
 func (board *board) PlayMove(Move move) {
 
 	//board.pieceMask |= 1 << piece.square
@@ -90,8 +100,8 @@ func (board *board) PlayMove(Move move) {
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][targetIndex]
 	board.zobrist ^= board.zobristBlack
 
-	//if Move&CapFlag > 0 {
-	if targetPiece.typeID != 0 {
+	if Move&CapFlag > 0 {
+
 		opCOl := 0
 		if !targetPiece.isWhite {
 			opCOl = 1

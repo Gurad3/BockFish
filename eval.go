@@ -25,35 +25,36 @@ func (board *board) EvalCurrentPosLegacy() int {
 func (board *board) EvalCurrentPos() int {
 	score := 0
 
-	for colID, Allpieces := range board.pieceArrays {
+	for colID := 0; colID < 2; colID++ {
 
-		for typeID, pieceArray := range Allpieces {
+		for typeID := 1; typeID < 7; typeID++ {
 
 			if colID == 0 {
-				score += pieceVals[typeID] * len(pieceArray)
+				score += pieceVals[typeID] * len(board.pieceArrays[colID][typeID])
 			} else {
-				score -= pieceVals[typeID] * len(pieceArray)
+				score -= pieceVals[typeID] * len(board.pieceArrays[colID][typeID])
 			}
 
-			for _, piece := range pieceArray {
+			arr := board.pieceArrays[colID][typeID]
+			for pieceID := 0; pieceID < len(arr); pieceID++ {
 
 				if typeID == 1 { //pawn
-					score += eval_pawnTable[colID][piece.square] //Black is negative in table
+					score += eval_pawnTable[colID][arr[pieceID].square] //Black is negative in table
 				}
 				if typeID == 2 { //knight
-					score += eval_knightTable[colID][piece.square]
+					score += eval_knightTable[colID][arr[pieceID].square]
 				}
 				if typeID == 3 { //bishop
-					score += eval_bishopTable[colID][piece.square]
+					score += eval_bishopTable[colID][arr[pieceID].square]
 				}
 				if typeID == 4 { //rook
-					score += eval_rookTable[colID][piece.square]
+					score += eval_rookTable[colID][arr[pieceID].square]
 				}
 				if typeID == 5 { //queen
-					score += eval_queenTable[colID][piece.square]
+					score += eval_queenTable[colID][arr[pieceID].square]
 				}
 				if typeID == 6 { //king
-					score += eval_kingTable_middle[colID][piece.square]
+					score += eval_kingTable_middle[colID][arr[pieceID].square]
 				}
 
 			}
@@ -64,3 +65,46 @@ func (board *board) EvalCurrentPos() int {
 
 	return score
 }
+
+// func (board *board) EvalCurrentPos() int {
+// 	score := 0
+
+// 	for colID, Allpieces := range board.pieceArrays {
+
+// 		for typeID, pieceArray := range Allpieces {
+
+// 			if colID == 0 {
+// 				score += pieceVals[typeID] * len(pieceArray)
+// 			} else {
+// 				score -= pieceVals[typeID] * len(pieceArray)
+// 			}
+
+// 			for _, piece := range pieceArray {
+
+// 				if typeID == 1 { //pawn
+// 					score += eval_pawnTable[colID][piece.square] //Black is negative in table
+// 				}
+// 				if typeID == 2 { //knight
+// 					score += eval_knightTable[colID][piece.square]
+// 				}
+// 				if typeID == 3 { //bishop
+// 					score += eval_bishopTable[colID][piece.square]
+// 				}
+// 				if typeID == 4 { //rook
+// 					score += eval_rookTable[colID][piece.square]
+// 				}
+// 				if typeID == 5 { //queen
+// 					score += eval_queenTable[colID][piece.square]
+// 				}
+// 				if typeID == 6 { //king
+// 					score += eval_kingTable_middle[colID][piece.square]
+// 				}
+
+// 			}
+
+// 		}
+
+// 	}
+
+// 	return score
+// }

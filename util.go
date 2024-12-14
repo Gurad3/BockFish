@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"math"
+	"math/bits"
 	"os"
 	"strconv"
 	"strings"
@@ -242,11 +242,7 @@ func intMax(a int, b int) int {
 }
 
 func popLSB(n uint64) uint64 {
-	// Take two's complement of the given number
-	complement := n & ^(n - 1)
-	// Take the log2 of the complement
-	pos := uint64(math.Log2(float64(complement)))
-	return pos
+	return uint64(bits.TrailingZeros64(n))
 }
 
 func benchsearch() {

@@ -63,10 +63,10 @@ func main() {
 			fmt.Println("bestmove " + engineMoveToUCIMove(move))
 
 		case "getlegal":
-			fmt.Println(moveArrayTOstring(currentBoard.getLegalMoves()))
+			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
 
 		case "getfullegal":
-			fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMoves())))
+			fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMovesA())))
 
 		case "play":
 			//currentBoard.PlayMove(StringMoveToMove(parts[1]))
@@ -78,14 +78,14 @@ func main() {
 			tmpPlayedMoveList = append(tmpPlayedMoveList, tmpStringToMove[parts[1]])
 			fmt.Println("done")
 
+		case "benchsearch":
+			benchsearch()
+
 		case "loaddef":
 			loadTables()
 			loadFen(strings.Split(startfen, " "))
-			fmt.Println("legalmoves " + moveArrayTOstring(currentBoard.getLegalMoves()))
+			fmt.Println("legalmoves " + moveArrayTOstring(currentBoard.getLegalMovesA()))
 			//fmt.Println(KnightAttackMasks[18])
-
-		case "benchsearch":
-			benchsearch()
 
 		case "undo":
 			currentBoard.UndoMove(tmpPlayedMoveList[len(tmpPlayedMoveList)-1])
@@ -132,7 +132,7 @@ func loadFen(fen []string) {
 	currentBoard.loadFromFEN(fen)
 }
 
-var tmpPlayedMoveList []move = make([]move, 0, 100)
+var tmpPlayedMoveList []uint16 = make([]uint16, 0, 100)
 
 func tmp() {
 	loadTables()

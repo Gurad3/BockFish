@@ -1,10 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"log"
+	"math"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 var startfen string = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
@@ -89,8 +92,8 @@ func (board *board) loadFromFEN(fen []string) {
 	board.loadAllMasks()
 }
 
-func StringMoveToMove(mo string) move {
-	newMove := move(0)
+func StringMoveToMove(mo string) uint16 {
+	newMove := uint16(0)
 	splited := strings.Split(mo, "")
 	SX, _ := strconv.Atoi(splited[0])
 	SY, _ := strconv.Atoi(splited[1])
@@ -98,14 +101,14 @@ func StringMoveToMove(mo string) move {
 	TX, _ := strconv.Atoi(splited[2])
 	TY, _ := strconv.Atoi(splited[3])
 
-	newMove += move(TX) + move(TY)*8
+	newMove += uint16(TX) + uint16(TY)*8
 	newMove <<= 6
 
-	newMove += move(SX) + move(SY)*8
+	newMove += uint16(SX) + uint16(SY)*8
 	return newMove
 }
 
-func moveArrayTOstring(array []move) string {
+func moveArrayTOstring(array []uint16) string {
 	retString := ""
 	for _, Move := range array {
 
@@ -154,7 +157,7 @@ func sendPosAsString() string {
 	return retString
 }
 
-var tmpStringToMove map[string]move = make(map[string]move, 1000)
+var tmpStringToMove map[string]uint16 = make(map[string]uint16, 1000)
 
 /*
 
@@ -170,7 +173,7 @@ var tmpStringToMove map[string]move = make(map[string]move, 1000)
 
 const numMoveToUCIMove string = "abcdefgh"
 
-func engineMoveToUCIMove(Move move) string {
+func engineMoveToUCIMove(Move uint16) string {
 	SIndex := (MoveSourceMask & Move)
 	TIndex := (MoveTargetMask & Move) >> 6
 
@@ -188,7 +191,7 @@ func engineMoveToUCIMove(Move move) string {
 
 }
 
-func UCIMoveToEngineMove(uciMove string) move {
+func UCIMoveToEngineMove(uciMove string) uint16 {
 
 	SX := strings.IndexRune(numMoveToUCIMove, rune(uciMove[0]))
 	SY := 8 - int(uciMove[1]-'0')
@@ -197,11 +200,11 @@ func UCIMoveToEngineMove(uciMove string) move {
 
 	SIndex := (SY)*8 + SX
 	TIndex := (TY)*8 + TX
-	var Move move = move(SIndex | (TIndex << 6))
+	var Move uint16 = uint16(SIndex | (TIndex << 6))
 	// fmt.Println(Move, SIndex, TIndex, SX, SY, TX, TY)
 
 	if len(uciMove) > 4 {
-		Move |= move(stringToType[string(uciMove[4])]-2) << 12
+		Move |= uint16(stringToType[string(uciMove[4])]-2) << 12
 	}
 
 	return Move
@@ -236,4 +239,27 @@ func intMax(a int, b int) int {
 	}
 
 	return b
+}
+
+func popLSB(n uint64) uint64 {
+	// Take two's complement of the given number
+	complement := n & ^(n - 1)
+	// Take the log2 of the complement
+	pos := uint64(math.Log2(float64(complement)))
+	return pos
+}
+
+func benchsearch() {
+
+	loadTables()
+	loadFen(strings.Split(startfen, " "))
+
+	start := time.Now()
+	// Code to measure
+	fmt.Println(engineMoveToUCIMove(currentBoard.searchMove(9000)))
+	duration := time.Since(start)
+
+	// Formatted string, such as "2h3m0.5s" or "4.503μs"
+	fmt.Println(duration)
+
 }

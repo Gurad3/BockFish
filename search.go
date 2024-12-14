@@ -9,15 +9,18 @@ import (
 type tranEnrty struct {
 	depth, bound, score int
 	key                 uint64
-	Move                move
+	Move                uint16
 }
 
 var posEvaled = 0
 
-func (board *board) searchMove(searchTime int64) move {
+func (board *board) searchMove(searchTime int64) uint16 {
+	posEvaled = 0
 	startTime := time.Now()
 
-	moves := board.getLegalMoves()
+	moves := make([]uint16, 0, 218)
+	moves = moves[:board.getLegalMoves(moves)]
+	// moves := board.getLegalMoves()
 	currMove := moves[0]
 	//White = true
 	col := -1
@@ -90,8 +93,11 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth int, al
 		}
 	}
 
-	moves := board.getLegalMoves()
-	var bestMove move
+	moves := make([]uint16, 0, 218)
+	moves = moves[:board.getLegalMoves(moves)]
+	// moves := board.getLegalMoves()
+
+	var bestMove uint16
 	//MoveOrdering
 
 	score := math.MinInt + 1
@@ -170,9 +176,11 @@ func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth int
 	}
 	alpha = intMax(alpha, score)
 
-	moves := board.getLegalMoves()
-	var bestMove move
+	moves := make([]uint16, 0, 218)
+	moves = moves[:board.getLegalMoves(moves)]
+	// moves := board.getLegalMoves()
 
+	var bestMove uint16
 	for _, Move := range moves {
 
 		if time.Since(startTime).Milliseconds() > searchTime {

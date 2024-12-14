@@ -44,8 +44,6 @@ type board struct {
 	transpostionTable []tranEnrty
 }
 
-type move uint16
-
 type piece struct {
 	typeID             uint8
 	square             uint8
@@ -66,26 +64,26 @@ func (board *board) loadAllMasks() {
 
 }
 
-const MoveSourceMask move = 0b0000000000111111
-const MoveTargetMask move = 0b0000111111000000
-const FlagMask move = 0b1111000000000000
+const MoveSourceMask uint16 = 0b0000000000111111
+const MoveTargetMask uint16 = 0b0000111111000000
+const FlagMask uint16 = 0b1111000000000000
 
-const CapFlag move = 0b1000000000000000
+const CapFlag uint16 = 0b1000000000000000
 
-const isPromFlag move = 0b0100000000000000
-const PromFlag move = 0b0111000000000000
+const isPromFlag uint16 = 0b0100000000000000
+const PromFlag uint16 = 0b0111000000000000
 
-const NoFlag move = 0b0000 << 12
-const EnPassant move = 0b0001 << 12
-const CastleFlag move = 0b0010 << 12
-const PawnTwoUpFlag move = 0b0011 << 12
+const NoFlag uint16 = 0b0000 << 12
+const EnPassant uint16 = 0b0001 << 12
+const CastleFlag uint16 = 0b0010 << 12
+const PawnTwoUpFlag uint16 = 0b0011 << 12
 
-const PromoteToKnightFlag move = 0b0100
-const PromoteToBishopFlag move = 0b0101
-const PromoteToRookFlag move = 0b0110
-const PromoteToQueenFlag move = 0b0111
+const PromoteToKnightFlag uint16 = 0b0100
+const PromoteToBishopFlag uint16 = 0b0101
+const PromoteToRookFlag uint16 = 0b0110
+const PromoteToQueenFlag uint16 = 0b0111
 
-func (board *board) PlayMove(Move move) {
+func (board *board) PlayMove(Move uint16) {
 
 	//board.pieceMask |= 1 << piece.square
 	sourceIndex := Move & MoveSourceMask
@@ -166,7 +164,7 @@ func (board *board) PlayMove(Move move) {
 
 }
 
-func (board *board) UndoMove(Move move) {
+func (board *board) UndoMove(Move uint16) {
 
 	sourceIndex := (Move & MoveTargetMask) >> 6
 	targetIndex := Move & MoveSourceMask

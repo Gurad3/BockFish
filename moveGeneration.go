@@ -1,12 +1,19 @@
 package main
 
-import (
-	"math"
-)
+func (board *board) getLegalMovesA() []uint16 {
 
-func (board *board) getLegalMoves() []move {
+	moves := make([]uint16, 0, 218)
+	moves = moves[:board.getLegalMoves(moves)]
+	return moves
 
-	legalMoves := make([]move, 0, 218)
+	//return board.getLegalMoves()
+}
+
+//func (board *board) getLegalMoves() []uint16 {
+
+func (board *board) getLegalMoves(legalMoves []uint16) int {
+
+	//legalMoves := make([]uint16, 0, 218) //max 218
 	colID := 1
 	if board.isWhiteTurn {
 		colID = 0
@@ -75,9 +82,9 @@ func (board *board) getLegalMoves() []move {
 			for moveMask > 0 {
 				targetIndex := popLSB(moveMask)
 
-				flag := move(0)
-				newMove := move(targetIndex) << 6
-				newMove += move(piece.square)
+				flag := uint16(0)
+				newMove := uint16(targetIndex) << 6
+				newMove += uint16(piece.square)
 
 				if (1<<targetIndex)&board.pieceMask[opCOl] > 0 {
 					flag = CapFlag
@@ -92,7 +99,7 @@ func (board *board) getLegalMoves() []move {
 
 					} else if targetIndex < 8 || targetIndex > 55 && false { //Pawn is promoting
 
-						for i := move(4); i < 8; i++ {
+						for i := uint16(4); i < 8; i++ {
 							legalMoves = append(legalMoves, newMove|i<<12|flag)
 						}
 						moveMask ^= 1 << targetIndex
@@ -108,7 +115,9 @@ func (board *board) getLegalMoves() []move {
 
 	}
 
-	return legalMoves
+	//return legalMoves
+
+	return len(legalMoves)
 }
 
 func (board *board) isCheck(col bool) bool {
@@ -133,8 +142,8 @@ func (board *board) isCheck(col bool) bool {
 	return tmpMask > 0
 }
 
-func (board *board) filterOutPsudoLegal(moves []move) []move {
-	newList := make([]move, 0, cap(moves))
+func (board *board) filterOutPsudoLegal(moves []uint16) []uint16 {
+	newList := make([]uint16, 0, cap(moves))
 	for _, mo := range moves {
 
 		board.PlayMove(mo)
@@ -147,20 +156,12 @@ func (board *board) filterOutPsudoLegal(moves []move) []move {
 	return newList
 }
 
-func popLSB(n uint64) int {
-	// Take two's complement of the given number
-	complement := n & ^(n - 1)
-	// Take the log2 of the complement
-	pos := int(math.Log2(float64(complement)))
-	return pos
-}
-
-func (board *board) generateCapFlag(Move move) move {
+func (board *board) generateCapFlag(Move uint16) uint16 {
 	OpColID := 0
 	if board.isWhiteTurn {
 		OpColID = 1
 	}
-	if (uint64(1)<<((Move&MoveTargetMask)>>6))&board.pieceMask[OpColID] > 0 {
+	if (1<<((Move&MoveTargetMask)>>6))&board.pieceMask[OpColID] > 0 {
 		Move |= CapFlag
 	}
 

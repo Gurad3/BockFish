@@ -18,3 +18,12 @@ https://tearth.dev/bitboard-viewer/
 4 = rook
 5 = queen
 6 = king
+
+
+
+
+go test
+go test -cpuprofile profiling/cpu.prof -memprofile profiling/mem.prof
+
+go tool pprof -http=localhost:8001 profiling/cpu.prof
+go tool pprof -http=localhost:8001 profiling/mem.prof

@@ -3,10 +3,19 @@ package main
 import (
 	"math"
 	"strconv"
+	"time"
 )
 
-func (board *board) searchMove() move {
-	depth := 3
+type tranEnrty struct {
+	depth, bound, score int
+	key                 uint64
+	Move                move
+}
+
+var posEvaled = 0
+
+func (board *board) searchMove(searchTime int64) move {
+	startTime := time.Now()
 
 	moves := board.getLegalMoves()
 	currMove := moves[0]
@@ -17,37 +26,54 @@ func (board *board) searchMove() move {
 	}
 	currScore := (math.MinInt + 1) //* col
 
-	for _, Move := range moves {
-		board.PlayMove(Move)
-		score := -board.NegaMax(depth, math.MinInt+1, math.MaxInt, -col, col)
-		board.UndoMove(Move)
-		if score > currScore {
-			currScore = score
-			currMove = Move
+	depth := 2 - 1
+	for time.Since(startTime).Milliseconds() <= searchTime {
+		depth++
+
+		for _, Move := range moves {
+
+			if time.Since(startTime).Milliseconds() > searchTime {
+				writeToLogFile("posEvaled: " + strconv.Itoa(posEvaled))
+				writeToLogFile("currentDepth: " + strconv.Itoa(depth))
+
+				return currMove
+			}
+
+			board.PlayMove(Move)
+			score := -board.NegaMax(startTime, searchTime, depth, math.MinInt+1, math.MaxInt, -col, col)
+			board.UndoMove(Move)
+			if score > currScore {
+				currScore = score
+				currMove = Move
+			}
 		}
 	}
-
 	// writeToLogFile(strconv.Itoa(int(currScore)) + " Col:" + strconv.Itoa(col))
-
+	writeToLogFile("posEvaled: " + strconv.Itoa(posEvaled))
 	// board.tmp()
 
 	return currMove
 }
 
-func (board *board) NegaMax(depth int, alpha int, beta int, col int, root int) int {
+func (board *board) NegaMax(startTime time.Time, searchTime int64, depth int, alpha int, beta int, col int, root int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
 		return 99999999 + depth*2
 	}
+
+	if depth == 0 {
+		//return board.EvalCurrentPos() * col
+		return board.QuinNegaMax(startTime, searchTime, depth, alpha, beta, col, root)
+	}
+
 	origAlpha := alpha
 	entry := board.transpostionTable[board.zobrist%uint64(board.transEntries)]
-
 	if entry.key == board.zobrist && entry.depth >= depth {
 
 		score := entry.score
 		// Exact
 		if entry.bound == 1 {
-			// posEvaled++
+			posEvaled++
 			return score
 		}
 
@@ -59,14 +85,9 @@ func (board *board) NegaMax(depth int, alpha int, beta int, col int, root int) i
 		}
 
 		if alpha >= beta {
-			// posEvaled++
+			posEvaled++
 			return score
 		}
-	}
-
-	if depth == 0 {
-		//return board.EvalCurrentPos() * col
-		return board.QuinNegaMax(depth, alpha, beta, col, root)
 	}
 
 	moves := board.getLegalMoves()
@@ -75,8 +96,13 @@ func (board *board) NegaMax(depth int, alpha int, beta int, col int, root int) i
 
 	score := math.MinInt + 1
 	for _, Move := range moves {
+
+		if time.Since(startTime).Milliseconds() > searchTime {
+			return 99999999 + depth*2
+		}
+
 		board.PlayMove(Move)
-		NewScore := -board.NegaMax(depth-1, -beta, -alpha, -col, root)
+		NewScore := -board.NegaMax(startTime, searchTime, depth-1, -beta, -alpha, -col, root)
 		board.UndoMove(Move)
 
 		if NewScore > score {
@@ -106,26 +132,38 @@ func (board *board) NegaMax(depth int, alpha int, beta int, col int, root int) i
 	return score
 }
 
-func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int, root int) int {
+func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth int, alpha int, beta int, col int, root int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
 		return 99999999 + depth*2
 	}
 
-	//MoveOrdering
-	if depth <= -3 {
-		return -900
+	origAlpha := alpha
+	entry := board.transpostionTable[board.zobrist%uint64(board.transEntries)]
+	if entry.key == board.zobrist && entry.depth >= depth {
+
+		score := entry.score
+		// Exact
+		if entry.bound == 1 {
+			posEvaled++
+			return score
+		}
+
+		// Lowerbound
+		if entry.bound == 3 {
+			alpha = intMax(alpha, score)
+		} else { // Upperbound
+			beta = intMin(beta, score)
+		}
+
+		if alpha >= beta {
+			posEvaled++
+			return score
+		}
 	}
 
-	// score := 0
 	score := board.EvalCurrentPos() * col
-	// if root == 1 {
-	// 	score = board.EvalCurrentPos() * col
-	// } else {
-	// 	score = board.EvalCurrentPosLegacy() * col
-	// }
-
-	// writeToLogFile(strconv.Itoa(int(col)))
+	posEvaled++
 
 	if score >= beta {
 		return beta
@@ -133,21 +171,46 @@ func (board *board) QuinNegaMax(depth int, alpha int, beta int, col int, root in
 	alpha = intMax(alpha, score)
 
 	moves := board.getLegalMoves()
+	var bestMove move
 
 	for _, Move := range moves {
+
+		if time.Since(startTime).Milliseconds() > searchTime {
+			return 99999999 + depth*2
+		}
 
 		if Move&CapFlag == 0 {
 			continue
 		}
 
 		board.PlayMove(Move)
-		score = intMax(score, -board.QuinNegaMax(depth-1, -beta, -alpha, -col, root))
+		NewScore := -board.QuinNegaMax(startTime, searchTime, depth-1, -beta, -alpha, -col, root)
 		board.UndoMove(Move)
-		alpha = intMax(alpha, score)
-		if alpha >= beta {
-			break
+
+		if NewScore > score {
+			bestMove = Move
+			score = NewScore
+			alpha = intMax(alpha, score)
+			if alpha >= beta {
+				break
+			}
+		}
+
+	}
+
+	bound := 0
+	if score >= beta {
+		bound = 3
+	} else {
+		if score <= origAlpha {
+			bound = 2
+		} else {
+			bound = 1
 		}
 	}
+	ttEntry := tranEnrty{bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist}
+	board.transpostionTable[board.zobrist%uint64(board.transEntries)] = ttEntry
+
 	return score
 }
 

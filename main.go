@@ -34,7 +34,6 @@ func main() {
 		case "uci":
 			fmt.Println("id name Bock_Fish")
 			fmt.Println("id author Gurad")
-			// Add any supported options here
 			fmt.Println("uciok")
 		case "isready":
 			fmt.Println("readyok")
@@ -58,8 +57,7 @@ func main() {
 
 		case "go":
 			fmt.Println(currentBoard.isWhiteTurn)
-
-			move := currentBoard.searchMove()
+			move := currentBoard.searchMove(5000)
 			currentBoard.PlayMove(move)
 
 			fmt.Println("bestmove " + engineMoveToUCIMove(move))
@@ -98,7 +96,7 @@ func main() {
 			fmt.Println("pos " + sendPosAsString())
 
 		case "plabest":
-			mov := currentBoard.searchMove()
+			mov := currentBoard.searchMove(9000)
 			currentBoard.PlayMove(mov)
 			tmpPlayedMoveList = append(tmpPlayedMoveList, mov)
 			fmt.Println("done")
@@ -121,9 +119,8 @@ func main() {
 	}
 
 }
-
 func loadTables() {
-	currentBoard = board{transEntries: 50_000}
+	currentBoard = board{transEntries: 1 << 20}
 	currentBoard.transpostionTable = make([]tranEnrty, currentBoard.transEntries)
 	loadPreCalculations(false)
 	eval_loadTables()

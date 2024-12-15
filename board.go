@@ -1,6 +1,9 @@
 package main
 
-import "math/rand"
+import (
+	"crypto/internal/boring"
+	"math/rand"
+)
 
 /*
 
@@ -31,6 +34,8 @@ type board struct {
 	BQCastle bool
 	WKCastle bool
 	BKCastle bool
+
+	sidesCastle int
 
 	halfMoves int
 	fullMoves int
@@ -63,6 +68,18 @@ func (board *board) loadAllMasks() {
 	}
 
 }
+
+const WKCastleMask uint64 = 0b1111000000000000000000000000000000000000000000000000000000000000
+const WKCastleFlag uint64 = 0b1001000000000000000000000000000000000000000000000000000000000000
+
+const WQCastleMask uint64 = 0b1111100000000000000000000000000000000000000000000000000000000
+const WQCastleFlag uint64 = 0b1000100000000000000000000000000000000000000000000000000000000
+
+const BKCastleMask uint64 = 0b11110000
+const BKCastleFlag uint64 = 0b10010000
+
+const BQCastleMask uint64 = 0b11111
+const BQCastleFlag uint64 = 0b10001
 
 const MoveSourceMask uint16 = 0b0000000000111111
 const MoveTargetMask uint16 = 0b0000111111000000
@@ -100,8 +117,11 @@ func (board *board) PlayMove(Move uint16) {
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][targetIndex]
 	board.zobrist ^= board.zobristBlack
 
-	if Move&CapFlag > 0 {
+	//Remove SourceBits.
+	board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
+	board.pieceMask[srcCol] ^= 1 << sourceIndex
 
+	if Move&CapFlag > 0 {
 		opCOl := 0
 		if !targetPiece.isWhite {
 			opCOl = 1
@@ -112,54 +132,78 @@ func (board *board) PlayMove(Move uint16) {
 		board.zobrist ^= board.zobristVals[opCOl][targetPiece.typeID][targetIndex]
 
 		//Tar sista itemet i sliceen sätter den på index positionen och resizar
-
-		//fmt.Println(targetPiece.indexInPiecesArray)
-		//writeToLogFile(strconv.Itoa(int(targetPiece.indexInPiecesArray)))
-		//writeToLogFile(strconv.Itoa(int(targetPiece.typeID)))
-
 		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
 		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
 
 		//board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1].indexInPiecesArray = targetPiece.indexInPiecesArray
-
 		board.pieceArrays[opCOl][targetPiece.typeID] = board.pieceArrays[opCOl][targetPiece.typeID][:len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
 
 		targetPiece.dead = true
 		board.deadPieces = append(board.deadPieces, targetPiece.typeID)
 
 		targetPiece.typeID = 0
-	}
-
-	colr := 1
-	if sourcePiece.isWhite {
-		colr = 0
-	}
-
-	board.squareArray[targetIndex] = sourcePiece
-	board.squareArray[sourceIndex] = targetPiece
-
-	board.pieceMasks[colr][sourcePiece.typeID] ^= 1 << sourceIndex
-	board.pieceMask[colr] ^= 1 << sourceIndex
-
-	if (Move&PromFlag)>>12 > 3 {
+	} else if (Move&PromFlag)>>12 > 3 {
 		sourcePiece.typeID = uint8((Move&PromFlag)>>12) - 2
-		board.pieceArrays[colr][sourcePiece.typeID] = append(board.pieceArrays[colr][sourcePiece.typeID], sourcePiece)
-
-		board.pieceArrays[colr][1][sourcePiece.indexInPiecesArray] = board.pieceArrays[colr][1][len(board.pieceArrays[colr][1])-1]
-
-		board.pieceArrays[colr][1][len(board.pieceArrays[colr][1])-1].indexInPiecesArray = sourcePiece.indexInPiecesArray
-		//board.pieceArrays[colr][1][sourcePiece.indexInPiecesArray].indexInPiecesArray = sourcePiece.indexInPiecesArray
-
-		board.pieceArrays[colr][1] = board.pieceArrays[colr][1][:len(board.pieceArrays[colr][1])-1]
-
-		sourcePiece.indexInPiecesArray = uint8(len(board.pieceArrays[colr][sourcePiece.typeID]) - 1)
+		board.pieceArrays[srcCol][sourcePiece.typeID] = append(board.pieceArrays[srcCol][sourcePiece.typeID], sourcePiece)
+		board.pieceArrays[srcCol][1][len(board.pieceArrays[srcCol][1])-1].indexInPiecesArray = sourcePiece.indexInPiecesArray
+		board.pieceArrays[srcCol][1][sourcePiece.indexInPiecesArray] = board.pieceArrays[srcCol][1][len(board.pieceArrays[srcCol][1])-1]
+		board.pieceArrays[srcCol][1] = board.pieceArrays[srcCol][1][:len(board.pieceArrays[srcCol][1])-1]
+		sourcePiece.indexInPiecesArray = uint8(len(board.pieceArrays[srcCol][sourcePiece.typeID]) - 1)
 	}
 
-	board.pieceMasks[colr][sourcePiece.typeID] |= 1 << targetIndex
+	if Move&CastleFlag < 0 {
+		board.sidesCastle++
+		if targetIndex == 0 {
 
-	board.pieceMask[colr] |= 1 << targetIndex
+			board.pieceMask[srcCol] ^= (1<<4) 
+			board.pieceMask[srcCol] ^= (1<<0)
+			board.pieceMasks[srcCol][6] ^= (1<<4) 
+			board.pieceMasks[srcCol][4] ^= (1<<0)
 
-	sourcePiece.square = uint8(targetIndex)
+			board.pieceMask[srcCol] |= (1<<2) 
+			board.pieceMask[srcCol] |= (1<<3)
+			board.pieceMasks[srcCol][6] |= (1<<2) 
+			board.pieceMasks[srcCol][4] |= (1<<3)
+
+
+		
+
+			src -> sq := 2
+			trg -> sq := 3
+			
+			
+
+		}
+		if targetIndex == 7 {
+			src -> sq := 6
+			trg -> sq := 5
+
+			
+		}
+
+		if targetIndex == 56 {
+			src -> sq := 58
+			trg -> sq := 59
+
+
+		}
+		if targetIndex == 63 {
+			src -> sq := 62
+			trg -> sq := 61
+		}
+
+	}else{
+		board.squareArray[targetIndex] = sourcePiece
+		board.squareArray[sourceIndex] = targetPiece
+	
+		//Update (add if empty) TargetBits
+		board.pieceMasks[srcCol][sourcePiece.typeID] |= 1 << targetIndex
+		board.pieceMask[srcCol] |= 1 << targetIndex
+	
+		sourcePiece.square = uint8(targetIndex)
+	}
+
+	
 	board.isWhiteTurn = !board.isWhiteTurn
 
 }
@@ -227,6 +271,7 @@ func (board *board) UndoMove(Move uint16) {
 
 	sourcePiece.square = uint8(targetIndex)
 	targetPiece.square = uint8(sourceIndex)
+
 }
 
 func (board *board) initZobristArray() {

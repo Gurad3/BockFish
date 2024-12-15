@@ -56,9 +56,13 @@ func main() {
 			}
 
 		case "go":
-			fmt.Println(currentBoard.isWhiteTurn)
-			move := currentBoard.searchMove(5000)
+			t, _ := strconv.Atoi(parts[2])
+			if currentBoard.ply <= 4 {
+				t /= 3
+			}
+			move := currentBoard.searchMove(int64(t / 40))
 			currentBoard.PlayMove(move)
+			currentBoard.ply += 1
 
 			fmt.Println("bestmove " + engineMoveToUCIMove(move))
 
@@ -122,6 +126,11 @@ func main() {
 func loadTables() {
 	currentBoard = board{transEntries: 1 << 20}
 	currentBoard.transpostionTable = make([]tranEnrty, currentBoard.transEntries)
+	currentBoard.BKCastle = true
+	currentBoard.BQCastle = true
+	currentBoard.WKCastle = true
+	currentBoard.WKCastle = true
+
 	loadPreCalculations(false)
 	eval_loadTables()
 

@@ -252,7 +252,7 @@ func benchsearch() {
 
 	start := time.Now()
 	// Code to measure
-	fmt.Println(engineMoveToUCIMove(currentBoard.searchMove(9000)))
+	fmt.Println(engineMoveToUCIMove(currentBoard.searchMove(1000)))
 	duration := time.Since(start)
 
 	// Formatted string, such as "2h3m0.5s" or "4.503μs"

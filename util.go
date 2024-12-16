@@ -259,3 +259,7 @@ func benchsearch() {
 	fmt.Println(duration)
 
 }
+
+func Itoa(i int) string {
+	return strconv.Itoa(i)
+}

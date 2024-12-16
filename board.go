@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"math/rand"
+	"strconv"
 )
 
 /*
@@ -167,6 +167,9 @@ func (board *board) PlayMove(Move uint16) {
 		board.zobrist ^= board.zobristVals[opCOl][targetPiece.typeID][targetIndex]
 
 		//Tar sista itemet i sliceen sätter den på index positionen och resizar
+		if len(board.pieceArrays[opCOl][targetPiece.typeID])-1 == -1 {
+			writeToLogFile("hum")
+		}
 		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
 		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
 
@@ -208,7 +211,6 @@ func (board *board) PlayMove(Move uint16) {
 			sourcePiece.square = 2
 			targetPiece.square = 3
 
-			writeToLogFile("e")
 			// src -> sq := 2
 			// trg -> sq := 3
 		} else if targetIndex == 7 {
@@ -344,79 +346,78 @@ func (board *board) UndoMove(Move uint16) {
 	}
 
 	if (Move & FlagMask) == CastleFlag {
-		fmt.Println("D")
+		writeToLogFile(strconv.Itoa(int(sourceIndex)) + " " + strconv.Itoa(int(targetIndex)))
 		if sourceIndex == 0 { // Rook == Source
+			board.pieceMask[srcCol] |= (1 << 4)
+			board.pieceMasks[srcCol][6] |= (1 << 4)
 
 			board.pieceMask[srcCol] ^= (1 << 2)
-			board.pieceMasks[srcCol][4] ^= (1 << 2)
+			board.pieceMask[srcCol] ^= (1 << 3)
+			board.pieceMasks[srcCol][6] ^= (1 << 2)
+			board.pieceMasks[srcCol][4] ^= (1 << 3)
 
-			board.pieceMask[srcCol] |= (1 << 0)
-			board.pieceMask[srcCol] |= (1 << 4)
-			board.pieceMasks[srcCol][6] |= (1 << 0)
-			board.pieceMasks[srcCol][4] |= (1 << 4)
+			board.squareArray[4] = board.squareArray[2] //King
+			board.squareArray[2] = targetPiece          //NotKing King
+			board.squareArray[0] = board.squareArray[3] //Rook
+			board.squareArray[3] = sourcePiece          //NotRook
 
-			board.squareArray[2] = board.squareArray[4]
-			board.squareArray[4] = targetPiece //King
-			board.squareArray[3] = board.squareArray[0]
-			board.squareArray[0] = sourcePiece //Rook
-
-			sourcePiece.square = 0
-			targetPiece.square = 4
+			board.squareArray[0].square = 0
+			board.squareArray[4].square = 4
 
 		} else if sourceIndex == 7 {
+			board.pieceMask[srcCol] |= (1 << 4)
+			board.pieceMasks[srcCol][6] |= (1 << 4)
+
+			board.pieceMask[srcCol] ^= (1 << 6)
 			board.pieceMask[srcCol] ^= (1 << 5)
+			board.pieceMasks[srcCol][6] ^= (1 << 6)
 			board.pieceMasks[srcCol][4] ^= (1 << 5)
 
-			board.pieceMask[srcCol] |= (1 << 4)
-			board.pieceMask[srcCol] |= (1 << 7)
-			board.pieceMasks[srcCol][6] |= (1 << 4)
-			board.pieceMasks[srcCol][4] |= (1 << 7)
+			board.squareArray[4] = board.squareArray[6] //King
+			board.squareArray[6] = targetPiece          //NotKing King
+			board.squareArray[7] = board.squareArray[5] //Rook
+			board.squareArray[5] = sourcePiece          //NotRook
 
-			board.squareArray[6] = board.squareArray[4]
-			board.squareArray[4] = targetPiece
-			board.squareArray[5] = board.squareArray[7]
-			board.squareArray[7] = sourcePiece
-
-			sourcePiece.square = 7
-			targetPiece.square = 4
+			board.squareArray[7].square = 7
+			board.squareArray[4].square = 4
 			// src -> sq := 6
 			// trg -> sq := 5
 		} else if sourceIndex == 56 {
+			board.pieceMask[srcCol] |= (1 << 60)
+			board.pieceMasks[srcCol][6] |= (1 << 60)
+
+			board.pieceMask[srcCol] ^= (1 << 58)
 			board.pieceMask[srcCol] ^= (1 << 59)
+			board.pieceMasks[srcCol][6] ^= (1 << 58)
 			board.pieceMasks[srcCol][4] ^= (1 << 59)
 
-			board.pieceMask[srcCol] |= (1 << 60)
-			board.pieceMask[srcCol] |= (1 << 56)
-			board.pieceMasks[srcCol][6] |= (1 << 60)
-			board.pieceMasks[srcCol][4] |= (1 << 56)
+			board.squareArray[60] = board.squareArray[58] //King
+			board.squareArray[58] = targetPiece           //NotKing King
+			board.squareArray[56] = board.squareArray[59] //Rook
+			board.squareArray[59] = sourcePiece           //NotRook
 
-			board.squareArray[58] = board.squareArray[60]
-			board.squareArray[60] = targetPiece
-			board.squareArray[59] = board.squareArray[56]
-			board.squareArray[56] = sourcePiece
-
-			sourcePiece.square = 56
-			targetPiece.square = 60
+			board.squareArray[56].square = 56
+			board.squareArray[60].square = 60
 
 			// src -> sq := 58
 			// trg -> sq := 59
 		} else if sourceIndex == 63 {
 
+			board.pieceMask[srcCol] |= (1 << 60)
+			board.pieceMasks[srcCol][6] |= (1 << 60)
+
+			board.pieceMask[srcCol] ^= (1 << 62)
 			board.pieceMask[srcCol] ^= (1 << 61)
+			board.pieceMasks[srcCol][6] ^= (1 << 62)
 			board.pieceMasks[srcCol][4] ^= (1 << 61)
 
-			board.pieceMask[srcCol] |= (1 << 60)
-			board.pieceMask[srcCol] |= (1 << 63)
-			board.pieceMasks[srcCol][6] |= (1 << 60)
-			board.pieceMasks[srcCol][4] |= (1 << 61)
+			board.squareArray[60] = board.squareArray[62] //King
+			board.squareArray[62] = targetPiece           //NotKing King
+			board.squareArray[63] = board.squareArray[61] //Rook
+			board.squareArray[61] = sourcePiece           //NotRook
 
-			board.squareArray[62] = board.squareArray[60]
-			board.squareArray[60] = targetPiece
-			board.squareArray[61] = board.squareArray[63]
-			board.squareArray[63] = sourcePiece
-
-			sourcePiece.square = 63
-			targetPiece.square = 60
+			board.squareArray[63].square = 63
+			board.squareArray[60].square = 60
 
 			// src -> sq := 62
 			// trg -> sq := 61
@@ -433,6 +434,9 @@ func (board *board) UndoMove(Move uint16) {
 
 	board.ply--
 	board.isWhiteTurn = !board.isWhiteTurn
+
+	// writeToLogFile(strconv.Itoa(int(board.pieceMask[0])))
+	// writeToLogFile(strconv.Itoa(int(board.pieceMask[1])))
 
 }
 

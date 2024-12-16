@@ -62,7 +62,6 @@ func main() {
 			}
 			move := currentBoard.searchMove(int64(t / 40))
 			currentBoard.PlayMove(move)
-			currentBoard.ply += 1
 
 			fmt.Println("bestmove " + engineMoveToUCIMove(move))
 
@@ -126,10 +125,8 @@ func main() {
 func loadTables() {
 	currentBoard = board{transEntries: 1 << 20}
 	currentBoard.transpostionTable = make([]tranEnrty, currentBoard.transEntries)
-	currentBoard.BKCastle = true
-	currentBoard.BQCastle = true
-	currentBoard.WKCastle = true
-	currentBoard.WKCastle = true
+	currentBoard.castling = 0b1111
+	currentBoard.gameStateStack = make([]gameState, 0, 60)
 
 	loadPreCalculations(false)
 	eval_loadTables()

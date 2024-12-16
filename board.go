@@ -29,12 +29,8 @@ type board struct {
 
 	deadPieces []uint8
 
-	WQCastle bool
-	BQCastle bool
-	WKCastle bool
-	BKCastle bool
-
-	sidesCastle int
+	castling       uint8
+	gameStateStack []gameState
 
 	halfMoves int
 	fullMoves int
@@ -46,6 +42,10 @@ type board struct {
 
 	transEntries      int
 	transpostionTable []tranEnrty
+}
+
+type gameState struct {
+	castling uint8
 }
 
 type piece struct {
@@ -107,10 +107,44 @@ func (board *board) PlayMove(Move uint16) {
 
 	targetIndex := (Move & MoveTargetMask) >> 6
 	targetPiece := board.squareArray[targetIndex]
-
+	newGameState := gameState{}
+	newGameState.castling = board.castling
+	board.gameStateStack = append(board.gameStateStack, newGameState)
 	srcCol := 1
 	if sourcePiece.isWhite {
 		srcCol = 0
+
+		if sourcePiece.typeID == 6 {
+			board.castling &= 0b0011
+		} else if sourcePiece.typeID == 4 {
+			if sourceIndex == 56 {
+				board.castling &= 0b0111
+			} else if sourceIndex == 63 {
+				board.castling &= 0b1011
+			}
+		} else if targetPiece.typeID == 4 {
+			if targetIndex == 0 {
+				board.castling &= 0b1101
+			} else if targetIndex == 7 {
+				board.castling &= 0b1110
+			}
+		}
+	} else {
+		if sourcePiece.typeID == 6 {
+			board.castling &= 0b1100
+		} else if sourcePiece.typeID == 4 {
+			if sourceIndex == 0 {
+				board.castling &= 0b1101
+			} else if sourceIndex == 7 {
+				board.castling &= 0b1110
+			}
+		} else if targetPiece.typeID == 4 {
+			if targetIndex == 56 {
+				board.castling &= 0b0111
+			} else if targetIndex == 63 {
+				board.castling &= 0b1011
+			}
+		}
 	}
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][sourceIndex]
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][targetIndex]
@@ -119,7 +153,6 @@ func (board *board) PlayMove(Move uint16) {
 	//Remove SourceBits.
 	board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
 	board.pieceMask[srcCol] ^= 1 << sourceIndex
-
 	if Move&CapFlag > 0 {
 		opCOl := 0
 		if !targetPiece.isWhite {
@@ -131,8 +164,8 @@ func (board *board) PlayMove(Move uint16) {
 		board.zobrist ^= board.zobristVals[opCOl][targetPiece.typeID][targetIndex]
 
 		//Tar sista itemet i sliceen sätter den på index positionen och resizar
-		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
 		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
+		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
 
 		//board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1].indexInPiecesArray = targetPiece.indexInPiecesArray
 		board.pieceArrays[opCOl][targetPiece.typeID] = board.pieceArrays[opCOl][targetPiece.typeID][:len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
@@ -151,7 +184,6 @@ func (board *board) PlayMove(Move uint16) {
 	}
 
 	if Move&CastleFlag > 0 {
-		board.sidesCastle++
 		if targetIndex == 0 {
 			board.pieceMask[srcCol] ^= (1 << 0) // Rook, king already gone
 			board.pieceMasks[srcCol][4] ^= (1 << 0)
@@ -168,8 +200,8 @@ func (board *board) PlayMove(Move uint16) {
 
 			// src -> sq := 2
 			// trg -> sq := 3
-		}
-		if targetIndex == 7 {
+		} else if targetIndex == 7 {
+
 			board.pieceMask[srcCol] ^= (1 << 7) // Rook, king already gone
 			board.pieceMasks[srcCol][4] ^= (1 << 7)
 
@@ -185,9 +217,8 @@ func (board *board) PlayMove(Move uint16) {
 
 			// src -> sq := 6
 			// trg -> sq := 5
-		}
+		} else if targetIndex == 56 {
 
-		if targetIndex == 56 {
 			board.pieceMask[srcCol] ^= (1 << 56) // Rook, king already gone
 			board.pieceMasks[srcCol][4] ^= (1 << 56)
 
@@ -203,8 +234,7 @@ func (board *board) PlayMove(Move uint16) {
 
 			// src -> sq := 58
 			// trg -> sq := 59
-		}
-		if targetIndex == 63 {
+		} else if targetIndex == 63 {
 
 			board.pieceMask[srcCol] ^= (1 << 63) // Rook, king already gone
 			board.pieceMasks[srcCol][4] ^= (1 << 63)
@@ -236,6 +266,7 @@ func (board *board) PlayMove(Move uint16) {
 	}
 
 	board.isWhiteTurn = !board.isWhiteTurn
+	board.ply++
 
 }
 
@@ -247,15 +278,15 @@ func (board *board) UndoMove(Move uint16) {
 	sourcePiece := board.squareArray[sourceIndex]
 	targetPiece := board.squareArray[targetIndex]
 
-	board.isWhiteTurn = !board.isWhiteTurn
-
 	srcCol := 1
 	opCOL := 0
-	if board.isWhiteTurn {
+	if sourcePiece.isWhite {
 		srcCol = 0
 		opCOL = 1
 
 	}
+	board.castling = board.gameStateStack[len(board.gameStateStack)-1].castling
+	board.gameStateStack = board.gameStateStack[:len(board.gameStateStack)-1]
 
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][sourceIndex]
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][targetIndex]
@@ -292,7 +323,6 @@ func (board *board) UndoMove(Move uint16) {
 	}
 
 	if Move&CastleFlag > 0 {
-		board.sidesCastle--
 		if sourceIndex == 0 { // Rook == Source
 			board.pieceMask[srcCol] ^= (1 << 2)
 			board.pieceMasks[srcCol][4] ^= (1 << 2)
@@ -369,6 +399,9 @@ func (board *board) UndoMove(Move uint16) {
 		sourcePiece.square = uint8(targetIndex)
 		targetPiece.square = uint8(sourceIndex)
 	}
+
+	board.ply--
+	board.isWhiteTurn = !board.isWhiteTurn
 
 }
 

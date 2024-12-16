@@ -2,7 +2,6 @@ package main
 
 import (
 	"math/rand"
-	"strconv"
 )
 
 /*
@@ -168,7 +167,17 @@ func (board *board) PlayMove(Move uint16) {
 
 		//Tar sista itemet i sliceen sätter den på index positionen och resizar
 		if len(board.pieceArrays[opCOl][targetPiece.typeID])-1 == -1 {
+			writeToLogFile("--")
 			writeToLogFile("hum")
+			writeToLogFile(Itoa(int(targetPiece.typeID)))
+			if targetPiece.dead {
+				writeToLogFile("true")
+
+			} else {
+				writeToLogFile("false")
+
+			}
+			writeToLogFile(Itoa(int(sourceIndex)) + " " + Itoa(int(targetIndex)))
 		}
 		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
 		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
@@ -346,7 +355,6 @@ func (board *board) UndoMove(Move uint16) {
 	}
 
 	if (Move & FlagMask) == CastleFlag {
-		writeToLogFile(strconv.Itoa(int(sourceIndex)) + " " + strconv.Itoa(int(targetIndex)))
 		if sourceIndex == 0 { // Rook == Source
 			board.pieceMask[srcCol] |= (1 << 4)
 			board.pieceMasks[srcCol][6] |= (1 << 4)

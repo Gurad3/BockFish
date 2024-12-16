@@ -127,8 +127,8 @@ func main() {
 func loadTables() {
 	currentBoard = board{transEntries: 1 << 20}
 	currentBoard.transpostionTable = make([]tranEnrty, currentBoard.transEntries)
-	currentBoard.castling = 0b1111
-	// currentBoard.castling = 0b0000
+	// currentBoard.castling = 0b1111
+	currentBoard.castling = 0b0000
 	currentBoard.gameStateStack = make([]gameState, 0, 60)
 
 	loadPreCalculations(false)

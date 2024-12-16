@@ -170,6 +170,7 @@ func (board *board) PlayMove(Move uint16) {
 			writeToLogFile("--")
 			writeToLogFile("hum")
 			writeToLogFile(Itoa(int(targetPiece.typeID)))
+			writeToLogFile(Itoa(int(sourcePiece.typeID)))
 			if targetPiece.dead {
 				writeToLogFile("true")
 
@@ -178,6 +179,7 @@ func (board *board) PlayMove(Move uint16) {
 
 			}
 			writeToLogFile(Itoa(int(sourceIndex)) + " " + Itoa(int(targetIndex)))
+			writeToLogFile(Itoa(board.ply))
 		}
 		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
 		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
@@ -290,6 +292,7 @@ func (board *board) PlayMove(Move uint16) {
 		board.pieceMask[srcCol] |= 1 << targetIndex
 
 		sourcePiece.square = uint8(targetIndex)
+		targetPiece.square = uint8(sourceIndex)
 	}
 
 	board.isWhiteTurn = !board.isWhiteTurn
@@ -304,9 +307,6 @@ func (board *board) UndoMove(Move uint16) {
 
 	sourcePiece := board.squareArray[sourceIndex]
 	targetPiece := board.squareArray[targetIndex]
-
-	board.squareArray[targetIndex] = sourcePiece
-	board.squareArray[sourceIndex] = targetPiece
 
 	srcCol := 1
 	opCOL := 0
@@ -355,9 +355,16 @@ func (board *board) UndoMove(Move uint16) {
 	}
 
 	if (Move & FlagMask) == CastleFlag {
+
+		//Undo
+		board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
+		board.pieceMask[srcCol] ^= 1 << sourceIndex
+
 		if sourceIndex == 0 { // Rook == Source
 			board.pieceMask[srcCol] |= (1 << 4)
 			board.pieceMasks[srcCol][6] |= (1 << 4)
+			board.pieceMask[srcCol] |= (1 << 0)
+			board.pieceMasks[srcCol][4] |= (1 << 0)
 
 			board.pieceMask[srcCol] ^= (1 << 2)
 			board.pieceMask[srcCol] ^= (1 << 3)
@@ -375,6 +382,8 @@ func (board *board) UndoMove(Move uint16) {
 		} else if sourceIndex == 7 {
 			board.pieceMask[srcCol] |= (1 << 4)
 			board.pieceMasks[srcCol][6] |= (1 << 4)
+			board.pieceMask[srcCol] |= (1 << 7)
+			board.pieceMasks[srcCol][4] |= (1 << 7)
 
 			board.pieceMask[srcCol] ^= (1 << 6)
 			board.pieceMask[srcCol] ^= (1 << 5)
@@ -393,6 +402,8 @@ func (board *board) UndoMove(Move uint16) {
 		} else if sourceIndex == 56 {
 			board.pieceMask[srcCol] |= (1 << 60)
 			board.pieceMasks[srcCol][6] |= (1 << 60)
+			board.pieceMask[srcCol] |= (1 << 56)
+			board.pieceMasks[srcCol][4] |= (1 << 56)
 
 			board.pieceMask[srcCol] ^= (1 << 58)
 			board.pieceMask[srcCol] ^= (1 << 59)
@@ -413,6 +424,8 @@ func (board *board) UndoMove(Move uint16) {
 
 			board.pieceMask[srcCol] |= (1 << 60)
 			board.pieceMasks[srcCol][6] |= (1 << 60)
+			board.pieceMask[srcCol] |= (1 << 63)
+			board.pieceMasks[srcCol][4] |= (1 << 63)
 
 			board.pieceMask[srcCol] ^= (1 << 62)
 			board.pieceMask[srcCol] ^= (1 << 61)
@@ -434,6 +447,9 @@ func (board *board) UndoMove(Move uint16) {
 	} else {
 		board.pieceMasks[srcCol][sourcePiece.typeID] |= 1 << targetIndex
 		board.pieceMask[srcCol] |= 1 << targetIndex
+
+		board.squareArray[targetIndex] = sourcePiece
+		board.squareArray[sourceIndex] = targetPiece
 
 		sourcePiece.square = uint8(targetIndex)
 		targetPiece.square = uint8(sourceIndex)

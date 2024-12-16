@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 )
 
@@ -107,8 +108,10 @@ func (board *board) PlayMove(Move uint16) {
 
 	targetIndex := (Move & MoveTargetMask) >> 6
 	targetPiece := board.squareArray[targetIndex]
+
 	newGameState := gameState{}
 	newGameState.castling = board.castling
+
 	board.gameStateStack = append(board.gameStateStack, newGameState)
 	srcCol := 1
 	if sourcePiece.isWhite {
@@ -151,21 +154,21 @@ func (board *board) PlayMove(Move uint16) {
 	board.zobrist ^= board.zobristBlack
 
 	//Remove SourceBits.
-	board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
-	board.pieceMask[srcCol] ^= 1 << sourceIndex
+
 	if Move&CapFlag > 0 {
 		opCOl := 0
 		if !targetPiece.isWhite {
 			opCOl = 1
 		}
+
 		board.pieceMasks[opCOl][targetPiece.typeID] ^= 1 << targetIndex
 		board.pieceMask[opCOl] ^= 1 << targetIndex
 
 		board.zobrist ^= board.zobristVals[opCOl][targetPiece.typeID][targetIndex]
 
 		//Tar sista itemet i sliceen sätter den på index positionen och resizar
-		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
 		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
+		board.pieceArrays[opCOl][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
 
 		//board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1].indexInPiecesArray = targetPiece.indexInPiecesArray
 		board.pieceArrays[opCOl][targetPiece.typeID] = board.pieceArrays[opCOl][targetPiece.typeID][:len(board.pieceArrays[opCOl][targetPiece.typeID])-1]
@@ -174,7 +177,11 @@ func (board *board) PlayMove(Move uint16) {
 		board.deadPieces = append(board.deadPieces, targetPiece.typeID)
 
 		targetPiece.typeID = 0
-	} else if (Move&PromFlag)>>12 > 3 {
+	}
+	board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
+	board.pieceMask[srcCol] ^= 1 << sourceIndex
+
+	if (Move&PromFlag)>>12 > 3 {
 		sourcePiece.typeID = uint8((Move&PromFlag)>>12) - 2
 		board.pieceArrays[srcCol][sourcePiece.typeID] = append(board.pieceArrays[srcCol][sourcePiece.typeID], sourcePiece)
 		board.pieceArrays[srcCol][1][len(board.pieceArrays[srcCol][1])-1].indexInPiecesArray = sourcePiece.indexInPiecesArray
@@ -183,7 +190,7 @@ func (board *board) PlayMove(Move uint16) {
 		sourcePiece.indexInPiecesArray = uint8(len(board.pieceArrays[srcCol][sourcePiece.typeID]) - 1)
 	}
 
-	if Move&CastleFlag > 0 {
+	if (Move & FlagMask) == CastleFlag {
 		if targetIndex == 0 {
 			board.pieceMask[srcCol] ^= (1 << 0) // Rook, king already gone
 			board.pieceMasks[srcCol][4] ^= (1 << 0)
@@ -198,6 +205,10 @@ func (board *board) PlayMove(Move uint16) {
 			board.squareArray[0] = board.squareArray[3]
 			board.squareArray[3] = targetPiece
 
+			sourcePiece.square = 2
+			targetPiece.square = 3
+
+			writeToLogFile("e")
 			// src -> sq := 2
 			// trg -> sq := 3
 		} else if targetIndex == 7 {
@@ -215,6 +226,8 @@ func (board *board) PlayMove(Move uint16) {
 			board.squareArray[7] = board.squareArray[5]
 			board.squareArray[5] = targetPiece
 
+			sourcePiece.square = 6
+			targetPiece.square = 5
 			// src -> sq := 6
 			// trg -> sq := 5
 		} else if targetIndex == 56 {
@@ -232,6 +245,8 @@ func (board *board) PlayMove(Move uint16) {
 			board.squareArray[56] = board.squareArray[59]
 			board.squareArray[59] = targetPiece
 
+			sourcePiece.square = 58
+			targetPiece.square = 59
 			// src -> sq := 58
 			// trg -> sq := 59
 		} else if targetIndex == 63 {
@@ -249,12 +264,13 @@ func (board *board) PlayMove(Move uint16) {
 			board.squareArray[63] = board.squareArray[61]
 			board.squareArray[61] = targetPiece
 
+			sourcePiece.square = 62
+			targetPiece.square = 61
 			// src -> sq := 62
 			// trg -> sq := 61
 		}
 
 	} else {
-
 		board.squareArray[targetIndex] = sourcePiece
 		board.squareArray[sourceIndex] = targetPiece
 
@@ -278,6 +294,9 @@ func (board *board) UndoMove(Move uint16) {
 	sourcePiece := board.squareArray[sourceIndex]
 	targetPiece := board.squareArray[targetIndex]
 
+	board.squareArray[targetIndex] = sourcePiece
+	board.squareArray[sourceIndex] = targetPiece
+
 	srcCol := 1
 	opCOL := 0
 	if sourcePiece.isWhite {
@@ -291,9 +310,6 @@ func (board *board) UndoMove(Move uint16) {
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][sourceIndex]
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][targetIndex]
 	board.zobrist ^= board.zobristBlack
-
-	board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
-	board.pieceMask[srcCol] ^= 1 << sourceIndex
 
 	if Move&CapFlag > 0 {
 
@@ -311,7 +327,12 @@ func (board *board) UndoMove(Move uint16) {
 		targetPiece.dead = false
 
 		//writeToLogFile("Revived from dead: " + strconv.Itoa(int(targetPiece.typeID)) + "Pos: " + strconv.Itoa(int(sourceIndex)))
-	} else if (Move&PromFlag)>>12 > 3 {
+	}
+
+	board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
+	board.pieceMask[srcCol] ^= 1 << sourceIndex
+
+	if (Move&PromFlag)>>12 > 3 {
 
 		board.pieceArrays[srcCol][sourcePiece.typeID][sourcePiece.indexInPiecesArray] = board.pieceArrays[srcCol][sourcePiece.typeID][len(board.pieceArrays[srcCol][sourcePiece.typeID])-1]
 		board.pieceArrays[srcCol][sourcePiece.typeID][sourcePiece.indexInPiecesArray].indexInPiecesArray = sourcePiece.indexInPiecesArray
@@ -322,8 +343,10 @@ func (board *board) UndoMove(Move uint16) {
 		sourcePiece.indexInPiecesArray = uint8(len(board.pieceArrays[srcCol][sourcePiece.typeID]) - 1)
 	}
 
-	if Move&CastleFlag > 0 {
+	if (Move & FlagMask) == CastleFlag {
+		fmt.Println("D")
 		if sourceIndex == 0 { // Rook == Source
+
 			board.pieceMask[srcCol] ^= (1 << 2)
 			board.pieceMasks[srcCol][4] ^= (1 << 2)
 
@@ -337,6 +360,9 @@ func (board *board) UndoMove(Move uint16) {
 			board.squareArray[3] = board.squareArray[0]
 			board.squareArray[0] = sourcePiece //Rook
 
+			sourcePiece.square = 0
+			targetPiece.square = 4
+
 		} else if sourceIndex == 7 {
 			board.pieceMask[srcCol] ^= (1 << 5)
 			board.pieceMasks[srcCol][4] ^= (1 << 5)
@@ -348,9 +374,11 @@ func (board *board) UndoMove(Move uint16) {
 
 			board.squareArray[6] = board.squareArray[4]
 			board.squareArray[4] = targetPiece
-			board.squareArray[7] = board.squareArray[5]
-			board.squareArray[5] = sourcePiece
+			board.squareArray[5] = board.squareArray[7]
+			board.squareArray[7] = sourcePiece
 
+			sourcePiece.square = 7
+			targetPiece.square = 4
 			// src -> sq := 6
 			// trg -> sq := 5
 		} else if sourceIndex == 56 {
@@ -366,6 +394,9 @@ func (board *board) UndoMove(Move uint16) {
 			board.squareArray[60] = targetPiece
 			board.squareArray[59] = board.squareArray[56]
 			board.squareArray[56] = sourcePiece
+
+			sourcePiece.square = 56
+			targetPiece.square = 60
 
 			// src -> sq := 58
 			// trg -> sq := 59
@@ -384,20 +415,20 @@ func (board *board) UndoMove(Move uint16) {
 			board.squareArray[61] = board.squareArray[63]
 			board.squareArray[63] = sourcePiece
 
+			sourcePiece.square = 63
+			targetPiece.square = 60
+
 			// src -> sq := 62
 			// trg -> sq := 61
 		}
 
 	} else {
-
-		board.squareArray[targetIndex] = sourcePiece
-		board.squareArray[sourceIndex] = targetPiece
-
 		board.pieceMasks[srcCol][sourcePiece.typeID] |= 1 << targetIndex
 		board.pieceMask[srcCol] |= 1 << targetIndex
 
 		sourcePiece.square = uint8(targetIndex)
 		targetPiece.square = uint8(sourceIndex)
+
 	}
 
 	board.ply--

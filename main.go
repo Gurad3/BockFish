@@ -120,7 +120,7 @@ func main() {
 			fmt.Println("done")
 
 		case "getpos":
-			writeToLogFile(Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
+			writeToLogFile(Itoa(int(currentBoard.pieceMasks[0][4]|currentBoard.pieceMasks[1][4])) + " " + Itoa(int(currentBoard.pieceMasks[0][6]|currentBoard.pieceMasks[1][6])))
 			fmt.Println("pos " + sendPosAsString())
 
 		case "plabest":

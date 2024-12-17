@@ -132,3 +132,183 @@ main.(*board).searchMove(0x5f9440, 0x1960)
 	C:/Users/nathan.marchand-mato/go/src/BockFish/search.go:46 +0x226
 main.main()
 	C:/Users/nathan.marchand-mato/go/src/BockFish/main.go:85 +0x398
+Program crashed: runtime error: index out of range [-1]
+goroutine 1 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:24 +0x5e
+main.main.func1()
+	C:/Users/matoc/go/src/BockFish/main.go:31 +0x71
+panic({0x10da100?, 0xc0000ac0f0?})
+	C:/Program Files/Go/src/runtime/panic.go:914 +0x21f
+main.(*board).PlayMove(0x11ab5a0, 0xb5a0?)
+	C:/Users/matoc/go/src/BockFish/board.go:186 +0xe48
+main.(*board).QuinNegaMax(0x11ab5a0, {0x11aa640?, 0x11ab5a0?, 0x11aa640?}, 0x12bb, 0xffffffffffffffff, 0xfffffffffffffe7a, 0xffffffffffffffb0, 0xffffffffffffffff, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:194 +0x373
+main.(*board).QuinNegaMax(0x11ab5a0, {0x11aa640?, 0xda?, 0x11aa640?}, 0x12bb, 0x0, 0x8000000000000001, 0x186, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).NegaMax(0x11ab5a0, {0x11aa640?, 0x1061dff?, 0x11aa640?}, 0x12bb, 0x0, 0x8000000000000001, 0x186, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:69 +0x2aa
+main.(*board).NegaMax(0x11ab5a0, {0x11aa640?, 0x200000003?, 0x11aa640?}, 0x12bb, 0x1, 0x8000000000000001, 0x7fffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x11ab5a0, {0x11aa640?, 0x1098233?, 0x11aa640?}, 0x12bb, 0x2, 0x8000000000000001, 0x7fffffffffffffff, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).searchMove(0x11ab5a0, 0x12bb)
+	C:/Users/matoc/go/src/BockFish/search.go:46 +0x215
+main.main()
+	C:/Users/matoc/go/src/BockFish/main.go:85 +0x3b8
+Program crashed: runtime error: index out of range [-1]
+goroutine 1 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:24 +0x5e
+main.main.func1()
+	C:/Users/matoc/go/src/BockFish/main.go:31 +0x71
+panic({0x6da100?, 0xc0000ac090?})
+	C:/Program Files/Go/src/runtime/panic.go:914 +0x21f
+main.(*board).PlayMove(0x7ab5a0, 0xb5a0?)
+	C:/Users/matoc/go/src/BockFish/board.go:186 +0xe48
+main.(*board).NegaMax(0x7ab5a0, {0x7aa640?, 0xda?, 0x7aa640?}, 0x9af, 0x1, 0x5f, 0x73, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:110 +0x37b
+main.(*board).NegaMax(0x7ab5a0, {0x7aa640?, 0x9af?, 0x7aa640?}, 0x9af, 0x2, 0x8000000000000001, 0xffffffffffffffa1, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x7ab5a0, {0x7aa640?, 0xc002b74d10?, 0x7aa640?}, 0x9af, 0x3, 0x28, 0x7fffffffffffffff, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x7ab5a0, {0x7aa640?, 0x661dff?, 0x7aa640?}, 0x9af, 0x4, 0x8000000000000001, 0xffffffffffffffd8, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x7ab5a0, {0x7aa640?, 0x200000003?, 0x7aa640?}, 0x9af, 0x5, 0x8000000000000001, 0x7fffffffffffffff, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x7ab5a0, {0x7aa640?, 0x698233?, 0x7aa640?}, 0x9af, 0x6, 0x8000000000000001, 0x7fffffffffffffff, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).searchMove(0x7ab5a0, 0x9af)
+	C:/Users/matoc/go/src/BockFish/search.go:46 +0x215
+main.main()
+	C:/Users/matoc/go/src/BockFish/main.go:85 +0x3b8
+Program crashed: runtime error: index out of range [-1]
+goroutine 1 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:24 +0x5e
+main.main.func1()
+	C:/Users/matoc/go/src/BockFish/main.go:31 +0x71
+panic({0x72a100?, 0xc0000121c8?})
+	C:/Program Files/Go/src/runtime/panic.go:914 +0x21f
+main.(*board).PlayMove(0x7fb5a0, 0xfa9c?)
+	C:/Users/matoc/go/src/BockFish/board.go:186 +0xe48
+main.(*board).QuinNegaMax(0x7fb5a0, {0x7fa640?, 0x70b1ed?, 0x7fa640?}, 0x12bb, 0xfffffffffffffffa, 0x334, 0x393, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:194 +0x373
+main.(*board).QuinNegaMax(0x7fb5a0, {0x7fa640?, 0x70b0c5?, 0x7fa640?}, 0x12bb, 0xfffffffffffffffb, 0xfffffffffffffc6d, 0xfffffffffffffccc, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0x7fb5a0, {0x7fa640?, 0x70b1ed?, 0x7fa640?}, 0x12bb, 0xfffffffffffffffc, 0x32a, 0x393, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0x7fb5a0, {0x7fa640?, 0x70b1ed?, 0x7fa640?}, 0x12bb, 0xfffffffffffffffd, 0xfffffffffffffbbe, 0xfffffffffffffcd6, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0x7fb5a0, {0x7fa640?, 0x70ab6a?, 0x7fa640?}, 0x12bb, 0xfffffffffffffffe, 0x32a, 0x442, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0x7fb5a0, {0x7fa640?, 0x7fb5a0?, 0x7fa640?}, 0x12bb, 0xffffffffffffffff, 0x8000000000000001, 0xfffffffffffffcd6, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0x7fb5a0, {0x7fa640?, 0xda?, 0x7fa640?}, 0x12bb, 0x0, 0x8000000000000001, 0x7fffffffffffffff, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).NegaMax(0x7fb5a0, {0x7fa640?, 0x6b1dff?, 0x7fa640?}, 0x12bb, 0x0, 0x8000000000000001, 0x7fffffffffffffff, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:69 +0x2aa
+main.(*board).NegaMax(0x7fb5a0, {0x7fa640?, 0x200000003?, 0x7fa640?}, 0x12bb, 0x1, 0x8000000000000001, 0x7fffffffffffffff, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x7fb5a0, {0x7fa640?, 0x6e8233?, 0x7fa640?}, 0x12bb, 0x2, 0x8000000000000001, 0x7fffffffffffffff, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).searchMove(0x7fb5a0, 0x12bb)
+	C:/Users/matoc/go/src/BockFish/search.go:46 +0x215
+main.main()
+	C:/Users/matoc/go/src/BockFish/main.go:85 +0x3b8
+Program crashed: runtime error: index out of range [-1]
+goroutine 1 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:24 +0x5e
+main.main.func1()
+	C:/Users/matoc/go/src/BockFish/main.go:31 +0x71
+panic({0xb6a100?, 0xc000012108?})
+	C:/Program Files/Go/src/runtime/panic.go:914 +0x21f
+main.(*board).PlayMove(0xc3b5a0, 0xb5a0?)
+	C:/Users/matoc/go/src/BockFish/board.go:186 +0xe48
+main.(*board).QuinNegaMax(0xc3b5a0, {0xc3a640?, 0xb4b1ed?, 0xc3a640?}, 0x16f0, 0xfffffffffffffffd, 0xffffffffffffffc4, 0xffffffffffffffce, 0xffffffffffffffff, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:194 +0x373
+main.(*board).QuinNegaMax(0xc3b5a0, {0xc3a640?, 0xb4ab6a?, 0xc3a640?}, 0x16f0, 0xfffffffffffffffe, 0x32, 0x3c, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0xc3b5a0, {0xc3a640?, 0xc3b5a0?, 0xc3a640?}, 0x16f0, 0xffffffffffffffff, 0xffffffffffffffc4, 0xffffffffffffffce, 0xffffffffffffffff, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0xc3b5a0, {0xc3a640?, 0xc002bbcd10?, 0xc3a640?}, 0x16f0, 0x0, 0x2d, 0x3c, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).NegaMax(0xc3b5a0, {0xc3a640?, 0xaf1dff?, 0xc3a640?}, 0x16f0, 0x0, 0x2d, 0x3c, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:69 +0x2aa
+main.(*board).NegaMax(0xc3b5a0, {0xc3a640?, 0x200000003?, 0xc3a640?}, 0x16f0, 0x1, 0x8000000000000001, 0xffffffffffffffd3, 0xffffffffffffffff, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0xc3b5a0, {0xc3a640?, 0x0?, 0xc3a640?}, 0x16f0, 0x2, 0x8000000000000001, 0x7fffffffffffffff, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).searchMove(0xc3b5a0, 0x16f0)
+	C:/Users/matoc/go/src/BockFish/search.go:46 +0x215
+main.main()
+	C:/Users/matoc/go/src/BockFish/main.go:85 +0x3b8
+Program crashed: runtime error: index out of range [-1]
+goroutine 1 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:24 +0x5e
+main.main.func1()
+	C:/Users/matoc/go/src/BockFish/main.go:31 +0x71
+panic({0xfda100?, 0xc0000120d8?})
+	C:/Program Files/Go/src/runtime/panic.go:914 +0x21f
+main.(*board).PlayMove(0x10ab5a0, 0xb7cc?)
+	C:/Users/matoc/go/src/BockFish/board.go:186 +0xe48
+main.(*board).QuinNegaMax(0x10ab5a0, {0x10aa640?, 0x1787?, 0x10aa640?}, 0x1787, 0xfffffffffffffffb, 0xfffffffffffffaec, 0xfffffffffffffafb, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:194 +0x373
+main.(*board).QuinNegaMax(0x10ab5a0, {0x10aa640?, 0x1787?, 0x10aa640?}, 0x1787, 0xfffffffffffffffc, 0x505, 0x514, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0x10ab5a0, {0x10aa640?, 0x1787?, 0x10aa640?}, 0x1787, 0xfffffffffffffffd, 0xfffffffffffffaec, 0xfffffffffffffafb, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0x10ab5a0, {0x10aa640?, 0x1787?, 0x10aa640?}, 0x1787, 0xfffffffffffffffe, 0x505, 0x514, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0x10ab5a0, {0x10aa640?, 0x1787?, 0x10aa640?}, 0x1787, 0xffffffffffffffff, 0xfffffffffffffaec, 0xfffffffffffffafb, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0x10ab5a0, {0x10aa640?, 0x1787?, 0x10aa640?}, 0x1787, 0x0, 0x1bd, 0x514, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).NegaMax(0x10ab5a0, {0x10aa640?, 0x1787?, 0x10aa640?}, 0x1787, 0x0, 0x1bd, 0x514, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:69 +0x2aa
+main.(*board).NegaMax(0x10ab5a0, {0x10aa640?, 0x0?, 0x10aa640?}, 0x1787, 0x1, 0x8000000000000001, 0xfffffffffffffe43, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x10ab5a0, {0x10aa640?, 0x0?, 0x10aa640?}, 0x1787, 0x2, 0x12c, 0x7fffffffffffffff, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x10ab5a0, {0x10aa640?, 0x200000003?, 0x10aa640?}, 0x1787, 0x3, 0x8000000000000001, 0xfffffffffffffed4, 0x1, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x10ab5a0, {0x10aa640?, 0x0?, 0x10aa640?}, 0x1787, 0x4, 0x8000000000000001, 0x7fffffffffffffff, 0xffffffffffffffff, 0x1)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).searchMove(0x10ab5a0, 0x1787)
+	C:/Users/matoc/go/src/BockFish/search.go:46 +0x215
+main.main()
+	C:/Users/matoc/go/src/BockFish/main.go:85 +0x3b8
+Program crashed: runtime error: index out of range [-1]
+goroutine 1 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:24 +0x5e
+main.main.func1()
+	C:/Users/matoc/go/src/BockFish/main.go:31 +0x71
+panic({0x35a100?, 0xc000012150?})
+	C:/Program Files/Go/src/runtime/panic.go:914 +0x21f
+main.(*board).PlayMove(0x42b5a0, 0xbd84?)
+	C:/Users/matoc/go/src/BockFish/board.go:186 +0xe48
+main.(*board).QuinNegaMax(0x42b5a0, {0x42a640?, 0xda?, 0x42a640?}, 0x1ccf, 0xfffffffffffffffd, 0xfffffffffffffd30, 0xfffffffffffffde9, 0xffffffffffffffff, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:194 +0x373
+main.(*board).QuinNegaMax(0x42b5a0, {0x42a640?, 0xda?, 0x42a640?}, 0x1ccf, 0xfffffffffffffffe, 0x78, 0x2d0, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0x42b5a0, {0x42a640?, 0x1ccf?, 0x42a640?}, 0x1ccf, 0xffffffffffffffff, 0x8000000000000001, 0xffffffffffffff88, 0xffffffffffffffff, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).QuinNegaMax(0x42b5a0, {0x42a640?, 0x1ccf?, 0x42a640?}, 0x1ccf, 0x0, 0x2d, 0x7fffffffffffffff, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:195 +0x3f5
+main.(*board).NegaMax(0x42b5a0, {0x42a640?, 0x1ccf?, 0x42a640?}, 0x1ccf, 0x0, 0x2d, 0x7fffffffffffffff, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:69 +0x2aa
+main.(*board).NegaMax(0x42b5a0, {0x42a640?, 0xc002b3cd10?, 0x42a640?}, 0x1ccf, 0x1, 0x8000000000000001, 0xffffffffffffffd3, 0xffffffffffffffff, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x42b5a0, {0x42a640?, 0x2e1dff?, 0x42a640?}, 0x1ccf, 0x2, 0x2d, 0x7fffffffffffffff, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x42b5a0, {0x42a640?, 0x200000003?, 0x42a640?}, 0x1ccf, 0x3, 0x8000000000000001, 0xffffffffffffffd3, 0xffffffffffffffff, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).NegaMax(0x42b5a0, {0x42a640?, 0x318233?, 0x42a640?}, 0x1ccf, 0x4, 0x8000000000000001, 0x7fffffffffffffff, 0x1, 0xffffffffffffffff)
+	C:/Users/matoc/go/src/BockFish/search.go:111 +0x3fa
+main.(*board).searchMove(0x42b5a0, 0x1ccf)
+	C:/Users/matoc/go/src/BockFish/search.go:46 +0x215
+main.main()
+	C:/Users/matoc/go/src/BockFish/main.go:85 +0x3b8

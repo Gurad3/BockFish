@@ -285,7 +285,6 @@ func (board *board) PlayMove(Move uint16) {
 			// src -> sq := 62
 			// trg -> sq := 61
 		}
-
 	} else {
 		board.squareArray[targetIndex] = sourcePiece
 		board.squareArray[sourceIndex] = targetPiece
@@ -358,7 +357,6 @@ func (board *board) UndoMove(Move uint16) {
 	}
 
 	if (Move & FlagMask) == CastleFlag {
-
 		//Undo
 		board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
 		board.pieceMask[srcCol] ^= 1 << sourceIndex
@@ -461,7 +459,8 @@ func (board *board) UndoMove(Move uint16) {
 		targetPiece.square = uint8(sourceIndex)
 
 	}
-
+	// board.squareArray[targetIndex] = sourcePiece
+	// board.squareArray[sourceIndex] = targetPiece
 	board.ply--
 	board.isWhiteTurn = !board.isWhiteTurn
 

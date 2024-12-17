@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"runtime/debug"
 	"strconv"
 	"strings"
 )
@@ -11,6 +12,27 @@ import (
 var currentBoard board
 
 func main() {
+
+	errorLogFile, err := os.OpenFile("error.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Println("Failed to open error log file:", err)
+		os.Exit(1)
+	}
+	defer errorLogFile.Close()
+
+	// Redirect standard error to the log file
+	os.Stderr = errorLogFile
+
+	// Recover from any panic and log the stack trace
+	defer func() {
+		if r := recover(); r != nil {
+			// Write the panic reason and stack trace to the log file
+			fmt.Fprintf(errorLogFile, "Program crashed: %v\n", r)
+			errorLogFile.Write(debug.Stack())
+			writeToLogFile("Erro" + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
+		}
+	}()
+
 	reader := bufio.NewReader(os.Stdin)
 
 	// Loop to read commands from the GUI
@@ -69,9 +91,9 @@ func main() {
 			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
 
 		case "getfullegal":
-			// fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
+			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
 
-			fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMovesA())))
+			// fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMovesA())))
 
 		case "play":
 			//currentBoard.PlayMove(StringMoveToMove(parts[1]))
@@ -98,6 +120,7 @@ func main() {
 			fmt.Println("done")
 
 		case "getpos":
+			writeToLogFile(Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
 			fmt.Println("pos " + sendPosAsString())
 
 		case "plabest":
@@ -129,7 +152,7 @@ func loadTables() {
 	currentBoard.transpostionTable = make([]tranEnrty, currentBoard.transEntries)
 	currentBoard.castling = 0b1111
 	// currentBoard.castling = 0b0000
-	currentBoard.gameStateStack = make([]gameState, 0, 60)
+	currentBoard.gameStateStack = make([]gameState, 0, 120)
 
 	loadPreCalculations(false)
 	eval_loadTables()

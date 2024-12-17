@@ -124,7 +124,8 @@ func (board *board) PlayMove(Move uint16) {
 			} else if sourceIndex == 63 {
 				board.castling &= 0b1011
 			}
-		} else if targetPiece.typeID == 4 {
+		}
+		if targetPiece.typeID == 4 {
 			if targetIndex == 0 {
 				board.castling &= 0b1101
 			} else if targetIndex == 7 {
@@ -140,7 +141,8 @@ func (board *board) PlayMove(Move uint16) {
 			} else if sourceIndex == 7 {
 				board.castling &= 0b1110
 			}
-		} else if targetPiece.typeID == 4 {
+		}
+		if targetPiece.typeID == 4 {
 			if targetIndex == 56 {
 				board.castling &= 0b0111
 			} else if targetIndex == 63 {
@@ -241,10 +243,10 @@ func (board *board) PlayMove(Move uint16) {
 
 			sourcePiece.square = 6
 			targetPiece.square = 5
+
 			// src -> sq := 6
 			// trg -> sq := 5
 		} else if targetIndex == 56 {
-
 			board.pieceMask[srcCol] ^= (1 << 56) // Rook, king already gone
 			board.pieceMasks[srcCol][4] ^= (1 << 56)
 
@@ -262,6 +264,7 @@ func (board *board) PlayMove(Move uint16) {
 			targetPiece.square = 59
 			// src -> sq := 58
 			// trg -> sq := 59
+
 		} else if targetIndex == 63 {
 
 			board.pieceMask[srcCol] ^= (1 << 63) // Rook, king already gone
@@ -310,7 +313,7 @@ func (board *board) UndoMove(Move uint16) {
 
 	srcCol := 1
 	opCOL := 0
-	if sourcePiece.isWhite {
+	if !board.isWhiteTurn {
 		srcCol = 0
 		opCOL = 1
 
@@ -361,6 +364,7 @@ func (board *board) UndoMove(Move uint16) {
 		board.pieceMask[srcCol] ^= 1 << sourceIndex
 
 		if sourceIndex == 0 { // Rook == Source
+
 			board.pieceMask[srcCol] |= (1 << 4)
 			board.pieceMasks[srcCol][6] |= (1 << 4)
 			board.pieceMask[srcCol] |= (1 << 0)
@@ -380,6 +384,7 @@ func (board *board) UndoMove(Move uint16) {
 			board.squareArray[4].square = 4
 
 		} else if sourceIndex == 7 {
+
 			board.pieceMask[srcCol] |= (1 << 4)
 			board.pieceMasks[srcCol][6] |= (1 << 4)
 			board.pieceMask[srcCol] |= (1 << 7)
@@ -397,6 +402,7 @@ func (board *board) UndoMove(Move uint16) {
 
 			board.squareArray[7].square = 7
 			board.squareArray[4].square = 4
+
 			// src -> sq := 6
 			// trg -> sq := 5
 		} else if sourceIndex == 56 {

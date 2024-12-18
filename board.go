@@ -99,6 +99,27 @@ const PromoteToBishopFlag uint16 = 0b0101
 const PromoteToRookFlag uint16 = 0b0110
 const PromoteToQueenFlag uint16 = 0b0111
 
+// Castling
+const castle_WKS uint16 = 60  //White King Source
+const castle_WRKS uint16 = 63 //White Rook KingSide Source
+const castle_WRQS uint16 = 56 //White Rook QueenSide Source
+
+const castle_WKKT uint16 = 62 //White King KingSide Target
+const castle_WKQT uint16 = 58 //White King QueenSide Target
+
+const castle_WRKT uint16 = 61 //White Rook KingSide Target
+const castle_WRQT uint16 = 59 //White Rook QueenSide Target
+
+const castle_BKS uint16 = 4  //Black King Source
+const castle_BRKS uint16 = 7 //Black Rook KingSide Source
+const castle_BRQS uint16 = 0 //Black Rook QueenSide Source
+
+const castle_BKKT uint16 = 6 //Black King KingSide Target
+const castle_BKQT uint16 = 2 //Black King QueenSide Target
+
+const castle_BRKT uint16 = 5 //Black Rook KingSide Target
+const castle_BRQT uint16 = 3 //Black Rook QueenSide Target
+
 func (board *board) PlayMove(Move uint16) {
 
 	//board.pieceMask |= 1 << piece.square
@@ -119,16 +140,16 @@ func (board *board) PlayMove(Move uint16) {
 		if sourcePiece.typeID == 6 {
 			board.castling &= 0b0011
 		} else if sourcePiece.typeID == 4 {
-			if sourceIndex == 56 {
+			if sourceIndex == castle_WRQS {
 				board.castling &= 0b0111
-			} else if sourceIndex == 63 {
+			} else if sourceIndex == castle_WRKS {
 				board.castling &= 0b1011
 			}
 		}
 		if targetPiece.typeID == 4 {
-			if targetIndex == 0 {
+			if targetIndex == castle_BRQS {
 				board.castling &= 0b1101
-			} else if targetIndex == 7 {
+			} else if targetIndex == castle_BRKS {
 				board.castling &= 0b1110
 			}
 		}
@@ -136,16 +157,16 @@ func (board *board) PlayMove(Move uint16) {
 		if sourcePiece.typeID == 6 {
 			board.castling &= 0b1100
 		} else if sourcePiece.typeID == 4 {
-			if sourceIndex == 0 {
+			if sourceIndex == castle_BRQS {
 				board.castling &= 0b1101
-			} else if sourceIndex == 7 {
+			} else if sourceIndex == castle_BRKS {
 				board.castling &= 0b1110
 			}
 		}
 		if targetPiece.typeID == 4 {
-			if targetIndex == 56 {
+			if targetIndex == castle_WRQS {
 				board.castling &= 0b0111
-			} else if targetIndex == 63 {
+			} else if targetIndex == castle_WRKS {
 				board.castling &= 0b1011
 			}
 		}
@@ -155,6 +176,9 @@ func (board *board) PlayMove(Move uint16) {
 	board.zobrist ^= board.zobristBlack
 
 	//Remove SourceBits.
+
+	board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
+	board.pieceMask[srcCol] ^= 1 << sourceIndex
 
 	if Move&CapFlag > 0 {
 		opCOl := 0
@@ -194,8 +218,6 @@ func (board *board) PlayMove(Move uint16) {
 
 		targetPiece.typeID = 0
 	}
-	board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
-	board.pieceMask[srcCol] ^= 1 << sourceIndex
 
 	if (Move&PromFlag)>>12 > 3 {
 		sourcePiece.typeID = uint8((Move&PromFlag)>>12) - 2
@@ -207,84 +229,78 @@ func (board *board) PlayMove(Move uint16) {
 	}
 
 	if (Move & FlagMask) == CastleFlag {
-		if targetIndex == 0 {
-			board.pieceMask[srcCol] ^= (1 << 0) // Rook, king already gone
-			board.pieceMasks[srcCol][4] ^= (1 << 0)
+		board.pieceMasks[srcCol][targetPiece.typeID] ^= 1 << targetIndex
+		board.pieceMask[srcCol] ^= 1 << targetIndex
 
-			board.pieceMask[srcCol] |= (1 << 2)
-			board.pieceMask[srcCol] |= (1 << 3)
-			board.pieceMasks[srcCol][6] |= (1 << 2)
-			board.pieceMasks[srcCol][4] |= (1 << 3)
+		if targetIndex == castle_BRQS {
+			board.pieceMasks[srcCol][4] |= 1 << castle_BRQT
+			board.pieceMask[srcCol] |= 1 << castle_BRQT
+			board.pieceMasks[srcCol][6] |= 1 << castle_BKQT
+			board.pieceMask[srcCol] |= 1 << castle_BKQT
 
-			board.squareArray[4] = board.squareArray[2] // King square = empty TargetSqare
-			board.squareArray[2] = sourcePiece
-			board.squareArray[0] = board.squareArray[3]
-			board.squareArray[3] = targetPiece
+			board.squareArray[castle_BKS] = board.squareArray[castle_BKQT]
+			board.squareArray[castle_BKQT] = sourcePiece
+			board.squareArray[castle_BRQS] = board.squareArray[castle_BRQT]
+			board.squareArray[castle_BRQT] = targetPiece
 
-			sourcePiece.square = 2
-			targetPiece.square = 3
+			sourcePiece.square = uint8(castle_BKQT)
+			targetPiece.square = uint8(castle_BRQT)
 
-			// src -> sq := 2
-			// trg -> sq := 3
-		} else if targetIndex == 7 {
+			board.squareArray[castle_BKS].square = uint8(castle_BKS)
+			board.squareArray[castle_BRQS].square = uint8(castle_BRQS)
 
-			board.pieceMask[srcCol] ^= (1 << 7) // Rook, king already gone
-			board.pieceMasks[srcCol][4] ^= (1 << 7)
+		} else if targetIndex == castle_BRKS {
+			board.pieceMasks[srcCol][4] |= 1 << castle_BRKT
+			board.pieceMask[srcCol] |= 1 << castle_BRKT
+			board.pieceMasks[srcCol][6] |= 1 << castle_BKKT
+			board.pieceMask[srcCol] |= 1 << castle_BKKT
 
-			board.pieceMask[srcCol] |= (1 << 6)
-			board.pieceMask[srcCol] |= (1 << 5)
-			board.pieceMasks[srcCol][6] |= (1 << 6)
-			board.pieceMasks[srcCol][4] |= (1 << 5)
+			board.squareArray[castle_BKS] = board.squareArray[castle_BKKT]
+			board.squareArray[castle_BKKT] = sourcePiece
+			board.squareArray[castle_BRKS] = board.squareArray[castle_BRKT]
+			board.squareArray[castle_BRKT] = targetPiece
 
-			board.squareArray[4] = board.squareArray[6] // King square = empty TargetSqare
-			board.squareArray[6] = sourcePiece
-			board.squareArray[7] = board.squareArray[5]
-			board.squareArray[5] = targetPiece
+			sourcePiece.square = uint8(castle_BKKT)
+			targetPiece.square = uint8(castle_BRKT)
 
-			sourcePiece.square = 6
-			targetPiece.square = 5
+			board.squareArray[castle_BKS].square = uint8(castle_BKS)
+			board.squareArray[castle_BRKS].square = uint8(castle_BRKS)
 
-			// src -> sq := 6
-			// trg -> sq := 5
-		} else if targetIndex == 56 {
-			board.pieceMask[srcCol] ^= (1 << 56) // Rook, king already gone
-			board.pieceMasks[srcCol][4] ^= (1 << 56)
+		} else if targetIndex == castle_WRQS {
+			board.pieceMasks[srcCol][4] |= 1 << castle_WRQT
+			board.pieceMask[srcCol] |= 1 << castle_WRQT
+			board.pieceMasks[srcCol][6] |= 1 << castle_WKQT
+			board.pieceMask[srcCol] |= 1 << castle_WKQT
 
-			board.pieceMask[srcCol] |= (1 << 58)
-			board.pieceMask[srcCol] |= (1 << 59)
-			board.pieceMasks[srcCol][6] |= (1 << 58)
-			board.pieceMasks[srcCol][4] |= (1 << 59)
+			board.squareArray[castle_WKS] = board.squareArray[castle_WKQT]
+			board.squareArray[castle_WKQT] = sourcePiece
+			board.squareArray[castle_WRQS] = board.squareArray[castle_WRQT]
+			board.squareArray[castle_WRQT] = targetPiece
 
-			board.squareArray[60] = board.squareArray[58] // King square = empty TargetSqare
-			board.squareArray[58] = sourcePiece
-			board.squareArray[56] = board.squareArray[59]
-			board.squareArray[59] = targetPiece
+			sourcePiece.square = uint8(castle_WKQT)
+			targetPiece.square = uint8(castle_WRQT)
 
-			sourcePiece.square = 58
-			targetPiece.square = 59
-			// src -> sq := 58
-			// trg -> sq := 59
+			board.squareArray[castle_WKS].square = uint8(castle_WKS)
+			board.squareArray[castle_WRQS].square = uint8(castle_WRQS)
 
-		} else if targetIndex == 63 {
+		} else if targetIndex == castle_WRKS {
+			board.pieceMasks[srcCol][4] |= 1 << castle_WRKT
+			board.pieceMask[srcCol] |= 1 << castle_WRKT
+			board.pieceMasks[srcCol][6] |= 1 << castle_WKKT
+			board.pieceMask[srcCol] |= 1 << castle_WKKT
 
-			board.pieceMask[srcCol] ^= (1 << 63) // Rook, king already gone
-			board.pieceMasks[srcCol][4] ^= (1 << 63)
+			board.squareArray[castle_WKS] = board.squareArray[castle_WKKT]
+			board.squareArray[castle_WKKT] = sourcePiece
+			board.squareArray[castle_WRKS] = board.squareArray[castle_WRKT]
+			board.squareArray[castle_WRKT] = targetPiece
 
-			board.pieceMask[srcCol] |= (1 << 62)
-			board.pieceMask[srcCol] |= (1 << 61)
-			board.pieceMasks[srcCol][6] |= (1 << 62)
-			board.pieceMasks[srcCol][4] |= (1 << 61)
+			sourcePiece.square = uint8(castle_WKKT)
+			targetPiece.square = uint8(castle_WRKT)
 
-			board.squareArray[60] = board.squareArray[62] // King square = empty TargetSqare
-			board.squareArray[62] = sourcePiece
-			board.squareArray[63] = board.squareArray[61]
-			board.squareArray[61] = targetPiece
-
-			sourcePiece.square = 62
-			targetPiece.square = 61
-			// src -> sq := 62
-			// trg -> sq := 61
+			board.squareArray[castle_WKS].square = uint8(castle_WKS)
+			board.squareArray[castle_WRKS].square = uint8(castle_WRKS)
 		}
+
 	} else {
 		board.squareArray[targetIndex] = sourcePiece
 		board.squareArray[sourceIndex] = targetPiece
@@ -361,91 +377,93 @@ func (board *board) UndoMove(Move uint16) {
 		board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
 		board.pieceMask[srcCol] ^= 1 << sourceIndex
 
-		if sourceIndex == 0 { // Rook == Source
+		if sourceIndex == castle_BRQT {
+			board.pieceMasks[srcCol][4] ^= 1 << castle_BRQT
+			board.pieceMask[srcCol] ^= 1 << castle_BRQT
+			board.pieceMasks[srcCol][6] ^= 1 << castle_BKQT
+			board.pieceMask[srcCol] ^= 1 << castle_BKQT
 
-			board.pieceMask[srcCol] |= (1 << 4)
-			board.pieceMasks[srcCol][6] |= (1 << 4)
-			board.pieceMask[srcCol] |= (1 << 0)
-			board.pieceMasks[srcCol][4] |= (1 << 0)
+			board.pieceMasks[srcCol][4] |= 1 << castle_BRQS
+			board.pieceMask[srcCol] |= 1 << castle_BRQS
+			board.pieceMasks[srcCol][6] |= 1 << castle_BKS
+			board.pieceMask[srcCol] |= 1 << castle_BKS
 
-			board.pieceMask[srcCol] ^= (1 << 2)
-			board.pieceMask[srcCol] ^= (1 << 3)
-			board.pieceMasks[srcCol][6] ^= (1 << 2)
-			board.pieceMasks[srcCol][4] ^= (1 << 3)
+			board.squareArray[castle_BRQS] = board.squareArray[castle_BRQT]
+			board.squareArray[castle_BRQT] = sourcePiece
+			board.squareArray[castle_BKS] = board.squareArray[castle_BKQT]
+			board.squareArray[castle_BKQT] = targetPiece
 
-			board.squareArray[4] = board.squareArray[2] //King
-			board.squareArray[2] = targetPiece          //NotKing King
-			board.squareArray[0] = board.squareArray[3] //Rook
-			board.squareArray[3] = sourcePiece          //NotRook
+			board.squareArray[castle_BRQS].square = uint8(castle_BRQS)
+			board.squareArray[castle_BKS].square = uint8(castle_BKS)
 
-			board.squareArray[0].square = 0
-			board.squareArray[4].square = 4
+			board.squareArray[castle_BRQT].square = uint8(castle_BRQT)
+			board.squareArray[castle_BKQT].square = uint8(castle_BKQT)
 
-		} else if sourceIndex == 7 {
+		} else if sourceIndex == castle_BRKT {
+			board.pieceMasks[srcCol][4] ^= 1 << castle_BRKT
+			board.pieceMask[srcCol] ^= 1 << castle_BRKT
+			board.pieceMasks[srcCol][6] ^= 1 << castle_BKKT
+			board.pieceMask[srcCol] ^= 1 << castle_BKKT
 
-			board.pieceMask[srcCol] |= (1 << 4)
-			board.pieceMasks[srcCol][6] |= (1 << 4)
-			board.pieceMask[srcCol] |= (1 << 7)
-			board.pieceMasks[srcCol][4] |= (1 << 7)
+			board.pieceMasks[srcCol][4] |= 1 << castle_BRKS
+			board.pieceMask[srcCol] |= 1 << castle_BRKS
+			board.pieceMasks[srcCol][6] |= 1 << castle_BKS
+			board.pieceMask[srcCol] |= 1 << castle_BKS
 
-			board.pieceMask[srcCol] ^= (1 << 6)
-			board.pieceMask[srcCol] ^= (1 << 5)
-			board.pieceMasks[srcCol][6] ^= (1 << 6)
-			board.pieceMasks[srcCol][4] ^= (1 << 5)
+			board.squareArray[castle_BRKS] = board.squareArray[castle_BRKT]
+			board.squareArray[castle_BRKT] = sourcePiece
+			board.squareArray[castle_BKS] = board.squareArray[castle_BKKT]
+			board.squareArray[castle_BKKT] = targetPiece
 
-			board.squareArray[4] = board.squareArray[6] //King
-			board.squareArray[6] = targetPiece          //NotKing King
-			board.squareArray[7] = board.squareArray[5] //Rook
-			board.squareArray[5] = sourcePiece          //NotRook
+			board.squareArray[castle_BRKS].square = uint8(castle_BRKS)
+			board.squareArray[castle_BKS].square = uint8(castle_BKS)
 
-			board.squareArray[7].square = 7
-			board.squareArray[4].square = 4
+			board.squareArray[castle_BRKT].square = uint8(castle_BRKT)
+			board.squareArray[castle_BKKT].square = uint8(castle_BKKT)
 
-			// src -> sq := 6
-			// trg -> sq := 5
-		} else if sourceIndex == 56 {
-			board.pieceMask[srcCol] |= (1 << 60)
-			board.pieceMasks[srcCol][6] |= (1 << 60)
-			board.pieceMask[srcCol] |= (1 << 56)
-			board.pieceMasks[srcCol][4] |= (1 << 56)
+		} else if sourceIndex == castle_WRQT {
+			board.pieceMasks[srcCol][4] ^= 1 << castle_WRQT
+			board.pieceMask[srcCol] ^= 1 << castle_WRQT
+			board.pieceMasks[srcCol][6] ^= 1 << castle_WKQT
+			board.pieceMask[srcCol] ^= 1 << castle_WKQT
 
-			board.pieceMask[srcCol] ^= (1 << 58)
-			board.pieceMask[srcCol] ^= (1 << 59)
-			board.pieceMasks[srcCol][6] ^= (1 << 58)
-			board.pieceMasks[srcCol][4] ^= (1 << 59)
+			board.pieceMasks[srcCol][4] |= 1 << castle_WRQS
+			board.pieceMask[srcCol] |= 1 << castle_WRQS
+			board.pieceMasks[srcCol][6] |= 1 << castle_WKS
+			board.pieceMask[srcCol] |= 1 << castle_WKS
 
-			board.squareArray[60] = board.squareArray[58] //King
-			board.squareArray[58] = targetPiece           //NotKing King
-			board.squareArray[56] = board.squareArray[59] //Rook
-			board.squareArray[59] = sourcePiece           //NotRook
+			board.squareArray[castle_WRQS] = board.squareArray[castle_WRQT]
+			board.squareArray[castle_WRQT] = sourcePiece
+			board.squareArray[castle_WKS] = board.squareArray[castle_WKQT]
+			board.squareArray[castle_WKQT] = targetPiece
 
-			board.squareArray[56].square = 56
-			board.squareArray[60].square = 60
+			board.squareArray[castle_WRQS].square = uint8(castle_WRQS)
+			board.squareArray[castle_WKS].square = uint8(castle_WKS)
 
-			// src -> sq := 58
-			// trg -> sq := 59
-		} else if sourceIndex == 63 {
+			board.squareArray[castle_WRQT].square = uint8(castle_WRQT)
+			board.squareArray[castle_WKQT].square = uint8(castle_WKQT)
 
-			board.pieceMask[srcCol] |= (1 << 60)
-			board.pieceMasks[srcCol][6] |= (1 << 60)
-			board.pieceMask[srcCol] |= (1 << 63)
-			board.pieceMasks[srcCol][4] |= (1 << 63)
+		} else if sourceIndex == castle_WRKT {
+			board.pieceMasks[srcCol][4] ^= 1 << castle_WRKT
+			board.pieceMask[srcCol] ^= 1 << castle_WRKT
+			board.pieceMasks[srcCol][6] ^= 1 << castle_WKKT
+			board.pieceMask[srcCol] ^= 1 << castle_WKKT
 
-			board.pieceMask[srcCol] ^= (1 << 62)
-			board.pieceMask[srcCol] ^= (1 << 61)
-			board.pieceMasks[srcCol][6] ^= (1 << 62)
-			board.pieceMasks[srcCol][4] ^= (1 << 61)
+			board.pieceMasks[srcCol][4] |= 1 << castle_WRKS
+			board.pieceMask[srcCol] |= 1 << castle_WRKS
+			board.pieceMasks[srcCol][6] |= 1 << castle_WKS
+			board.pieceMask[srcCol] |= 1 << castle_WKS
 
-			board.squareArray[60] = board.squareArray[62] //King
-			board.squareArray[62] = targetPiece           //NotKing King
-			board.squareArray[63] = board.squareArray[61] //Rook
-			board.squareArray[61] = sourcePiece           //NotRook
+			board.squareArray[castle_WRKS] = board.squareArray[castle_WRKT]
+			board.squareArray[castle_WRKT] = sourcePiece
+			board.squareArray[castle_WKS] = board.squareArray[castle_WKKT]
+			board.squareArray[castle_WKKT] = targetPiece
 
-			board.squareArray[63].square = 63
-			board.squareArray[60].square = 60
+			board.squareArray[castle_WRKS].square = uint8(castle_WRKS)
+			board.squareArray[castle_WKS].square = uint8(castle_WKS)
 
-			// src -> sq := 62
-			// trg -> sq := 61
+			board.squareArray[castle_WRKT].square = uint8(castle_WRKT)
+			board.squareArray[castle_WKKT].square = uint8(castle_WKKT)
 		}
 
 	} else {

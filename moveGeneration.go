@@ -70,35 +70,39 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 				moveMask |= (KingAttackMasks[piece.square] | colPieceMask) ^ colPieceMask //Cretae movemask
 
 				if board.castling != 0 {
-					if board.castling&0b0100 > 0 {
-						if colPieceMask&WKCastleMask == WKCastleFlag {
-							newMove := uint16(63) << 6
-							newMove += uint16(piece.square)
-							legalMoves = append(legalMoves, newMove|CastleFlag)
+					if colID == 0 {
+						if board.castling&0b0100 > 0 {
+							if colPieceMask&WKCastleMask == WKCastleFlag {
+								newMove := uint16(63) << 6
+								newMove += uint16(piece.square)
+								legalMoves = append(legalMoves, newMove|CastleFlag)
+							}
 						}
-					}
-					if board.castling&0b1000 > 0 {
-						if colPieceMask&WQCastleMask == WQCastleFlag {
-							newMove := uint16(56) << 6
-							newMove += uint16(piece.square)
-							legalMoves = append(legalMoves, newMove|CastleFlag)
+						if board.castling&0b1000 > 0 {
+							if colPieceMask&WQCastleMask == WQCastleFlag {
+								newMove := uint16(56) << 6
+								newMove += uint16(piece.square)
+								legalMoves = append(legalMoves, newMove|CastleFlag)
+							}
 						}
-					}
-					if board.castling&0b0001 > 0 {
-						if colPieceMask&BKCastleMask == BKCastleFlag {
-							newMove := uint16(7) << 6
-							newMove += uint16(piece.square)
-							legalMoves = append(legalMoves, newMove|CastleFlag)
-						}
-					}
-					if board.castling&0b0010 > 0 {
-						if colPieceMask&BQCastleMask == BQCastleFlag {
-							newMove := uint16(0) << 6
-							newMove += uint16(piece.square)
-							legalMoves = append(legalMoves, newMove|CastleFlag)
-						}
-					}
+					} else {
 
+						if board.castling&0b0001 > 0 {
+							if colPieceMask&BKCastleMask == BKCastleFlag {
+								newMove := uint16(7) << 6
+								newMove += uint16(piece.square)
+								legalMoves = append(legalMoves, newMove|CastleFlag)
+							}
+						}
+						if board.castling&0b0010 > 0 {
+							if colPieceMask&BQCastleMask == BQCastleFlag {
+								newMove := uint16(0) << 6
+								newMove += uint16(piece.square)
+								legalMoves = append(legalMoves, newMove|CastleFlag)
+							}
+						}
+
+					}
 				}
 
 			} else if TypeID == 3 { //Bishop

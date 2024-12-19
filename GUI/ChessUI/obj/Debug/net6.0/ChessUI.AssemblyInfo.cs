@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChessUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dda584e333cbf696f3c71f9b36789e098a53f6c1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+517559fe73c20fae8e9b498014c387d6d3241e56")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChessUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChessUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

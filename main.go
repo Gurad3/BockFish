@@ -11,34 +11,32 @@ import (
 
 var currentBoard board
 
-func main() {
-
+func errorToTXT() {
 	errorLogFile, err := os.OpenFile("error.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		fmt.Println("Failed to open error log file:", err)
 		os.Exit(1)
 	}
 	defer errorLogFile.Close()
-
 	// Redirect standard error to the log file
 	os.Stderr = errorLogFile
-
 	// Recover from any panic and log the stack trace
 	defer func() {
 		if r := recover(); r != nil {
 			// Write the panic reason and stack trace to the log file
 			fmt.Fprintf(errorLogFile, "Program crashed: %v\n", r)
 			errorLogFile.Write(debug.Stack())
+
+			//Write att error
 			writeToLogFile("Erro " + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
-
-			for _, v := range currentBoard.gameStateStack {
-				writeToLogFile(engineMoveToUCIMove(v.move))
-
-			}
-			writeToLogFile(Itoa(posEvaled))
 
 		}
 	}()
+}
+
+func main() {
+
+	//errorToTXT()
 
 	reader := bufio.NewReader(os.Stdin)
 
@@ -73,8 +71,12 @@ func main() {
 			if len(parts) > 3 && parts[2] == "moves" {
 
 				StringMove := parts[len(parts)-1]
-				Move := UCIMoveToEngineMove(StringMove)
-				currentBoard.PlayMove(currentBoard.generateCapFlag(Move))
+				// Move := UCIMoveToEngineMove(StringMove)
+				// Move = currentBoard.generateCapFlag(Move)
+				// writeToLogFile("Move Recived: " + StringMove + " " + Itoa(int(Move)))
+				// currentBoard.PlayMove(Move)
+
+				currentBoard.PlayMove(currentBoard.generateCapFlag(UCIMoveToEngineMove(StringMove)))
 
 			} else {
 				if parts[1] == "startpos" {
@@ -85,15 +87,25 @@ func main() {
 			}
 
 		case "go":
-			t, _ := strconv.Atoi(parts[2])
-			if currentBoard.ply <= 4 {
+
+			t := 0
+
+			if currentBoard.isWhiteTurn {
+				t, _ = strconv.Atoi(parts[2])
+			} else {
+				t, _ = strconv.Atoi(parts[4])
+			}
+
+			if currentBoard.ply <= 5 {
 				t /= 3
 			}
+
 			move := currentBoard.searchMove(int64(t / 40))
 			currentBoard.PlayMove(move)
 
 			fmt.Println("bestmove " + engineMoveToUCIMove(move))
-			writeToLogFile(Itoa(currentBoard.ply) + " " + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
+			// writeToLogFile(Itoa(currentBoard.ply) + " " + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
+			writeToLogFile("PoseEvaled: " + Itoa(posEvaled))
 
 		case "getlegal":
 			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))

@@ -207,8 +207,15 @@ func UCIMoveToEngineMove(uciMove string) uint16 {
 		//Move |= uint16(stringToType[string(uciMove[4])]+2) << 12
 	}
 
-	if currentBoard.squareArray[TIndex].typeID != 0 && currentBoard.squareArray[SIndex].isWhite == currentBoard.squareArray[TIndex].isWhite {
-		Move |= CastleFlag
+	if currentBoard.squareArray[SIndex].typeID == 6 {
+		if SIndex-TIndex == 2 {
+			Move = uint16(SIndex|((SIndex-4)<<6)) | CastleFlag
+		}
+
+		if SIndex-TIndex == -2 {
+			Move = uint16(SIndex|((SIndex+3)<<6)) | CastleFlag
+
+		}
 	}
 
 	return Move

@@ -52,7 +52,6 @@ func (board *board) searchMove(searchTime int64) uint16 {
 		}
 	}
 	// writeToLogFile(strconv.Itoa(int(currScore)) + " Col:" + strconv.Itoa(col))
-	writeToLogFile("posEvaled: " + strconv.Itoa(posEvaled))
 	// board.tmp()
 
 	return currMove

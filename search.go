@@ -96,6 +96,8 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth int, al
 	moves = moves[:board.getLegalMoves(moves)]
 	// moves := board.getLegalMoves()
 
+	quickSortStart(moves)
+
 	var bestMove uint16
 	//MoveOrdering
 
@@ -238,4 +240,36 @@ func (board *board) tmp() {
 
 		}
 	}
+}
+
+func partition(arr []uint16, low, high uint16) ([]uint16, uint16) {
+	pivot := arr[high]
+	i := low
+	for j := low; j < high; j++ {
+		if arr[j] < pivot {
+			arr[i], arr[j] = arr[j], arr[i]
+			i++
+		}
+	}
+	arr[i], arr[high] = arr[high], arr[i]
+	return arr, i
+}
+
+func quickSort(arr []uint16, low, high uint16) []uint16 {
+	if high > 60000 {
+		high = 0
+	}
+
+	if low < high {
+		var p uint16
+		arr, p = partition(arr, low, high)
+		arr = quickSort(arr, low, p-1)
+		arr = quickSort(arr, p+1, high)
+	}
+	return arr
+}
+
+func quickSortStart(arr []uint16) []uint16 {
+
+	return quickSort(arr, 0, uint16(len(arr))-1)
 }

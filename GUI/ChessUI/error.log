@@ -34,3 +34,23 @@ main.(*board).searchMove(0x2fb5a0, 0xbb8)
 	C:/Users/matoc/go/src/BockFish/search.go:46 +0x215
 main.main()
 	C:/Users/matoc/go/src/BockFish/main.go:127 +0xb05
+Program crashed: runtime error: index out of range [-1]
+goroutine 1 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+main.main.func1()
+	C:/Users/nathan.marchand-mato/go/src/BockFish/main.go:31 +0x76
+panic({0xbbfe80?, 0xc0000151e8?})
+	C:/Program Files/Go/src/runtime/panic.go:785 +0x132
+main.main()
+	C:/Users/nathan.marchand-mato/go/src/BockFish/main.go:125 +0xf89
+Program crashed: runtime error: index out of range [-1]
+goroutine 1 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+main.main.func1()
+	C:/Users/nathan.marchand-mato/go/src/BockFish/main.go:31 +0x76
+panic({0xf2fe80?, 0xc000147188?})
+	C:/Program Files/Go/src/runtime/panic.go:785 +0x132
+main.main()
+	C:/Users/nathan.marchand-mato/go/src/BockFish/main.go:125 +0xf89

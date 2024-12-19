@@ -29,7 +29,14 @@ func main() {
 			// Write the panic reason and stack trace to the log file
 			fmt.Fprintf(errorLogFile, "Program crashed: %v\n", r)
 			errorLogFile.Write(debug.Stack())
-			writeToLogFile("Erro" + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
+			writeToLogFile("Erro " + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
+
+			for _, v := range currentBoard.gameStateStack {
+				writeToLogFile(engineMoveToUCIMove(v.move))
+
+			}
+			writeToLogFile(Itoa(posEvaled))
+
 		}
 	}()
 
@@ -86,6 +93,7 @@ func main() {
 			currentBoard.PlayMove(move)
 
 			fmt.Println("bestmove " + engineMoveToUCIMove(move))
+			writeToLogFile(Itoa(currentBoard.ply) + " " + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
 
 		case "getlegal":
 			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))

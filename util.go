@@ -204,7 +204,7 @@ func UCIMoveToEngineMove(uciMove string) uint16 {
 	// fmt.Println(Move, SIndex, TIndex, SX, SY, TX, TY)
 
 	if len(uciMove) > 4 {
-		Move |= uint16(stringToType[string(uciMove[4])]-2) << 12
+		//Move |= uint16(stringToType[string(uciMove[4])]+2) << 12
 	}
 
 	if currentBoard.squareArray[TIndex].typeID != 0 && currentBoard.squareArray[SIndex].isWhite == currentBoard.squareArray[TIndex].isWhite {

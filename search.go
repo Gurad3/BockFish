@@ -36,8 +36,8 @@ func (board *board) searchMove(searchTime int64) uint16 {
 		for _, Move := range moves {
 
 			if time.Since(startTime).Milliseconds() > searchTime {
-				writeToLogFile("posEvaled: " + strconv.Itoa(posEvaled))
-				writeToLogFile("currentDepth: " + strconv.Itoa(depth))
+				// writeToLogFile("posEvaled: " + strconv.Itoa(posEvaled))
+				// writeToLogFile("currentDepth: " + strconv.Itoa(depth))
 
 				return currMove
 			}

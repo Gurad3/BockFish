@@ -46,6 +46,7 @@ type board struct {
 
 type gameState struct {
 	castling uint8
+	move     uint16
 }
 
 type piece struct {
@@ -121,6 +122,7 @@ const castle_BRKT uint16 = 5 //Black Rook KingSide Target
 const castle_BRQT uint16 = 3 //Black Rook QueenSide Target
 
 func (board *board) PlayMove(Move uint16) {
+	R := 0
 
 	//board.pieceMask |= 1 << piece.square
 	sourceIndex := Move & MoveSourceMask
@@ -131,6 +133,7 @@ func (board *board) PlayMove(Move uint16) {
 
 	newGameState := gameState{}
 	newGameState.castling = board.castling
+	newGameState.move = Move
 
 	board.gameStateStack = append(board.gameStateStack, newGameState)
 	srcCol := 1
@@ -181,6 +184,7 @@ func (board *board) PlayMove(Move uint16) {
 	board.pieceMask[srcCol] ^= 1 << sourceIndex
 
 	if Move&CapFlag > 0 {
+		R++
 		opCOl := 0
 		if !targetPiece.isWhite {
 			opCOl = 1
@@ -220,6 +224,7 @@ func (board *board) PlayMove(Move uint16) {
 	}
 
 	if (Move&PromFlag)>>12 > 3 {
+		R++
 		sourcePiece.typeID = uint8((Move&PromFlag)>>12) - 2
 		board.pieceArrays[srcCol][sourcePiece.typeID] = append(board.pieceArrays[srcCol][sourcePiece.typeID], sourcePiece)
 		board.pieceArrays[srcCol][1][len(board.pieceArrays[srcCol][1])-1].indexInPiecesArray = sourcePiece.indexInPiecesArray
@@ -229,6 +234,8 @@ func (board *board) PlayMove(Move uint16) {
 	}
 
 	if (Move & FlagMask) == CastleFlag {
+		R++
+
 		board.pieceMasks[srcCol][targetPiece.typeID] ^= 1 << targetIndex
 		board.pieceMask[srcCol] ^= 1 << targetIndex
 
@@ -316,9 +323,14 @@ func (board *board) PlayMove(Move uint16) {
 	board.isWhiteTurn = !board.isWhiteTurn
 	board.ply++
 
+	if R > 1 {
+		writeToLogFile("Play-Big-R: " + Itoa(R))
+	}
+
 }
 
 func (board *board) UndoMove(Move uint16) {
+	R := 0
 
 	sourceIndex := (Move & MoveTargetMask) >> 6
 	targetIndex := Move & MoveSourceMask
@@ -341,7 +353,7 @@ func (board *board) UndoMove(Move uint16) {
 	board.zobrist ^= board.zobristBlack
 
 	if Move&CapFlag > 0 {
-
+		R++
 		targetPiece.typeID = board.deadPieces[len(board.deadPieces)-1]
 
 		board.zobrist ^= board.zobristVals[opCOL][targetPiece.typeID][sourceIndex]
@@ -362,7 +374,7 @@ func (board *board) UndoMove(Move uint16) {
 	board.pieceMask[srcCol] ^= 1 << sourceIndex
 
 	if (Move&PromFlag)>>12 > 3 {
-
+		R++
 		board.pieceArrays[srcCol][sourcePiece.typeID][sourcePiece.indexInPiecesArray] = board.pieceArrays[srcCol][sourcePiece.typeID][len(board.pieceArrays[srcCol][sourcePiece.typeID])-1]
 		board.pieceArrays[srcCol][sourcePiece.typeID][sourcePiece.indexInPiecesArray].indexInPiecesArray = sourcePiece.indexInPiecesArray
 		board.pieceArrays[srcCol][sourcePiece.typeID] = board.pieceArrays[srcCol][sourcePiece.typeID][:len(board.pieceArrays[srcCol][sourcePiece.typeID])-1]
@@ -377,7 +389,9 @@ func (board *board) UndoMove(Move uint16) {
 		board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
 		board.pieceMask[srcCol] ^= 1 << sourceIndex
 
-		if sourceIndex == castle_BRQT {
+		R++
+
+		if sourceIndex == castle_BRQS {
 			board.pieceMasks[srcCol][4] ^= 1 << castle_BRQT
 			board.pieceMask[srcCol] ^= 1 << castle_BRQT
 			board.pieceMasks[srcCol][6] ^= 1 << castle_BKQT
@@ -399,7 +413,7 @@ func (board *board) UndoMove(Move uint16) {
 			board.squareArray[castle_BRQT].square = uint8(castle_BRQT)
 			board.squareArray[castle_BKQT].square = uint8(castle_BKQT)
 
-		} else if sourceIndex == castle_BRKT {
+		} else if sourceIndex == castle_BRKS {
 			board.pieceMasks[srcCol][4] ^= 1 << castle_BRKT
 			board.pieceMask[srcCol] ^= 1 << castle_BRKT
 			board.pieceMasks[srcCol][6] ^= 1 << castle_BKKT
@@ -421,7 +435,7 @@ func (board *board) UndoMove(Move uint16) {
 			board.squareArray[castle_BRKT].square = uint8(castle_BRKT)
 			board.squareArray[castle_BKKT].square = uint8(castle_BKKT)
 
-		} else if sourceIndex == castle_WRQT {
+		} else if sourceIndex == castle_WRQS {
 			board.pieceMasks[srcCol][4] ^= 1 << castle_WRQT
 			board.pieceMask[srcCol] ^= 1 << castle_WRQT
 			board.pieceMasks[srcCol][6] ^= 1 << castle_WKQT
@@ -443,7 +457,7 @@ func (board *board) UndoMove(Move uint16) {
 			board.squareArray[castle_WRQT].square = uint8(castle_WRQT)
 			board.squareArray[castle_WKQT].square = uint8(castle_WKQT)
 
-		} else if sourceIndex == castle_WRKT {
+		} else if sourceIndex == castle_WRKS {
 			board.pieceMasks[srcCol][4] ^= 1 << castle_WRKT
 			board.pieceMask[srcCol] ^= 1 << castle_WRKT
 			board.pieceMasks[srcCol][6] ^= 1 << castle_WKKT
@@ -484,6 +498,10 @@ func (board *board) UndoMove(Move uint16) {
 
 	// writeToLogFile(strconv.Itoa(int(board.pieceMask[0])))
 	// writeToLogFile(strconv.Itoa(int(board.pieceMask[1])))
+
+	if R > 1 {
+		writeToLogFile("Undo-Big-R: " + Itoa(R))
+	}
 
 }
 

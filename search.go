@@ -69,7 +69,7 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth int, al
 	}
 
 	origAlpha := alpha
-	entry := board.transpostionTable[board.zobrist%uint64(board.transEntries)]
+	entry := board.transpostionTable[board.zobrist%board.transEntries]
 	if entry.key == board.zobrist && entry.depth >= depth {
 
 		score := entry.score
@@ -134,7 +134,7 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth int, al
 		}
 	}
 	ttEntry := tranEnrty{bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist}
-	board.transpostionTable[board.zobrist%uint64(board.transEntries)] = ttEntry
+	board.transpostionTable[board.zobrist%board.transEntries] = ttEntry
 
 	return score
 }
@@ -146,7 +146,7 @@ func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth int
 	}
 
 	origAlpha := alpha
-	entry := board.transpostionTable[board.zobrist%uint64(board.transEntries)]
+	entry := board.transpostionTable[board.zobrist%board.transEntries]
 	if entry.key == board.zobrist && entry.depth >= depth {
 
 		score := entry.score
@@ -218,7 +218,7 @@ func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth int
 		}
 	}
 	ttEntry := tranEnrty{bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist}
-	board.transpostionTable[board.zobrist%uint64(board.transEntries)] = ttEntry
+	board.transpostionTable[board.zobrist%board.transEntries] = ttEntry
 
 	return score
 }
@@ -246,7 +246,7 @@ func partition(arr []uint16, low, high uint16) ([]uint16, uint16) {
 	pivot := arr[high]
 	i := low
 	for j := low; j < high; j++ {
-		if arr[j] < pivot {
+		if arr[j] > pivot {
 			arr[i], arr[j] = arr[j], arr[i]
 			i++
 		}

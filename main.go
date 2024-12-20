@@ -68,7 +68,7 @@ func main() {
 			loadTables()
 		case "position":
 
-			if len(parts) > 3 && parts[2] == "moves" {
+			if (len(parts) > 3 && parts[2] == "moves") || (len(parts) > 8 && parts[8] == "moves") {
 
 				StringMove := parts[len(parts)-1]
 				// Move := UCIMoveToEngineMove(StringMove)
@@ -178,6 +178,7 @@ func loadTables() {
 	eval_loadTables()
 
 	currentBoard.initZobristArray()
+	currentBoard.calcZobrist()
 }
 
 func loadFen(fen []string) {

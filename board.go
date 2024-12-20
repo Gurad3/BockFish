@@ -40,7 +40,7 @@ type board struct {
 	zobristVals  [2][7][64]uint64 // empty +
 	zobristBlack uint64
 
-	transEntries      int
+	transEntries      uint64
 	transpostionTable []tranEnrty
 }
 

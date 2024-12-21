@@ -43,7 +43,7 @@ func (board *board) searchMove(searchTime int64) uint16 {
 			}
 
 			board.PlayMove(Move)
-			score := -board.NegaMax(startTime, searchTime, depth, math.MinInt+1, math.MaxInt, -col, col)
+			score := -board.NegaMax(startTime, searchTime, depth, math.MinInt+1, math.MaxInt, -col, col, 0)
 			board.UndoMove(Move)
 			if score > currScore {
 				currScore = score
@@ -57,7 +57,7 @@ func (board *board) searchMove(searchTime int64) uint16 {
 	return currMove
 }
 
-func (board *board) NegaMax(startTime time.Time, searchTime int64, depth int, alpha int, beta int, col int, root int) int {
+func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha, beta, col, root, numExtensions int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
 		return 99999999 + depth*2
@@ -66,6 +66,11 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth int, al
 	if depth == 0 {
 		//return board.EvalCurrentPos() * col
 		return board.QuinNegaMax(startTime, searchTime, depth, alpha, beta, col, root)
+	}
+
+	extension := 0
+	if numExtensions <= 3 && board.isCheck(board.isWhiteTurn) {
+		extension = 1
 	}
 
 	origAlpha := alpha
@@ -109,7 +114,7 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth int, al
 		}
 
 		board.PlayMove(Move)
-		NewScore := -board.NegaMax(startTime, searchTime, depth-1, -beta, -alpha, -col, root)
+		NewScore := -board.NegaMax(startTime, searchTime, depth-1+extension, -beta, -alpha, -col, root, numExtensions+extension)
 		board.UndoMove(Move)
 
 		if NewScore > score {

@@ -85,7 +85,6 @@ func main() {
 					loadFen(parts[1:])
 				}
 			}
-
 		case "go":
 
 			t := 0

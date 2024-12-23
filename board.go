@@ -40,8 +40,9 @@ type board struct {
 	zobristVals  [2][7][64]uint64 // empty +
 	zobristBlack uint64
 
-	transEntries      uint64
-	transpostionTable []tranEnrty
+	transEntries          uint64
+	transpostionTable     []tranEntry
+	quinTranspostionTable []tranEntry
 }
 
 type gameState struct {

@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-type tranEnrty struct {
+type tranEntry struct {
 	depth, bound, score int
 	key                 uint64
 	Move                uint16
@@ -60,7 +60,7 @@ func (board *board) searchMove(searchTime int64) uint16 {
 func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha, beta, col, root, numExtensions int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
-		return 99999999 + depth*2
+		return 99999999 + depth*10
 	}
 
 	if depth == 0 {
@@ -103,14 +103,14 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha,
 
 	quickSortStart(moves)
 
-	var bestMove uint16
+	bestMove := moves[0]
 	//MoveOrdering
 
 	score := math.MinInt + 1
 	for _, Move := range moves {
 
 		if time.Since(startTime).Milliseconds() > searchTime {
-			return 99999999 + depth*2
+			return 99999999 + depth*10
 		}
 
 		board.PlayMove(Move)
@@ -120,26 +120,24 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha,
 		if NewScore > score {
 			bestMove = Move
 			score = NewScore
-			alpha = intMax(alpha, score)
-			if alpha >= beta {
-				break
-			}
+		}
+
+		alpha = intMax(alpha, score)
+		if alpha >= beta {
+			break
 		}
 
 	}
 
-	bound := 0
+	bound := 1
 	if score >= beta {
 		bound = 3
-	} else {
-		if score <= origAlpha {
-			bound = 2
-		} else {
-			bound = 1
-		}
+	} else if score <= origAlpha {
+		bound = 2
 	}
-	ttEntry := tranEnrty{bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist}
-	board.transpostionTable[board.zobrist%board.transEntries] = ttEntry
+	board.transpostionTable[board.zobrist%board.transEntries] = tranEntry{
+		bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist,
+	}
 
 	return score
 }
@@ -147,11 +145,11 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha,
 func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth int, alpha int, beta int, col int, root int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
-		return 99999999 + depth*2
+		return 99999999 + depth*10
 	}
 
 	origAlpha := alpha
-	entry := board.transpostionTable[board.zobrist%board.transEntries]
+	entry := board.quinTranspostionTable[board.zobrist%board.transEntries]
 	if entry.key == board.zobrist && entry.depth >= depth {
 
 		score := entry.score
@@ -186,11 +184,13 @@ func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth int
 	moves = moves[:board.getLegalMoves(moves)]
 	// moves := board.getLegalMoves()
 
-	var bestMove uint16
+	quickSortStart(moves)
+
+	bestMove := moves[0]
 	for _, Move := range moves {
 
 		if time.Since(startTime).Milliseconds() > searchTime {
-			return 99999999 + depth*2
+			return 99999999 + depth*10
 		}
 
 		if Move&CapFlag == 0 {
@@ -204,26 +204,23 @@ func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth int
 		if NewScore > score {
 			bestMove = Move
 			score = NewScore
-			alpha = intMax(alpha, score)
-			if alpha >= beta {
-				break
-			}
+		}
+		alpha = intMax(alpha, score)
+		if alpha >= beta {
+			break
 		}
 
 	}
 
-	bound := 0
+	bound := 1
 	if score >= beta {
 		bound = 3
-	} else {
-		if score <= origAlpha {
-			bound = 2
-		} else {
-			bound = 1
-		}
+	} else if score <= origAlpha {
+		bound = 2
 	}
-	ttEntry := tranEnrty{bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist}
-	board.transpostionTable[board.zobrist%board.transEntries] = ttEntry
+	board.quinTranspostionTable[board.zobrist%board.transEntries] = tranEntry{
+		bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist,
+	}
 
 	return score
 }
@@ -247,34 +244,34 @@ func (board *board) tmp() {
 	}
 }
 
-func partition(arr []uint16, low, high uint16) ([]uint16, uint16) {
-	pivot := arr[high]
-	i := low
+func partition(arr []uint16, low, high int) int {
+	pivot := arr[high] // Choose the last element as pivot.
+	i := low - 1       // Index of smaller element.
+
 	for j := low; j < high; j++ {
-		if arr[j] > pivot {
-			arr[i], arr[j] = arr[j], arr[i]
+		if arr[j] > pivot { // Descending order: greater elements come first.
 			i++
+			arr[i], arr[j] = arr[j], arr[i] // Swap elements.
 		}
 	}
-	arr[i], arr[high] = arr[high], arr[i]
-	return arr, i
+
+	i++
+	arr[i], arr[high] = arr[high], arr[i] // Place the pivot in the correct position.
+	return i
 }
 
-func quickSort(arr []uint16, low, high uint16) []uint16 {
-	if high > 60000 {
-		high = 0
-	}
-
+// quickSort sorts an array in-place in descending order using the Quick Sort algorithm.
+func quickSort(arr []uint16, low, high int) {
 	if low < high {
-		var p uint16
-		arr, p = partition(arr, low, high)
-		arr = quickSort(arr, low, p-1)
-		arr = quickSort(arr, p+1, high)
+		// Partition the array and get the pivot index.
+		pi := partition(arr, low, high)
+
+		// Recursively sort the subarrays.
+		quickSort(arr, low, pi-1)
+		quickSort(arr, pi+1, high)
 	}
-	return arr
 }
 
-func quickSortStart(arr []uint16) []uint16 {
-
-	return quickSort(arr, 0, uint16(len(arr))-1)
+func quickSortStart(arr []uint16) {
+	quickSort(arr, 0, len(arr)-1)
 }

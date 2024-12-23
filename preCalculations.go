@@ -33,18 +33,59 @@ var bishDir = [][]int{
 	{1, 1}, {-1, 1}, {1, -1}, {-1, -1},
 }
 
-var KnightAttackMasks = [64]uint64{}
-var KingAttackMasks = [64]uint64{}
+var mask_KnightAttack = [64]uint64{}
+var mask_KingAttack = [64]uint64{}
 
-var PawnAttackMasks = [64]uint64{}
+var mask_PawnAttack = [64]uint64{}
+var mask_RookAttack = [64]uint64{}
+var mask_BishAttack = [64]uint64{}
 
-var RookAttackMask = [64]uint64{}
-var BishAttackMask = [64]uint64{}
+var mask_passedPawn = [2][64]uint64{}
+var mask_adjacentFiles = [64]uint64{}
 
 var RookMagicDict [][]uint64
 var BishMagicDict [][]uint64
 
+func mask_load() {
+	for i := 0; i < 9; i++ {
+		eval_isolatedPawnPenalties[i] /= 3
+		eval_pastPawnBonus[i] /= 3
+	}
+
+	for i := 0; i < 64; i++ {
+		X := i % 8
+		Y := i / 8
+
+		//FileMasks
+		aFile := uint64(0x0101010101010101)
+		currFile := aFile << X
+		leftFile := aFile << intMax(0, X-1)
+		rightFile := aFile << intMin(7, X+1)
+		if X+1 > 7 {
+			rightFile = 0
+		}
+		if X-1 < 0 {
+			leftFile = 0
+		}
+
+		//PassedPawn
+		for col := 0; col < 2; col++ {
+			if col == 0 {
+				mask_passedPawn[col][i] = (leftFile | rightFile | currFile) >> (8 - Y) * 8
+			} else {
+				mask_passedPawn[col][i] = (leftFile | rightFile | currFile) << (Y + 1) * 8
+			}
+		}
+
+		//AdjacentFiles
+		mask_adjacentFiles[i] = leftFile | rightFile
+
+	}
+
+}
+
 func loadPreCalculations(searchForMagic bool) {
+	mask_load()
 
 	RookMagicDict = make([][]uint64, 64)
 	BishMagicDict = make([][]uint64, 64)
@@ -68,7 +109,7 @@ func loadPreCalculations(searchForMagic bool) {
 				CurrentKnightMask |= (1 << (tmpY*8 + tmpX))
 			}
 		}
-		KnightAttackMasks[i] = CurrentKnightMask
+		mask_KnightAttack[i] = CurrentKnightMask
 
 		CurrentKingMask := 0
 		for _, offsets := range kingAttacks {
@@ -78,7 +119,7 @@ func loadPreCalculations(searchForMagic bool) {
 				CurrentKingMask |= (1 << (tmpY*8 + tmpX))
 			}
 		}
-		KingAttackMasks[i] = uint64(CurrentKingMask)
+		mask_KingAttack[i] = uint64(CurrentKingMask)
 
 		CurrentPawnMask := 0
 		for _, offsets := range pawnAttack {
@@ -88,7 +129,7 @@ func loadPreCalculations(searchForMagic bool) {
 				CurrentPawnMask |= (1 << (tmpY*8 + tmpX))
 			}
 		}
-		PawnAttackMasks[i] = uint64(CurrentPawnMask)
+		mask_PawnAttack[i] = uint64(CurrentPawnMask)
 
 		//Rooks
 		CurrentRookMask := uint64(0)
@@ -105,7 +146,7 @@ func loadPreCalculations(searchForMagic bool) {
 				}
 			}
 		}
-		RookAttackMask[i] = CurrentRookMask
+		mask_RookAttack[i] = CurrentRookMask
 
 		numRookPattern := uint64(1) << numRookBits
 		rookBlockersBitboard := make([]uint64, numRookPattern)
@@ -160,7 +201,7 @@ func loadPreCalculations(searchForMagic bool) {
 				}
 			}
 		}
-		BishAttackMask[i] = CurrentBishMask
+		mask_BishAttack[i] = CurrentBishMask
 
 		numBishPattern := uint64(1) << numBishBits
 		bishBlockersBitboard := make([]uint64, numBishPattern)

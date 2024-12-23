@@ -263,7 +263,13 @@ func benchsearch() {
 
 	start := time.Now()
 	// Code to measure
-	fmt.Println(engineMoveToUCIMove(currentBoard.searchMove(10000)))
+	totalPos := 0
+	for i := 0; i < 5; i++ {
+		currentBoard.PlayMove(currentBoard.searchMove(5000))
+		totalPos += posEvaled
+	}
+
+	writeToLogFile("BenchPosEvaled: " + Itoa(totalPos))
 	duration := time.Since(start)
 
 	// Formatted string, such as "2h3m0.5s" or "4.503μs"

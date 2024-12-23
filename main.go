@@ -36,7 +36,7 @@ func errorToTXT() {
 
 func main() {
 
-	//errorToTXT()
+	errorToTXT()
 
 	reader := bufio.NewReader(os.Stdin)
 

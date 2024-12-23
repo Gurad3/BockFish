@@ -3,96 +3,84 @@ package main
 import "math/bits"
 
 var pieceVals = []int{
-	0, 100, 300, 350, 500, 900, 999999999,
-}
-
-func (board *board) EvalCurrentPosLegacy() int {
-	score := 0
-
-	for colID, Allpieces := range board.pieceArrays {
-
-		for typID, pieceArray := range Allpieces {
-
-			if colID == 0 {
-				score += pieceVals[typID] * len(pieceArray)
-			} else {
-				score -= pieceVals[typID] * len(pieceArray)
-			}
-
-		}
-	}
-	return score
+	0, 100, 350, 410, 525, 900, 999999999,
 }
 
 func (board *board) EvalCurrentPos() int {
 	score := 0
 
 	for colID := 0; colID < 2; colID++ {
-		ColMult := -1 //If black, sub (-1)
+		colMultiplier := -1
 
-		opCol := 0
 		if colID == 0 {
-			opCol = 1
-			ColMult = 1 //If white, add (+1)
+			colMultiplier = 1
 		}
 
+		opCol := 1 - colID
 		colPieceMask := board.pieceMask[colID]
 		opPieceMask := board.pieceMask[opCol]
 		fullPieceMask := colPieceMask | opPieceMask
 
-		for typeID := 1; typeID < 7; typeID++ {
+		for pieceType := 1; pieceType < 7; pieceType++ {
+			pieceArray := board.pieceArrays[colID][pieceType]
+			pieceCount := len(pieceArray)
 
-			if colID == 0 {
-				score += pieceVals[typeID] * len(board.pieceArrays[colID][typeID])
-			} else {
-				score -= pieceVals[typeID] * len(board.pieceArrays[colID][typeID])
-			}
+			score += pieceVals[pieceType] * pieceCount * colMultiplier
 
-			arr := board.pieceArrays[colID][typeID]
-			for pieceID := 0; pieceID < len(arr); pieceID++ {
-				piece := arr[pieceID]
+			for _, piece := range pieceArray {
+				if pieceType == 1 { // Pawn
+					score += eval_pawnTable[colID][piece.square] * colMultiplier
 
-				if typeID == 1 { //pawn
-					score += eval_pawnTable[colID][piece.square] //Black is negative in table (no Mult)
-				}
-				if typeID == 2 { //knight
-					score += eval_knightTable[colID][piece.square] //Black is negative in table (no Mult)
-				}
-				if typeID == 3 { //bishop
-					score += eval_bishopTable[colID][piece.square] //Black is negative in table (no Mult)
+					//Isolated pawns
+					if board.pieceMasks[colID][1]&mask_adjacentFiles[piece.square] == 0 {
+						score -= 20 * colMultiplier
+					}
 
-					score += 2 * ColMult * bits.OnesCount64((BishMagicDict[piece.square][((BishAttackMask[piece.square]&(fullPieceMask))*bishopMagics[piece.square])>>bishopShifts[piece.square]]|colPieceMask)^colPieceMask)
+					// Doubled pawns
+					if board.pieceMasks[colID][1]&(1<<piece.square) > 0 {
+						score -= 10 * colMultiplier
+					}
 
-				}
-				if typeID == 4 { //rook
-					score += eval_rookTable[colID][piece.square] //Black is negative in table (no Mult)
+					// Passed pawns
+					if board.pieceMasks[opCol][1]&mask_passedPawn[colID][piece.square] == 0 {
+						score += 40 * colMultiplier
+					}
 
-					score += 2 * ColMult * bits.OnesCount64((RookMagicDict[piece.square][((RookAttackMask[piece.square]&(fullPieceMask))*rookMagics[piece.square])>>rookShifts[piece.square]]|colPieceMask)^colPieceMask)
+				} else if pieceType == 2 { // Knight
+					score += eval_knightTable[colID][piece.square] * colMultiplier
 
-				}
-				if typeID == 5 { //queen
-					score += eval_queenTable[colID][piece.square] //Black is negative in table (no Mult)
+				} else if pieceType == 3 { // Bishop
+					score += eval_bishopTable[colID][piece.square] * colMultiplier
+					score += 2 * colMultiplier * bits.OnesCount64((BishMagicDict[piece.square][((mask_BishAttack[piece.square]&(fullPieceMask))*bishopMagics[piece.square])>>bishopShifts[piece.square]]|colPieceMask)^colPieceMask)
 
-					score += 2 * ColMult * bits.OnesCount64((RookMagicDict[piece.square][((RookAttackMask[piece.square]&(fullPieceMask))*rookMagics[piece.square])>>rookShifts[piece.square]]|colPieceMask)^colPieceMask)
-					score += 2 * ColMult * bits.OnesCount64((BishMagicDict[piece.square][((BishAttackMask[piece.square]&(fullPieceMask))*bishopMagics[piece.square])>>bishopShifts[piece.square]]|colPieceMask)^colPieceMask)
+				} else if pieceType == 4 { // Rook
+					score += eval_rookTable[colID][piece.square] * colMultiplier
+					score += 2 * colMultiplier * bits.OnesCount64((RookMagicDict[piece.square][((mask_RookAttack[piece.square]&(fullPieceMask))*rookMagics[piece.square])>>rookShifts[piece.square]]|colPieceMask)^colPieceMask)
 
-				}
-				if typeID == 6 { //king
+				} else if pieceType == 5 { // Queen
+					score += eval_queenTable[colID][piece.square] * colMultiplier
+					score += 2 * colMultiplier * bits.OnesCount64((RookMagicDict[piece.square][((mask_RookAttack[piece.square]&(fullPieceMask))*rookMagics[piece.square])>>rookShifts[piece.square]]|colPieceMask)^colPieceMask)
+					score += 2 * colMultiplier * bits.OnesCount64((BishMagicDict[piece.square][((mask_BishAttack[piece.square]&(fullPieceMask))*bishopMagics[piece.square])>>bishopShifts[piece.square]]|colPieceMask)^colPieceMask)
+
+				} else if pieceType == 6 { // King
+					if board.isCheck(piece.isWhite) {
+						score -= 50 * colMultiplier
+					}
+
+					score += 10 * colMultiplier * bits.OnesCount64(mask_KingAttack[piece.square]&board.pieceMasks[colID][1])
+
 					opMaterial := len(board.pieceArrays[opCol][2])*2 + len(board.pieceArrays[opCol][3])*2 + len(board.pieceArrays[opCol][4])*3 + len(board.pieceArrays[opCol][5])*4
 					srcMaterial := len(board.pieceArrays[colID][2])*2 + len(board.pieceArrays[colID][3])*2 + len(board.pieceArrays[colID][4])*3 + len(board.pieceArrays[colID][5])*4
 
 					if opMaterial <= 4 && srcMaterial <= 4 {
-						score += eval_kingTable_end[colID][piece.square] //Black is negative in table (no Mult)
-						// score += eval_kingTable_middle[colID][piece.square] //Black is negative in table (no Mult)
+						score += eval_kingTable_end[colID][piece.square] * colMultiplier
 
 					} else {
-						score += eval_kingTable_middle[colID][piece.square] //Black is negative in table (no Mult)
+						score += eval_kingTable_middle[colID][piece.square] * colMultiplier
 					}
 
 				}
-
 			}
-
 		}
 
 	}

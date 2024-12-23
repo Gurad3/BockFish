@@ -184,7 +184,7 @@ func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth int
 	moves = moves[:board.getLegalMoves(moves)]
 	// moves := board.getLegalMoves()
 
-	quickSortStart(moves)
+	// quickSortStart(moves)
 
 	bestMove := moves[0]
 	for _, Move := range moves {

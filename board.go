@@ -92,7 +92,7 @@ const FlagMask uint16 = 0b1111000000000000
 const CapFlag uint16 = 0b1000000000000000
 
 const isPromFlag uint16 = 0b0100000000000000
-const PromFlag uint16 = 0b0111000000000000
+const PromMask uint16 = 0b0111000000000000
 
 const NoFlag uint16 = 0b0000 << 12
 const EnPassant uint16 = 0b0001 << 12
@@ -204,7 +204,6 @@ func (board *board) PlayMove(Move uint16) {
 		board.pieceArrays[opCol][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCol][targetPiece.typeID][len(board.pieceArrays[opCol][targetPiece.typeID])-1]
 		board.pieceArrays[opCol][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
 
-		//board.pieceArrays[opCOl][targetPiece.typeID][len(board.pieceArrays[opCOl][targetPiece.typeID])-1].indexInPiecesArray = targetPiece.indexInPiecesArray
 		board.pieceArrays[opCol][targetPiece.typeID] = board.pieceArrays[opCol][targetPiece.typeID][:len(board.pieceArrays[opCol][targetPiece.typeID])-1]
 
 		targetPiece.dead = true
@@ -213,13 +212,21 @@ func (board *board) PlayMove(Move uint16) {
 		targetPiece.typeID = 0
 	}
 
-	if (Move&PromFlag)>>12 > 3 {
-		sourcePiece.typeID = uint8((Move&PromFlag)>>12) - 2
-		board.pieceArrays[srcCol][sourcePiece.typeID] = append(board.pieceArrays[srcCol][sourcePiece.typeID], sourcePiece)
-		board.pieceArrays[srcCol][1][len(board.pieceArrays[srcCol][1])-1].indexInPiecesArray = sourcePiece.indexInPiecesArray
+	if (Move & isPromFlag) > 0 {
+		// writeToLogFile(Itoa(int(board.pieceMasks[0][1])) + " " + Itoa(int(board.pieceMasks[1][1])) + " " + Itoa(int(Move)))
+
+		sourcePiece.typeID = uint8((Move&PromMask)>>12) - 2
+
+		// writeToLogFile(Itoa(len(board.pieceArrays[srcCol][1])-1) + " " + Itoa(int(sourcePiece.indexInPiecesArray)))
+
 		board.pieceArrays[srcCol][1][sourcePiece.indexInPiecesArray] = board.pieceArrays[srcCol][1][len(board.pieceArrays[srcCol][1])-1]
+		board.pieceArrays[srcCol][1][sourcePiece.indexInPiecesArray].indexInPiecesArray = sourcePiece.indexInPiecesArray
+
 		board.pieceArrays[srcCol][1] = board.pieceArrays[srcCol][1][:len(board.pieceArrays[srcCol][1])-1]
+
+		board.pieceArrays[srcCol][sourcePiece.typeID] = append(board.pieceArrays[srcCol][sourcePiece.typeID], sourcePiece)
 		sourcePiece.indexInPiecesArray = uint8(len(board.pieceArrays[srcCol][sourcePiece.typeID]) - 1)
+
 	}
 
 	if (Move & FlagMask) == CastleFlag {
@@ -337,10 +344,9 @@ func (board *board) UndoMove(Move uint16) {
 	if Move&CapFlag > 0 {
 
 		targetPiece.typeID = board.deadPieces[len(board.deadPieces)-1]
+		board.deadPieces = board.deadPieces[:len(board.deadPieces)-1]
 
 		board.zobrist ^= board.zobristVals[opCOL][targetPiece.typeID][sourceIndex]
-
-		board.deadPieces = board.deadPieces[:len(board.deadPieces)-1]
 
 		board.pieceArrays[opCOL][targetPiece.typeID] = append(board.pieceArrays[opCOL][targetPiece.typeID], targetPiece)
 		targetPiece.indexInPiecesArray = uint8(len(board.pieceArrays[opCOL][targetPiece.typeID]) - 1)
@@ -355,15 +361,17 @@ func (board *board) UndoMove(Move uint16) {
 	board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex
 	board.pieceMask[srcCol] ^= 1 << sourceIndex
 
-	if (Move&PromFlag)>>12 > 3 {
+	if (Move & isPromFlag) > 0 {
 
 		board.pieceArrays[srcCol][sourcePiece.typeID][sourcePiece.indexInPiecesArray] = board.pieceArrays[srcCol][sourcePiece.typeID][len(board.pieceArrays[srcCol][sourcePiece.typeID])-1]
+
 		board.pieceArrays[srcCol][sourcePiece.typeID][sourcePiece.indexInPiecesArray].indexInPiecesArray = sourcePiece.indexInPiecesArray
+
 		board.pieceArrays[srcCol][sourcePiece.typeID] = board.pieceArrays[srcCol][sourcePiece.typeID][:len(board.pieceArrays[srcCol][sourcePiece.typeID])-1]
 
 		sourcePiece.typeID = uint8(1)
-		board.pieceArrays[srcCol][sourcePiece.typeID] = append(board.pieceArrays[srcCol][sourcePiece.typeID], sourcePiece)
-		sourcePiece.indexInPiecesArray = uint8(len(board.pieceArrays[srcCol][sourcePiece.typeID]) - 1)
+		board.pieceArrays[srcCol][1] = append(board.pieceArrays[srcCol][1], sourcePiece)
+		sourcePiece.indexInPiecesArray = uint8(len(board.pieceArrays[srcCol][1]) - 1)
 	}
 
 	if (Move & FlagMask) == CastleFlag {

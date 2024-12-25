@@ -139,8 +139,10 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 					} else if targetIndex < 8 || targetIndex > 55 { //Pawn is promoting
 
 						for i := uint16(4); i < 8; i++ {
-							legalMoves = append(legalMoves, newMove|i<<12|flag)
+							legalMoves = append(legalMoves, newMove|(i<<12)|flag)
 						}
+
+						// fmt.Println(piece.square, targetIndex, TypeID, board.pieceMask[0], board.pieceMasks[0][1], board.pieceMask[1], board.pieceMasks[1][1])
 						moveMask ^= 1 << targetIndex
 						continue
 					}
@@ -194,7 +196,6 @@ func (board *board) filterOutPsudoLegal(moves []uint16) []uint16 {
 	}
 	return newList
 }
-
 func (board *board) generateCapFlag(Move uint16) uint16 {
 	OpColID := 0
 	if board.isWhiteTurn {

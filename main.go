@@ -4,39 +4,34 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"runtime/debug"
 	"strconv"
 	"strings"
 )
 
 var currentBoard board
 
-func errorToTXT() {
-	errorLogFile, err := os.OpenFile("error.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-	if err != nil {
-		fmt.Println("Failed to open error log file:", err)
-		os.Exit(1)
-	}
-	defer errorLogFile.Close()
-	// Redirect standard error to the log file
-	os.Stderr = errorLogFile
-	// Recover from any panic and log the stack trace
-	defer func() {
-		if r := recover(); r != nil {
-			// Write the panic reason and stack trace to the log file
-			fmt.Fprintf(errorLogFile, "Program crashed: %v\n", r)
-			errorLogFile.Write(debug.Stack())
-
-			//Write att error
-			writeToLogFile("Erro " + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
-
-		}
-	}()
-}
-
 func main() {
 
-	errorToTXT()
+	// errorLogFile, err := os.OpenFile("error.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	// if err != nil {
+	// 	fmt.Println("Failed to open error log file:", err)
+	// 	os.Exit(1)
+	// }
+	// defer errorLogFile.Close()
+	// // Redirect standard error to the log file
+	// os.Stderr = errorLogFile
+	// // Recover from any panic and log the stack trace
+	// defer func() {
+	// 	if r := recover(); r != nil {
+	// 		// Write the panic reason and stack trace to the log file
+	// 		fmt.Fprintf(errorLogFile, "Program crashed: %v\n", r)
+	// 		errorLogFile.Write(debug.Stack())
+
+	// 		//Write att error
+	// 		writeToLogFile("Erro " + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
+
+	// 	}
+	// }()
 
 	reader := bufio.NewReader(os.Stdin)
 
@@ -104,7 +99,6 @@ func main() {
 
 			fmt.Println("bestmove " + engineMoveToUCIMove(move))
 			// writeToLogFile(Itoa(currentBoard.ply) + " " + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
-			writeToLogFile("PoseEvaled: " + Itoa(posEvaled))
 
 		case "getlegal":
 			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
@@ -192,6 +186,11 @@ func tmp() {
 	loadTables()
 	loadFen(strings.Split(startfen, " "))
 
-	fmt.Println(currentBoard.pieceMasks[0][1])
-	fmt.Println(currentBoard.pieceMasks[1][1])
+	// fmt.Println(currentBoard.pieceMasks[0][1])
+	// fmt.Println(currentBoard.pieceMasks[1][1])
+
+	fmt.Println(mask_passedPawn[0][20])
+	fmt.Println(mask_passedPawn[1][20])
+
+	fmt.Println(mask_adjacentFiles[20])
 }

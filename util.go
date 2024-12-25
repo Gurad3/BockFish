@@ -184,7 +184,7 @@ func engineMoveToUCIMove(Move uint16) string {
 	// fmt.Println(Move, SIndex, TIndex, SX, SY, TX, TY)
 
 	if (Move & isPromFlag) > 0 {
-		TY += string(typeToString[((Move&PromFlag)>>12)-2])
+		TY += string(typeToString[((Move&PromMask)>>12)-2])
 	}
 
 	return SX + SY + TX + TY

@@ -71,9 +71,9 @@ func mask_load() {
 		//PassedPawn
 		for col := 0; col < 2; col++ {
 			if col == 0 {
-				mask_passedPawn[col][i] = (leftFile | rightFile | currFile) >> (8 - Y) * 8
+				mask_passedPawn[col][i] = (leftFile | rightFile | currFile) >> ((8 - Y) * 8)
 			} else {
-				mask_passedPawn[col][i] = (leftFile | rightFile | currFile) << (Y + 1) * 8
+				mask_passedPawn[col][i] = (leftFile | rightFile | currFile) << ((Y + 1) * 8)
 			}
 		}
 

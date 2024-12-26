@@ -18,26 +18,29 @@ var global_currScore = 0
 func (board *board) searchMove(searchTime int64) uint16 {
 	posEvaled = 0
 	startTime := time.Now()
+	endTime := startTime.Add(time.Duration(searchTime) * time.Millisecond)
 
 	moves := make([]uint16, 0, 218)
 	moves = moves[:board.getLegalMoves(moves)]
 	// moves := board.getLegalMoves()
+	quickSortStart(moves)
+
 	currMove := moves[0]
+
 	//White = true
 	col := -1
 	if board.isWhiteTurn {
 		col = 1
 	}
-	currScore := (math.MinInt + 1) //* col
-	global_currScore = currScore
 
-	depth := 0 //2 - 1
+	depth := 1 //2 - 1
 	for {
 		depth++
+		currScore := (math.MinInt + 1) //* col
+		bestMoveID := 0
+		for MoveID, Move := range moves {
 
-		for _, Move := range moves {
-
-			if time.Since(startTime).Milliseconds() > searchTime {
+			if time.Now().After(endTime) {
 				// writeToLogFile("posEvaled: " + strconv.Itoa(posEvaled))
 
 				writeToLogFile("currentDepth: " + strconv.Itoa(depth))
@@ -48,15 +51,17 @@ func (board *board) searchMove(searchTime int64) uint16 {
 			}
 
 			board.PlayMove(Move)
-			score := -board.NegaMax(startTime, searchTime, depth, math.MinInt+1, math.MaxInt, -col, 0)
+			score := -board.NegaMax(startTime, endTime, Move, depth, math.MinInt+1, math.MaxInt, -col, 0)
 			board.UndoMove(Move)
 			if score > currScore {
 				currScore = score
 				currMove = Move
 				global_currScore = score
-
+				bestMoveID = MoveID
 			}
 		}
+
+		moves[bestMoveID], moves[0] = moves[0], moves[bestMoveID]
 
 		if currScore >= 99999 {
 			writeToLogFile("Found Forced mate")
@@ -71,28 +76,23 @@ func (board *board) searchMove(searchTime int64) uint16 {
 	// writeToLogFile(strconv.Itoa(int(currScore)) + " Col:" + strconv.Itoa(col))
 	// board.tmp()
 
-	return currMove
 }
 
-func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha, beta, col, numExtensions int) int {
+func (board *board) NegaMax(startTime time.Time, endTime time.Time, prevMove uint16, depth, alpha, beta, col, numExtensions int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
 		return 99999999 + depth*10
 	}
 
 	if depth == 0 {
-		return board.EvalCurrentPos() * col
-		//return board.QuinNegaMax(startTime, searchTime, depth, alpha, beta, col)
-	}
-
-	extension := 0
-	if numExtensions <= 3 && (board.isCheck(board.isWhiteTurn)) {
-		extension = 1
+		//return board.EvalCurrentPos() * col
+		return board.QuinNegaMax(startTime, endTime, depth, alpha, beta, col)
 	}
 
 	origAlpha := alpha
 	entry := board.transpostionTable[board.zobrist%board.transEntries]
-	if entry.key == board.zobrist && entry.depth >= depth && false {
+	tableMove := uint16(0)
+	if entry.key == board.zobrist && entry.depth >= depth {
 
 		score := entry.score
 		// Exact
@@ -112,6 +112,12 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha,
 			posEvaled++
 			return score
 		}
+		tableMove = entry.Move
+	}
+
+	extension := 0
+	if numExtensions <= 3 && (prevMove&isPromFlag > 0 || board.isCheck(board.isWhiteTurn)) {
+		extension = 1
 	}
 
 	moves := make([]uint16, 0, 218)
@@ -121,20 +127,25 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha,
 	// 	return -(99999999 + depth*10)
 	// }
 
-	// quickSortStart(moves)
+	if tableMove != 0 {
+		moveOrderWithBestMove(moves, tableMove)
 
+	} else {
+		quickSortStart(moves)
+	}
 	bestMove := moves[0]
+
 	//MoveOrdering
 
 	score := math.MinInt + 1
 	for _, Move := range moves {
 
-		if time.Since(startTime).Milliseconds() > searchTime {
+		if time.Now().After(endTime) {
 			break
 		}
 
 		board.PlayMove(Move)
-		NewScore := -board.NegaMax(startTime, searchTime, depth-1+extension, -beta, -alpha, -col, numExtensions+extension)
+		NewScore := -board.NegaMax(startTime, endTime, Move, depth-1+extension, -beta, -alpha, -col, numExtensions+extension)
 		board.UndoMove(Move)
 
 		if NewScore > score {
@@ -149,7 +160,7 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha,
 
 	}
 
-	if time.Since(startTime).Milliseconds() > searchTime {
+	if time.Now().After(endTime) {
 		return score
 	}
 
@@ -168,7 +179,7 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha,
 	return score
 }
 
-func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth, alpha, beta, col int) int {
+func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, depth, alpha, beta, col int) int {
 
 	if board.isCheck(!board.isWhiteTurn) {
 		return 99999999 + depth*10
@@ -176,7 +187,8 @@ func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth, al
 
 	origAlpha := alpha
 	entry := board.quinTranspostionTable[board.zobrist%board.transEntries]
-	if entry.key == board.zobrist && entry.depth >= depth && false {
+	tableMove := uint16(0)
+	if entry.key == board.zobrist && entry.depth >= depth {
 
 		score := entry.score
 		// Exact
@@ -196,6 +208,8 @@ func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth, al
 			posEvaled++
 			return score
 		}
+
+		tableMove = entry.Move
 	}
 
 	posEvaled++
@@ -216,24 +230,33 @@ func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth, al
 	// 	return -(99999999 + depth*10)
 	// }
 
+	if tableMove != 0 {
+		for id, Move := range moves {
+			if Move == tableMove {
+				moves[id], moves[0] = moves[0], moves[id]
+				break
+			}
+		}
+	}
 	bestMove := moves[0]
+
 	for _, Move := range moves {
 
-		if time.Since(startTime).Milliseconds() > searchTime {
+		if time.Now().After(endTime) {
 			break
 		}
 
-		// if Move&CapFlag == 0 {
-		// 	continue
-		// }
-
-		board.PlayMove(Move)
-		if Move&CapFlag == 0 && !board.isCheck(board.isWhiteTurn) {
-			board.UndoMove(Move)
+		if Move&CapFlag == 0 {
 			continue
 		}
 
-		NewScore := -board.QuinNegaMax(startTime, searchTime, depth-1, -beta, -alpha, -col)
+		board.PlayMove(Move)
+		// if Move&CapFlag == 0 && !board.isCheck(board.isWhiteTurn) {
+		// 	board.UndoMove(Move)
+		// 	continue
+		// }
+
+		NewScore := -board.QuinNegaMax(startTime, endTime, depth-1, -beta, -alpha, -col)
 		board.UndoMove(Move)
 
 		if NewScore > score {
@@ -248,7 +271,7 @@ func (board *board) QuinNegaMax(startTime time.Time, searchTime int64, depth, al
 
 	}
 
-	if time.Since(startTime).Milliseconds() > searchTime {
+	if time.Now().After(endTime) {
 		return score
 	}
 
@@ -315,4 +338,17 @@ func quickSort(arr []uint16, low, high int) {
 
 func quickSortStart(arr []uint16) {
 	quickSort(arr, 0, len(arr)-1)
+}
+
+func moveOrderWithBestMove(arr []uint16, bestMove uint16) {
+	for i := 0; i < len(arr); i++ {
+		if arr[i] == bestMove {
+			arr[i] = 0b1111111111111111
+			break
+		}
+	}
+	quickSortStart(arr)
+	if arr[0] == 0b1111111111111111 {
+		arr[0] = bestMove
+	}
 }

@@ -167,8 +167,6 @@ func loadTables() {
 	currentBoard.transpostionTable = make([]tranEntry, currentBoard.transEntries)
 	currentBoard.quinTranspostionTable = make([]tranEntry, currentBoard.transEntries)
 
-	// currentBoard.castling = 0b1111
-	currentBoard.castling = 0b0000
 	currentBoard.gameStateStack = make([]gameState, 0, 120)
 
 	loadPreCalculations(false)

@@ -32,6 +32,21 @@ func (board *board) loadFromFEN(fen []string) {
 
 	board.isWhiteTurn = fen[1] == "w"
 
+	for i := 0; i < len(fen[2]); i++ {
+		if fen[2][i] == "K"[0] {
+			board.castling |= 0b0100
+		}
+		if fen[2][i] == "Q"[0] {
+			board.castling |= 0b1000
+		}
+		if fen[2][i] == "k"[0] {
+			board.castling |= 0b0001
+		}
+		if fen[2][i] == "q"[0] {
+			board.castling |= 0b0010
+		}
+	}
+
 	board.halfMoves, _ = strconv.Atoi(fen[4])
 	board.fullMoves, _ = strconv.Atoi(fen[5])
 	board.ply = board.fullMoves * 2

@@ -171,16 +171,29 @@ func (board *board) isCheck(col bool) bool {
 	}
 
 	kingIndex := board.kings[colID].square
+
 	tmpMask := (board.pieceMasks[opCol][2] & mask_KnightAttack[kingIndex]) | (board.pieceMasks[opCol][6] & mask_KingAttack[kingIndex]) //King and Knights
 	if col {
 		tmpMask |= board.pieceMasks[opCol][1] & (mask_PawnAttack[kingIndex] >> 8) //Pawns
 	} else {
 		tmpMask |= board.pieceMasks[opCol][1] & (mask_PawnAttack[kingIndex] << 8) //Pawns
 	}
-	tmpMask |= RookMagicDict[kingIndex][((mask_RookAttack[kingIndex]&(board.pieceMask[0]|board.pieceMask[1]))*rookMagics[kingIndex])>>rookShifts[kingIndex]] & (board.pieceMasks[opCol][4] | board.pieceMasks[opCol][5])     //Rook + Queen
-	tmpMask |= BishMagicDict[kingIndex][((mask_BishAttack[kingIndex]&(board.pieceMask[0]|board.pieceMask[1]))*bishopMagics[kingIndex])>>bishopShifts[kingIndex]] & (board.pieceMasks[opCol][3] | board.pieceMasks[opCol][5]) //Bish + Queen
 
-	return tmpMask > 0
+	if tmpMask > 0 {
+		return true
+	}
+
+	//Bish + Queen
+	if BishMagicDict[kingIndex][((mask_BishAttack[kingIndex]&(board.pieceMask[0]|board.pieceMask[1]))*bishopMagics[kingIndex])>>bishopShifts[kingIndex]]&(board.pieceMasks[opCol][3]|board.pieceMasks[opCol][5]) > 0 {
+		return true
+	}
+
+	//Rook + Queen
+	if RookMagicDict[kingIndex][((mask_RookAttack[kingIndex]&(board.pieceMask[0]|board.pieceMask[1]))*rookMagics[kingIndex])>>rookShifts[kingIndex]]&(board.pieceMasks[opCol][4]|board.pieceMasks[opCol][5]) > 0 {
+		return true
+	}
+
+	return false
 }
 
 func (board *board) filterOutPsudoLegal(moves []uint16) []uint16 {

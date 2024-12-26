@@ -63,6 +63,10 @@ func (board *board) searchMove(searchTime int64) uint16 {
 
 			return currMove
 		}
+		if currScore <= -99999 {
+			writeToLogFile("Found Forced mate (bad)")
+
+		}
 	}
 	// writeToLogFile(strconv.Itoa(int(currScore)) + " Col:" + strconv.Itoa(col))
 	// board.tmp()
@@ -72,18 +76,18 @@ func (board *board) searchMove(searchTime int64) uint16 {
 
 func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha, beta, col, numExtensions int) int {
 
-	if depth == 0 {
-		//return board.EvalCurrentPos() * col
-		return board.QuinNegaMax(startTime, searchTime, depth, alpha, beta, col)
-	}
-
 	if board.isCheck(!board.isWhiteTurn) {
 		return 99999999 + depth*10
 	}
 
+	if depth == 0 {
+		return board.EvalCurrentPos() * col
+		//return board.QuinNegaMax(startTime, searchTime, depth, alpha, beta, col)
+	}
+
 	extension := 0
-	if numExtensions <= 3 && (board.isCheck(board.isWhiteTurn) || board.isCheck(!board.isWhiteTurn)) {
-		//extension = 1
+	if numExtensions <= 3 && (board.isCheck(board.isWhiteTurn)) {
+		extension = 1
 	}
 
 	origAlpha := alpha
@@ -117,7 +121,7 @@ func (board *board) NegaMax(startTime time.Time, searchTime int64, depth, alpha,
 	// 	return -(99999999 + depth*10)
 	// }
 
-	quickSortStart(moves)
+	// quickSortStart(moves)
 
 	bestMove := moves[0]
 	//MoveOrdering

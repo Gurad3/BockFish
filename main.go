@@ -77,7 +77,7 @@ func main() {
 				if parts[1] == "startpos" {
 					loadFen(strings.Split(startfen, " "))
 				} else {
-					loadFen(parts[1:])
+					loadFen(parts[2:])
 				}
 			}
 		case "go":
@@ -104,9 +104,9 @@ func main() {
 			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
 
 		case "getfullegal":
-			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
+			//fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
 
-			// fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMovesA())))
+			fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMovesA())))
 
 		case "play":
 			//currentBoard.PlayMove(StringMoveToMove(parts[1]))
@@ -122,8 +122,10 @@ func main() {
 			benchsearch()
 
 		case "loaddef":
+			fen := startfen
+			// fen := "8/2rk4/8/6pP/4q3/8/8/1K6 w - - 0 1"
 			loadTables()
-			loadFen(strings.Split(startfen, " "))
+			loadFen(strings.Split(fen, " "))
 			fmt.Println("legalmoves " + moveArrayTOstring(currentBoard.getLegalMovesA()))
 			//fmt.Println(KnightAttackMasks[18])
 
@@ -165,8 +167,8 @@ func loadTables() {
 	currentBoard.transpostionTable = make([]tranEntry, currentBoard.transEntries)
 	currentBoard.quinTranspostionTable = make([]tranEntry, currentBoard.transEntries)
 
-	currentBoard.castling = 0b1111
-	// currentBoard.castling = 0b0000
+	// currentBoard.castling = 0b1111
+	currentBoard.castling = 0b0000
 	currentBoard.gameStateStack = make([]gameState, 0, 120)
 
 	loadPreCalculations(false)
@@ -183,14 +185,13 @@ func loadFen(fen []string) {
 var tmpPlayedMoveList []uint16 = make([]uint16, 0, 100)
 
 func tmp() {
+	//fen := startfen
+	fen := "8/p5k1/8/8/8/5Q2/P4R2/2K5 b - - 0 1"
+
 	loadTables()
-	loadFen(strings.Split(startfen, " "))
+	loadFen(strings.Split(fen, " "))
 
-	// fmt.Println(currentBoard.pieceMasks[0][1])
-	// fmt.Println(currentBoard.pieceMasks[1][1])
+	fmt.Println(currentBoard.isWhiteTurn, currentBoard.isCheck(true), currentBoard.isCheck(false))
 
-	fmt.Println(mask_passedPawn[0][20])
-	fmt.Println(mask_passedPawn[1][20])
-
-	fmt.Println(mask_adjacentFiles[20])
+	currentBoard.searchMove(3000)
 }

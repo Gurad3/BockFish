@@ -47,6 +47,7 @@ type board struct {
 
 type gameState struct {
 	castling uint8
+	move     uint16
 }
 
 type piece struct {
@@ -135,6 +136,7 @@ func (board *board) PlayMove(Move uint16) {
 
 	newGameState := gameState{}
 	newGameState.castling = board.castling
+	newGameState.move = Move
 
 	board.gameStateStack = append(board.gameStateStack, newGameState)
 	srcCol := 1
@@ -193,12 +195,19 @@ func (board *board) PlayMove(Move uint16) {
 
 		board.zobrist ^= board.zobristVals[opCol][targetPiece.typeID][targetIndex]
 
-		// if len(board.pieceArrays[opCol][targetPiece.typeID])-1 == -1 {
-		// 	writeToLogFile("--")
-		// 	writeToLogFile("hum")
-		// 	writeToLogFile(Itoa(int(targetPiece.typeID)))
-		// 	writeToLogFile(Itoa(int(sourcePiece.typeID)))
-		// }
+		if len(board.pieceArrays[opCol][targetPiece.typeID])-1 == -1 {
+			writeToLogFile("--")
+			writeToLogFile("hum")
+			writeToLogFile(Itoa(int(targetPiece.typeID)))
+			writeToLogFile(Itoa(int(sourcePiece.typeID)))
+			writeToLogFile(Itoa(int(Move)))
+			writeToLogFile(Itoa(board.ply))
+			writeToLogFile(Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
+			for i := 0; i < len(currentBoard.gameStateStack); i++ {
+				writeToLogFile(engineMoveToUCIMove(currentBoard.gameStateStack[i].move))
+			}
+
+		}
 
 		//Tar sista itemet i sliceen sätter den på index positionen och resizar
 		board.pieceArrays[opCol][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCol][targetPiece.typeID][len(board.pieceArrays[opCol][targetPiece.typeID])-1]

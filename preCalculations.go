@@ -21,8 +21,8 @@ var kingAttacks = [][]int{
 	{-1, 0}, {-1, 1},
 }
 
-var pawnAttack = [][]int{ //Whit pawns, black << 16?
-	{1, -1}, {-1, -1},
+var pawnAttack = [][]int{ //Whit pawns>>8, black << 8?
+	{1, 0}, {-1, 0},
 }
 
 var rookDir = [][]int{

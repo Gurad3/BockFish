@@ -38,7 +38,7 @@ func (board *board) EvalCurrentPos() int {
 
 					// Doubled pawns
 					if board.pieceMasks[colID][1]&(1<<piece.square) > 0 {
-						score -= 10 * colMultiplier
+						//score -= 10 * colMultiplier
 					}
 
 					// Passed pawns

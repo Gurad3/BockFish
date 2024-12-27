@@ -30,6 +30,7 @@ type board struct {
 	deadPieces []uint8
 
 	castling       uint8
+	lastMove       uint16
 	gameStateStack []gameState
 
 	halfMoves int
@@ -136,9 +137,9 @@ func (board *board) PlayMove(Move uint16) {
 
 	newGameState := gameState{}
 	newGameState.castling = board.castling
-	newGameState.move = Move
-
+	newGameState.move = board.lastMove
 	board.gameStateStack = append(board.gameStateStack, newGameState)
+
 	srcCol := 1
 	opCol := 0
 	if sourcePiece.isWhite {
@@ -179,6 +180,7 @@ func (board *board) PlayMove(Move uint16) {
 			}
 		}
 	}
+
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][sourceIndex]
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][targetIndex]
 	board.zobrist ^= board.zobristBlack
@@ -189,36 +191,29 @@ func (board *board) PlayMove(Move uint16) {
 	board.pieceMask[srcCol] ^= 1 << sourceIndex
 
 	if Move&CapFlag > 0 {
+		deadPiece := targetPiece
+		deadIndex := targetIndex
 
-		board.pieceMasks[opCol][targetPiece.typeID] ^= 1 << targetIndex
-		board.pieceMask[opCol] ^= 1 << targetIndex
-
-		board.zobrist ^= board.zobristVals[opCol][targetPiece.typeID][targetIndex]
-
-		if len(board.pieceArrays[opCol][targetPiece.typeID])-1 == -1 {
-			writeToLogFile("--")
-			writeToLogFile("hum")
-			writeToLogFile(Itoa(int(targetPiece.typeID)))
-			writeToLogFile(Itoa(int(sourcePiece.typeID)))
-			writeToLogFile(Itoa(int(Move)))
-			writeToLogFile(Itoa(board.ply))
-			writeToLogFile(Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
-			for i := 0; i < len(currentBoard.gameStateStack); i++ {
-				writeToLogFile(engineMoveToUCIMove(currentBoard.gameStateStack[i].move))
-			}
-
+		if Move&FlagMask == EnPassant|CapFlag {
+			deadIndex = (board.lastMove & MoveTargetMask) >> 6 //Last Move == DoublePawn
+			deadPiece = board.squareArray[deadIndex]
 		}
 
+		board.pieceMasks[opCol][deadPiece.typeID] ^= 1 << deadIndex
+		board.pieceMask[opCol] ^= 1 << deadIndex
+
+		board.zobrist ^= board.zobristVals[opCol][deadPiece.typeID][deadIndex]
 		//Tar sista itemet i sliceen sätter den på index positionen och resizar
-		board.pieceArrays[opCol][targetPiece.typeID][targetPiece.indexInPiecesArray] = board.pieceArrays[opCol][targetPiece.typeID][len(board.pieceArrays[opCol][targetPiece.typeID])-1]
-		board.pieceArrays[opCol][targetPiece.typeID][targetPiece.indexInPiecesArray].indexInPiecesArray = targetPiece.indexInPiecesArray
+		board.pieceArrays[opCol][deadPiece.typeID][deadPiece.indexInPiecesArray] = board.pieceArrays[opCol][deadPiece.typeID][len(board.pieceArrays[opCol][deadPiece.typeID])-1]
+		board.pieceArrays[opCol][deadPiece.typeID][deadPiece.indexInPiecesArray].indexInPiecesArray = deadPiece.indexInPiecesArray
 
-		board.pieceArrays[opCol][targetPiece.typeID] = board.pieceArrays[opCol][targetPiece.typeID][:len(board.pieceArrays[opCol][targetPiece.typeID])-1]
+		board.pieceArrays[opCol][deadPiece.typeID] = board.pieceArrays[opCol][deadPiece.typeID][:len(board.pieceArrays[opCol][deadPiece.typeID])-1]
 
-		targetPiece.dead = true
-		board.deadPieces = append(board.deadPieces, targetPiece.typeID)
+		deadPiece.dead = true
+		board.deadPieces = append(board.deadPieces, deadPiece.typeID)
 
-		targetPiece.typeID = 0
+		deadPiece.typeID = 0
+
 	}
 
 	if (Move & isPromFlag) > 0 {
@@ -324,6 +319,7 @@ func (board *board) PlayMove(Move uint16) {
 		targetPiece.square = uint8(sourceIndex)
 	}
 
+	board.lastMove = Move
 	board.isWhiteTurn = !board.isWhiteTurn
 	board.ply++
 }
@@ -344,6 +340,7 @@ func (board *board) UndoMove(Move uint16) {
 
 	}
 	board.castling = board.gameStateStack[len(board.gameStateStack)-1].castling
+	board.lastMove = board.gameStateStack[len(board.gameStateStack)-1].move
 	board.gameStateStack = board.gameStateStack[:len(board.gameStateStack)-1]
 
 	board.zobrist ^= board.zobristVals[srcCol][sourcePiece.typeID][sourceIndex]
@@ -351,20 +348,27 @@ func (board *board) UndoMove(Move uint16) {
 	board.zobrist ^= board.zobristBlack
 
 	if Move&CapFlag > 0 {
+		deadPiece := targetPiece
+		deadIndex := sourceIndex
 
-		targetPiece.typeID = board.deadPieces[len(board.deadPieces)-1]
+		if Move&FlagMask == EnPassant|CapFlag {
+			deadIndex = (board.lastMove & MoveTargetMask) >> 6 //Last Move == DoublePawn
+			deadPiece = board.squareArray[deadIndex]
+		}
+
+		deadPiece.typeID = board.deadPieces[len(board.deadPieces)-1]
 		board.deadPieces = board.deadPieces[:len(board.deadPieces)-1]
 
-		board.zobrist ^= board.zobristVals[opCOL][targetPiece.typeID][sourceIndex]
+		board.zobrist ^= board.zobristVals[opCOL][deadPiece.typeID][deadIndex]
 
-		board.pieceArrays[opCOL][targetPiece.typeID] = append(board.pieceArrays[opCOL][targetPiece.typeID], targetPiece)
-		targetPiece.indexInPiecesArray = uint8(len(board.pieceArrays[opCOL][targetPiece.typeID]) - 1)
+		board.pieceArrays[opCOL][deadPiece.typeID] = append(board.pieceArrays[opCOL][deadPiece.typeID], deadPiece)
+		deadPiece.indexInPiecesArray = uint8(len(board.pieceArrays[opCOL][deadPiece.typeID]) - 1)
 
-		board.pieceMask[opCOL] |= 1 << sourceIndex
-		board.pieceMasks[opCOL][targetPiece.typeID] |= 1 << sourceIndex
-		targetPiece.dead = false
+		board.pieceMask[opCOL] |= 1 << deadIndex
+		board.pieceMasks[opCOL][deadPiece.typeID] |= 1 << deadIndex
+		deadPiece.dead = false
 
-		//writeToLogFile("Revived from dead: " + strconv.Itoa(int(targetPiece.typeID)) + "Pos: " + strconv.Itoa(int(sourceIndex)))
+		//writeToLogFile("Revived from dead: " + strconv.Itoa(int(deadPiece.typeID)) + "Pos: " + strconv.Itoa(int(sourceIndex)))
 	}
 
 	board.pieceMasks[srcCol][sourcePiece.typeID] ^= 1 << sourceIndex

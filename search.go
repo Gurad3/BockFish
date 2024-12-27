@@ -124,9 +124,9 @@ func (board *board) NegaMax(startTime time.Time, endTime time.Time, prevMove uin
 	moves := make([]uint16, 0, 218)
 	moves = moves[:board.getLegalMoves(moves)]
 	// moves := board.getLegalMoves()
-	// if len(moves) == 0 {
-	// 	return -(99999999 + depth*10)
-	// }
+	if len(moves) == 0 {
+		return 0
+	}
 
 	if tableMove != 0 {
 		moveOrderWithBestMove(moves, tableMove)
@@ -290,24 +290,24 @@ func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, reverseD
 	return score
 }
 
-func (board *board) tmp() {
+// func (board *board) tmp() {
 
-	for colID, Allpieces := range board.pieceArrays {
+// 	for colID, Allpieces := range board.pieceArrays {
 
-		for typID, pieceArray := range Allpieces {
+// 		for typID, pieceArray := range Allpieces {
 
-			for _, piece := range pieceArray {
+// 			for _, piece := range pieceArray {
 
-				d := "false"
-				if piece.dead {
-					d = "true"
-				}
-				writeToLogFile(strconv.Itoa(colID) + " " + strconv.Itoa(typID) + " " + d)
-			}
+// 				d := "false"
+// 				if piece.dead {
+// 					d = "true"
+// 				}
+// 				writeToLogFile(strconv.Itoa(colID) + " " + strconv.Itoa(typID) + " " + d)
+// 			}
 
-		}
-	}
-}
+// 		}
+// 	}
+// }
 
 func partition(arr []uint16, low, high int) int {
 	pivot := arr[high] // Choose the last element as pivot.

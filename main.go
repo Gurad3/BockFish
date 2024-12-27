@@ -104,9 +104,9 @@ func main() {
 			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
 
 		case "getfullegal":
-			//fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
+			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
 
-			fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMovesA())))
+			// fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMovesA())))
 
 		case "play":
 			//currentBoard.PlayMove(StringMoveToMove(parts[1]))

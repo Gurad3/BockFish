@@ -25,65 +25,83 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 
 	fullPieceMask := board.pieceMask[opCOl] | board.pieceMask[colID]
 
-	for TypeID, pieceArray := range board.pieceArrays[colID] {
-		for _, piece := range pieceArray {
-			if piece.dead {
-				continue
-			}
+	for TypeID := 1; TypeID < 7; TypeID++ {
+
+		for _, piece := range board.pieceArrays[colID][TypeID] {
+			square := piece.square
 
 			moveMask := uint64(0)
-			pawnUpTwo := false
 
 			if TypeID == 1 { //Pawn
 				if piece.isWhite {
-					moveMask |= ((mask_PawnAttack[piece.square] >> 8) & opPieceMask)
+					moveMask |= ((mask_PawnAttack[square] >> 8) & opPieceMask)
 
-					if (1<<(piece.square-8))&(fullPieceMask) == 0 { //Nothin infront og pawn
-						moveMask |= (1 << (piece.square - 8))
+					if (1<<(square-8))&(fullPieceMask) == 0 { //Nothin infront og pawn
+						moveMask |= (1 << (square - 8))
 
-						if piece.square > 47 { //not moved, check if dual is possible
-							if (1<<(piece.square-16))&(fullPieceMask) == 0 { //Nothin infront og pawn
-								moveMask |= (1 << (piece.square - 16))
-								pawnUpTwo = true
+						if square > 47 { //not moved, check if dual is possible
+							if (1<<(square-16))&(fullPieceMask) == 0 { //Nothin infront og pawn
+								newMove := uint16(square-16) << 6
+								newMove += uint16(square)
+								legalMoves = append(legalMoves, newMove|PawnTwoUpFlag)
 							}
 						}
+					}
 
+					if square < 32 && board.lastMove&FlagMask == PawnTwoUpFlag {
+						mMask := (mask_PawnAttack[square]) & (1 << ((board.lastMove & MoveTargetMask) >> 6))
+						if mMask > 0 {
+							newMove := uint16(popLSB(mMask>>8)) << 6
+							newMove += uint16(square)
+							legalMoves = append(legalMoves, newMove|EnPassant|CapFlag)
+						}
 					}
 
 				} else {
-					moveMask |= ((mask_PawnAttack[piece.square] << 8) & opPieceMask)
+					moveMask |= ((mask_PawnAttack[square] << 8) & opPieceMask)
 
-					if (1<<(piece.square+8))&(fullPieceMask) == 0 { //Nothin infront og pawn
-						moveMask |= (1 << (piece.square + 8))
+					if (1<<(square+8))&(fullPieceMask) == 0 { //Nothin infront og pawn
+						moveMask |= (1 << (square + 8))
 
-						if piece.square < 16 { //not moved, check if dual is possible
-							if (1<<(piece.square+16))&(fullPieceMask) == 0 { //Nothin infront og pawn
-								moveMask |= (1 << (piece.square + 16))
-								pawnUpTwo = true
+						if square < 16 { //not moved, check if dual is possible
+							if (1<<(square+16))&(fullPieceMask) == 0 { //Nothin infront og pawn
+								newMove := uint16(square+16) << 6
+								newMove += uint16(square)
+								legalMoves = append(legalMoves, newMove|PawnTwoUpFlag)
 							}
 						}
 					}
+
+					if square > 31 && board.lastMove&FlagMask == PawnTwoUpFlag {
+						mMask := (mask_PawnAttack[square]) & (1 << ((board.lastMove & MoveTargetMask) >> 6))
+						if mMask > 0 {
+							newMove := uint16(popLSB(mMask<<8)) << 6
+							newMove += uint16(square)
+							legalMoves = append(legalMoves, newMove|EnPassant|CapFlag)
+						}
+					}
+
 				}
 
 			} else if TypeID == 2 { //Knight
-				moveMask |= (mask_KnightAttack[piece.square] | colPieceMask) ^ colPieceMask //Cretae movemask
+				moveMask |= (mask_KnightAttack[square] | colPieceMask) ^ colPieceMask //Cretae movemask
 
 			} else if TypeID == 6 { //King
-				moveMask |= (mask_KingAttack[piece.square] | colPieceMask) ^ colPieceMask //Cretae movemask
+				moveMask |= (mask_KingAttack[square] | colPieceMask) ^ colPieceMask //Cretae movemask
 
 				if board.castling != 0 {
 					if colID == 0 {
 						if board.castling&0b0100 > 0 {
 							if fullPieceMask&WKCastleMask == WKCastleFlag && !board.isAttacked(opCOl, WKCastleCheckMask) {
 								newMove := uint16(63) << 6
-								newMove += uint16(piece.square)
+								newMove += uint16(square)
 								legalMoves = append(legalMoves, newMove|CastleFlag)
 							}
 						}
 						if board.castling&0b1000 > 0 {
 							if fullPieceMask&WQCastleMask == WQCastleFlag && !board.isAttacked(opCOl, WQCastleCheckMask) {
 								newMove := uint16(56) << 6
-								newMove += uint16(piece.square)
+								newMove += uint16(square)
 								legalMoves = append(legalMoves, newMove|CastleFlag)
 							}
 						}
@@ -92,14 +110,14 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 						if board.castling&0b0001 > 0 {
 							if fullPieceMask&BKCastleMask == BKCastleFlag && !board.isAttacked(opCOl, BKCastleCheckMask) {
 								newMove := uint16(7) << 6
-								newMove += uint16(piece.square)
+								newMove += uint16(square)
 								legalMoves = append(legalMoves, newMove|CastleFlag)
 							}
 						}
 						if board.castling&0b0010 > 0 {
 							if fullPieceMask&BQCastleMask == BQCastleFlag && !board.isAttacked(opCOl, BQCastleCheckMask) {
 								newMove := uint16(0) << 6
-								newMove += uint16(piece.square)
+								newMove += uint16(square)
 								legalMoves = append(legalMoves, newMove|CastleFlag)
 							}
 						}
@@ -108,12 +126,12 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 				}
 
 			} else if TypeID == 3 { //Bishop
-				moveMask |= (BishMagicDict[piece.square][((mask_BishAttack[piece.square]&(fullPieceMask))*bishopMagics[piece.square])>>bishopShifts[piece.square]] | colPieceMask) ^ colPieceMask
+				moveMask |= (BishMagicDict[square][((mask_BishAttack[square]&(fullPieceMask))*bishopMagics[square])>>bishopShifts[square]] | colPieceMask) ^ colPieceMask
 			} else if TypeID == 4 { //Rook
-				moveMask |= (RookMagicDict[piece.square][((mask_RookAttack[piece.square]&(fullPieceMask))*rookMagics[piece.square])>>rookShifts[piece.square]] | colPieceMask) ^ colPieceMask
+				moveMask |= (RookMagicDict[square][((mask_RookAttack[square]&(fullPieceMask))*rookMagics[square])>>rookShifts[square]] | colPieceMask) ^ colPieceMask
 			} else if TypeID == 5 { //Queen
-				moveMask |= RookMagicDict[piece.square][((mask_RookAttack[piece.square]&(fullPieceMask))*rookMagics[piece.square])>>rookShifts[piece.square]]
-				moveMask |= BishMagicDict[piece.square][((mask_BishAttack[piece.square]&(fullPieceMask))*bishopMagics[piece.square])>>bishopShifts[piece.square]]
+				moveMask |= RookMagicDict[square][((mask_RookAttack[square]&(fullPieceMask))*rookMagics[square])>>rookShifts[square]]
+				moveMask |= BishMagicDict[square][((mask_BishAttack[square]&(fullPieceMask))*bishopMagics[square])>>bishopShifts[square]]
 				moveMask |= colPieceMask
 				moveMask ^= colPieceMask
 			}
@@ -123,7 +141,7 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 
 				flag := uint16(0)
 				newMove := uint16(targetIndex) << 6
-				newMove += uint16(piece.square)
+				newMove += uint16(square)
 
 				if (1<<targetIndex)&opPieceMask > 0 {
 					flag = CapFlag
@@ -131,18 +149,13 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 
 				if TypeID == 1 {
 
-					if pawnUpTwo {
-						if targetIndex <= 39 && targetIndex >= 24 {
-							flag = PawnTwoUpFlag
-						}
-
-					} else if targetIndex < 8 || targetIndex > 55 { //Pawn is promoting
+					if targetIndex < 8 || targetIndex > 55 { //Pawn is promoting
 
 						for i := uint16(4); i < 8; i++ {
-							//	legalMoves = append(legalMoves, newMove|(i<<12)|flag)
+							legalMoves = append(legalMoves, newMove|(i<<12)|flag)
 						}
 
-						// fmt.Println(piece.square, targetIndex, TypeID, board.pieceMask[0], board.pieceMasks[0][1], board.pieceMask[1], board.pieceMasks[1][1])
+						// fmt.Println(square, targetIndex, TypeID, board.pieceMask[0], board.pieceMasks[0][1], board.pieceMask[1], board.pieceMasks[1][1])
 						moveMask ^= 1 << targetIndex
 						continue
 					}
@@ -160,6 +173,33 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 
 	return len(legalMoves)
 }
+
+
+func (board *board) filterOutPsudoLegal(moves []uint16) []uint16 {
+	newList := make([]uint16, 0, cap(moves))
+	for _, mo := range moves {
+
+		board.PlayMove(mo)
+		if !board.isCheck(!board.isWhiteTurn) {
+			newList = append(newList, mo)
+		}
+		board.UndoMove(mo)
+
+	}
+	return newList
+}
+func (board *board) generateCapFlag(Move uint16) uint16 {
+	OpColID := 0
+	if board.isWhiteTurn {
+		OpColID = 1
+	}
+	if (1<<((Move&MoveTargetMask)>>6))&board.pieceMask[OpColID] > 0 {
+		Move |= CapFlag
+	}
+
+	return Move
+}
+
 
 func (board *board) isCheck(col bool) bool {
 	colID := 1
@@ -196,34 +236,8 @@ func (board *board) isCheck(col bool) bool {
 	return false
 }
 
-func (board *board) filterOutPsudoLegal(moves []uint16) []uint16 {
-	newList := make([]uint16, 0, cap(moves))
-	for _, mo := range moves {
-
-		board.PlayMove(mo)
-		if !board.isCheck(!board.isWhiteTurn) {
-			newList = append(newList, mo)
-		}
-		board.UndoMove(mo)
-
-	}
-	return newList
-}
-func (board *board) generateCapFlag(Move uint16) uint16 {
-	OpColID := 0
-	if board.isWhiteTurn {
-		OpColID = 1
-	}
-	if (1<<((Move&MoveTargetMask)>>6))&board.pieceMask[OpColID] > 0 {
-		Move |= CapFlag
-	}
-
-	return Move
-}
-
 func (board *board) isAttacked(opCol int, mask uint64) bool {
-	isAttacked := false
-	for mask > 0 && !isAttacked {
+	for mask > 0 {
 		targetIndex := popLSB(mask)
 		mask ^= 1 << targetIndex
 
@@ -234,14 +248,21 @@ func (board *board) isAttacked(opCol int, mask uint64) bool {
 		} else {
 			tmpMask |= board.pieceMasks[opCol][1] & (mask_PawnAttack[targetIndex] << 8) //Pawns
 		}
+		if tmpMask > 0 {
+			return true
+		}
 
-		tmpMask |= RookMagicDict[targetIndex][((mask_RookAttack[targetIndex]&(board.pieceMask[0]|board.pieceMask[1]))*rookMagics[targetIndex])>>rookShifts[targetIndex]] & (board.pieceMasks[opCol][4] | board.pieceMasks[opCol][5])     //Rook + Queen
-		tmpMask |= BishMagicDict[targetIndex][((mask_BishAttack[targetIndex]&(board.pieceMask[0]|board.pieceMask[1]))*bishopMagics[targetIndex])>>bishopShifts[targetIndex]] & (board.pieceMasks[opCol][3] | board.pieceMasks[opCol][5]) //Bish + Queen
+		if BishMagicDict[targetIndex][((mask_BishAttack[targetIndex]&(board.pieceMask[0]|board.pieceMask[1]))*bishopMagics[targetIndex])>>bishopShifts[targetIndex]]&(board.pieceMasks[opCol][3]|board.pieceMasks[opCol][5]) > 0 {
+			return true
+		}
 
-		isAttacked = tmpMask > 0
+		//Rook + Queen
+		if RookMagicDict[targetIndex][((mask_RookAttack[targetIndex]&(board.pieceMask[0]|board.pieceMask[1]))*rookMagics[targetIndex])>>rookShifts[targetIndex]]&(board.pieceMasks[opCol][4]|board.pieceMasks[opCol][5]) > 0 {
+			return true
+		}
 	}
 
-	return isAttacked
+	return false
 }
 
 //var PromotFlags [4]move = [4]move{PromoteToKnightFlag, PromoteToBishopFlag, PromoteToRookFlag, PromoteToQueenFlag}

@@ -267,31 +267,113 @@ func intMax(a int, b int) int {
 	return b
 }
 
-func popLSB(n uint64) uint64 {
-	return uint64(bits.TrailingZeros64(n))
-}
-
-func benchsearch() {
-
-	loadTables()
-	loadFen(strings.Split(startfen, " "))
-
-	start := time.Now()
-	// Code to measure
-	totalPos := 0
-	for i := 0; i < 5; i++ {
-		currentBoard.PlayMove(currentBoard.searchMove(5000))
-		totalPos += posEvaled
-	}
-
-	writeToLogFile("BenchPosEvaled: " + Itoa(totalPos))
-	duration := time.Since(start)
-
-	// Formatted string, such as "2h3m0.5s" or "4.503μs"
-	fmt.Println(duration)
-
+func popLSB(n uint64) int {
+	return bits.TrailingZeros64(n)
 }
 
 func Itoa(i int) string {
 	return strconv.Itoa(i)
+}
+
+var ep = 0
+var capt = 0
+var prom = 0
+
+func benchsearch() {
+	start := time.Now()
+	totalPos := 0
+
+	// loadPreCalculations(false)
+	// eval_loadTables()
+	loadTables()
+	loadFen(strings.Split("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8", " "))
+
+	for i := 1; i < 7; i++ {
+		ep = 0
+		capt = 0
+		prom = 0
+		fmt.Println(currentBoard.MoveGenTest(i), capt, ep, prom)
+	}
+	fmt.Println(time.Since(start), totalPos, capt, ep, prom)
+
+	// for i := 0; i < len(test_perftTestInts)/2; i++ {
+	// 	currentBoard = board{transEntries: 1}
+	// 	currentBoard.gameStateStack = make([]gameState, 0, 120)
+
+	// 	currentBoard.loadFromFEN(strings.Split(test_perfTestFen[i], " "))
+
+	// 	totalPos = currentBoard.MoveGenTest(test_perftTestInts[i*2])
+
+	// 	fmt.Println(time.Since(start), totalPos, totalPos == test_perftTestInts[i*2+1], i+1)
+
+	// }
+
+	// fen := "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1"
+	// loadTables()
+	// loadFen(strings.Split(fen, " "))
+
+	// // Code to measure
+	// //endTime := start.Add(time.Duration(5000) * time.Millisecond)
+
+	// totalPiece := 0
+
+	// duration := time.Since(start)
+
+	// fmt.Println(duration)
+	// fmt.Println(totalPos, totalPiece)
+
+	// start := time.Now()
+	// totalPos := 0
+
+	// for i := 0; i < 5; i++ {
+	// 	currentBoard.PlayMove(currentBoard.searchMove(5000))
+	// 	totalPos += posEvaled
+	// }
+
+	// duration := time.Since(start)
+
+	// fmt.Println(duration)
+
+	// writeToLogFile("BenchPosEvaled: " + Itoa(totalPos))
+
+}
+
+func (board *board) MoveGenTest(depth int) int {
+	if depth == 0 {
+		return 1
+	}
+
+	moves := make([]uint16, 0, 218)
+	moves = moves[:board.getLegalMoves(moves)]
+
+	pos := 0
+	for _, mov := range moves {
+
+		board.PlayMove(mov)
+
+		if !board.isCheck(!board.isWhiteTurn) {
+			if depth == 1 {
+				if mov&CapFlag > 0 {
+					if mov&FlagMask == EnPassant|CapFlag {
+						ep++
+						capt++
+					} else {
+
+						capt++
+
+					}
+				}
+				if mov&isPromFlag > 0 {
+					prom++
+				}
+
+			}
+
+			pos += board.MoveGenTest(depth - 1)
+		}
+
+		board.UndoMove(mov)
+	}
+
+	return pos
 }

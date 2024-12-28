@@ -47,6 +47,22 @@ func (board *board) loadFromFEN(fen []string) {
 		}
 	}
 
+	if fen[3] != "-" {
+		lastMove := uint16(0)
+		X := strings.IndexRune(numMoveToUCIMove, rune(fen[3][0]))
+		Y := 8 - int(fen[3][1]-'0')
+
+		if Y > 4 { //WhitePawn
+			lastMove = uint16((Y-1)*8+X) << 6
+			lastMove += uint16((Y+1)*8 + X)
+		} else { //BlackPawn
+			lastMove = uint16((Y+1)*8+X) << 6
+			lastMove += uint16((Y-1)*8 + X)
+		}
+
+		board.lastMove = lastMove | PawnTwoUpFlag
+	}
+
 	board.halfMoves, _ = strconv.Atoi(fen[4])
 	board.fullMoves, _ = strconv.Atoi(fen[5])
 	board.ply = board.fullMoves * 2
@@ -69,26 +85,42 @@ func (board *board) loadFromFEN(fen []string) {
 			val, _ := strconv.Atoi(st)
 
 			for i := 0; i < val; i++ {
+				newPeice := new(piece)
+				newPeice.typeID = 0
+				newPeice.isWhite = true
+				newPeice.square = uint8(x + y*8)
+				newPeice.dead = true
+				board.squareArray[newPeice.square] = newPeice
 				x++
 			}
 
 			continue
 		}
 
-		typeID := stringToType[strings.ToLower(st)]
-		isWhite := st == strings.ToUpper(st)
+		newPeice := new(piece)
+		newPeice.typeID = stringToType[strings.ToLower(st)]
+		newPeice.isWhite = st == strings.ToUpper(st)
+		newPeice.square = uint8(x + y*8)
+		newPeice.dead = false
+		board.squareArray[newPeice.square] = newPeice
+
+		if st == "K" {
+			board.kings[0] = newPeice
+		}
+		if st == "k" {
+			board.kings[1] = newPeice
+		}
+
 		colID := 1
-		if isWhite {
+		if newPeice.isWhite {
 			colID = 0
 		}
 
-		square := uint8(x + y*8)
-		board.squareTypeArray[square] = typeID
-
-		board.pieceMask[colID] |= 1 << square
-		board.pieceMasks[colID][typeID] |= 1 << square
+		board.pieceArrays[colID][newPeice.typeID] = append(board.pieceArrays[colID][newPeice.typeID], newPeice)
+		newPeice.indexInPiecesArray = uint8(len(board.pieceArrays[colID][newPeice.typeID]) - 1)
 		x++
 	}
+	board.loadAllMasks()
 }
 
 func StringMoveToMove(mo string) uint16 {
@@ -140,18 +172,17 @@ func sendPosAsString() string {
 		SY := i / 8
 		partString += strconv.Itoa(int(SX))
 		partString += strconv.Itoa(int(SY))
-
-		// if currentBoard.squareArray[i].isWhite {
-		// 	partString += "w"
-		// } else {
-		// 	partString += "b"
-		// }
-		// if currentBoard.squareArray[i].dead {
-		// 	partString += "0"
-		// } else {
-		// 	partString += strconv.Itoa(int(currentBoard.squareArray[i].typeID))
-		// }
-		// retString += partString + " "
+		if currentBoard.squareArray[i].isWhite {
+			partString += "w"
+		} else {
+			partString += "b"
+		}
+		if currentBoard.squareArray[i].dead {
+			partString += "0"
+		} else {
+			partString += strconv.Itoa(int(currentBoard.squareArray[i].typeID))
+		}
+		retString += partString + " "
 	}
 
 	return retString
@@ -207,7 +238,7 @@ func UCIMoveToEngineMove(uciMove string) uint16 {
 		Move |= uint16(stringToType[string(uciMove[4])]+2) << 12
 	}
 
-	if currentBoard.squareTypeArray[SIndex] == 6 {
+	if currentBoard.squareArray[SIndex].typeID == 6 {
 		if SIndex-TIndex == 2 {
 			Move = uint16(SIndex|((SIndex-4)<<6)) | CastleFlag
 		}
@@ -268,30 +299,30 @@ func benchsearch() {
 	start := time.Now()
 	totalPos := 0
 
-	// loadPreCalculations(false)
-	// eval_loadTables()
-	loadTables()
-	loadFen(strings.Split(startfen, " "))
+	loadPreCalculations(false)
+	eval_loadTables()
+	// loadTables()
+	// loadFen(strings.Split("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8", " "))
 
-	for i := 1; i < 7; i++ {
-		ep = 0
-		capt = 0
-		prom = 0
-		fmt.Println(currentBoard.MoveGenTest(i), capt, ep, prom)
-	}
-	fmt.Println(time.Since(start), totalPos, capt, ep, prom)
-
-	// for i := 0; i < len(test_perftTestInts)/2; i++ {
-	// 	currentBoard = board{transEntries: 1}
-	// 	currentBoard.gameStateStack = make([]gameState, 0, 120)
-
-	// 	currentBoard.loadFromFEN(strings.Split(test_perfTestFen[i], " "))
-
-	// 	totalPos = currentBoard.MoveGenTest(test_perftTestInts[i*2])
-
-	// 	fmt.Println(time.Since(start), totalPos, totalPos == test_perftTestInts[i*2+1], i+1)
-
+	// for i := 1; i < 7; i++ {
+	// 	ep = 0
+	// 	capt = 0
+	// 	prom = 0
+	// 	fmt.Println(currentBoard.MoveGenTest(i), capt, ep, prom)
 	// }
+	// fmt.Println(time.Since(start), totalPos, capt, ep, prom)
+
+	for i := 0; i < len(test_perftTestInts)/2; i++ {
+		currentBoard = board{transEntries: 1}
+		currentBoard.gameStateStack = make([]gameState, 0, 120)
+
+		currentBoard.loadFromFEN(strings.Split(test_perfTestFen[i], " "))
+
+		totalPos = currentBoard.MoveGenTest(test_perftTestInts[i*2])
+
+		fmt.Println(time.Since(start), totalPos, totalPos == test_perftTestInts[i*2+1], i+1)
+
+	}
 
 	// fen := "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1"
 	// loadTables()
@@ -341,7 +372,9 @@ func (board *board) MoveGenTest(depth int) int {
 				if mov&CapFlag > 0 {
 					if mov&FlagMask == EnPassant|CapFlag {
 						ep++
+						capt++
 					} else {
+
 						capt++
 
 					}

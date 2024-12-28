@@ -19,14 +19,14 @@ func (board *board) EvalCurrentPos() int {
 		ColorScore := 0
 
 		for pieceType := 1; pieceType < 7; pieceType++ {
-			
-			pieceArray := board.pieceArrays[colID][pieceType]
-			pieceCount := len(pieceArray)
 
-			ColorScore += pieceVals[pieceType] * pieceCount
+			mask := board.pieceMasks[colID][pieceType]
 
-			for _, piece := range pieceArray {
-				square := piece.square
+			for mask > 0 {
+
+				square := popLSB(mask)
+				mask &= mask - 1
+				ColorScore += pieceVals[pieceType]
 
 				if pieceType == 1 { // Pawn
 					ColorScore += eval_pawnTable[colID][square]
@@ -63,13 +63,14 @@ func (board *board) EvalCurrentPos() int {
 					ColorScore += 2 * bits.OnesCount64((BishMagicDict[square][((mask_BishAttack[square]&(fullPieceMask))*bishopMagics[square])>>bishopShifts[square]]|colPieceMask)^colPieceMask)
 
 				} else if pieceType == 6 { // King
-					if board.isCheck(piece.isWhite) {
+					if board.isCheck(colID == 0) {
 						ColorScore -= 50
 					}
 
 					ColorScore += 10 * bits.OnesCount64(mask_KingAttack[square]&board.pieceMasks[colID][1])
 
-					opMaterial := len(board.pieceArrays[opCol][2])*2 + len(board.pieceArrays[opCol][3])*2 + len(board.pieceArrays[opCol][4])*3 + len(board.pieceArrays[opCol][5])*5
+					opMaterial := bits.OnesCount64(board.pieceMasks[opCol][2])*2 + bits.OnesCount64(board.pieceMasks[opCol][3])*2
+					opMaterial += bits.OnesCount64(board.pieceMasks[opCol][4])*3 + bits.OnesCount64(board.pieceMasks[opCol][5])*5
 
 					if opMaterial <= 5 {
 						ColorScore += eval_kingTable_end[colID][square]

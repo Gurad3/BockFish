@@ -282,60 +282,58 @@ var capt = 0
 var prom = 0
 
 func benchsearch() {
-	start := time.Now()
-
-	totalPos := 0
-
-	loadPreCalculations(false)
-	eval_loadTables()
-
-	// loadTables()
-	// loadFen(strings.Split(startfen, " "))
-
-	// for i := 1; i < 7; i++ {
-	// 	ep = 0
-	// 	capt = 0
-	// 	prom = 0
-	// 	fmt.Println(currentBoard.MoveGenTest(i), capt, ep, prom)
-	// }
-
-	// fmt.Println(time.Since(start), totalPos, capt, ep, prom)
-
-	for i := 0; i < len(test_perftTestInts)/2; i++ {
-		currentBoard = board{transEntries: 1}
-		currentBoard.gameStateStack = make([]gameState, 0, 120)
-
-		currentBoard.loadFromFEN(test_perfTestFen[i])
-
-		totalPos = currentBoard.MoveGenTest(test_perftTestInts[i*2])
-
-		fmt.Println(time.Since(start), totalPos, totalPos == test_perftTestInts[i*2+1], i+1)
-
-	}
+	fmt.Println("Benching")
 
 	// start := time.Now()
+
 	// totalPos := 0
-	// fen := startfen
-	// loadTables()
 
-	// currentBoard.loadFromFEN(fen)
-	// fmt.Println(currentBoard.pieceMask)
-	// fmt.Println(currentBoard.attackMasks)
+	// loadPreCalculations(false)
+	// eval_loadTables()
 
-	// fmt.Println(currentBoard.squareAttackArray)
-	// return
-	// //endTime := start.Add(time.Duration(5000) * time.Millisecond)
+	// // loadTables()
+	// // loadFen(strings.Split(startfen, " "))
 
-	// for i := 0; i < 5; i++ {
-	// 	currentBoard.PlayMove(currentBoard.searchMove(5000))
-	// 	totalPos += posEvaled
+	// // for i := 1; i < 7; i++ {
+	// // 	ep = 0
+	// // 	capt = 0
+	// // 	prom = 0
+	// // 	fmt.Println(currentBoard.MoveGenTest(i), capt, ep, prom)
+	// // }
+
+	// // fmt.Println(time.Since(start), totalPos, capt, ep, prom)
+
+	// for i := 0; i < len(test_perftTestInts)/2; i++ {
+	// 	currentBoard = board{transEntries: 1}
+	// 	currentBoard.gameStateStack = make([]gameState, 0, 120)
+
+	// 	currentBoard.loadFromFEN(test_perfTestFen[i])
+
+	// 	totalPos = currentBoard.MoveGenTest(test_perftTestInts[i*2])
+
+	// 	fmt.Println(time.Since(start), totalPos, totalPos == test_perftTestInts[i*2+1], i+1)
+
 	// }
 
-	// duration := time.Since(start)
+	start := time.Now()
+	totalPos := 0
+	fen := startfen
+	loadTables()
 
-	// fmt.Println(duration)
+	currentBoard.loadFromFEN(fen)
 
-	// writeToLogFile("BenchPosEvaled: " + Itoa(totalPos))
+	//endTime := start.Add(time.Duration(5000) * time.Millisecond)
+
+	for i := 0; i < 5; i++ {
+		currentBoard.PlayMove(currentBoard.searchMove(5000))
+		totalPos += posEvaled
+	}
+
+	duration := time.Since(start)
+
+	fmt.Println(duration)
+
+	writeToLogFile("BenchPosEvaled: " + Itoa(totalPos))
 
 }
 
@@ -345,7 +343,7 @@ func (board *board) MoveGenTest(depth int) int {
 	}
 
 	moves := make([]uint16, 0, 218)
-	moves = moves[:board.getLegalMoves(moves)]
+	moves = moves[:board.getLegalMoves(moves, false)]
 
 	pos := 0
 	for _, mov := range moves {

@@ -21,7 +21,7 @@ func (board *board) searchMove(searchTime int64) uint16 {
 	endTime := startTime.Add(time.Duration(searchTime) * time.Millisecond)
 
 	moves := make([]uint16, 0, 218)
-	moves = moves[:board.getLegalMoves(moves)]
+	moves = moves[:board.getLegalMoves(moves, false)]
 	// moves := board.getLegalMoves()
 	quickSortStart(moves)
 
@@ -85,7 +85,7 @@ func (board *board) NegaMax(startTime time.Time, endTime time.Time, prevMove uin
 		return 99999999 + depth*10
 	}
 
-	if depth == 0 {
+	if depth <= 0 {
 		//return board.EvalCurrentPos() * col
 		return board.QuinNegaMax(startTime, endTime, reverseDepth, depth, alpha, beta, col)
 	}
@@ -122,7 +122,7 @@ func (board *board) NegaMax(startTime time.Time, endTime time.Time, prevMove uin
 	}
 
 	moves := make([]uint16, 0, 218)
-	moves = moves[:board.getLegalMoves(moves)]
+	moves = moves[:board.getLegalMoves(moves, false)]
 	// moves := board.getLegalMoves()
 	if len(moves) == 0 {
 		return 0
@@ -138,15 +138,26 @@ func (board *board) NegaMax(startTime time.Time, endTime time.Time, prevMove uin
 
 	//MoveOrdering
 
+	depthReductionID := 7000
+	if reverseDepth > 3 {
+		if len(moves) > 6 {
+			depthReductionID = len(moves) - len(moves)/4
+		}
+	}
+
 	score := math.MinInt + 1
-	for _, Move := range moves {
+	for id, Move := range moves {
 
 		if reverseDepth >= 1 && time.Now().After(endTime) {
 			break
 		}
+		depthReduction := 0
+		if id >= depthReductionID {
+			depthReduction = 1
+		}
 
 		board.PlayMove(Move)
-		NewScore := -board.NegaMax(startTime, endTime, Move, reverseDepth+1, depth-1+extension, -beta, -alpha, -col, numExtensions+extension)
+		NewScore := -board.NegaMax(startTime, endTime, Move, reverseDepth+1, depth-1+extension-depthReduction, -beta, -alpha, -col, numExtensions+extension)
 		board.UndoMove(Move)
 
 		if NewScore > score {
@@ -222,14 +233,14 @@ func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, reverseD
 	alpha = intMax(alpha, score)
 
 	moves := make([]uint16, 0, 218)
-	moves = moves[:board.getLegalMoves(moves)]
+	moves = moves[:board.getLegalMoves(moves, true)]
 	// moves := board.getLegalMoves()
 
 	// quickSortStart(moves)
 
-	// if len(moves) == 0 {
-	// 	return -(99999999 + depth*10)
-	// }
+	if len(moves) == 0 {
+		return score
+	}
 
 	if tableMove != 0 {
 		for id, Move := range moves {
@@ -247,11 +258,8 @@ func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, reverseD
 			break
 		}
 
-		if Move&CapFlag == 0 {
-			continue
-		}
-
 		board.PlayMove(Move)
+
 		// if Move&CapFlag == 0 && !board.isCheck(board.isWhiteTurn) {
 		// 	board.UndoMove(Move)
 		// 	continue

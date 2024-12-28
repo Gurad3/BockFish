@@ -90,8 +90,8 @@ func main() {
 				t, _ = strconv.Atoi(parts[4])
 			}
 
-			if currentBoard.ply <= 5 {
-				t /= 3
+			if currentBoard.ply <= 6 {
+				t /= 5
 			}
 
 			move := currentBoard.searchMove(int64(t / 40))

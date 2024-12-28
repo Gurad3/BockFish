@@ -3,7 +3,7 @@ package main
 func (board *board) getLegalMovesA() []uint16 {
 
 	moves := make([]uint16, 0, 218)
-	moves = moves[:board.getLegalMoves(moves)]
+	moves = moves[:board.getLegalMoves(moves, false)]
 	return moves
 
 	//return board.getLegalMoves()
@@ -11,15 +11,15 @@ func (board *board) getLegalMovesA() []uint16 {
 
 //func (board *board) getLegalMoves() []uint16 {
 
-func (board *board) getLegalMoves(legalMoves []uint16) int {
+func (board *board) getLegalMoves(legalMoves []uint16, quin bool) int {
 
 	//legalMoves := make([]uint16, 0, 218) //max 218
 	colID := 1
-	opCOl := 0
 	if board.isWhiteTurn {
 		colID = 0
-		opCOl = 1
 	}
+	opCOl := 1 - colID
+
 	opPieceMask := board.pieceMask[opCOl]
 	colPieceMask := board.pieceMask[colID]
 
@@ -40,49 +40,56 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 				if colID == 0 {
 					moveMask |= ((mask_PawnAttack[square] >> 8) & opPieceMask)
 
-					if (1<<(square-8))&(fullPieceMask) == 0 { //Nothin infront og pawn
-						moveMask |= (1 << (square - 8))
+					if !quin {
 
-						if square > 47 { //not moved, check if dual is possible
-							if (1<<(square-16))&(fullPieceMask) == 0 { //Nothin infront og pawn
-								newMove := uint16(square-16) << 6
-								newMove += uint16(square)
-								legalMoves = append(legalMoves, newMove|PawnTwoUpFlag)
+						if (1<<(square-8))&(fullPieceMask) == 0 { //Nothin infront og pawn
+							moveMask |= (1 << (square - 8))
+
+							if square > 47 { //not moved, check if dual is possible
+								if (1<<(square-16))&(fullPieceMask) == 0 { //Nothin infront og pawn
+									newMove := uint16(square-16) << 6
+									newMove += uint16(square)
+									legalMoves = append(legalMoves, newMove|PawnTwoUpFlag)
+								}
 							}
 						}
-					}
 
-					if square < 32 && board.lastMove&FlagMask == PawnTwoUpFlag {
-						mMask := (mask_PawnAttack[square]) & (1 << ((board.lastMove & MoveTargetMask) >> 6))
-						if mMask > 0 {
-							newMove := uint16(popLSB(mMask>>8)) << 6
-							newMove += uint16(square)
-							legalMoves = append(legalMoves, newMove|EnPassant|CapFlag)
+						if square < 32 && board.lastMove&FlagMask == PawnTwoUpFlag {
+							mMask := (mask_PawnAttack[square]) & (1 << ((board.lastMove & MoveTargetMask) >> 6))
+							if mMask > 0 {
+								newMove := uint16(popLSB(mMask>>8)) << 6
+								newMove += uint16(square)
+								legalMoves = append(legalMoves, newMove|EnPassant|CapFlag)
+							}
 						}
 					}
 
 				} else {
 					moveMask |= ((mask_PawnAttack[square] << 8) & opPieceMask)
 
-					if (1<<(square+8))&(fullPieceMask) == 0 { //Nothin infront og pawn
-						moveMask |= (1 << (square + 8))
+					if !quin {
 
-						if square < 16 { //not moved, check if dual is possible
-							if (1<<(square+16))&(fullPieceMask) == 0 { //Nothin infront og pawn
-								newMove := uint16(square+16) << 6
-								newMove += uint16(square)
-								legalMoves = append(legalMoves, newMove|PawnTwoUpFlag)
+						if (1<<(square+8))&(fullPieceMask) == 0 { //Nothin infront og pawn
+							moveMask |= (1 << (square + 8))
+
+							if square < 16 { //not moved, check if dual is possible
+								if (1<<(square+16))&(fullPieceMask) == 0 { //Nothin infront og pawn
+									newMove := uint16(square+16) << 6
+									newMove += uint16(square)
+									legalMoves = append(legalMoves, newMove|PawnTwoUpFlag)
+								}
 							}
 						}
-					}
 
-					if square > 31 && board.lastMove&FlagMask == PawnTwoUpFlag {
-						mMask := (mask_PawnAttack[square]) & (1 << ((board.lastMove & MoveTargetMask) >> 6))
-						if mMask > 0 {
-							newMove := uint16(popLSB(mMask<<8)) << 6
-							newMove += uint16(square)
-							legalMoves = append(legalMoves, newMove|EnPassant|CapFlag)
+						if square > 31 && board.lastMove&FlagMask == PawnTwoUpFlag {
+							mMask := (mask_PawnAttack[square]) & (1 << ((board.lastMove & MoveTargetMask) >> 6))
+							if mMask > 0 {
+								newMove := uint16(popLSB(mMask<<8)) << 6
+								newMove += uint16(square)
+								legalMoves = append(legalMoves, newMove|EnPassant|CapFlag)
+							}
 						}
+
 					}
 
 				}
@@ -93,7 +100,7 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 			} else if TypeID == 6 { //King
 				moveMask |= mask_KingAttack[square] //Cretae movemask
 
-				if board.castling != 0 {
+				if !quin && board.castling != 0 {
 					if colID == 0 {
 						if board.castling&0b0100 > 0 {
 							if fullPieceMask&WKCastleMask == WKCastleFlag && !board.isAttacked(opCOl, WKCastleCheckMask) {
@@ -165,8 +172,10 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 						continue
 					}
 				}
+				if !quin || flag == CapFlag {
+					legalMoves = append(legalMoves, newMove|flag)
 
-				legalMoves = append(legalMoves, newMove|flag)
+				}
 
 			}
 
@@ -206,13 +215,10 @@ func (board *board) generateCapFlag(Move uint16) uint16 {
 
 func (board *board) isCheck(col bool) bool {
 	colID := 1
-	opCol := 0
-
 	if col {
 		colID = 0
-		opCol = 1
 	}
-
+	opCol := 1 - colID
 	// Get target king's position
 	targetIndex := popLSB(board.pieceMasks[colID][6])
 

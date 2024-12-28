@@ -20,13 +20,14 @@ func (board *board) EvalCurrentPos() int {
 
 		for pieceType := 1; pieceType < 7; pieceType++ {
 
+			pieceVal := pieceVals[pieceType]
 			mask := board.pieceMasks[colID][pieceType]
 
 			for mask > 0 {
 
 				square := popLSB(mask)
 				mask &= mask - 1
-				ColorScore += pieceVals[pieceType]
+				ColorScore += pieceVal
 
 				if pieceType == 1 { // Pawn
 					ColorScore += eval_pawnTable[colID][square]

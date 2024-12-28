@@ -88,10 +88,10 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 				}
 
 			} else if TypeID == 2 { //Knight
-				moveMask |= (mask_KnightAttack[square] | colPieceMask) ^ colPieceMask //Cretae movemask
+				moveMask |= mask_KnightAttack[square] //Cretae movemask
 
 			} else if TypeID == 6 { //King
-				moveMask |= (mask_KingAttack[square] | colPieceMask) ^ colPieceMask //Cretae movemask
+				moveMask |= mask_KingAttack[square] //Cretae movemask
 
 				if board.castling != 0 {
 					if colID == 0 {
@@ -130,16 +130,17 @@ func (board *board) getLegalMoves(legalMoves []uint16) int {
 				}
 
 			} else if TypeID == 3 { //Bishop
-				moveMask |= (BishMagicDict[square][((mask_BishAttack[square]&(fullPieceMask))*bishopMagics[square])>>bishopShifts[square]] | colPieceMask) ^ colPieceMask
+				moveMask |= BishMagicDict[square][((mask_BishAttack[square]&(fullPieceMask))*bishopMagics[square])>>bishopShifts[square]]
 			} else if TypeID == 4 { //Rook
-				moveMask |= (RookMagicDict[square][((mask_RookAttack[square]&(fullPieceMask))*rookMagics[square])>>rookShifts[square]] | colPieceMask) ^ colPieceMask
+				moveMask |= RookMagicDict[square][((mask_RookAttack[square]&(fullPieceMask))*rookMagics[square])>>rookShifts[square]]
 			} else if TypeID == 5 { //Queen
 				moveMask |= RookMagicDict[square][((mask_RookAttack[square]&(fullPieceMask))*rookMagics[square])>>rookShifts[square]]
 				moveMask |= BishMagicDict[square][((mask_BishAttack[square]&(fullPieceMask))*bishopMagics[square])>>bishopShifts[square]]
-				moveMask |= colPieceMask
-				moveMask ^= colPieceMask
+
 			}
 
+			moveMask |= colPieceMask
+			moveMask ^= colPieceMask
 			for moveMask > 0 {
 				targetIndex := popLSB(moveMask)
 				moveMask &= moveMask - 1
@@ -211,23 +212,43 @@ func (board *board) isCheck(col bool) bool {
 		colID = 0
 		opCol = 1
 	}
+
+	// Get target king's position
 	targetIndex := popLSB(board.pieceMasks[colID][6])
 
-	tmpMask := (board.pieceMasks[opCol][2] & mask_KnightAttack[targetIndex]) | (board.pieceMasks[opCol][6] & mask_KingAttack[targetIndex]) //King and Knights
+	// Precompute combined opponent piece masks
+	allPieces := board.pieceMask[0] | board.pieceMask[1]
+	opponentKnights := board.pieceMasks[opCol][2]
+	opponentKings := board.pieceMasks[opCol][6]
+	opponentPawns := board.pieceMasks[opCol][1]
+	opponentBishopsQueens := board.pieceMasks[opCol][3] | board.pieceMasks[opCol][5]
+	opponentRooksQueens := board.pieceMasks[opCol][4] | board.pieceMasks[opCol][5]
 
-	if opCol == 1 { // Col == White == 0
-		tmpMask |= board.pieceMasks[opCol][1] & (mask_PawnAttack[targetIndex] >> 8) //Pawns
-	} else {
-		tmpMask |= board.pieceMasks[opCol][1] & (mask_PawnAttack[targetIndex] << 8) //Pawns
-	}
-	if tmpMask > 0 {
+	// Knight and King attacks
+	if (opponentKnights&mask_KnightAttack[targetIndex])|(opponentKings&mask_KingAttack[targetIndex]) > 0 {
 		return true
 	}
-	if BishMagicDict[targetIndex][((mask_BishAttack[targetIndex]&(board.pieceMask[0]|board.pieceMask[1]))*bishopMagics[targetIndex])>>bishopShifts[targetIndex]]&(board.pieceMasks[opCol][3]|board.pieceMasks[opCol][5]) > 0 {
+
+	// Pawn attacks
+	if opCol == 1 { // Black pawns attacking
+		if opponentPawns&(mask_PawnAttack[targetIndex]>>8) > 0 {
+			return true
+		}
+	} else { // White pawns attacking
+		if opponentPawns&(mask_PawnAttack[targetIndex]<<8) > 0 {
+			return true
+		}
+	}
+
+	// Bishop and Queen attacks
+	bishopIndex := ((mask_BishAttack[targetIndex] & allPieces) * bishopMagics[targetIndex]) >> bishopShifts[targetIndex]
+	if BishMagicDict[targetIndex][bishopIndex]&opponentBishopsQueens > 0 {
 		return true
 	}
-	//Rook + Queen
-	if RookMagicDict[targetIndex][((mask_RookAttack[targetIndex]&(board.pieceMask[0]|board.pieceMask[1]))*rookMagics[targetIndex])>>rookShifts[targetIndex]]&(board.pieceMasks[opCol][4]|board.pieceMasks[opCol][5]) > 0 {
+
+	// Rook and Queen attacks
+	rookIndex := ((mask_RookAttack[targetIndex] & allPieces) * rookMagics[targetIndex]) >> rookShifts[targetIndex]
+	if RookMagicDict[targetIndex][rookIndex]&opponentRooksQueens > 0 {
 		return true
 	}
 

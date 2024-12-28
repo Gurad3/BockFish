@@ -104,6 +104,12 @@ const castle_BKQT uint16 = 2 //Black King QueenSide Target
 const castle_BRKT uint16 = 5 //Black Rook KingSide Target
 const castle_BRQT uint16 = 3 //Black Rook QueenSide Target
 
+func (board *board) init() {
+	board.initZobristArray()
+	board.calcZobrist()
+
+}
+
 func (board *board) PlayMove(Move uint16) {
 	//board.pieceMask |= 1 << piece.square
 	sourceIndex := Move & MoveSourceMask

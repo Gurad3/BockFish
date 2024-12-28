@@ -112,7 +112,8 @@ public class Game1 : Game
         Console.WriteLine("Received: " + readAnswer());
 */ 
         sendCommand("ucinewgame");
-        sendCommand("position fen rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+        sendCommand("position startpos");
+       // sendCommand("position fen rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
      //   sendCommand("position fen r7/3kq3/7P/6p1/1K6/8/8/8 w - - 0 1");
         
         sendCommand("isready");

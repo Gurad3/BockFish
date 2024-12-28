@@ -75,9 +75,9 @@ func main() {
 
 			} else {
 				if parts[1] == "startpos" {
-					loadFen(strings.Split(startfen, " "))
+					currentBoard.loadFromFEN(startfen)
 				} else {
-					loadFen(parts[2:])
+					currentBoard.loadFromFEN(strings.Join(parts[2:], ""))
 				}
 			}
 		case "go":
@@ -104,9 +104,23 @@ func main() {
 			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
 
 		case "getfullegal":
-			fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
+			// fmt.Println(moveArrayTOstring(currentBoard.getLegalMovesA()))
 
-			// fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMovesA())))
+			fmt.Println(moveArrayTOstring(currentBoard.filterOutPsudoLegal(currentBoard.getLegalMovesA())))
+
+			writeToLogFile("a " + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
+			f := ""
+			if currentBoard.isCheck(true) {
+				f += " true"
+			} else {
+				f += " false"
+			}
+			if currentBoard.isCheck(false) {
+				f += " true"
+			} else {
+				f += " false"
+			}
+			writeToLogFile("c " + f)
 
 		case "play":
 			//currentBoard.PlayMove(StringMoveToMove(parts[1]))
@@ -125,7 +139,7 @@ func main() {
 			fen := startfen
 			// fen := "8/2rk4/8/6pP/4q3/8/8/1K6 w - - 0 1"
 			loadTables()
-			loadFen(strings.Split(fen, " "))
+			currentBoard.loadFromFEN(fen)
 			fmt.Println("legalmoves " + moveArrayTOstring(currentBoard.getLegalMovesA()))
 			//fmt.Println(KnightAttackMasks[18])
 
@@ -166,18 +180,11 @@ func loadTables() {
 	currentBoard = board{transEntries: 1 << 20}
 	currentBoard.transpostionTable = make([]tranEntry, currentBoard.transEntries)
 	currentBoard.quinTranspostionTable = make([]tranEntry, currentBoard.transEntries)
-
 	currentBoard.gameStateStack = make([]gameState, 0, 120)
 
 	loadPreCalculations(false)
 	eval_loadTables()
 
-	currentBoard.initZobristArray()
-	currentBoard.calcZobrist()
-}
-
-func loadFen(fen []string) {
-	currentBoard.loadFromFEN(fen)
 }
 
 var tmpPlayedMoveList []uint16 = make([]uint16, 0, 100)
@@ -187,7 +194,7 @@ func tmp() {
 	fen := "8/p5k1/8/8/8/5Q2/P4R2/2K5 b - - 0 1"
 
 	loadTables()
-	loadFen(strings.Split(fen, " "))
+	currentBoard.loadFromFEN(fen)
 
 	fmt.Println(currentBoard.isWhiteTurn, currentBoard.isCheck(true), currentBoard.isCheck(false))
 

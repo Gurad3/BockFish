@@ -27,7 +27,10 @@ func isNumber(s string) bool {
 	return err == nil
 }
 
-func (board *board) loadFromFEN(fen []string) {
+func (board *board) loadFromFEN(fenS string) {
+
+	fen := strings.Split(fenS, " ")
+
 	board.deadPieces = make([]uint8, 0, 30)
 
 	board.isWhiteTurn = fen[1] == "w"
@@ -100,8 +103,11 @@ func (board *board) loadFromFEN(fen []string) {
 		}
 		board.pieceMask[colID] |= 1 << square
 		board.pieceMasks[colID][typeID] |= 1 << square
+
 		x++
 	}
+
+	board.init()
 }
 
 func StringMoveToMove(mo string) uint16 {
@@ -276,14 +282,15 @@ var capt = 0
 var prom = 0
 
 func benchsearch() {
-	//start := time.Now()
-	//totalPos := 0
+	start := time.Now()
 
-	//loadPreCalculations(false)
-	//eval_loadTables()
+	totalPos := 0
 
-	//loadTables()
-	//loadFen(strings.Split(startfen, " "))
+	loadPreCalculations(false)
+	eval_loadTables()
+
+	// loadTables()
+	// loadFen(strings.Split(startfen, " "))
 
 	// for i := 1; i < 7; i++ {
 	// 	ep = 0
@@ -291,39 +298,44 @@ func benchsearch() {
 	// 	prom = 0
 	// 	fmt.Println(currentBoard.MoveGenTest(i), capt, ep, prom)
 	// }
+
 	// fmt.Println(time.Since(start), totalPos, capt, ep, prom)
 
-	// for i := 0; i < len(test_perftTestInts)/2; i++ {
-	// 	currentBoard = board{transEntries: 1}
-	// 	currentBoard.gameStateStack = make([]gameState, 0, 120)
+	for i := 0; i < len(test_perftTestInts)/2; i++ {
+		currentBoard = board{transEntries: 1}
+		currentBoard.gameStateStack = make([]gameState, 0, 120)
 
-	// 	currentBoard.loadFromFEN(strings.Split(test_perfTestFen[i], " "))
+		currentBoard.loadFromFEN(test_perfTestFen[i])
 
-	// 	totalPos = currentBoard.MoveGenTest(test_perftTestInts[i*2])
+		totalPos = currentBoard.MoveGenTest(test_perftTestInts[i*2])
 
-	// 	fmt.Println(time.Since(start), totalPos, totalPos == test_perftTestInts[i*2+1], i+1)
+		fmt.Println(time.Since(start), totalPos, totalPos == test_perftTestInts[i*2+1], i+1)
 
-	// }
-
-	start := time.Now()
-	totalPos := 0
-	fen := startfen
-	loadTables()
-
-	loadFen(strings.Split(fen, " "))
-
-	//endTime := start.Add(time.Duration(5000) * time.Millisecond)
-
-	for i := 0; i < 5; i++ {
-		currentBoard.PlayMove(currentBoard.searchMove(5000))
-		totalPos += posEvaled
 	}
 
-	duration := time.Since(start)
+	// start := time.Now()
+	// totalPos := 0
+	// fen := startfen
+	// loadTables()
 
-	fmt.Println(duration)
+	// currentBoard.loadFromFEN(fen)
+	// fmt.Println(currentBoard.pieceMask)
+	// fmt.Println(currentBoard.attackMasks)
 
-	writeToLogFile("BenchPosEvaled: " + Itoa(totalPos))
+	// fmt.Println(currentBoard.squareAttackArray)
+	// return
+	// //endTime := start.Add(time.Duration(5000) * time.Millisecond)
+
+	// for i := 0; i < 5; i++ {
+	// 	currentBoard.PlayMove(currentBoard.searchMove(5000))
+	// 	totalPos += posEvaled
+	// }
+
+	// duration := time.Since(start)
+
+	// fmt.Println(duration)
+
+	// writeToLogFile("BenchPosEvaled: " + Itoa(totalPos))
 
 }
 

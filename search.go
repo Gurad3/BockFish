@@ -85,6 +85,10 @@ func (board *board) NegaMax(startTime time.Time, endTime time.Time, prevMove uin
 		return 99999999 + depth*10
 	}
 
+	if board.isRepeated() {
+		return 0
+	}
+
 	if depth <= 0 {
 		//return board.EvalCurrentPos() * col
 		return board.QuinNegaMax(startTime, endTime, reverseDepth, depth, alpha, beta, col)
@@ -196,6 +200,9 @@ func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, reverseD
 	if board.isCheck(!board.isWhiteTurn) {
 		return 99999999 + depth*10
 	}
+	if board.isRepeated() {
+		return 0
+	}
 
 	origAlpha := alpha
 	entry := board.quinTranspostionTable[board.zobrist%board.transEntries]
@@ -296,6 +303,12 @@ func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, reverseD
 	}
 
 	return score
+}
+
+func (board *board) isRepeated() bool {
+
+	return false
+
 }
 
 // func (board *board) tmp() {

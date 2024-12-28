@@ -182,6 +182,9 @@ func loadTables() {
 	currentBoard.quinTranspostionTable = make([]tranEntry, currentBoard.transEntries)
 	currentBoard.gameStateStack = make([]gameState, 0, 120)
 
+	// currentBoard.repetion = make([]uint64, 0, 80)
+	// currentBoard.LastIrreversiblePlyStack = make([]int, 0, 80)
+
 	loadPreCalculations(false)
 	eval_loadTables()
 

@@ -32,19 +32,34 @@ func (board *board) EvalCurrentPos() int {
 				if pieceType == 1 { // Pawn
 					ColorScore += eval_pawnTable[colID][square]
 
+					//ChainedPawn
+					if colID == 0 {
+						if ((mask_PawnAttack[square] >> 8) & colPieceMask) > 0 {
+							ColorScore += 10
+						}
+					} else {
+						if ((mask_PawnAttack[square] << 8) & colPieceMask) > 0 {
+							ColorScore += 10
+						}
+					}
+
 					//Isolated pawns
 					if board.pieceMasks[colID][1]&mask_adjacentFiles[square] == 0 {
 						ColorScore -= 20
 					}
 
 					// Doubled pawns
-					if board.pieceMasks[colID][1]&(1<<square) > 0 {
-						//ColorScore -= 10
+					if board.pieceMasks[colID][1]&(mask_sameFile[square]^1<<square) > 0 {
+						ColorScore -= 20
 					}
 
 					// Passed pawns
 					if board.pieceMasks[opCol][1]&mask_passedPawn[colID][square] == 0 {
-						ColorScore += 30
+						if colID == 0 {
+							ColorScore += (7 - (square / 8)) * 15
+						} else {
+							ColorScore += (square / 8) * 15
+						}
 					}
 
 				} else if pieceType == 2 { // Knight

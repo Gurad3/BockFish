@@ -42,6 +42,7 @@ var mask_BishAttack = [64]uint64{}
 
 var mask_passedPawn = [2][64]uint64{}
 var mask_adjacentFiles = [64]uint64{}
+var mask_sameFile = [64]uint64{}
 
 var RookMagicDict [][]uint64
 var BishMagicDict [][]uint64
@@ -79,6 +80,7 @@ func mask_load() {
 
 		//AdjacentFiles
 		mask_adjacentFiles[i] = leftFile | rightFile
+		mask_sameFile[i] = currFile
 
 	}
 

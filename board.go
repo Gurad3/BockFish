@@ -38,6 +38,10 @@ type board struct {
 	zobristVals  [2][7][64]uint64 // empty +
 	zobristBlack uint64
 
+	repetion     []uint64
+	IrevPLYStack []int
+	LastIrevPLY  int
+
 	transEntries          uint64
 	transpostionTable     []tranEntry
 	quinTranspostionTable []tranEntry
@@ -107,7 +111,9 @@ const castle_BRQT uint16 = 3 //Black Rook QueenSide Target
 func (board *board) init() {
 	board.initZobristArray()
 	board.calcZobrist()
-
+	board.IrevPLYStack = append(board.IrevPLYStack, board.ply)
+	board.LastIrevPLY = board.ply
+	board.repetion = append(board.repetion, board.zobrist)
 }
 
 func (board *board) PlayMove(Move uint16) {
@@ -121,6 +127,9 @@ func (board *board) PlayMove(Move uint16) {
 	newGameState := gameState{}
 	newGameState.castling = board.castling
 	newGameState.move = board.lastMove
+
+	board.repetion = append(board.repetion, board.zobrist)
+
 	board.gameStateStack = append(board.gameStateStack, newGameState)
 
 	srcCol := 1
@@ -164,6 +173,8 @@ func (board *board) PlayMove(Move uint16) {
 		}
 	}
 
+	Irev := sourceType == 1
+
 	board.zobrist ^= board.zobristVals[srcCol][sourceType][sourceIndex]
 	board.zobrist ^= board.zobristVals[srcCol][sourceType][targetIndex]
 	board.zobrist ^= board.zobristBlack
@@ -174,6 +185,7 @@ func (board *board) PlayMove(Move uint16) {
 	board.pieceMask[srcCol] ^= 1 << sourceIndex
 
 	if Move&CapFlag > 0 {
+		Irev = true
 		deadIndex := targetIndex
 
 		if Move&FlagMask == EnPassant|CapFlag {
@@ -195,11 +207,12 @@ func (board *board) PlayMove(Move uint16) {
 	}
 
 	if (Move & isPromFlag) > 0 {
+		Irev = true
 		sourceType = uint8((Move&PromMask)>>12) - 2
 	}
 
 	if (Move & FlagMask) == CastleFlag {
-
+		Irev = true
 		board.pieceMasks[srcCol][targetType] ^= 1 << targetIndex
 		board.pieceMask[srcCol] ^= 1 << targetIndex
 
@@ -261,6 +274,12 @@ func (board *board) PlayMove(Move uint16) {
 	board.lastMove = Move
 	board.isWhiteTurn = !board.isWhiteTurn
 	board.ply++
+
+	if Irev {
+		board.IrevPLYStack = append(board.IrevPLYStack, board.ply)
+		board.LastIrevPLY = board.ply
+	}
+
 }
 
 func (board *board) UndoMove(Move uint16) {
@@ -281,9 +300,12 @@ func (board *board) UndoMove(Move uint16) {
 	board.lastMove = board.gameStateStack[len(board.gameStateStack)-1].move
 	board.gameStateStack = board.gameStateStack[:len(board.gameStateStack)-1]
 
-	board.zobrist ^= board.zobristVals[srcCol][sourceType][sourceIndex]
-	board.zobrist ^= board.zobristVals[srcCol][sourceType][targetIndex]
-	board.zobrist ^= board.zobristBlack
+	board.zobrist = board.repetion[len(board.repetion)-1]
+	board.repetion = board.repetion[:len(board.repetion)-1]
+
+	// board.zobrist ^= board.zobristVals[srcCol][sourceType][sourceIndex]
+	// board.zobrist ^= board.zobristVals[srcCol][sourceType][targetIndex]
+	// board.zobrist ^= board.zobristBlack
 
 	board.pieceMasks[srcCol][sourceType] ^= 1 << sourceIndex
 	board.pieceMask[srcCol] ^= 1 << sourceIndex
@@ -300,7 +322,7 @@ func (board *board) UndoMove(Move uint16) {
 		deadType := board.deadPieces[len(board.deadPieces)-1]
 		board.deadPieces = board.deadPieces[:len(board.deadPieces)-1]
 
-		board.zobrist ^= board.zobristVals[opCOL][deadType][deadIndex]
+		// board.zobrist ^= board.zobristVals[opCOL][deadType][deadIndex]
 
 		board.pieceMask[opCOL] |= 1 << deadIndex
 		board.pieceMasks[opCOL][deadType] |= 1 << deadIndex
@@ -390,8 +412,13 @@ func (board *board) UndoMove(Move uint16) {
 
 	}
 
-	board.ply--
+	if board.ply == board.LastIrevPLY {
+		board.IrevPLYStack = board.IrevPLYStack[:len(board.IrevPLYStack)-1]
+
+		board.LastIrevPLY = board.IrevPLYStack[len(board.IrevPLYStack)-1]
+	}
 	board.isWhiteTurn = !board.isWhiteTurn
+	board.ply--
 
 }
 

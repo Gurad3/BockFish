@@ -95,7 +95,7 @@ func (board *board) NegaMax(startTime time.Time, endTime time.Time, prevMove uin
 	}
 
 	origAlpha := alpha
-	entry := board.transpostionTable[board.zobrist%board.transEntries]
+	entry := board.transpostionTable[board.zobrist&(board.transEntries-1)]
 	tableMove := entry.Move
 
 	if entry.key == board.zobrist && entry.depth >= depth {
@@ -188,7 +188,7 @@ func (board *board) NegaMax(startTime time.Time, endTime time.Time, prevMove uin
 		bound = 3 //lower
 	}
 
-	board.transpostionTable[board.zobrist%board.transEntries] = tranEntry{
+	board.transpostionTable[board.zobrist&(board.transEntries-1)] = tranEntry{
 		bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist,
 	}
 
@@ -200,12 +200,9 @@ func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, reverseD
 	if board.isCheck(!board.isWhiteTurn) {
 		return 99999999 + depth*10
 	}
-	if board.isRepeated() {
-		return 0
-	}
 
 	origAlpha := alpha
-	entry := board.quinTranspostionTable[board.zobrist%board.transEntries]
+	entry := board.quinTranspostionTable[board.zobrist&(board.transEntries-1)]
 	tableMove := entry.Move
 
 	if entry.key == board.zobrist && entry.depth >= depth {
@@ -298,7 +295,7 @@ func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, reverseD
 		bound = 3 //lower
 	}
 
-	board.quinTranspostionTable[board.zobrist%board.transEntries] = tranEntry{
+	board.quinTranspostionTable[board.zobrist&(board.transEntries-1)] = tranEntry{
 		bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist,
 	}
 
@@ -307,8 +304,23 @@ func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, reverseD
 
 func (board *board) isRepeated() bool {
 
+	rep := board.repetion[board.ply-board.LastIrevPLY:]
+	for _, v := range rep {
+		if v == board.zobrist {
+			return true
+		}
+	}
 	return false
 
+	// i := len(board.repetion) - 1
+	// for i >= board.ply-board.LastIrevPLY {
+	// 	if board.repetion[i] == board.zobrist {
+	// 		return true
+	// 	}
+
+	// 	i--
+	// }
+	// return false
 }
 
 // func (board *board) tmp() {

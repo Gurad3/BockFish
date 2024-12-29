@@ -29,7 +29,7 @@ func (board *board) getLegalMoves(legalMoves []uint16, quin bool) int {
 
 		mask := board.pieceMasks[colID][TypeID]
 
-		for mask > 0 {
+		for mask != 0 {
 
 			square := popLSB(mask)
 			mask &= mask - 1
@@ -143,20 +143,20 @@ func (board *board) getLegalMoves(legalMoves []uint16, quin bool) int {
 			} else if TypeID == 5 { //Queen
 				moveMask |= RookMagicDict[square][((mask_RookAttack[square]&(fullPieceMask))*rookMagics[square])>>rookShifts[square]]
 				moveMask |= BishMagicDict[square][((mask_BishAttack[square]&(fullPieceMask))*bishopMagics[square])>>bishopShifts[square]]
-
 			}
 
 			moveMask |= colPieceMask
 			moveMask ^= colPieceMask
-			for moveMask > 0 {
+			for moveMask != 0 {
 				targetIndex := popLSB(moveMask)
-				moveMask &= moveMask - 1
+				targetMask := uint64(1) << targetIndex
+				moveMask ^= targetMask
 
 				flag := uint16(0)
 				newMove := uint16(targetIndex) << 6
 				newMove += uint16(square)
 
-				if (1<<targetIndex)&opPieceMask > 0 {
+				if targetMask&opPieceMask > 0 {
 					flag = CapFlag
 				}
 
@@ -164,11 +164,15 @@ func (board *board) getLegalMoves(legalMoves []uint16, quin bool) int {
 
 					if targetIndex < 8 || targetIndex > 55 { //Pawn is promoting
 
-						for i := uint16(4); i < 8; i++ {
-							legalMoves = append(legalMoves, newMove|(i<<12)|flag)
-						}
+						//ALL
+						// for i := uint16(4); i < 8; i++ {
+						// 	legalMoves = append(legalMoves, newMove|(i<<12)|flag)
+						// }
 
-						// fmt.Println(square, targetIndex, TypeID, board.pieceMask[0], board.pieceMasks[0][1], board.pieceMask[1], board.pieceMasks[1][1])
+						//Knight and Queen
+						legalMoves = append(legalMoves, newMove|(4<<12)|flag)
+						legalMoves = append(legalMoves, newMove|(7<<12)|flag)
+
 						continue
 					}
 				}
@@ -200,17 +204,6 @@ func (board *board) filterOutPsudoLegal(moves []uint16) []uint16 {
 
 	}
 	return newList
-}
-func (board *board) generateCapFlag(Move uint16) uint16 {
-	OpColID := 0
-	if board.isWhiteTurn {
-		OpColID = 1
-	}
-	if (1<<((Move&MoveTargetMask)>>6))&board.pieceMask[OpColID] > 0 {
-		Move |= CapFlag
-	}
-
-	return Move
 }
 
 func (board *board) isCheck(col bool) bool {

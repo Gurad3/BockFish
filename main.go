@@ -90,13 +90,15 @@ func main() {
 				t, _ = strconv.Atoi(parts[4])
 			}
 
-			if currentBoard.ply <= 6 {
-				t /= 5
+			if currentBoard.ply <= 5 {
+				t /= 4
 			}
 
 			move := currentBoard.searchMove(int64(t / 40))
 			currentBoard.PlayMove(move)
-
+			if currentBoard.LastIrevPLY == currentBoard.ply {
+				currentBoard.repetion = currentBoard.repetion[:1]
+			}
 			fmt.Println("bestmove " + engineMoveToUCIMove(move))
 			// writeToLogFile(Itoa(currentBoard.ply) + " " + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
 
@@ -182,8 +184,8 @@ func loadTables() {
 	currentBoard.quinTranspostionTable = make([]tranEntry, currentBoard.transEntries)
 	currentBoard.gameStateStack = make([]gameState, 0, 120)
 
-	// currentBoard.repetion = make([]uint64, 0, 80)
-	// currentBoard.LastIrreversiblePlyStack = make([]int, 0, 80)
+	currentBoard.repetion = make([]uint64, 0, 80)
+	currentBoard.IrevPLYStack = make([]int, 0, 80)
 
 	loadPreCalculations(false)
 	eval_loadTables()

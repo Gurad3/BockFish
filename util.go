@@ -231,8 +231,36 @@ func UCIMoveToEngineMove(uciMove string) uint16 {
 
 		if SIndex-TIndex == -2 {
 			Move = uint16(SIndex|((SIndex+3)<<6)) | CastleFlag
+		}
+	}
+
+	if currentBoard.squareTypeArray[SIndex] == 1 {
+		if SIndex-TIndex == 16 || SIndex-TIndex == -16 {
+			Move |= PawnTwoUpFlag
+		}
+
+		if currentBoard.lastMove&FlagMask == PawnTwoUpFlag {
+			if currentBoard.isWhiteTurn && TIndex-int(currentBoard.lastMove&MoveSourceMask) == -8 {
+				Move |= EnPassant | CapFlag
+			}
+
+			if !currentBoard.isWhiteTurn && TIndex-int(currentBoard.lastMove&MoveSourceMask) == 8 {
+				Move |= EnPassant | CapFlag
+			}
 
 		}
+	}
+
+	return Move
+}
+
+func (board *board) generateCapFlag(Move uint16) uint16 {
+	OpColID := 0
+	if board.isWhiteTurn {
+		OpColID = 1
+	}
+	if (1<<((Move&MoveTargetMask)>>6))&board.pieceMask[OpColID] > 0 {
+		Move |= CapFlag
 	}
 
 	return Move
@@ -284,12 +312,12 @@ var prom = 0
 func benchsearch() {
 	fmt.Println("Benching")
 
-	start := time.Now()
+	// start := time.Now()
 
-	totalPos := 0
+	// totalPos := 0
 
-	loadPreCalculations(false)
-	eval_loadTables()
+	// loadPreCalculations(false)
+	// eval_loadTables()
 
 	// // loadTables()
 	// // loadFen(strings.Split(startfen, " "))
@@ -303,37 +331,37 @@ func benchsearch() {
 
 	// // fmt.Println(time.Since(start), totalPos, capt, ep, prom)
 
-	for i := 0; i < len(test_perftTestInts)/2; i++ {
-		currentBoard = board{transEntries: 1}
-		currentBoard.gameStateStack = make([]gameState, 0, 120)
+	// for i := 0; i < len(test_perftTestInts)/2; i++ {
+	// 	currentBoard = board{transEntries: 1}
+	// 	currentBoard.gameStateStack = make([]gameState, 0, 120)
 
-		currentBoard.loadFromFEN(test_perfTestFen[i])
+	// 	currentBoard.loadFromFEN(test_perfTestFen[i])
 
-		totalPos = currentBoard.MoveGenTest(test_perftTestInts[i*2])
+	// 	totalPos = currentBoard.MoveGenTest(test_perftTestInts[i*2])
 
-		fmt.Println(time.Since(start), totalPos, totalPos == test_perftTestInts[i*2+1], i+1)
+	// 	fmt.Println(time.Since(start), totalPos, totalPos == test_perftTestInts[i*2+1], i+1)
 
-	}
-
-	// start := time.Now()
-	// totalPos := 0
-	// fen := startfen
-	// loadTables()
-
-	// currentBoard.loadFromFEN(fen)
-
-	// //endTime := start.Add(time.Duration(5000) * time.Millisecond)
-
-	// for i := 0; i < 5; i++ {
-	// 	currentBoard.PlayMove(currentBoard.searchMove(5000))
-	// 	totalPos += posEvaled
 	// }
 
-	// duration := time.Since(start)
+	start := time.Now()
+	totalPos := 0
+	fen := startfen
+	loadTables()
 
-	// fmt.Println(duration)
+	currentBoard.loadFromFEN(fen)
 
-	// writeToLogFile("BenchPosEvaled: " + Itoa(totalPos))
+	//endTime := start.Add(time.Duration(5000) * time.Millisecond)
+
+	for i := 0; i < 5; i++ {
+		currentBoard.PlayMove(currentBoard.searchMove(5000))
+		totalPos += posEvaled
+	}
+
+	duration := time.Since(start)
+
+	fmt.Println(duration)
+
+	writeToLogFile("     BenchPosEvaled: " + Itoa(totalPos))
 
 }
 

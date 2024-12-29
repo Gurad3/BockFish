@@ -108,3 +108,52 @@ func (board *board) EvalCurrentPos() int {
 
 	return score
 }
+
+var eval_mg_value [6]int = [6]int{82, 337, 365, 477, 1025, 0}
+var eval_eg_value [6]int = [6]int{94, 281, 297, 512, 936, 0}
+
+var eval_gamephaseInc [12]int = [12]int{0, 0, 1, 1, 1, 1, 2, 2, 4, 4, 0, 0}
+var eval_mg_table [12][64]int
+var eval_eg_table [12][64]int
+
+func eval_init_tables() {
+
+	for TypID := 1 - 1; TypID < 7-1; TypID++ {
+		for sq := 0; sq < 64; sq++ {
+			eval_mg_table[TypID][sq] = eval_mg_value[TypID] + mg_pesto_table[TypID][sq]
+			eval_eg_table[TypID][sq] = eval_eg_value[TypID] + eg_pesto_table[TypID][sq]
+			eval_mg_table[TypID+6][sq] = eval_mg_value[TypID] + mg_pesto_table[TypID][sq^56]
+			eval_eg_table[TypID+6][sq] = eval_eg_value[TypID] + eg_pesto_table[TypID][sq^56]
+		}
+	}
+}
+
+// int eval()
+// {
+//     int mg[2];
+//     int eg[2];
+//     int gamePhase = 0;
+
+//     mg[WHITE] = 0;
+//     mg[BLACK] = 0;
+//     eg[WHITE] = 0;
+//     eg[BLACK] = 0;
+
+//     /* evaluate each piece */
+//     for (int sq = 0; sq < 64; ++sq) {
+//         int pc = board[sq];
+//         if (pc != EMPTY) {
+//             mg[PCOLOR(pc)] += mg_table[pc][sq];
+//             eg[PCOLOR(pc)] += eg_table[pc][sq];
+//             gamePhase += gamephaseInc[pc];
+//         }
+//     }
+
+//     /* tapered eval */
+//     int mgScore = mg[side2move] - mg[OTHER(side2move)];
+//     int egScore = eg[side2move] - eg[OTHER(side2move)];
+//     int mgPhase = gamePhase;
+//     if (mgPhase > 24) mgPhase = 24; /* in case of early promotion */
+//     int egPhase = 24 - mgPhase;
+//     return (mgScore * mgPhase + egScore * egPhase) / 24;
+// }

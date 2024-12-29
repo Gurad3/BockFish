@@ -304,12 +304,12 @@ func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, reverseD
 
 func (board *board) isRepeated() bool {
 
-	rep := board.repetion[board.ply-board.LastIrevPLY:]
-	for _, v := range rep {
-		if v == board.zobrist {
-			return true
-		}
-	}
+	// rep := board.repetion[board.ply-board.LastIrevPLY:]
+	// for _, v := range rep {
+	// 	if v == board.zobrist {
+	// 		return true
+	// 	}
+	// }
 	return false
 
 	// i := len(board.repetion) - 1

@@ -276,8 +276,8 @@ func (board *board) PlayMove(Move uint16) {
 	board.ply++
 
 	if Irev {
-		board.IrevPLYStack = append(board.IrevPLYStack, board.ply)
-		board.LastIrevPLY = board.ply
+		// board.IrevPLYStack = append(board.IrevPLYStack, board.ply)
+		// board.LastIrevPLY = board.ply
 	}
 
 }
@@ -412,11 +412,11 @@ func (board *board) UndoMove(Move uint16) {
 
 	}
 
-	if board.ply == board.LastIrevPLY {
-		board.IrevPLYStack = board.IrevPLYStack[:len(board.IrevPLYStack)-1]
+	// if board.ply == board.LastIrevPLY {
+	// 	board.IrevPLYStack = board.IrevPLYStack[:len(board.IrevPLYStack)-1]
+	// 	board.LastIrevPLY = board.IrevPLYStack[len(board.IrevPLYStack)-1]
+	// }
 
-		board.LastIrevPLY = board.IrevPLYStack[len(board.IrevPLYStack)-1]
-	}
 	board.isWhiteTurn = !board.isWhiteTurn
 	board.ply--
 

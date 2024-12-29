@@ -190,6 +190,8 @@ func loadTables() {
 	loadPreCalculations(false)
 	eval_loadTables()
 
+	eval_init_tables()
+
 }
 
 var tmpPlayedMoveList []uint16 = make([]uint16, 0, 100)

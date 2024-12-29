@@ -269,7 +269,8 @@ var eval_eg_king_table [64]int = [64]int{
 	-53, -34, -21, -11, -28, -14, -24, -43,
 }
 
-var mg_pesto_table [6][64]int = [6][64]int{
+var mg_pesto_table [7][64]int = [7][64]int{
+	[64]int{},
 	eval_mg_pawn_table,
 	eval_mg_knight_table,
 	eval_mg_bishop_table,
@@ -278,7 +279,8 @@ var mg_pesto_table [6][64]int = [6][64]int{
 	eval_mg_king_table,
 }
 
-var eg_pesto_table [6][64]int = [6][64]int{
+var eg_pesto_table [7][64]int = [7][64]int{
+	[64]int{},
 	eval_eg_pawn_table,
 	eval_eg_knight_table,
 	eval_eg_bishop_table,

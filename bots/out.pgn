@@ -1,0 +1,92 @@
+[Event "My Tournament"]
+[Site "?"]
+[Date "2024.12.29"]
+[Round "1"]
+[White "BockFish-v5"]
+[Black "BockFish"]
+[Result "1-0"]
+[ECO "A04"]
+[GameDuration "00:00:01"]
+[GameEndTime "2024-12-29T23:30:10.857 Västeuropa, normaltid"]
+[GameStartTime "2024-12-29T23:30:09.305 Västeuropa, normaltid"]
+[Opening "Reti Opening"]
+[PlyCount "1"]
+[Termination "abandoned"]
+[TimeControl "240"]
+
+1. Nf3 {1.5s, Black disconnects} 1-0
+
+[Event "My Tournament"]
+[Site "?"]
+[Date "2024.12.29"]
+[Round "1"]
+[White "BockFish"]
+[Black "BockFish-v5"]
+[Result "1-0"]
+[ECO "B00"]
+[GameDuration "00:06:03"]
+[GameEndTime "2024-12-29T23:37:12.997 Västeuropa, normaltid"]
+[GameStartTime "2024-12-29T23:31:09.021 Västeuropa, normaltid"]
+[Opening "King's pawn"]
+[PlyCount "119"]
+[TimeControl "240"]
+[Variation "Nimzowitsch defense"]
+
+1. e4 {1.5s} Nc6 {1.5s} 2. d4 {1.5s} e6 {1.5s} 3. Nc3 {5.9s} Bb4 {5.9s}
+4. d5 {5.8s} Bxc3+ {5.8s} 5. bxc3 {5.6s} Ne5 {5.6s} 6. dxe6 {5.5s} dxe6 {5.5s}
+7. Qxd8+ {5.4s} Kxd8 {5.4s} 8. Bf4 {5.2s} Ng6 {5.2s} 9. Bg5+ {5.1s} N8e7 {5.1s}
+10. Nf3 {5.0s} Bd7 {5.0s} 11. O-O-O {4.8s} Kc8 {4.8s} 12. Bd3 {4.7s} Kb8 {4.7s}
+13. h4 {4.6s} f6 {4.6s} 14. Be3 {4.5s} e5 {4.5s} 15. h5 {4.4s} Nf4 {4.4s}
+16. h6 {4.3s} g5 {4.3s} 17. Bxf4 {4.2s} gxf4 {4.2s} 18. Bc4 {4.1s} Bc6 {4.1s}
+19. Rhe1 {4.0s} Rf8 {4.0s} 20. Nh4 {3.9s} a5 {3.9s} 21. Be6 {3.8s} Ra6 {3.8s}
+22. Bh3 {3.7s} Rg8 {3.7s} 23. Be6 {3.6s} Rf8 {3.6s} 24. Bd7 {3.5s} a4 {3.5s}
+25. a3 {3.4s} Rb6 {3.4s} 26. Nf5 {3.3s} Bxd7 {3.3s} 27. Rxd7 {3.2s} Nxf5 {3.2s}
+28. exf5 {3.1s} Rh8 {3.2s} 29. Re4 {3.1s} Ra6 {3.1s} 30. Rf7 {3.0s} Rg8 {3.0s}
+31. Rg7 {2.9s} Rh8 {2.9s} 32. Rc4 {2.8s} c6 {2.8s} 33. Rb4 {2.8s} Ra7 {2.8s}
+34. Rf7 {2.7s} Rg8 {2.7s} 35. Rg7 {2.6s} Rh8 {2.6s} 36. Kb2 {2.6s} Kc8 {2.6s}
+37. Rb6 {2.5s} Kb8 {2.5s} 38. f3 {2.4s} Ka8 {2.4s} 39. Rc7 {2.4s} Kb8 {2.4s}
+40. Rcxc6 {2.3s} Rg8 {2.3s} 41. Rxf6 {2.3s} Rxg2 {2.3s} 42. Rf8+ {2.2s}
+Kc7 {2.2s} 43. Re6 {2.2s} Ra5 {2.2s} 44. Rf7+ {2.1s} Kb8 {2.1s} 45. Rb6 {2.0s}
+Ra7 {2.0s} 46. Rxh7 {2.0s} Rg3 {2.0s} 47. f6 {1.9s} Rg8 {1.9s} 48. f7 {1.9s}
+Rc8 {1.9s} 49. Re6 {1.8s} Ra6 {1.9s} 50. Re8 {1.8s} Rb6+ {1.8s} 51. Kc1 {1.8s}
+Rf6 {1.8s} 52. Rxc8+ {1.7s} Kxc8 {1.7s} 53. Rg7 {1.7s} Kb8 {1.7s} 54. h7 {1.6s}
+Ka7 {1.6s} 55. h8=Q {1.6s} Rxf7 {1.6s} 56. Rxf7 {1.5s} Kb6 {1.6s} 57. Qc8
+Ka6 {1.5s} 58. Rxb7 Ka5 {1.5s} 59. Qc5+ Ka6 {1.4s} 60. Qb5# {White mates} 1-0
+
+[Event "My Tournament"]
+[Site "?"]
+[Date "2024.12.29"]
+[Round "2"]
+[White "BockFish-v5"]
+[Black "BockFish"]
+[Result "1-0"]
+[ECO "A05"]
+[GameDuration "00:06:08"]
+[GameEndTime "2024-12-29T23:43:21.853 Västeuropa, normaltid"]
+[GameStartTime "2024-12-29T23:37:13.009 Västeuropa, normaltid"]
+[Opening "Reti Opening"]
+[PlyCount "121"]
+[TimeControl "240"]
+
+1. Nf3 {1.5s} Nf6 {1.5s} 2. d4 {1.5s} d5 {1.5s} 3. Qd3 {5.9s} Nc6 {5.9s}
+4. Nc3 {5.8s} Be6 {5.8s} 5. Qb5 {5.6s} Bd7 {5.6s} 6. Nxd5 {5.5s} Nxd4 {5.5s}
+7. Nxf6+ {5.4s} exf6 {5.4s} 8. Qd3 {5.2s} Ne6 {5.2s} 9. Qb3 {5.1s} Nc5 {5.1s}
+10. Qc3 {5.0s} Ne4 {5.0s} 11. Qb3 {4.8s} Bc6 {4.8s} 12. Be3 {4.7s} Bd6 {4.7s}
+13. Nd4 {4.6s} Bd5 {4.6s} 14. Qa4+ {4.5s} c6 {4.5s} 15. Nf5 {4.4s} b5 {4.4s}
+16. Nxd6+ {4.3s} Qxd6 {4.3s} 17. Qa5 {4.2s} O-O {4.2s} 18. O-O-O {4.1s}
+h6 {4.1s} 19. c4 {4.0s} bxc4 {4.0s} 20. f3 {3.9s} Ng5 {3.9s} 21. Bc5 {3.8s}
+Qd8 {3.8s} 22. Qc3 {3.7s} f5 {3.7s} 23. Bxf8 {3.6s} Qxf8 {3.6s} 24. e3 {3.5s}
+Qc5 {3.5s} 25. h4 {3.4s} Ne6 {3.4s} 26. Kb1 {3.3s} Re8 {3.3s} 27. Rh3 {3.2s}
+a5 {3.2s} 28. Rc1 {3.1s} Rc8 {3.1s} 29. Rh1 {3.1s} a4 {3.1s} 30. Bxc4 {3.0s}
+Bxc4 {3.0s} 31. Qxc4 {2.9s} Qxe3 {2.9s} 32. Qxa4 {2.8s} c5 {2.8s}
+33. Rhd1 {2.8s} f4 {2.8s} 34. Rc2 {2.7s} Qe5 {2.7s} 35. a3 {2.6s} Qh5 {2.6s}
+36. Rh1 {2.6s} Nd4 {2.6s} 37. Rf2 {2.5s} Qg6+ {2.5s} 38. Ka1 {2.4s} Qg3 {2.4s}
+39. Rd2 {2.4s} Rd8 {2.4s} 40. Ka2 {2.3s} Rf8 {2.3s} 41. Qc4 {2.3s} Nf5 {2.3s}
+42. Qxc5 {2.2s} Ne3 {2.2s} 43. h5 {2.2s} Re8 {2.2s} 44. b4 {2.1s} Ra8 {2.1s}
+45. b5 {2.0s} Re8 {2.0s} 46. b6 {2.0s} Nxg2 {2.0s} 47. b7 {1.9s} Qxf3 {1.9s}
+48. Rb1 {1.9s} Ne3 {1.9s} 49. Qc8 {1.9s} Rxc8 {1.8s} 50. bxc8=Q+ {1.8s}
+Kh7 {1.8s} 51. Qc7 {1.8s} f5 {1.8s} 52. Rg1 {1.7s} Ng4 {1.7s} 53. Qf7 {1.7s}
+Qa8 {1.7s} 54. Qxf5+ {2.2s} Kh8 {1.6s} 55. Rxg4 {1.6s} Qg8+ {1.6s}
+56. Rd5 {1.5s} f3 {1.6s} 57. Rc4 {1.5s} f2 {1.5s} 58. Rc8 {1.5s} Qxc8 {1.5s}
+59. Qxc8+ Kh7 {1.4s} 60. Rd8 g6 {1.4s} 61. Rd7# {White mates} 1-0
+

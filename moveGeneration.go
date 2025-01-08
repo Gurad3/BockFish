@@ -22,7 +22,6 @@ func (board *board) getLegalMoves(legalMoves []uint16, quin bool) int {
 
 	opPieceMask := board.pieceMask[opCOl]
 	colPieceMask := board.pieceMask[colID]
-
 	fullPieceMask := board.pieceMask[opCOl] | board.pieceMask[colID]
 
 	for TypeID := 1; TypeID < 7; TypeID++ {
@@ -165,13 +164,13 @@ func (board *board) getLegalMoves(legalMoves []uint16, quin bool) int {
 					if targetIndex < 8 || targetIndex > 55 { //Pawn is promoting
 
 						//ALL
-						// for i := uint16(4); i < 8; i++ {
-						// 	legalMoves = append(legalMoves, newMove|(i<<12)|flag)
-						// }
+						for i := uint16(4); i < 8; i++ {
+							legalMoves = append(legalMoves, newMove|(i<<12)|flag)
+						}
 
 						//Knight and Queen
-						legalMoves = append(legalMoves, newMove|(4<<12)|flag)
-						legalMoves = append(legalMoves, newMove|(7<<12)|flag)
+						// legalMoves = append(legalMoves, newMove|(4<<12)|flag)
+						// legalMoves = append(legalMoves, newMove|(7<<12)|flag)
 
 						continue
 					}

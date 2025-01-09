@@ -24,6 +24,8 @@ type board struct {
 
 	squareTypeArray [64]uint8
 
+	squareAttackNum [64]uint8
+
 	deadPieces []uint8
 
 	castling       uint8
@@ -114,6 +116,64 @@ func (board *board) init() {
 	board.IrevPLYStack = append(board.IrevPLYStack, board.ply)
 	board.LastIrevPLY = board.ply
 	board.repetion = append(board.repetion, board.zobrist)
+
+	for colID := 0; colID < 2; colID++ {
+		opCOl := 1 - colID
+		//	opPieceMask := board.pieceMask[opCOl]
+		colPieceMask := board.pieceMask[colID]
+		fullPieceMask := board.pieceMask[opCOl] | board.pieceMask[colID]
+
+		for TypeID := 1; TypeID < 7; TypeID++ {
+			mask := board.pieceMasks[colID][TypeID]
+
+			for mask != 0 {
+
+				square := popLSB(mask)
+				mask &= mask - 1
+
+				moveMask := uint64(0)
+
+				if TypeID == 1 { //Pawn
+					if colID == 0 {
+						moveMask |= (mask_PawnAttack[square] >> 8)
+					} else {
+						moveMask |= (mask_PawnAttack[square] << 8)
+					}
+				} else if TypeID == 2 { //Knight
+					moveMask |= mask_KnightAttack[square] //Cretae movemask
+
+				} else if TypeID == 6 { //King
+					moveMask |= mask_KingAttack[square] //Cretae movemask
+				} else if TypeID == 3 { //Bishop
+					moveMask |= BishMagicDict[square][((mask_BishAttack[square]&(fullPieceMask))*bishopMagics[square])>>bishopShifts[square]]
+				} else if TypeID == 4 { //Rook
+					moveMask |= RookMagicDict[square][((mask_RookAttack[square]&(fullPieceMask))*rookMagics[square])>>rookShifts[square]]
+				} else if TypeID == 5 { //Queen
+					moveMask |= RookMagicDict[square][((mask_RookAttack[square]&(fullPieceMask))*rookMagics[square])>>rookShifts[square]]
+					moveMask |= BishMagicDict[square][((mask_BishAttack[square]&(fullPieceMask))*bishopMagics[square])>>bishopShifts[square]]
+				}
+
+				moveMask |= colPieceMask
+				moveMask ^= colPieceMask
+				for moveMask != 0 {
+					targetIndex := popLSB(moveMask)
+					targetMask := uint64(1) << targetIndex
+					moveMask ^= targetMask
+					if colID == 0 {
+						org := board.squareAttackNum[targetIndex]
+						new := ((((org & 0b11110000) >> 4) + 1) << 4) | (org & 0b00001111)
+						board.squareAttackNum[targetIndex] = new
+					} else {
+						org := board.squareAttackNum[targetIndex]
+						new := ((org & 0b0000111) + 1) | (org & 0b11110000)
+						board.squareAttackNum[targetIndex] = new
+					}
+
+				}
+
+			}
+		}
+	}
 }
 
 func (board *board) PlayMove(Move uint16) {
@@ -269,6 +329,7 @@ func (board *board) PlayMove(Move uint16) {
 		//Update (add if empty) TargetBits
 		board.pieceMasks[srcCol][sourceType] |= 1 << targetIndex
 		board.pieceMask[srcCol] |= 1 << targetIndex
+
 	}
 
 	board.lastMove = Move

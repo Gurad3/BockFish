@@ -205,6 +205,26 @@ func (board *board) filterOutPsudoLegal(moves []uint16) []uint16 {
 	return newList
 }
 
+func (board *board) isCheckB(col bool) bool {
+
+	colID := 1
+	if col {
+		colID = 0
+	}
+	// Get target king's position
+	targetIndex := popLSB(board.pieceMasks[colID][6])
+
+	if targetIndex == 64 {
+		return false
+	}
+
+	if col {
+		return (board.squareAttackNum[targetIndex] & 0b00001111) > 0
+
+	}
+	return (board.squareAttackNum[targetIndex] & 0b11110000) > 0
+}
+
 func (board *board) isCheck(col bool) bool {
 	colID := 1
 	if col {

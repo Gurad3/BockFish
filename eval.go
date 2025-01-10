@@ -54,7 +54,7 @@ func (board *board) EvalCurrentPosA() int {
 					}
 
 					// Passed pawns
-					if board.pieceMasks[opCol][1]&mask_passedPawn[colID][square] == 0 {
+					if board.pieceMasks[opCol][1]&mask_passedPawn[colID*64+square] == 0 {
 						if colID == 0 {
 							ColorScore += (7 - (square / 8)) * 15
 						} else {
@@ -176,7 +176,7 @@ func (board *board) EvalCurrentPos() int {
 					}
 
 					// Passed pawns
-					if board.pieceMasks[opCol][1]&mask_passedPawn[colID][square] == 0 {
+					if board.pieceMasks[opCol][1]&mask_passedPawn[colID*64+square] == 0 {
 						if colID == 0 {
 							ColorScore += (7 - (square / 8)) * 15
 						} else {

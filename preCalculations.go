@@ -40,7 +40,7 @@ var mask_PawnAttack = [64]uint64{}
 var mask_RookAttack = [64]uint64{}
 var mask_BishAttack = [64]uint64{}
 
-var mask_passedPawn = [2][64]uint64{}
+var mask_passedPawn = [64 * 2]uint64{}
 var mask_adjacentFiles = [64]uint64{}
 var mask_sameFile = [64]uint64{}
 
@@ -72,9 +72,9 @@ func mask_load() {
 		//PassedPawn
 		for col := 0; col < 2; col++ {
 			if col == 0 {
-				mask_passedPawn[col][i] = (leftFile | rightFile | currFile) >> ((8 - Y) * 8)
+				mask_passedPawn[col*64+i] = (leftFile | rightFile | currFile) >> ((8 - Y) * 8)
 			} else {
-				mask_passedPawn[col][i] = (leftFile | rightFile | currFile) << ((Y + 1) * 8)
+				mask_passedPawn[col*64+1] = (leftFile | rightFile | currFile) << ((Y + 1) * 8)
 			}
 		}
 

@@ -155,25 +155,50 @@ func (board *board) init() {
 
 				moveMask |= colPieceMask
 				moveMask ^= colPieceMask
-				for moveMask != 0 {
-					targetIndex := popLSB(moveMask)
-					targetMask := uint64(1) << targetIndex
-					moveMask ^= targetMask
-					if colID == 0 {
-						org := board.squareAttackNum[targetIndex]
-						new := ((((org & 0b11110000) >> 4) + 1) << 4) | (org & 0b00001111)
-						board.squareAttackNum[targetIndex] = new
-					} else {
-						org := board.squareAttackNum[targetIndex]
-						new := ((org & 0b0000111) + 1) | (org & 0b11110000)
-						board.squareAttackNum[targetIndex] = new
-					}
 
-				}
+				board.addAttackNum(colID == 0, moveMask)
 
 			}
 		}
 	}
+}
+
+func (board *board) subAttackNum(col bool, mask uint64) {
+	for mask != 0 {
+		targetIndex := popLSB(mask)
+		targetMask := uint64(1) << targetIndex
+		mask ^= targetMask
+		if col {
+			org := board.squareAttackNum[targetIndex]
+			new := ((((org & 0b11110000) >> 4) - 1) << 4) | (org & 0b00001111)
+			board.squareAttackNum[targetIndex] = new
+		} else {
+			org := board.squareAttackNum[targetIndex]
+			new := ((org & 0b0000111) - 1) | (org & 0b11110000)
+			board.squareAttackNum[targetIndex] = new
+		}
+
+	}
+
+}
+
+func (board *board) addAttackNum(col bool, mask uint64) {
+	for mask != 0 {
+		targetIndex := popLSB(mask)
+		targetMask := uint64(1) << targetIndex
+		mask ^= targetMask
+		if col {
+			org := board.squareAttackNum[targetIndex]
+			new := ((((org & 0b11110000) >> 4) + 1) << 4) | (org & 0b00001111)
+			board.squareAttackNum[targetIndex] = new
+		} else {
+			org := board.squareAttackNum[targetIndex]
+			new := ((org & 0b0000111) + 1) | (org & 0b11110000)
+			board.squareAttackNum[targetIndex] = new
+		}
+
+	}
+
 }
 
 func (board *board) PlayMove(Move uint16) {
@@ -243,6 +268,8 @@ func (board *board) PlayMove(Move uint16) {
 
 	board.pieceMasks[srcCol][sourceType] ^= 1 << sourceIndex
 	board.pieceMask[srcCol] ^= 1 << sourceIndex
+
+	//fullPieceMask := board.pieceMask[0] | board.pieceMask[1]
 
 	if Move&CapFlag > 0 {
 		Irev = true

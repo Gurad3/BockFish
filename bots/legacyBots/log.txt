@@ -1,0 +1,3346 @@
+2025/01/10 17:58:27 currentDepth: 6
+2025/01/10 17:58:27 PoseEvaled: 3690936
+2025/01/10 17:58:27 Eval: 15(Bot perspecitve)
+2025/01/10 17:58:28 currentDepth: 6
+2025/01/10 17:58:28 PoseEvaled: 3836322
+2025/01/10 17:58:28 Eval: 3(Bot perspecitve)
+2025/01/10 17:58:33 currentDepth: 6
+2025/01/10 17:58:33 PoseEvaled: 15010745
+2025/01/10 17:58:33 Eval: 22(Bot perspecitve)
+2025/01/10 17:58:37 currentDepth: 6
+2025/01/10 17:58:37 PoseEvaled: 15109021
+2025/01/10 17:58:37 Eval: 29(Bot perspecitve)
+2025/01/10 17:58:42 currentDepth: 6
+2025/01/10 17:58:42 PoseEvaled: 14776890
+2025/01/10 17:58:42 Eval: 41(Bot perspecitve)
+2025/01/10 17:58:46 currentDepth: 6
+2025/01/10 17:58:46 PoseEvaled: 14136186
+2025/01/10 17:58:46 Eval: 36(Bot perspecitve)
+2025/01/10 17:58:50 currentDepth: 5
+2025/01/10 17:58:50 PoseEvaled: 13952595
+2025/01/10 17:58:50 Eval: 28(Bot perspecitve)
+2025/01/10 17:58:54 currentDepth: 5
+2025/01/10 17:58:54 PoseEvaled: 13135484
+2025/01/10 17:58:54 Eval: 27(Bot perspecitve)
+2025/01/10 17:59:02 currentDepth: 5
+2025/01/10 17:59:02 PoseEvaled: 12941853
+2025/01/10 17:59:02 Eval: 20(Bot perspecitve)
+2025/01/10 17:59:10 currentDepth: 5
+2025/01/10 17:59:10 PoseEvaled: 12264738
+2025/01/10 17:59:10 Eval: 20(Bot perspecitve)
+2025/01/10 17:59:18 currentDepth: 5
+2025/01/10 17:59:18 PoseEvaled: 13746181
+2025/01/10 17:59:18 Eval: 23(Bot perspecitve)
+2025/01/10 17:59:26 currentDepth: 5
+2025/01/10 17:59:26 PoseEvaled: 14493538
+2025/01/10 17:59:26 Eval: 34(Bot perspecitve)
+2025/01/10 17:59:33 currentDepth: 5
+2025/01/10 17:59:33 PoseEvaled: 14357177
+2025/01/10 17:59:33 Eval: 31(Bot perspecitve)
+2025/01/10 17:59:41 currentDepth: 5
+2025/01/10 17:59:41 PoseEvaled: 13529984
+2025/01/10 17:59:41 Eval: 78(Bot perspecitve)
+2025/01/10 17:59:48 currentDepth: 5
+2025/01/10 17:59:48 PoseEvaled: 13506448
+2025/01/10 17:59:48 Eval: 25(Bot perspecitve)
+2025/01/10 17:59:55 currentDepth: 5
+2025/01/10 17:59:55 PoseEvaled: 13284903
+2025/01/10 17:59:55 Eval: -41(Bot perspecitve)
+2025/01/10 18:00:01 currentDepth: 5
+2025/01/10 18:00:01 PoseEvaled: 12626921
+2025/01/10 18:00:01 Eval: -26(Bot perspecitve)
+2025/01/10 18:00:08 currentDepth: 6
+2025/01/10 18:00:08 PoseEvaled: 11641125
+2025/01/10 18:00:08 Eval: -36(Bot perspecitve)
+2025/01/10 18:00:15 currentDepth: 6
+2025/01/10 18:00:15 PoseEvaled: 11186106
+2025/01/10 18:00:15 Eval: -33(Bot perspecitve)
+2025/01/10 18:00:21 currentDepth: 6
+2025/01/10 18:00:21 PoseEvaled: 11233524
+2025/01/10 18:00:21 Eval: -47(Bot perspecitve)
+2025/01/10 18:00:27 currentDepth: 6
+2025/01/10 18:00:27 PoseEvaled: 11425818
+2025/01/10 18:00:27 Eval: -55(Bot perspecitve)
+2025/01/10 18:00:33 currentDepth: 6
+2025/01/10 18:00:33 PoseEvaled: 10624589
+2025/01/10 18:00:33 Eval: -60(Bot perspecitve)
+2025/01/10 18:00:39 currentDepth: 8
+2025/01/10 18:00:39 PoseEvaled: 9794922
+2025/01/10 18:00:39 Eval: -65(Bot perspecitve)
+2025/01/10 18:00:45 currentDepth: 6
+2025/01/10 18:00:45 PoseEvaled: 9608254
+2025/01/10 18:00:45 Eval: -63(Bot perspecitve)
+2025/01/10 18:00:50 currentDepth: 6
+2025/01/10 18:00:50 PoseEvaled: 9452898
+2025/01/10 18:00:50 Eval: -82(Bot perspecitve)
+2025/01/10 18:00:56 currentDepth: 6
+2025/01/10 18:00:56 PoseEvaled: 9275689
+2025/01/10 18:00:56 Eval: -68(Bot perspecitve)
+2025/01/10 18:01:01 currentDepth: 6
+2025/01/10 18:01:01 PoseEvaled: 8990975
+2025/01/10 18:01:01 Eval: -56(Bot perspecitve)
+2025/01/10 18:01:06 currentDepth: 6
+2025/01/10 18:01:06 PoseEvaled: 8574531
+2025/01/10 18:01:06 Eval: -57(Bot perspecitve)
+2025/01/10 18:01:11 currentDepth: 6
+2025/01/10 18:01:11 PoseEvaled: 8360947
+2025/01/10 18:01:11 Eval: -85(Bot perspecitve)
+2025/01/10 18:01:16 currentDepth: 6
+2025/01/10 18:01:16 PoseEvaled: 8288303
+2025/01/10 18:01:16 Eval: -109(Bot perspecitve)
+2025/01/10 18:01:21 currentDepth: 6
+2025/01/10 18:01:21 PoseEvaled: 7913908
+2025/01/10 18:01:21 Eval: -108(Bot perspecitve)
+2025/01/10 18:01:25 currentDepth: 6
+2025/01/10 18:01:25 PoseEvaled: 7767609
+2025/01/10 18:01:25 Eval: -110(Bot perspecitve)
+2025/01/10 18:01:30 currentDepth: 6
+2025/01/10 18:01:30 PoseEvaled: 7169768
+2025/01/10 18:01:30 Eval: -137(Bot perspecitve)
+2025/01/10 18:01:34 currentDepth: 6
+2025/01/10 18:01:34 PoseEvaled: 6397991
+2025/01/10 18:01:34 Eval: -163(Bot perspecitve)
+2025/01/10 18:01:39 currentDepth: 7
+2025/01/10 18:01:39 PoseEvaled: 6479144
+2025/01/10 18:01:39 Eval: -295(Bot perspecitve)
+2025/01/10 18:01:43 currentDepth: 8
+2025/01/10 18:01:43 PoseEvaled: 7416885
+2025/01/10 18:01:43 Eval: -366(Bot perspecitve)
+2025/01/10 18:01:47 currentDepth: 7
+2025/01/10 18:01:47 PoseEvaled: 7943576
+2025/01/10 18:01:47 Eval: -390(Bot perspecitve)
+2025/01/10 18:01:51 currentDepth: 7
+2025/01/10 18:01:51 PoseEvaled: 7728901
+2025/01/10 18:01:51 Eval: -437(Bot perspecitve)
+2025/01/10 18:01:55 currentDepth: 7
+2025/01/10 18:01:55 PoseEvaled: 7423948
+2025/01/10 18:01:55 Eval: -765(Bot perspecitve)
+2025/01/10 18:01:59 currentDepth: 8
+2025/01/10 18:01:59 PoseEvaled: 8054781
+2025/01/10 18:01:59 Eval: -798(Bot perspecitve)
+2025/01/10 18:02:02 currentDepth: 9
+2025/01/10 18:02:02 PoseEvaled: 8342900
+2025/01/10 18:02:02 Eval: -867(Bot perspecitve)
+2025/01/10 18:02:06 currentDepth: 9
+2025/01/10 18:02:06 PoseEvaled: 8029700
+2025/01/10 18:02:06 Eval: -1674(Bot perspecitve)
+2025/01/10 18:02:09 currentDepth: 9
+2025/01/10 18:02:09 PoseEvaled: 8567223
+2025/01/10 18:02:09 Eval: -1719(Bot perspecitve)
+2025/01/10 18:02:11 currentDepth: 10
+2025/01/10 18:02:11 PoseEvaled: 8573676
+2025/01/10 18:02:11 Eval: -100000019(Bot perspecitve)
+2025/01/10 18:02:13 currentDepth: 11
+2025/01/10 18:02:13 PoseEvaled: 9029666
+2025/01/10 18:02:13 Eval: -100000049(Bot perspecitve)
+2025/01/10 18:02:14 currentDepth: 12
+2025/01/10 18:02:14 PoseEvaled: 9254244
+2025/01/10 18:02:14 Eval: -100000089(Bot perspecitve)
+2025/01/10 18:02:16 currentDepth: 13
+2025/01/10 18:02:16 PoseEvaled: 9287129
+2025/01/10 18:02:16 Eval: -100000099(Bot perspecitve)
+2025/01/10 18:02:17 currentDepth: 11
+2025/01/10 18:02:17 PoseEvaled: 9218845
+2025/01/10 18:02:17 Eval: -100000089(Bot perspecitve)
+2025/01/10 18:02:18 currentDepth: 6
+2025/01/10 18:02:18 PoseEvaled: 3652487
+2025/01/10 18:02:18 Eval: 29(Bot perspecitve)
+2025/01/10 18:02:19 currentDepth: 5
+2025/01/10 18:02:19 PoseEvaled: 2945808
+2025/01/10 18:02:19 Eval: -34(Bot perspecitve)
+2025/01/10 18:02:20 currentDepth: 6
+2025/01/10 18:02:20 PoseEvaled: 3551684
+2025/01/10 18:02:20 Eval: 23(Bot perspecitve)
+2025/01/10 18:02:21 currentDepth: 5
+2025/01/10 18:02:21 PoseEvaled: 3023879
+2025/01/10 18:02:21 Eval: -26(Bot perspecitve)
+2025/01/10 18:02:26 currentDepth: 6
+2025/01/10 18:02:26 PoseEvaled: 14379340
+2025/01/10 18:02:26 Eval: 19(Bot perspecitve)
+2025/01/10 18:02:30 currentDepth: 6
+2025/01/10 18:02:30 PoseEvaled: 15032587
+2025/01/10 18:02:30 Eval: -19(Bot perspecitve)
+2025/01/10 18:02:34 currentDepth: 6
+2025/01/10 18:02:34 PoseEvaled: 13968513
+2025/01/10 18:02:34 Eval: 13(Bot perspecitve)
+2025/01/10 18:02:39 currentDepth: 5
+2025/01/10 18:02:39 PoseEvaled: 14546249
+2025/01/10 18:02:39 Eval: -18(Bot perspecitve)
+2025/01/10 18:02:43 currentDepth: 6
+2025/01/10 18:02:43 PoseEvaled: 13773470
+2025/01/10 18:02:43 Eval: 8(Bot perspecitve)
+2025/01/10 18:02:47 currentDepth: 5
+2025/01/10 18:02:47 PoseEvaled: 14198647
+2025/01/10 18:02:47 Eval: -19(Bot perspecitve)
+2025/01/10 18:02:51 currentDepth: 6
+2025/01/10 18:02:51 PoseEvaled: 13724966
+2025/01/10 18:02:51 Eval: 68(Bot perspecitve)
+2025/01/10 18:02:56 currentDepth: 7
+2025/01/10 18:02:56 PoseEvaled: 13765239
+2025/01/10 18:02:56 Eval: -33(Bot perspecitve)
+2025/01/10 18:03:00 currentDepth: 7
+2025/01/10 18:03:00 PoseEvaled: 12998048
+2025/01/10 18:03:00 Eval: 43(Bot perspecitve)
+2025/01/10 18:03:04 currentDepth: 6
+2025/01/10 18:03:04 PoseEvaled: 13495883
+2025/01/10 18:03:04 Eval: -6(Bot perspecitve)
+2025/01/10 18:03:07 currentDepth: 7
+2025/01/10 18:03:07 PoseEvaled: 12687794
+2025/01/10 18:03:07 Eval: 55(Bot perspecitve)
+2025/01/10 18:03:11 currentDepth: 6
+2025/01/10 18:03:11 PoseEvaled: 13355402
+2025/01/10 18:03:11 Eval: 4(Bot perspecitve)
+2025/01/10 18:03:15 currentDepth: 6
+2025/01/10 18:03:15 PoseEvaled: 12449780
+2025/01/10 18:03:15 Eval: 50(Bot perspecitve)
+2025/01/10 18:03:19 currentDepth: 5
+2025/01/10 18:03:19 PoseEvaled: 13317643
+2025/01/10 18:03:19 Eval: 24(Bot perspecitve)
+2025/01/10 18:03:23 currentDepth: 6
+2025/01/10 18:03:23 PoseEvaled: 11070728
+2025/01/10 18:03:23 Eval: 48(Bot perspecitve)
+2025/01/10 18:03:27 currentDepth: 5
+2025/01/10 18:03:27 PoseEvaled: 11792932
+2025/01/10 18:03:27 Eval: 17(Bot perspecitve)
+2025/01/10 18:03:30 currentDepth: 6
+2025/01/10 18:03:30 PoseEvaled: 11503436
+2025/01/10 18:03:30 Eval: -19(Bot perspecitve)
+2025/01/10 18:03:34 currentDepth: 5
+2025/01/10 18:03:34 PoseEvaled: 12308351
+2025/01/10 18:03:34 Eval: 61(Bot perspecitve)
+2025/01/10 18:03:37 currentDepth: 6
+2025/01/10 18:03:37 PoseEvaled: 9900444
+2025/01/10 18:03:37 Eval: 15(Bot perspecitve)
+2025/01/10 18:03:41 currentDepth: 5
+2025/01/10 18:03:41 PoseEvaled: 11646153
+2025/01/10 18:03:41 Eval: 70(Bot perspecitve)
+2025/01/10 18:03:44 currentDepth: 6
+2025/01/10 18:03:44 PoseEvaled: 10039487
+2025/01/10 18:03:44 Eval: 8(Bot perspecitve)
+2025/01/10 18:03:48 currentDepth: 6
+2025/01/10 18:03:48 PoseEvaled: 10079698
+2025/01/10 18:03:48 Eval: 78(Bot perspecitve)
+2025/01/10 18:03:51 currentDepth: 6
+2025/01/10 18:03:51 PoseEvaled: 10069610
+2025/01/10 18:03:51 Eval: 8(Bot perspecitve)
+2025/01/10 18:03:55 currentDepth: 5
+2025/01/10 18:03:55 PoseEvaled: 11508345
+2025/01/10 18:03:55 Eval: 87(Bot perspecitve)
+2025/01/10 18:03:58 currentDepth: 6
+2025/01/10 18:03:58 PoseEvaled: 9942387
+2025/01/10 18:03:58 Eval: 7(Bot perspecitve)
+2025/01/10 18:04:01 currentDepth: 5
+2025/01/10 18:04:01 PoseEvaled: 10293294
+2025/01/10 18:04:01 Eval: 101(Bot perspecitve)
+2025/01/10 18:04:04 currentDepth: 6
+2025/01/10 18:04:04 PoseEvaled: 10082516
+2025/01/10 18:04:04 Eval: -9(Bot perspecitve)
+2025/01/10 18:04:08 currentDepth: 5
+2025/01/10 18:04:08 PoseEvaled: 10677447
+2025/01/10 18:04:08 Eval: 109(Bot perspecitve)
+2025/01/10 18:04:11 currentDepth: 6
+2025/01/10 18:04:11 PoseEvaled: 10684786
+2025/01/10 18:04:11 Eval: -17(Bot perspecitve)
+2025/01/10 18:04:14 currentDepth: 5
+2025/01/10 18:04:14 PoseEvaled: 10867647
+2025/01/10 18:04:14 Eval: 106(Bot perspecitve)
+2025/01/10 18:04:17 currentDepth: 5
+2025/01/10 18:04:17 PoseEvaled: 10517329
+2025/01/10 18:04:17 Eval: -1(Bot perspecitve)
+2025/01/10 18:04:20 currentDepth: 5
+2025/01/10 18:04:20 PoseEvaled: 10901317
+2025/01/10 18:04:20 Eval: 109(Bot perspecitve)
+2025/01/10 18:04:23 currentDepth: 5
+2025/01/10 18:04:23 PoseEvaled: 10052881
+2025/01/10 18:04:23 Eval: -4(Bot perspecitve)
+2025/01/10 18:04:26 currentDepth: 4
+2025/01/10 18:04:26 PoseEvaled: 10266061
+2025/01/10 18:04:26 Eval: 127(Bot perspecitve)
+2025/01/10 18:04:29 currentDepth: 6
+2025/01/10 18:04:29 PoseEvaled: 9898685
+2025/01/10 18:04:29 Eval: -12(Bot perspecitve)
+2025/01/10 18:04:32 currentDepth: 4
+2025/01/10 18:04:32 PoseEvaled: 8475828
+2025/01/10 18:04:32 Eval: 128(Bot perspecitve)
+2025/01/10 18:04:34 currentDepth: 5
+2025/01/10 18:04:34 PoseEvaled: 7231954
+2025/01/10 18:04:34 Eval: -11(Bot perspecitve)
+2025/01/10 18:04:37 currentDepth: 4
+2025/01/10 18:04:37 PoseEvaled: 8308986
+2025/01/10 18:04:37 Eval: 130(Bot perspecitve)
+2025/01/10 18:04:40 currentDepth: 5
+2025/01/10 18:04:40 PoseEvaled: 7990003
+2025/01/10 18:04:40 Eval: -7(Bot perspecitve)
+2025/01/10 18:04:43 currentDepth: 4
+2025/01/10 18:04:43 PoseEvaled: 8436751
+2025/01/10 18:04:43 Eval: 134(Bot perspecitve)
+2025/01/10 18:04:45 currentDepth: 5
+2025/01/10 18:04:45 PoseEvaled: 7948513
+2025/01/10 18:04:45 Eval: -15(Bot perspecitve)
+2025/01/10 18:04:48 currentDepth: 4
+2025/01/10 18:04:48 PoseEvaled: 7950142
+2025/01/10 18:04:48 Eval: 136(Bot perspecitve)
+2025/01/10 18:04:51 currentDepth: 5
+2025/01/10 18:04:51 PoseEvaled: 7866370
+2025/01/10 18:04:51 Eval: -15(Bot perspecitve)
+2025/01/10 18:04:53 currentDepth: 4
+2025/01/10 18:04:53 PoseEvaled: 8411607
+2025/01/10 18:04:53 Eval: 137(Bot perspecitve)
+2025/01/10 18:04:56 currentDepth: 5
+2025/01/10 18:04:56 PoseEvaled: 7832876
+2025/01/10 18:04:56 Eval: -12(Bot perspecitve)
+2025/01/10 18:04:58 currentDepth: 4
+2025/01/10 18:04:58 PoseEvaled: 8231844
+2025/01/10 18:04:58 Eval: 133(Bot perspecitve)
+2025/01/10 18:05:01 currentDepth: 5
+2025/01/10 18:05:01 PoseEvaled: 7315268
+2025/01/10 18:05:01 Eval: -14(Bot perspecitve)
+2025/01/10 18:05:03 currentDepth: 4
+2025/01/10 18:05:03 PoseEvaled: 7773553
+2025/01/10 18:05:03 Eval: 127(Bot perspecitve)
+2025/01/10 18:05:06 currentDepth: 5
+2025/01/10 18:05:06 PoseEvaled: 7359693
+2025/01/10 18:05:06 Eval: -51(Bot perspecitve)
+2025/01/10 18:05:08 currentDepth: 4
+2025/01/10 18:05:08 PoseEvaled: 7943340
+2025/01/10 18:05:08 Eval: 130(Bot perspecitve)
+2025/01/10 18:05:11 currentDepth: 5
+2025/01/10 18:05:11 PoseEvaled: 7795007
+2025/01/10 18:05:11 Eval: -48(Bot perspecitve)
+2025/01/10 18:05:13 currentDepth: 4
+2025/01/10 18:05:13 PoseEvaled: 8033630
+2025/01/10 18:05:13 Eval: 127(Bot perspecitve)
+2025/01/10 18:05:15 currentDepth: 5
+2025/01/10 18:05:15 PoseEvaled: 7461884
+2025/01/10 18:05:15 Eval: -19(Bot perspecitve)
+2025/01/10 18:05:18 currentDepth: 4
+2025/01/10 18:05:18 PoseEvaled: 7292827
+2025/01/10 18:05:18 Eval: 123(Bot perspecitve)
+2025/01/10 18:05:20 currentDepth: 5
+2025/01/10 18:05:20 PoseEvaled: 6652860
+2025/01/10 18:05:20 Eval: -19(Bot perspecitve)
+2025/01/10 18:05:22 currentDepth: 4
+2025/01/10 18:05:22 PoseEvaled: 7121328
+2025/01/10 18:05:22 Eval: 127(Bot perspecitve)
+2025/01/10 18:05:24 currentDepth: 6
+2025/01/10 18:05:24 PoseEvaled: 6927348
+2025/01/10 18:05:24 Eval: -29(Bot perspecitve)
+2025/01/10 18:05:26 currentDepth: 4
+2025/01/10 18:05:26 PoseEvaled: 7255238
+2025/01/10 18:05:26 Eval: 129(Bot perspecitve)
+2025/01/10 18:05:29 currentDepth: 5
+2025/01/10 18:05:29 PoseEvaled: 6889725
+2025/01/10 18:05:29 Eval: -21(Bot perspecitve)
+2025/01/10 18:05:31 currentDepth: 5
+2025/01/10 18:05:31 PoseEvaled: 7198041
+2025/01/10 18:05:31 Eval: 78(Bot perspecitve)
+2025/01/10 18:05:33 currentDepth: 6
+2025/01/10 18:05:33 PoseEvaled: 7080802
+2025/01/10 18:05:33 Eval: 21(Bot perspecitve)
+2025/01/10 18:05:35 currentDepth: 5
+2025/01/10 18:05:35 PoseEvaled: 7048543
+2025/01/10 18:05:35 Eval: 41(Bot perspecitve)
+2025/01/10 18:05:37 currentDepth: 5
+2025/01/10 18:05:37 PoseEvaled: 6854682
+2025/01/10 18:05:37 Eval: 50(Bot perspecitve)
+2025/01/10 18:05:39 currentDepth: 4
+2025/01/10 18:05:39 PoseEvaled: 6962460
+2025/01/10 18:05:39 Eval: 38(Bot perspecitve)
+2025/01/10 18:05:41 currentDepth: 5
+2025/01/10 18:05:41 PoseEvaled: 6553178
+2025/01/10 18:05:41 Eval: 66(Bot perspecitve)
+2025/01/10 18:05:43 currentDepth: 4
+2025/01/10 18:05:43 PoseEvaled: 6772087
+2025/01/10 18:05:43 Eval: -5(Bot perspecitve)
+2025/01/10 18:05:45 currentDepth: 6
+2025/01/10 18:05:45 PoseEvaled: 6374600
+2025/01/10 18:05:45 Eval: 98(Bot perspecitve)
+2025/01/10 18:05:47 currentDepth: 5
+2025/01/10 18:05:47 PoseEvaled: 6492319
+2025/01/10 18:05:47 Eval: -28(Bot perspecitve)
+2025/01/10 18:05:49 currentDepth: 6
+2025/01/10 18:05:49 PoseEvaled: 6373222
+2025/01/10 18:05:49 Eval: 111(Bot perspecitve)
+2025/01/10 18:05:51 currentDepth: 5
+2025/01/10 18:05:51 PoseEvaled: 6354842
+2025/01/10 18:05:51 Eval: -69(Bot perspecitve)
+2025/01/10 18:05:52 currentDepth: 6
+2025/01/10 18:05:52 PoseEvaled: 5952170
+2025/01/10 18:05:52 Eval: 86(Bot perspecitve)
+2025/01/10 18:05:54 currentDepth: 5
+2025/01/10 18:05:54 PoseEvaled: 5969862
+2025/01/10 18:05:54 Eval: -41(Bot perspecitve)
+2025/01/10 18:05:56 currentDepth: 6
+2025/01/10 18:05:56 PoseEvaled: 5746024
+2025/01/10 18:05:56 Eval: 110(Bot perspecitve)
+2025/01/10 18:05:58 currentDepth: 6
+2025/01/10 18:05:58 PoseEvaled: 5856212
+2025/01/10 18:05:58 Eval: -59(Bot perspecitve)
+2025/01/10 18:06:00 currentDepth: 6
+2025/01/10 18:06:00 PoseEvaled: 5750816
+2025/01/10 18:06:00 Eval: 104(Bot perspecitve)
+2025/01/10 18:06:01 currentDepth: 5
+2025/01/10 18:06:01 PoseEvaled: 5903139
+2025/01/10 18:06:01 Eval: -59(Bot perspecitve)
+2025/01/10 18:06:03 currentDepth: 6
+2025/01/10 18:06:03 PoseEvaled: 5637608
+2025/01/10 18:06:03 Eval: 147(Bot perspecitve)
+2025/01/10 18:06:05 currentDepth: 5
+2025/01/10 18:06:05 PoseEvaled: 5589567
+2025/01/10 18:06:05 Eval: -100(Bot perspecitve)
+2025/01/10 18:06:06 currentDepth: 5
+2025/01/10 18:06:06 PoseEvaled: 5586698
+2025/01/10 18:06:06 Eval: 201(Bot perspecitve)
+2025/01/10 18:06:08 currentDepth: 6
+2025/01/10 18:06:08 PoseEvaled: 5437969
+2025/01/10 18:06:08 Eval: -152(Bot perspecitve)
+2025/01/10 18:06:10 currentDepth: 6
+2025/01/10 18:06:10 PoseEvaled: 5298911
+2025/01/10 18:06:10 Eval: 198(Bot perspecitve)
+2025/01/10 18:06:11 currentDepth: 5
+2025/01/10 18:06:11 PoseEvaled: 5344608
+2025/01/10 18:06:11 Eval: -156(Bot perspecitve)
+2025/01/10 18:06:13 currentDepth: 6
+2025/01/10 18:06:13 PoseEvaled: 5060154
+2025/01/10 18:06:13 Eval: 198(Bot perspecitve)
+2025/01/10 18:06:14 currentDepth: 5
+2025/01/10 18:06:14 PoseEvaled: 5218905
+2025/01/10 18:06:14 Eval: -174(Bot perspecitve)
+2025/01/10 18:06:16 currentDepth: 6
+2025/01/10 18:06:16 PoseEvaled: 4318811
+2025/01/10 18:06:16 Eval: 266(Bot perspecitve)
+2025/01/10 18:06:17 currentDepth: 6
+2025/01/10 18:06:17 PoseEvaled: 5023850
+2025/01/10 18:06:17 Eval: -221(Bot perspecitve)
+2025/01/10 18:06:19 currentDepth: 7
+2025/01/10 18:06:19 PoseEvaled: 5393739
+2025/01/10 18:06:19 Eval: 286(Bot perspecitve)
+2025/01/10 18:06:20 currentDepth: 7
+2025/01/10 18:06:20 PoseEvaled: 5342110
+2025/01/10 18:06:20 Eval: -236(Bot perspecitve)
+2025/01/10 18:06:22 currentDepth: 7
+2025/01/10 18:06:22 PoseEvaled: 5139673
+2025/01/10 18:06:22 Eval: 303(Bot perspecitve)
+2025/01/10 18:06:23 currentDepth: 7
+2025/01/10 18:06:23 PoseEvaled: 5335140
+2025/01/10 18:06:23 Eval: -252(Bot perspecitve)
+2025/01/10 18:06:25 currentDepth: 7
+2025/01/10 18:06:25 PoseEvaled: 4817312
+2025/01/10 18:06:25 Eval: 305(Bot perspecitve)
+2025/01/10 18:06:26 currentDepth: 7
+2025/01/10 18:06:26 PoseEvaled: 5002777
+2025/01/10 18:06:26 Eval: -282(Bot perspecitve)
+2025/01/10 18:06:28 currentDepth: 9
+2025/01/10 18:06:28 PoseEvaled: 5147873
+2025/01/10 18:06:28 Eval: 360(Bot perspecitve)
+2025/01/10 18:06:29 currentDepth: 8
+2025/01/10 18:06:29 PoseEvaled: 5333896
+2025/01/10 18:06:29 Eval: -298(Bot perspecitve)
+2025/01/10 18:06:30 currentDepth: 9
+2025/01/10 18:06:30 PoseEvaled: 4987116
+2025/01/10 18:06:30 Eval: 361(Bot perspecitve)
+2025/01/10 18:06:32 currentDepth: 8
+2025/01/10 18:06:32 PoseEvaled: 5291118
+2025/01/10 18:06:32 Eval: -298(Bot perspecitve)
+2025/01/10 18:06:33 currentDepth: 9
+2025/01/10 18:06:33 PoseEvaled: 4818536
+2025/01/10 18:06:33 Eval: 365(Bot perspecitve)
+2025/01/10 18:06:34 currentDepth: 9
+2025/01/10 18:06:34 PoseEvaled: 5148321
+2025/01/10 18:06:34 Eval: -301(Bot perspecitve)
+2025/01/10 18:06:36 currentDepth: 10
+2025/01/10 18:06:36 PoseEvaled: 4836840
+2025/01/10 18:06:36 Eval: 373(Bot perspecitve)
+2025/01/10 18:06:37 currentDepth: 8
+2025/01/10 18:06:37 PoseEvaled: 5109771
+2025/01/10 18:06:37 Eval: -303(Bot perspecitve)
+2025/01/10 18:06:38 currentDepth: 10
+2025/01/10 18:06:38 PoseEvaled: 4810572
+2025/01/10 18:06:38 Eval: 373(Bot perspecitve)
+2025/01/10 18:06:39 currentDepth: 8
+2025/01/10 18:06:39 PoseEvaled: 4956815
+2025/01/10 18:06:39 Eval: -301(Bot perspecitve)
+2025/01/10 18:06:41 currentDepth: 9
+2025/01/10 18:06:41 PoseEvaled: 4491896
+2025/01/10 18:06:41 Eval: 373(Bot perspecitve)
+2025/01/10 18:06:42 currentDepth: 8
+2025/01/10 18:06:42 PoseEvaled: 4808052
+2025/01/10 18:06:42 Eval: -301(Bot perspecitve)
+2025/01/10 18:06:43 currentDepth: 10
+2025/01/10 18:06:43 PoseEvaled: 4495604
+2025/01/10 18:06:43 Eval: 372(Bot perspecitve)
+2025/01/10 18:06:44 currentDepth: 8
+2025/01/10 18:06:44 PoseEvaled: 4715798
+2025/01/10 18:06:44 Eval: -297(Bot perspecitve)
+2025/01/10 18:06:45 currentDepth: 9
+2025/01/10 18:06:45 PoseEvaled: 4375994
+2025/01/10 18:06:45 Eval: 373(Bot perspecitve)
+2025/01/10 18:06:47 currentDepth: 8
+2025/01/10 18:06:47 PoseEvaled: 4521234
+2025/01/10 18:06:47 Eval: -300(Bot perspecitve)
+2025/01/10 18:06:48 currentDepth: 9
+2025/01/10 18:06:48 PoseEvaled: 4117023
+2025/01/10 18:06:48 Eval: 373(Bot perspecitve)
+2025/01/10 18:06:49 currentDepth: 9
+2025/01/10 18:06:49 PoseEvaled: 4484093
+2025/01/10 18:06:49 Eval: -303(Bot perspecitve)
+2025/01/10 18:06:50 currentDepth: 10
+2025/01/10 18:06:50 PoseEvaled: 4162453
+2025/01/10 18:06:50 Eval: 373(Bot perspecitve)
+2025/01/10 18:06:51 currentDepth: 8
+2025/01/10 18:06:51 PoseEvaled: 4443049
+2025/01/10 18:06:51 Eval: -310(Bot perspecitve)
+2025/01/10 18:06:52 currentDepth: 9
+2025/01/10 18:06:52 PoseEvaled: 4053282
+2025/01/10 18:06:52 Eval: 382(Bot perspecitve)
+2025/01/10 18:06:53 currentDepth: 9
+2025/01/10 18:06:53 PoseEvaled: 4214143
+2025/01/10 18:06:53 Eval: -307(Bot perspecitve)
+2025/01/10 18:06:54 currentDepth: 9
+2025/01/10 18:06:54 PoseEvaled: 3929204
+2025/01/10 18:06:54 Eval: 383(Bot perspecitve)
+2025/01/10 18:06:55 currentDepth: 9
+2025/01/10 18:06:55 PoseEvaled: 4294208
+2025/01/10 18:06:55 Eval: -326(Bot perspecitve)
+2025/01/10 18:06:56 currentDepth: 9
+2025/01/10 18:06:56 PoseEvaled: 3431280
+2025/01/10 18:06:56 Eval: 395(Bot perspecitve)
+2025/01/10 18:06:57 currentDepth: 8
+2025/01/10 18:06:57 PoseEvaled: 3759800
+2025/01/10 18:06:57 Eval: -363(Bot perspecitve)
+2025/01/10 18:06:58 currentDepth: 9
+2025/01/10 18:06:58 PoseEvaled: 3897095
+2025/01/10 18:06:58 Eval: 598(Bot perspecitve)
+2025/01/10 18:06:59 currentDepth: 8
+2025/01/10 18:06:59 PoseEvaled: 4161667
+2025/01/10 18:06:59 Eval: -548(Bot perspecitve)
+2025/01/10 18:07:00 currentDepth: 10
+2025/01/10 18:07:00 PoseEvaled: 3842904
+2025/01/10 18:07:00 Eval: 644(Bot perspecitve)
+2025/01/10 18:07:01 currentDepth: 7
+2025/01/10 18:07:01 PoseEvaled: 4141402
+2025/01/10 18:07:01 Eval: -573(Bot perspecitve)
+2025/01/10 18:07:02 currentDepth: 8
+2025/01/10 18:07:02 PoseEvaled: 3787989
+2025/01/10 18:07:02 Eval: 688(Bot perspecitve)
+2025/01/10 18:07:03 currentDepth: 8
+2025/01/10 18:07:03 PoseEvaled: 4101829
+2025/01/10 18:07:03 Eval: -652(Bot perspecitve)
+2025/01/10 18:07:04 currentDepth: 9
+2025/01/10 18:07:04 PoseEvaled: 3693366
+2025/01/10 18:07:04 Eval: 763(Bot perspecitve)
+2025/01/10 18:07:05 currentDepth: 7
+2025/01/10 18:07:05 PoseEvaled: 3633964
+2025/01/10 18:07:05 Eval: -648(Bot perspecitve)
+2025/01/10 18:07:06 currentDepth: 8
+2025/01/10 18:07:06 PoseEvaled: 3379040
+2025/01/10 18:07:06 Eval: 763(Bot perspecitve)
+2025/01/10 18:07:07 currentDepth: 7
+2025/01/10 18:07:07 PoseEvaled: 3495580
+2025/01/10 18:07:07 Eval: -703(Bot perspecitve)
+2025/01/10 18:07:08 currentDepth: 8
+2025/01/10 18:07:08 PoseEvaled: 3317401
+2025/01/10 18:07:08 Eval: 790(Bot perspecitve)
+2025/01/10 18:07:09 currentDepth: 7
+2025/01/10 18:07:09 PoseEvaled: 3461728
+2025/01/10 18:07:09 Eval: -718(Bot perspecitve)
+2025/01/10 18:07:10 currentDepth: 8
+2025/01/10 18:07:10 PoseEvaled: 3198421
+2025/01/10 18:07:10 Eval: 861(Bot perspecitve)
+2025/01/10 18:07:10 currentDepth: 8
+2025/01/10 18:07:10 PoseEvaled: 3343628
+2025/01/10 18:07:10 Eval: -1084(Bot perspecitve)
+2025/01/10 18:07:11 currentDepth: 9
+2025/01/10 18:07:11 PoseEvaled: 3200341
+2025/01/10 18:07:11 Eval: 1593(Bot perspecitve)
+2025/01/10 18:07:12 currentDepth: 8
+2025/01/10 18:07:12 PoseEvaled: 3285514
+2025/01/10 18:07:12 Eval: -1173(Bot perspecitve)
+2025/01/10 18:07:13 Found Forced mate
+2025/01/10 18:07:14 currentDepth: 8
+2025/01/10 18:07:14 PoseEvaled: 3382402
+2025/01/10 18:07:14 Eval: -1684(Bot perspecitve)
+2025/01/10 18:07:14 Found Forced mate
+2025/01/10 18:07:14 currentDepth: 7
+2025/01/10 18:07:14 PoseEvaled: 3470315
+2025/01/10 18:07:14 Eval: -99999999(Bot perspecitve)
+2025/01/10 18:07:14 Found Forced mate
+2025/01/10 18:07:15 currentDepth: 8
+2025/01/10 18:07:15 PoseEvaled: 3606849
+2025/01/10 18:07:15 Eval: -100000019(Bot perspecitve)
+2025/01/10 18:07:15 Found Forced mate
+2025/01/10 18:07:16 currentDepth: 9
+2025/01/10 18:07:16 PoseEvaled: 3639937
+2025/01/10 18:07:16 Eval: -100000049(Bot perspecitve)
+2025/01/10 18:07:16 Found Forced mate
+2025/01/10 18:07:17 currentDepth: 10
+2025/01/10 18:07:17 PoseEvaled: 3583936
+2025/01/10 18:07:17 Eval: -100000079(Bot perspecitve)
+2025/01/10 18:07:17 Found Forced mate
+2025/01/10 18:07:18 currentDepth: 7
+2025/01/10 18:07:18 PoseEvaled: 3595753
+2025/01/10 18:07:18 Eval: 15(Bot perspecitve)
+2025/01/10 18:07:19 currentDepth: 5
+2025/01/10 18:07:19 PoseEvaled: 2877913
+2025/01/10 18:07:19 Eval: -21(Bot perspecitve)
+2025/01/10 18:07:20 currentDepth: 6
+2025/01/10 18:07:20 PoseEvaled: 3632096
+2025/01/10 18:07:20 Eval: 25(Bot perspecitve)
+2025/01/10 18:07:21 currentDepth: 5
+2025/01/10 18:07:21 PoseEvaled: 2862257
+2025/01/10 18:07:21 Eval: -43(Bot perspecitve)
+2025/01/10 18:07:25 currentDepth: 6
+2025/01/10 18:07:25 PoseEvaled: 14867464
+2025/01/10 18:07:25 Eval: 21(Bot perspecitve)
+2025/01/10 18:07:30 currentDepth: 6
+2025/01/10 18:07:30 PoseEvaled: 14560964
+2025/01/10 18:07:30 Eval: -16(Bot perspecitve)
+2025/01/10 18:07:34 currentDepth: 6
+2025/01/10 18:07:34 PoseEvaled: 15073773
+2025/01/10 18:07:34 Eval: 28(Bot perspecitve)
+2025/01/10 18:07:39 currentDepth: 4
+2025/01/10 18:07:39 PoseEvaled: 14119763
+2025/01/10 18:07:39 Eval: -6(Bot perspecitve)
+2025/01/10 18:07:43 currentDepth: 5
+2025/01/10 18:07:43 PoseEvaled: 15274869
+2025/01/10 18:07:43 Eval: 26(Bot perspecitve)
+2025/01/10 18:07:47 currentDepth: 5
+2025/01/10 18:07:47 PoseEvaled: 13255402
+2025/01/10 18:07:47 Eval: -42(Bot perspecitve)
+2025/01/10 18:07:51 currentDepth: 5
+2025/01/10 18:07:51 PoseEvaled: 14571132
+2025/01/10 18:07:51 Eval: 43(Bot perspecitve)
+2025/01/10 18:07:55 currentDepth: 4
+2025/01/10 18:07:55 PoseEvaled: 13111672
+2025/01/10 18:07:55 Eval: -11(Bot perspecitve)
+2025/01/10 18:07:59 currentDepth: 6
+2025/01/10 18:07:59 PoseEvaled: 13154672
+2025/01/10 18:07:59 Eval: 50(Bot perspecitve)
+2025/01/10 18:08:03 currentDepth: 4
+2025/01/10 18:08:03 PoseEvaled: 13252942
+2025/01/10 18:08:03 Eval: 12(Bot perspecitve)
+2025/01/10 18:08:07 currentDepth: 5
+2025/01/10 18:08:07 PoseEvaled: 13385888
+2025/01/10 18:08:07 Eval: 61(Bot perspecitve)
+2025/01/10 18:08:11 currentDepth: 4
+2025/01/10 18:08:11 PoseEvaled: 13225414
+2025/01/10 18:08:11 Eval: -34(Bot perspecitve)
+2025/01/10 18:08:15 currentDepth: 6
+2025/01/10 18:08:15 PoseEvaled: 13584773
+2025/01/10 18:08:15 Eval: 57(Bot perspecitve)
+2025/01/10 18:08:19 currentDepth: 4
+2025/01/10 18:08:19 PoseEvaled: 12997782
+2025/01/10 18:08:19 Eval: -27(Bot perspecitve)
+2025/01/10 18:08:23 currentDepth: 8
+2025/01/10 18:08:23 PoseEvaled: 13944424
+2025/01/10 18:08:23 Eval: 63(Bot perspecitve)
+2025/01/10 18:08:26 currentDepth: 5
+2025/01/10 18:08:26 PoseEvaled: 12979410
+2025/01/10 18:08:26 Eval: 13(Bot perspecitve)
+2025/01/10 18:08:30 currentDepth: 6
+2025/01/10 18:08:30 PoseEvaled: 13659007
+2025/01/10 18:08:30 Eval: 67(Bot perspecitve)
+2025/01/10 18:08:34 currentDepth: 4
+2025/01/10 18:08:34 PoseEvaled: 12876768
+2025/01/10 18:08:34 Eval: 31(Bot perspecitve)
+2025/01/10 18:08:37 currentDepth: 6
+2025/01/10 18:08:37 PoseEvaled: 13492110
+2025/01/10 18:08:37 Eval: 59(Bot perspecitve)
+2025/01/10 18:08:41 currentDepth: 4
+2025/01/10 18:08:41 PoseEvaled: 12691285
+2025/01/10 18:08:41 Eval: 8(Bot perspecitve)
+2025/01/10 18:08:44 currentDepth: 5
+2025/01/10 18:08:44 PoseEvaled: 13949501
+2025/01/10 18:08:44 Eval: 76(Bot perspecitve)
+2025/01/10 18:08:48 currentDepth: 5
+2025/01/10 18:08:48 PoseEvaled: 12461751
+2025/01/10 18:08:48 Eval: 23(Bot perspecitve)
+2025/01/10 18:08:51 currentDepth: 5
+2025/01/10 18:08:51 PoseEvaled: 13758153
+2025/01/10 18:08:51 Eval: 53(Bot perspecitve)
+2025/01/10 18:08:54 currentDepth: 4
+2025/01/10 18:08:54 PoseEvaled: 12686982
+2025/01/10 18:08:54 Eval: 53(Bot perspecitve)
+2025/01/10 18:08:58 currentDepth: 5
+2025/01/10 18:08:58 PoseEvaled: 13939441
+2025/01/10 18:08:58 Eval: 43(Bot perspecitve)
+2025/01/10 18:09:01 currentDepth: 4
+2025/01/10 18:09:01 PoseEvaled: 11995641
+2025/01/10 18:09:01 Eval: 30(Bot perspecitve)
+2025/01/10 18:09:04 currentDepth: 5
+2025/01/10 18:09:04 PoseEvaled: 13345337
+2025/01/10 18:09:04 Eval: 46(Bot perspecitve)
+2025/01/10 18:09:07 currentDepth: 4
+2025/01/10 18:09:07 PoseEvaled: 12007644
+2025/01/10 18:09:07 Eval: 6(Bot perspecitve)
+2025/01/10 18:09:10 currentDepth: 4
+2025/01/10 18:09:10 PoseEvaled: 13459781
+2025/01/10 18:09:10 Eval: 73(Bot perspecitve)
+2025/01/10 18:09:13 currentDepth: 5
+2025/01/10 18:09:13 PoseEvaled: 11821453
+2025/01/10 18:09:13 Eval: -25(Bot perspecitve)
+2025/01/10 18:09:17 currentDepth: 4
+2025/01/10 18:09:17 PoseEvaled: 12876989
+2025/01/10 18:09:17 Eval: 84(Bot perspecitve)
+2025/01/10 18:09:20 currentDepth: 4
+2025/01/10 18:09:20 PoseEvaled: 11332630
+2025/01/10 18:09:20 Eval: -71(Bot perspecitve)
+2025/01/10 18:09:23 currentDepth: 5
+2025/01/10 18:09:23 PoseEvaled: 11919612
+2025/01/10 18:09:23 Eval: 135(Bot perspecitve)
+2025/01/10 18:09:26 currentDepth: 4
+2025/01/10 18:09:26 PoseEvaled: 11322404
+2025/01/10 18:09:26 Eval: -108(Bot perspecitve)
+2025/01/10 18:09:28 currentDepth: 5
+2025/01/10 18:09:28 PoseEvaled: 11734186
+2025/01/10 18:09:28 Eval: 155(Bot perspecitve)
+2025/01/10 18:09:31 currentDepth: 4
+2025/01/10 18:09:31 PoseEvaled: 11085281
+2025/01/10 18:09:31 Eval: -173(Bot perspecitve)
+2025/01/10 18:09:34 currentDepth: 5
+2025/01/10 18:09:34 PoseEvaled: 11862922
+2025/01/10 18:09:34 Eval: 178(Bot perspecitve)
+2025/01/10 18:09:37 currentDepth: 4
+2025/01/10 18:09:37 PoseEvaled: 10162607
+2025/01/10 18:09:37 Eval: -202(Bot perspecitve)
+2025/01/10 18:09:40 currentDepth: 5
+2025/01/10 18:09:40 PoseEvaled: 11124293
+2025/01/10 18:09:40 Eval: 157(Bot perspecitve)
+2025/01/10 18:09:42 currentDepth: 5
+2025/01/10 18:09:42 PoseEvaled: 9792125
+2025/01/10 18:09:42 Eval: -75(Bot perspecitve)
+2025/01/10 18:09:45 currentDepth: 5
+2025/01/10 18:09:45 PoseEvaled: 10564127
+2025/01/10 18:09:45 Eval: 115(Bot perspecitve)
+2025/01/10 18:09:48 currentDepth: 5
+2025/01/10 18:09:48 PoseEvaled: 9441548
+2025/01/10 18:09:48 Eval: -40(Bot perspecitve)
+2025/01/10 18:09:50 currentDepth: 6
+2025/01/10 18:09:50 PoseEvaled: 9972419
+2025/01/10 18:09:50 Eval: 99(Bot perspecitve)
+2025/01/10 18:09:53 currentDepth: 5
+2025/01/10 18:09:53 PoseEvaled: 9212663
+2025/01/10 18:09:53 Eval: 82(Bot perspecitve)
+2025/01/10 18:09:56 currentDepth: 8
+2025/01/10 18:09:56 PoseEvaled: 9475893
+2025/01/10 18:09:56 Eval: 112(Bot perspecitve)
+2025/01/10 18:09:58 currentDepth: 6
+2025/01/10 18:09:58 PoseEvaled: 9007850
+2025/01/10 18:09:58 Eval: 75(Bot perspecitve)
+2025/01/10 18:10:01 currentDepth: 6
+2025/01/10 18:10:01 PoseEvaled: 9252349
+2025/01/10 18:10:01 Eval: 114(Bot perspecitve)
+2025/01/10 18:10:03 currentDepth: 7
+2025/01/10 18:10:03 PoseEvaled: 8400916
+2025/01/10 18:10:03 Eval: 65(Bot perspecitve)
+2025/01/10 18:10:06 currentDepth: 6
+2025/01/10 18:10:06 PoseEvaled: 9008010
+2025/01/10 18:10:06 Eval: 125(Bot perspecitve)
+2025/01/10 18:10:08 currentDepth: 6
+2025/01/10 18:10:08 PoseEvaled: 8476219
+2025/01/10 18:10:08 Eval: 66(Bot perspecitve)
+2025/01/10 18:10:10 currentDepth: 6
+2025/01/10 18:10:10 PoseEvaled: 9540060
+2025/01/10 18:10:10 Eval: 120(Bot perspecitve)
+2025/01/10 18:10:13 currentDepth: 5
+2025/01/10 18:10:13 PoseEvaled: 8587950
+2025/01/10 18:10:13 Eval: 70(Bot perspecitve)
+2025/01/10 18:10:15 currentDepth: 6
+2025/01/10 18:10:15 PoseEvaled: 9248755
+2025/01/10 18:10:15 Eval: 130(Bot perspecitve)
+2025/01/10 18:10:17 currentDepth: 6
+2025/01/10 18:10:17 PoseEvaled: 8296729
+2025/01/10 18:10:17 Eval: 86(Bot perspecitve)
+2025/01/10 18:10:20 currentDepth: 6
+2025/01/10 18:10:20 PoseEvaled: 8803127
+2025/01/10 18:10:20 Eval: 103(Bot perspecitve)
+2025/01/10 18:10:22 currentDepth: 6
+2025/01/10 18:10:22 PoseEvaled: 8152081
+2025/01/10 18:10:22 Eval: 87(Bot perspecitve)
+2025/01/10 18:10:24 currentDepth: 6
+2025/01/10 18:10:24 PoseEvaled: 8539641
+2025/01/10 18:10:24 Eval: 111(Bot perspecitve)
+2025/01/10 18:10:26 currentDepth: 5
+2025/01/10 18:10:26 PoseEvaled: 8084459
+2025/01/10 18:10:26 Eval: 60(Bot perspecitve)
+2025/01/10 18:10:28 currentDepth: 6
+2025/01/10 18:10:28 PoseEvaled: 8168279
+2025/01/10 18:10:28 Eval: 128(Bot perspecitve)
+2025/01/10 18:10:30 currentDepth: 5
+2025/01/10 18:10:30 PoseEvaled: 7850644
+2025/01/10 18:10:30 Eval: 41(Bot perspecitve)
+2025/01/10 18:10:33 currentDepth: 6
+2025/01/10 18:10:33 PoseEvaled: 8002194
+2025/01/10 18:10:33 Eval: 106(Bot perspecitve)
+2025/01/10 18:10:35 currentDepth: 5
+2025/01/10 18:10:35 PoseEvaled: 7629783
+2025/01/10 18:10:35 Eval: 36(Bot perspecitve)
+2025/01/10 18:10:37 currentDepth: 6
+2025/01/10 18:10:37 PoseEvaled: 7568701
+2025/01/10 18:10:37 Eval: 131(Bot perspecitve)
+2025/01/10 18:10:39 currentDepth: 6
+2025/01/10 18:10:39 PoseEvaled: 7625791
+2025/01/10 18:10:39 Eval: 21(Bot perspecitve)
+2025/01/10 18:10:41 currentDepth: 7
+2025/01/10 18:10:41 PoseEvaled: 7812932
+2025/01/10 18:10:41 Eval: 121(Bot perspecitve)
+2025/01/10 18:10:43 currentDepth: 7
+2025/01/10 18:10:43 PoseEvaled: 7603679
+2025/01/10 18:10:43 Eval: 28(Bot perspecitve)
+2025/01/10 18:10:45 currentDepth: 7
+2025/01/10 18:10:45 PoseEvaled: 7687947
+2025/01/10 18:10:45 Eval: 121(Bot perspecitve)
+2025/01/10 18:10:47 currentDepth: 6
+2025/01/10 18:10:47 PoseEvaled: 7388710
+2025/01/10 18:10:47 Eval: 45(Bot perspecitve)
+2025/01/10 18:10:48 currentDepth: 7
+2025/01/10 18:10:48 PoseEvaled: 7324627
+2025/01/10 18:10:48 Eval: 122(Bot perspecitve)
+2025/01/10 18:10:50 currentDepth: 6
+2025/01/10 18:10:50 PoseEvaled: 6850581
+2025/01/10 18:10:50 Eval: 34(Bot perspecitve)
+2025/01/10 18:10:52 currentDepth: 6
+2025/01/10 18:10:52 PoseEvaled: 6458837
+2025/01/10 18:10:52 Eval: 129(Bot perspecitve)
+2025/01/10 18:10:54 currentDepth: 6
+2025/01/10 18:10:54 PoseEvaled: 6238447
+2025/01/10 18:10:54 Eval: -5(Bot perspecitve)
+2025/01/10 18:10:56 currentDepth: 6
+2025/01/10 18:10:56 PoseEvaled: 5987513
+2025/01/10 18:10:56 Eval: 131(Bot perspecitve)
+2025/01/10 18:10:58 currentDepth: 6
+2025/01/10 18:10:58 PoseEvaled: 6377413
+2025/01/10 18:10:58 Eval: 25(Bot perspecitve)
+2025/01/10 18:10:59 currentDepth: 6
+2025/01/10 18:10:59 PoseEvaled: 5874581
+2025/01/10 18:10:59 Eval: 138(Bot perspecitve)
+2025/01/10 18:11:01 currentDepth: 8
+2025/01/10 18:11:01 PoseEvaled: 6118718
+2025/01/10 18:11:01 Eval: 22(Bot perspecitve)
+2025/01/10 18:11:03 currentDepth: 7
+2025/01/10 18:11:03 PoseEvaled: 5435099
+2025/01/10 18:11:03 Eval: 75(Bot perspecitve)
+2025/01/10 18:11:04 currentDepth: 7
+2025/01/10 18:11:04 PoseEvaled: 5542177
+2025/01/10 18:11:04 Eval: -39(Bot perspecitve)
+2025/01/10 18:11:06 currentDepth: 11
+2025/01/10 18:11:06 PoseEvaled: 6063249
+2025/01/10 18:11:06 Eval: 77(Bot perspecitve)
+2025/01/10 18:11:08 currentDepth: 7
+2025/01/10 18:11:08 PoseEvaled: 6229520
+2025/01/10 18:11:08 Eval: -36(Bot perspecitve)
+2025/01/10 18:11:09 currentDepth: 8
+2025/01/10 18:11:09 PoseEvaled: 5836550
+2025/01/10 18:11:09 Eval: 120(Bot perspecitve)
+2025/01/10 18:11:11 currentDepth: 10
+2025/01/10 18:11:11 PoseEvaled: 6194087
+2025/01/10 18:11:11 Eval: -42(Bot perspecitve)
+2025/01/10 18:11:13 currentDepth: 8
+2025/01/10 18:11:13 PoseEvaled: 6289254
+2025/01/10 18:11:13 Eval: 124(Bot perspecitve)
+2025/01/10 18:11:14 currentDepth: 10
+2025/01/10 18:11:14 PoseEvaled: 6062896
+2025/01/10 18:11:14 Eval: -43(Bot perspecitve)
+2025/01/10 18:11:16 currentDepth: 8
+2025/01/10 18:11:16 PoseEvaled: 5876054
+2025/01/10 18:11:16 Eval: 129(Bot perspecitve)
+2025/01/10 18:11:17 currentDepth: 8
+2025/01/10 18:11:17 PoseEvaled: 5796800
+2025/01/10 18:11:17 Eval: -59(Bot perspecitve)
+2025/01/10 18:11:19 currentDepth: 9
+2025/01/10 18:11:19 PoseEvaled: 5782240
+2025/01/10 18:11:19 Eval: 190(Bot perspecitve)
+2025/01/10 18:11:20 currentDepth: 8
+2025/01/10 18:11:20 PoseEvaled: 5788564
+2025/01/10 18:11:20 Eval: -29(Bot perspecitve)
+2025/01/10 18:11:22 currentDepth: 9
+2025/01/10 18:11:22 PoseEvaled: 5774556
+2025/01/10 18:11:22 Eval: 190(Bot perspecitve)
+2025/01/10 18:11:23 currentDepth: 8
+2025/01/10 18:11:23 PoseEvaled: 5832259
+2025/01/10 18:11:23 Eval: -40(Bot perspecitve)
+2025/01/10 18:11:25 currentDepth: 9
+2025/01/10 18:11:25 PoseEvaled: 5617297
+2025/01/10 18:11:25 Eval: 206(Bot perspecitve)
+2025/01/10 18:11:26 currentDepth: 8
+2025/01/10 18:11:26 PoseEvaled: 5719032
+2025/01/10 18:11:26 Eval: -36(Bot perspecitve)
+2025/01/10 18:11:27 currentDepth: 10
+2025/01/10 18:11:27 PoseEvaled: 5442533
+2025/01/10 18:11:27 Eval: 237(Bot perspecitve)
+2025/01/10 18:11:29 currentDepth: 8
+2025/01/10 18:11:29 PoseEvaled: 5416753
+2025/01/10 18:11:29 Eval: -36(Bot perspecitve)
+2025/01/10 18:11:30 currentDepth: 9
+2025/01/10 18:11:30 PoseEvaled: 5320142
+2025/01/10 18:11:30 Eval: 273(Bot perspecitve)
+2025/01/10 18:11:31 currentDepth: 8
+2025/01/10 18:11:31 PoseEvaled: 5494875
+2025/01/10 18:11:31 Eval: -51(Bot perspecitve)
+2025/01/10 18:11:33 currentDepth: 9
+2025/01/10 18:11:33 PoseEvaled: 5460780
+2025/01/10 18:11:33 Eval: 321(Bot perspecitve)
+2025/01/10 18:11:34 currentDepth: 8
+2025/01/10 18:11:34 PoseEvaled: 5335572
+2025/01/10 18:11:34 Eval: -159(Bot perspecitve)
+2025/01/10 18:11:35 currentDepth: 9
+2025/01/10 18:11:35 PoseEvaled: 5077099
+2025/01/10 18:11:35 Eval: 412(Bot perspecitve)
+2025/01/10 18:11:37 currentDepth: 7
+2025/01/10 18:11:37 PoseEvaled: 5099295
+2025/01/10 18:11:37 Eval: -155(Bot perspecitve)
+2025/01/10 18:11:38 currentDepth: 8
+2025/01/10 18:11:38 PoseEvaled: 5201144
+2025/01/10 18:11:38 Eval: 420(Bot perspecitve)
+2025/01/10 18:11:39 currentDepth: 7
+2025/01/10 18:11:39 PoseEvaled: 4847644
+2025/01/10 18:11:39 Eval: -368(Bot perspecitve)
+2025/01/10 18:11:40 currentDepth: 9
+2025/01/10 18:11:40 PoseEvaled: 5020597
+2025/01/10 18:11:40 Eval: 525(Bot perspecitve)
+2025/01/10 18:11:42 currentDepth: 7
+2025/01/10 18:11:42 PoseEvaled: 4793685
+2025/01/10 18:11:42 Eval: -423(Bot perspecitve)
+2025/01/10 18:11:43 currentDepth: 8
+2025/01/10 18:11:43 PoseEvaled: 4610764
+2025/01/10 18:11:43 Eval: 672(Bot perspecitve)
+2025/01/10 18:11:44 currentDepth: 7
+2025/01/10 18:11:44 PoseEvaled: 4597449
+2025/01/10 18:11:44 Eval: -474(Bot perspecitve)
+2025/01/10 18:11:45 currentDepth: 8
+2025/01/10 18:11:45 PoseEvaled: 4837199
+2025/01/10 18:11:45 Eval: 878(Bot perspecitve)
+2025/01/10 18:11:46 currentDepth: 7
+2025/01/10 18:11:46 PoseEvaled: 4408661
+2025/01/10 18:11:46 Eval: -842(Bot perspecitve)
+2025/01/10 18:11:47 currentDepth: 8
+2025/01/10 18:11:47 PoseEvaled: 4437017
+2025/01/10 18:11:47 Eval: 1120(Bot perspecitve)
+2025/01/10 18:11:49 currentDepth: 8
+2025/01/10 18:11:49 PoseEvaled: 4265217
+2025/01/10 18:11:49 Eval: -871(Bot perspecitve)
+2025/01/10 18:11:50 currentDepth: 8
+2025/01/10 18:11:50 PoseEvaled: 4549032
+2025/01/10 18:11:50 Eval: 1131(Bot perspecitve)
+2025/01/10 18:11:51 currentDepth: 6
+2025/01/10 18:11:51 PoseEvaled: 4734529
+2025/01/10 18:11:51 Eval: -906(Bot perspecitve)
+2025/01/10 18:11:52 currentDepth: 7
+2025/01/10 18:11:52 PoseEvaled: 4840318
+2025/01/10 18:11:52 Eval: 1144(Bot perspecitve)
+2025/01/10 18:11:53 currentDepth: 6
+2025/01/10 18:11:53 PoseEvaled: 4531225
+2025/01/10 18:11:53 Eval: -980(Bot perspecitve)
+2025/01/10 18:11:54 currentDepth: 7
+2025/01/10 18:11:54 PoseEvaled: 4934775
+2025/01/10 18:11:54 Eval: 1199(Bot perspecitve)
+2025/01/10 18:11:55 currentDepth: 6
+2025/01/10 18:11:55 PoseEvaled: 4656417
+2025/01/10 18:11:55 Eval: -1032(Bot perspecitve)
+2025/01/10 18:11:56 currentDepth: 7
+2025/01/10 18:11:56 PoseEvaled: 4665611
+2025/01/10 18:11:56 Eval: 1250(Bot perspecitve)
+2025/01/10 18:11:57 currentDepth: 6
+2025/01/10 18:11:57 PoseEvaled: 4524639
+2025/01/10 18:11:57 Eval: -1117(Bot perspecitve)
+2025/01/10 18:11:58 currentDepth: 7
+2025/01/10 18:11:58 PoseEvaled: 4742489
+2025/01/10 18:11:58 Eval: 1300(Bot perspecitve)
+2025/01/10 18:11:59 currentDepth: 6
+2025/01/10 18:11:59 PoseEvaled: 4564927
+2025/01/10 18:11:59 Eval: -1155(Bot perspecitve)
+2025/01/10 18:12:00 currentDepth: 6
+2025/01/10 18:12:00 PoseEvaled: 4713903
+2025/01/10 18:12:00 Eval: 1341(Bot perspecitve)
+2025/01/10 18:12:01 currentDepth: 6
+2025/01/10 18:12:01 PoseEvaled: 4618864
+2025/01/10 18:12:01 Eval: -1193(Bot perspecitve)
+2025/01/10 18:12:01 Found Forced mate
+2025/01/10 18:12:02 currentDepth: 7
+2025/01/10 18:12:02 PoseEvaled: 4470415
+2025/01/10 18:12:02 Eval: -100000009(Bot perspecitve)
+2025/01/10 18:12:02 Found Forced mate
+2025/01/10 18:12:03 currentDepth: 10
+2025/01/10 18:12:03 PoseEvaled: 4969015
+2025/01/10 18:12:03 Eval: -100000069(Bot perspecitve)
+2025/01/10 18:12:03 Found Forced mate
+2025/01/10 18:12:04 currentDepth: 10
+2025/01/10 18:12:04 PoseEvaled: 5138901
+2025/01/10 18:12:04 Eval: -100000079(Bot perspecitve)
+2025/01/10 18:12:04 Found Forced mate
+2025/01/10 18:12:06 currentDepth: 6
+2025/01/10 18:12:06 PoseEvaled: 3537688
+2025/01/10 18:12:06 Eval: -18(Bot perspecitve)
+2025/01/10 18:12:07 currentDepth: 5
+2025/01/10 18:12:07 PoseEvaled: 3627374
+2025/01/10 18:12:07 Eval: -32(Bot perspecitve)
+2025/01/10 18:12:11 currentDepth: 6
+2025/01/10 18:12:11 PoseEvaled: 14585560
+2025/01/10 18:12:11 Eval: -9(Bot perspecitve)
+2025/01/10 18:12:16 currentDepth: 6
+2025/01/10 18:12:16 PoseEvaled: 14317511
+2025/01/10 18:12:16 Eval: 5(Bot perspecitve)
+2025/01/10 18:12:20 currentDepth: 5
+2025/01/10 18:12:20 PoseEvaled: 13995200
+2025/01/10 18:12:20 Eval: 9(Bot perspecitve)
+2025/01/10 18:12:24 currentDepth: 5
+2025/01/10 18:12:24 PoseEvaled: 13794857
+2025/01/10 18:12:24 Eval: -10(Bot perspecitve)
+2025/01/10 18:12:33 currentDepth: 6
+2025/01/10 18:12:33 PoseEvaled: 12974723
+2025/01/10 18:12:33 Eval: -33(Bot perspecitve)
+2025/01/10 18:12:41 currentDepth: 4
+2025/01/10 18:12:41 PoseEvaled: 13473339
+2025/01/10 18:12:41 Eval: -33(Bot perspecitve)
+2025/01/10 18:12:49 currentDepth: 5
+2025/01/10 18:12:49 PoseEvaled: 13302721
+2025/01/10 18:12:49 Eval: -147(Bot perspecitve)
+2025/01/10 18:12:57 currentDepth: 4
+2025/01/10 18:12:57 PoseEvaled: 12508252
+2025/01/10 18:12:57 Eval: -184(Bot perspecitve)
+2025/01/10 18:13:05 currentDepth: 5
+2025/01/10 18:13:05 PoseEvaled: 11943083
+2025/01/10 18:13:05 Eval: -102(Bot perspecitve)
+2025/01/10 18:13:12 currentDepth: 5
+2025/01/10 18:13:12 PoseEvaled: 11820390
+2025/01/10 18:13:12 Eval: -94(Bot perspecitve)
+2025/01/10 18:13:19 currentDepth: 5
+2025/01/10 18:13:19 PoseEvaled: 11511983
+2025/01/10 18:13:19 Eval: -102(Bot perspecitve)
+2025/01/10 18:13:27 currentDepth: 5
+2025/01/10 18:13:27 PoseEvaled: 11146341
+2025/01/10 18:13:27 Eval: -99(Bot perspecitve)
+2025/01/10 18:13:34 currentDepth: 5
+2025/01/10 18:13:34 PoseEvaled: 11464255
+2025/01/10 18:13:34 Eval: -99(Bot perspecitve)
+2025/01/10 18:13:40 currentDepth: 6
+2025/01/10 18:13:40 PoseEvaled: 11217977
+2025/01/10 18:13:40 Eval: -105(Bot perspecitve)
+2025/01/10 18:13:47 currentDepth: 6
+2025/01/10 18:13:47 PoseEvaled: 11092267
+2025/01/10 18:13:47 Eval: -114(Bot perspecitve)
+2025/01/10 18:13:53 currentDepth: 6
+2025/01/10 18:13:53 PoseEvaled: 11316403
+2025/01/10 18:13:53 Eval: -102(Bot perspecitve)
+2025/01/10 18:14:00 currentDepth: 6
+2025/01/10 18:14:00 PoseEvaled: 11243216
+2025/01/10 18:14:00 Eval: -95(Bot perspecitve)
+2025/01/10 18:14:06 currentDepth: 6
+2025/01/10 18:14:06 PoseEvaled: 11469112
+2025/01/10 18:14:06 Eval: -48(Bot perspecitve)
+2025/01/10 18:14:12 currentDepth: 7
+2025/01/10 18:14:12 PoseEvaled: 10859447
+2025/01/10 18:14:12 Eval: -39(Bot perspecitve)
+2025/01/10 18:14:18 currentDepth: 7
+2025/01/10 18:14:18 PoseEvaled: 10374982
+2025/01/10 18:14:18 Eval: -67(Bot perspecitve)
+2025/01/10 18:14:23 currentDepth: 7
+2025/01/10 18:14:23 PoseEvaled: 10204949
+2025/01/10 18:14:23 Eval: -59(Bot perspecitve)
+2025/01/10 18:14:29 currentDepth: 7
+2025/01/10 18:14:29 PoseEvaled: 9786023
+2025/01/10 18:14:29 Eval: -57(Bot perspecitve)
+2025/01/10 18:14:34 currentDepth: 7
+2025/01/10 18:14:34 PoseEvaled: 9092473
+2025/01/10 18:14:34 Eval: -14(Bot perspecitve)
+2025/01/10 18:14:40 currentDepth: 7
+2025/01/10 18:14:40 PoseEvaled: 8935725
+2025/01/10 18:14:40 Eval: 70(Bot perspecitve)
+2025/01/10 18:14:45 currentDepth: 7
+2025/01/10 18:14:45 PoseEvaled: 8885610
+2025/01/10 18:14:45 Eval: 137(Bot perspecitve)
+2025/01/10 18:14:50 currentDepth: 7
+2025/01/10 18:14:50 PoseEvaled: 8203219
+2025/01/10 18:14:50 Eval: 198(Bot perspecitve)
+2025/01/10 18:14:55 currentDepth: 7
+2025/01/10 18:14:55 PoseEvaled: 8113613
+2025/01/10 18:14:55 Eval: 216(Bot perspecitve)
+2025/01/10 18:14:59 currentDepth: 7
+2025/01/10 18:14:59 PoseEvaled: 8265346
+2025/01/10 18:14:59 Eval: 268(Bot perspecitve)
+2025/01/10 18:15:04 currentDepth: 6
+2025/01/10 18:15:04 PoseEvaled: 8114594
+2025/01/10 18:15:04 Eval: 258(Bot perspecitve)
+2025/01/10 18:15:09 currentDepth: 7
+2025/01/10 18:15:09 PoseEvaled: 7534897
+2025/01/10 18:15:09 Eval: 408(Bot perspecitve)
+2025/01/10 18:15:13 currentDepth: 7
+2025/01/10 18:15:13 PoseEvaled: 8160299
+2025/01/10 18:15:13 Eval: 450(Bot perspecitve)
+2025/01/10 18:15:17 currentDepth: 7
+2025/01/10 18:15:17 PoseEvaled: 8013134
+2025/01/10 18:15:17 Eval: 524(Bot perspecitve)
+2025/01/10 18:15:21 currentDepth: 7
+2025/01/10 18:15:21 PoseEvaled: 7818530
+2025/01/10 18:15:21 Eval: 536(Bot perspecitve)
+2025/01/10 18:15:26 currentDepth: 6
+2025/01/10 18:15:26 PoseEvaled: 7559248
+2025/01/10 18:15:26 Eval: 623(Bot perspecitve)
+2025/01/10 18:15:30 currentDepth: 7
+2025/01/10 18:15:30 PoseEvaled: 7321480
+2025/01/10 18:15:30 Eval: 623(Bot perspecitve)
+2025/01/10 18:15:33 currentDepth: 7
+2025/01/10 18:15:33 PoseEvaled: 7352619
+2025/01/10 18:15:33 Eval: 711(Bot perspecitve)
+2025/01/10 18:15:37 currentDepth: 6
+2025/01/10 18:15:37 PoseEvaled: 7189136
+2025/01/10 18:15:37 Eval: 753(Bot perspecitve)
+2025/01/10 18:15:41 currentDepth: 7
+2025/01/10 18:15:41 PoseEvaled: 7010894
+2025/01/10 18:15:41 Eval: 824(Bot perspecitve)
+2025/01/10 18:15:45 currentDepth: 7
+2025/01/10 18:15:45 PoseEvaled: 6677230
+2025/01/10 18:15:45 Eval: 824(Bot perspecitve)
+2025/01/10 18:15:48 currentDepth: 6
+2025/01/10 18:15:48 PoseEvaled: 6366587
+2025/01/10 18:15:48 Eval: 871(Bot perspecitve)
+2025/01/10 18:15:51 currentDepth: 7
+2025/01/10 18:15:51 PoseEvaled: 6154078
+2025/01/10 18:15:51 Eval: 872(Bot perspecitve)
+2025/01/10 18:15:55 currentDepth: 7
+2025/01/10 18:15:55 PoseEvaled: 6087920
+2025/01/10 18:15:55 Eval: 919(Bot perspecitve)
+2025/01/10 18:15:58 currentDepth: 6
+2025/01/10 18:15:58 PoseEvaled: 6044268
+2025/01/10 18:15:58 Eval: 927(Bot perspecitve)
+2025/01/10 18:16:01 currentDepth: 6
+2025/01/10 18:16:01 PoseEvaled: 5826441
+2025/01/10 18:16:01 Eval: 969(Bot perspecitve)
+2025/01/10 18:16:04 currentDepth: 7
+2025/01/10 18:16:04 PoseEvaled: 5597676
+2025/01/10 18:16:04 Eval: 1035(Bot perspecitve)
+2025/01/10 18:16:07 currentDepth: 6
+2025/01/10 18:16:07 PoseEvaled: 5553819
+2025/01/10 18:16:07 Eval: 1070(Bot perspecitve)
+2025/01/10 18:16:10 currentDepth: 6
+2025/01/10 18:16:10 PoseEvaled: 5429738
+2025/01/10 18:16:10 Eval: 1122(Bot perspecitve)
+2025/01/10 18:16:13 currentDepth: 6
+2025/01/10 18:16:13 PoseEvaled: 5404568
+2025/01/10 18:16:13 Eval: 1179(Bot perspecitve)
+2025/01/10 18:16:16 currentDepth: 8
+2025/01/10 18:16:16 PoseEvaled: 4967911
+2025/01/10 18:16:16 Eval: 1193(Bot perspecitve)
+2025/01/10 18:16:19 currentDepth: 7
+2025/01/10 18:16:19 PoseEvaled: 4966834
+2025/01/10 18:16:19 Eval: 1212(Bot perspecitve)
+2025/01/10 18:16:21 currentDepth: 7
+2025/01/10 18:16:21 PoseEvaled: 4837003
+2025/01/10 18:16:21 Eval: 1261(Bot perspecitve)
+2025/01/10 18:16:24 currentDepth: 6
+2025/01/10 18:16:24 PoseEvaled: 4576096
+2025/01/10 18:16:24 Eval: 1276(Bot perspecitve)
+2025/01/10 18:16:26 currentDepth: 6
+2025/01/10 18:16:26 PoseEvaled: 4345534
+2025/01/10 18:16:26 Eval: 1284(Bot perspecitve)
+2025/01/10 18:16:29 currentDepth: 6
+2025/01/10 18:16:29 PoseEvaled: 4330647
+2025/01/10 18:16:29 Eval: 1289(Bot perspecitve)
+2025/01/10 18:16:31 currentDepth: 6
+2025/01/10 18:16:31 PoseEvaled: 4232951
+2025/01/10 18:16:31 Eval: 1289(Bot perspecitve)
+2025/01/10 18:16:34 currentDepth: 6
+2025/01/10 18:16:34 PoseEvaled: 4449506
+2025/01/10 18:16:34 Eval: 1308(Bot perspecitve)
+2025/01/10 18:16:36 currentDepth: 6
+2025/01/10 18:16:36 PoseEvaled: 4127998
+2025/01/10 18:16:36 Eval: 1319(Bot perspecitve)
+2025/01/10 18:16:38 currentDepth: 7
+2025/01/10 18:16:38 PoseEvaled: 4206361
+2025/01/10 18:16:38 Eval: 1319(Bot perspecitve)
+2025/01/10 18:16:40 currentDepth: 6
+2025/01/10 18:16:40 PoseEvaled: 3835323
+2025/01/10 18:16:40 Eval: 1349(Bot perspecitve)
+2025/01/10 18:16:43 currentDepth: 6
+2025/01/10 18:16:43 PoseEvaled: 3900988
+2025/01/10 18:16:43 Eval: 1368(Bot perspecitve)
+2025/01/10 18:16:45 currentDepth: 6
+2025/01/10 18:16:45 PoseEvaled: 3651100
+2025/01/10 18:16:45 Eval: 1374(Bot perspecitve)
+2025/01/10 18:16:47 currentDepth: 6
+2025/01/10 18:16:47 PoseEvaled: 3688355
+2025/01/10 18:16:47 Eval: 1389(Bot perspecitve)
+2025/01/10 18:16:49 currentDepth: 6
+2025/01/10 18:16:49 PoseEvaled: 3674994
+2025/01/10 18:16:49 Eval: 1401(Bot perspecitve)
+2025/01/10 18:16:50 currentDepth: 6
+2025/01/10 18:16:50 PoseEvaled: 3654790
+2025/01/10 18:16:50 Eval: 1898(Bot perspecitve)
+2025/01/10 18:16:52 currentDepth: 7
+2025/01/10 18:16:52 PoseEvaled: 3411787
+2025/01/10 18:16:52 Eval: 2586(Bot perspecitve)
+2025/01/10 18:16:54 currentDepth: 6
+2025/01/10 18:16:54 PoseEvaled: 3499662
+2025/01/10 18:16:54 Eval: 2607(Bot perspecitve)
+2025/01/10 18:16:54 Found Forced mate
+2025/01/10 18:16:54 Found Forced mate
+2025/01/10 18:16:54 Found Forced mate
+2025/01/10 18:16:54 Found Forced mate
+2025/01/10 18:16:54 Found Forced mate
+2025/01/10 18:16:56 currentDepth: 7
+2025/01/10 18:16:56 PoseEvaled: 3762200
+2025/01/10 18:16:56 Eval: 15(Bot perspecitve)
+2025/01/10 18:16:57 currentDepth: 6
+2025/01/10 18:16:57 PoseEvaled: 3606737
+2025/01/10 18:16:57 Eval: -8(Bot perspecitve)
+2025/01/10 18:16:58 currentDepth: 6
+2025/01/10 18:16:58 PoseEvaled: 3814456
+2025/01/10 18:16:58 Eval: 25(Bot perspecitve)
+2025/01/10 18:16:59 currentDepth: 6
+2025/01/10 18:16:59 PoseEvaled: 3684893
+2025/01/10 18:16:59 Eval: -22(Bot perspecitve)
+2025/01/10 18:17:03 currentDepth: 6
+2025/01/10 18:17:03 PoseEvaled: 15716279
+2025/01/10 18:17:03 Eval: 21(Bot perspecitve)
+2025/01/10 18:17:08 currentDepth: 6
+2025/01/10 18:17:08 PoseEvaled: 14427067
+2025/01/10 18:17:08 Eval: -31(Bot perspecitve)
+2025/01/10 18:17:12 currentDepth: 6
+2025/01/10 18:17:12 PoseEvaled: 15747757
+2025/01/10 18:17:12 Eval: 16(Bot perspecitve)
+2025/01/10 18:17:16 currentDepth: 5
+2025/01/10 18:17:16 PoseEvaled: 14163631
+2025/01/10 18:17:16 Eval: -47(Bot perspecitve)
+2025/01/10 18:17:21 currentDepth: 6
+2025/01/10 18:17:21 PoseEvaled: 14804095
+2025/01/10 18:17:21 Eval: 11(Bot perspecitve)
+2025/01/10 18:17:25 currentDepth: 6
+2025/01/10 18:17:25 PoseEvaled: 13389765
+2025/01/10 18:17:25 Eval: -32(Bot perspecitve)
+2025/01/10 18:17:29 currentDepth: 6
+2025/01/10 18:17:29 PoseEvaled: 14374424
+2025/01/10 18:17:29 Eval: 36(Bot perspecitve)
+2025/01/10 18:17:33 currentDepth: 5
+2025/01/10 18:17:33 PoseEvaled: 13138031
+2025/01/10 18:17:33 Eval: -34(Bot perspecitve)
+2025/01/10 18:17:37 currentDepth: 6
+2025/01/10 18:17:37 PoseEvaled: 14335843
+2025/01/10 18:17:37 Eval: 51(Bot perspecitve)
+2025/01/10 18:17:41 currentDepth: 5
+2025/01/10 18:17:41 PoseEvaled: 12720426
+2025/01/10 18:17:41 Eval: -24(Bot perspecitve)
+2025/01/10 18:17:45 currentDepth: 6
+2025/01/10 18:17:45 PoseEvaled: 14012689
+2025/01/10 18:17:45 Eval: 64(Bot perspecitve)
+2025/01/10 18:17:49 currentDepth: 6
+2025/01/10 18:17:49 PoseEvaled: 12500587
+2025/01/10 18:17:49 Eval: 9(Bot perspecitve)
+2025/01/10 18:17:53 currentDepth: 6
+2025/01/10 18:17:53 PoseEvaled: 14045625
+2025/01/10 18:17:53 Eval: 69(Bot perspecitve)
+2025/01/10 18:17:57 currentDepth: 6
+2025/01/10 18:17:57 PoseEvaled: 12705160
+2025/01/10 18:17:57 Eval: 3(Bot perspecitve)
+2025/01/10 18:18:00 currentDepth: 7
+2025/01/10 18:18:00 PoseEvaled: 12905313
+2025/01/10 18:18:00 Eval: 73(Bot perspecitve)
+2025/01/10 18:18:04 currentDepth: 7
+2025/01/10 18:18:04 PoseEvaled: 12752219
+2025/01/10 18:18:04 Eval: -10(Bot perspecitve)
+2025/01/10 18:18:08 currentDepth: 6
+2025/01/10 18:18:08 PoseEvaled: 12656035
+2025/01/10 18:18:08 Eval: 74(Bot perspecitve)
+2025/01/10 18:18:11 currentDepth: 6
+2025/01/10 18:18:11 PoseEvaled: 12131554
+2025/01/10 18:18:11 Eval: 40(Bot perspecitve)
+2025/01/10 18:18:15 currentDepth: 7
+2025/01/10 18:18:15 PoseEvaled: 12115018
+2025/01/10 18:18:15 Eval: 67(Bot perspecitve)
+2025/01/10 18:18:18 currentDepth: 7
+2025/01/10 18:18:18 PoseEvaled: 11757611
+2025/01/10 18:18:18 Eval: 53(Bot perspecitve)
+2025/01/10 18:18:22 currentDepth: 6
+2025/01/10 18:18:22 PoseEvaled: 12062306
+2025/01/10 18:18:22 Eval: 65(Bot perspecitve)
+2025/01/10 18:18:25 currentDepth: 6
+2025/01/10 18:18:25 PoseEvaled: 11134936
+2025/01/10 18:18:25 Eval: 62(Bot perspecitve)
+2025/01/10 18:18:29 currentDepth: 6
+2025/01/10 18:18:29 PoseEvaled: 11789497
+2025/01/10 18:18:29 Eval: 57(Bot perspecitve)
+2025/01/10 18:18:32 currentDepth: 6
+2025/01/10 18:18:32 PoseEvaled: 11379545
+2025/01/10 18:18:32 Eval: 81(Bot perspecitve)
+2025/01/10 18:18:35 currentDepth: 6
+2025/01/10 18:18:35 PoseEvaled: 11410472
+2025/01/10 18:18:35 Eval: 46(Bot perspecitve)
+2025/01/10 18:18:39 currentDepth: 6
+2025/01/10 18:18:39 PoseEvaled: 10992559
+2025/01/10 18:18:39 Eval: 120(Bot perspecitve)
+2025/01/10 18:18:42 currentDepth: 6
+2025/01/10 18:18:42 PoseEvaled: 11206305
+2025/01/10 18:18:42 Eval: 49(Bot perspecitve)
+2025/01/10 18:18:45 currentDepth: 6
+2025/01/10 18:18:45 PoseEvaled: 10780375
+2025/01/10 18:18:45 Eval: 133(Bot perspecitve)
+2025/01/10 18:18:48 currentDepth: 6
+2025/01/10 18:18:48 PoseEvaled: 10889892
+2025/01/10 18:18:48 Eval: 22(Bot perspecitve)
+2025/01/10 18:18:51 currentDepth: 6
+2025/01/10 18:18:51 PoseEvaled: 10385323
+2025/01/10 18:18:51 Eval: 126(Bot perspecitve)
+2025/01/10 18:18:54 currentDepth: 7
+2025/01/10 18:18:54 PoseEvaled: 10499080
+2025/01/10 18:18:54 Eval: -15(Bot perspecitve)
+2025/01/10 18:18:57 currentDepth: 7
+2025/01/10 18:18:57 PoseEvaled: 10186039
+2025/01/10 18:18:57 Eval: 135(Bot perspecitve)
+2025/01/10 18:19:00 currentDepth: 7
+2025/01/10 18:19:00 PoseEvaled: 10112647
+2025/01/10 18:19:00 Eval: 35(Bot perspecitve)
+2025/01/10 18:19:03 currentDepth: 7
+2025/01/10 18:19:03 PoseEvaled: 9886170
+2025/01/10 18:19:03 Eval: 103(Bot perspecitve)
+2025/01/10 18:19:06 currentDepth: 7
+2025/01/10 18:19:06 PoseEvaled: 10000984
+2025/01/10 18:19:06 Eval: 39(Bot perspecitve)
+2025/01/10 18:19:09 currentDepth: 7
+2025/01/10 18:19:09 PoseEvaled: 9406349
+2025/01/10 18:19:09 Eval: 91(Bot perspecitve)
+2025/01/10 18:19:12 currentDepth: 6
+2025/01/10 18:19:12 PoseEvaled: 9981119
+2025/01/10 18:19:12 Eval: 56(Bot perspecitve)
+2025/01/10 18:19:15 currentDepth: 7
+2025/01/10 18:19:15 PoseEvaled: 9194117
+2025/01/10 18:19:15 Eval: 79(Bot perspecitve)
+2025/01/10 18:19:17 currentDepth: 7
+2025/01/10 18:19:17 PoseEvaled: 9265381
+2025/01/10 18:19:17 Eval: 40(Bot perspecitve)
+2025/01/10 18:19:20 currentDepth: 7
+2025/01/10 18:19:20 PoseEvaled: 9674634
+2025/01/10 18:19:20 Eval: 85(Bot perspecitve)
+2025/01/10 18:19:23 currentDepth: 7
+2025/01/10 18:19:23 PoseEvaled: 9519189
+2025/01/10 18:19:23 Eval: 27(Bot perspecitve)
+2025/01/10 18:19:26 currentDepth: 7
+2025/01/10 18:19:26 PoseEvaled: 9551304
+2025/01/10 18:19:26 Eval: 81(Bot perspecitve)
+2025/01/10 18:19:28 currentDepth: 7
+2025/01/10 18:19:28 PoseEvaled: 9553332
+2025/01/10 18:19:28 Eval: 23(Bot perspecitve)
+2025/01/10 18:19:31 currentDepth: 7
+2025/01/10 18:19:31 PoseEvaled: 9719863
+2025/01/10 18:19:31 Eval: 101(Bot perspecitve)
+2025/01/10 18:19:33 currentDepth: 7
+2025/01/10 18:19:33 PoseEvaled: 9379266
+2025/01/10 18:19:33 Eval: 23(Bot perspecitve)
+2025/01/10 18:19:36 currentDepth: 7
+2025/01/10 18:19:36 PoseEvaled: 9132182
+2025/01/10 18:19:36 Eval: 98(Bot perspecitve)
+2025/01/10 18:19:38 currentDepth: 7
+2025/01/10 18:19:38 PoseEvaled: 9078966
+2025/01/10 18:19:38 Eval: 19(Bot perspecitve)
+2025/01/10 18:19:41 currentDepth: 7
+2025/01/10 18:19:41 PoseEvaled: 8833092
+2025/01/10 18:19:41 Eval: 101(Bot perspecitve)
+2025/01/10 18:19:43 currentDepth: 7
+2025/01/10 18:19:43 PoseEvaled: 8913151
+2025/01/10 18:19:43 Eval: 23(Bot perspecitve)
+2025/01/10 18:19:46 currentDepth: 8
+2025/01/10 18:19:46 PoseEvaled: 8765120
+2025/01/10 18:19:46 Eval: 98(Bot perspecitve)
+2025/01/10 18:19:48 currentDepth: 7
+2025/01/10 18:19:48 PoseEvaled: 8730824
+2025/01/10 18:19:48 Eval: 19(Bot perspecitve)
+2025/01/10 18:19:50 currentDepth: 7
+2025/01/10 18:19:50 PoseEvaled: 8469873
+2025/01/10 18:19:50 Eval: 97(Bot perspecitve)
+2025/01/10 18:19:51 currentDepth: 6
+2025/01/10 18:19:51 PoseEvaled: 2913635
+2025/01/10 18:19:51 Eval: 0(Bot perspecitve)
+2025/01/10 18:19:52 currentDepth: 5
+2025/01/10 18:19:52 PoseEvaled: 2906547
+2025/01/10 18:19:52 Eval: 60(Bot perspecitve)
+2025/01/10 18:19:53 currentDepth: 5
+2025/01/10 18:19:53 PoseEvaled: 2850283
+2025/01/10 18:19:53 Eval: 106(Bot perspecitve)
+2025/01/10 18:20:02 currentDepth: 5
+2025/01/10 18:20:02 PoseEvaled: 14225233
+2025/01/10 18:20:02 Eval: 112(Bot perspecitve)
+2025/01/10 18:20:11 currentDepth: 5
+2025/01/10 18:20:11 PoseEvaled: 14651688
+2025/01/10 18:20:11 Eval: 81(Bot perspecitve)
+2025/01/10 18:20:19 currentDepth: 5
+2025/01/10 18:20:19 PoseEvaled: 14195241
+2025/01/10 18:20:19 Eval: 69(Bot perspecitve)
+2025/01/10 18:20:28 currentDepth: 6
+2025/01/10 18:20:28 PoseEvaled: 13860084
+2025/01/10 18:20:28 Eval: 44(Bot perspecitve)
+2025/01/10 18:20:36 currentDepth: 5
+2025/01/10 18:20:36 PoseEvaled: 13456796
+2025/01/10 18:20:36 Eval: 21(Bot perspecitve)
+2025/01/10 18:20:44 currentDepth: 5
+2025/01/10 18:20:44 PoseEvaled: 13243245
+2025/01/10 18:20:44 Eval: -25(Bot perspecitve)
+2025/01/10 18:20:51 currentDepth: 6
+2025/01/10 18:20:51 PoseEvaled: 12379293
+2025/01/10 18:20:51 Eval: -29(Bot perspecitve)
+2025/01/10 18:20:59 currentDepth: 6
+2025/01/10 18:20:59 PoseEvaled: 12073185
+2025/01/10 18:20:59 Eval: -36(Bot perspecitve)
+2025/01/10 18:21:06 currentDepth: 5
+2025/01/10 18:21:06 PoseEvaled: 12179715
+2025/01/10 18:21:06 Eval: -43(Bot perspecitve)
+2025/01/10 18:21:13 currentDepth: 5
+2025/01/10 18:21:13 PoseEvaled: 11823297
+2025/01/10 18:21:13 Eval: -58(Bot perspecitve)
+2025/01/10 18:21:20 currentDepth: 5
+2025/01/10 18:21:20 PoseEvaled: 11809440
+2025/01/10 18:21:20 Eval: -52(Bot perspecitve)
+2025/01/10 18:21:27 currentDepth: 4
+2025/01/10 18:21:27 PoseEvaled: 11652475
+2025/01/10 18:21:27 Eval: -35(Bot perspecitve)
+2025/01/10 18:21:34 currentDepth: 6
+2025/01/10 18:21:34 PoseEvaled: 10957691
+2025/01/10 18:21:34 Eval: -40(Bot perspecitve)
+2025/01/10 18:21:40 currentDepth: 7
+2025/01/10 18:21:40 PoseEvaled: 10772174
+2025/01/10 18:21:40 Eval: -10(Bot perspecitve)
+2025/01/10 18:21:46 currentDepth: 7
+2025/01/10 18:21:46 PoseEvaled: 10771433
+2025/01/10 18:21:46 Eval: -8(Bot perspecitve)
+2025/01/10 18:21:52 currentDepth: 6
+2025/01/10 18:21:52 PoseEvaled: 11029053
+2025/01/10 18:21:52 Eval: 23(Bot perspecitve)
+2025/01/10 18:21:58 currentDepth: 6
+2025/01/10 18:21:58 PoseEvaled: 11616126
+2025/01/10 18:21:58 Eval: 50(Bot perspecitve)
+2025/01/10 18:22:04 currentDepth: 6
+2025/01/10 18:22:04 PoseEvaled: 11419337
+2025/01/10 18:22:04 Eval: 59(Bot perspecitve)
+2025/01/10 18:22:10 currentDepth: 5
+2025/01/10 18:22:10 PoseEvaled: 11116895
+2025/01/10 18:22:10 Eval: 68(Bot perspecitve)
+2025/01/10 18:22:15 currentDepth: 6
+2025/01/10 18:22:15 PoseEvaled: 10731424
+2025/01/10 18:22:15 Eval: 70(Bot perspecitve)
+2025/01/10 18:22:21 currentDepth: 6
+2025/01/10 18:22:21 PoseEvaled: 10257913
+2025/01/10 18:22:21 Eval: 40(Bot perspecitve)
+2025/01/10 18:22:26 currentDepth: 6
+2025/01/10 18:22:26 PoseEvaled: 10227102
+2025/01/10 18:22:26 Eval: 51(Bot perspecitve)
+2025/01/10 18:22:31 currentDepth: 7
+2025/01/10 18:22:31 PoseEvaled: 9727754
+2025/01/10 18:22:31 Eval: 37(Bot perspecitve)
+2025/01/10 18:22:36 currentDepth: 7
+2025/01/10 18:22:36 PoseEvaled: 9976443
+2025/01/10 18:22:36 Eval: 12(Bot perspecitve)
+2025/01/10 18:22:41 currentDepth: 6
+2025/01/10 18:22:41 PoseEvaled: 9525265
+2025/01/10 18:22:41 Eval: 27(Bot perspecitve)
+2025/01/10 18:22:46 currentDepth: 7
+2025/01/10 18:22:46 PoseEvaled: 9409032
+2025/01/10 18:22:46 Eval: 31(Bot perspecitve)
+2025/01/10 18:22:50 currentDepth: 6
+2025/01/10 18:22:50 PoseEvaled: 8862245
+2025/01/10 18:22:50 Eval: 46(Bot perspecitve)
+2025/01/10 18:22:55 currentDepth: 7
+2025/01/10 18:22:55 PoseEvaled: 8755161
+2025/01/10 18:22:55 Eval: 34(Bot perspecitve)
+2025/01/10 18:22:59 currentDepth: 7
+2025/01/10 18:22:59 PoseEvaled: 8171692
+2025/01/10 18:22:59 Eval: -11(Bot perspecitve)
+2025/01/10 18:23:04 currentDepth: 6
+2025/01/10 18:23:04 PoseEvaled: 8268329
+2025/01/10 18:23:04 Eval: 8(Bot perspecitve)
+2025/01/10 18:23:08 currentDepth: 6
+2025/01/10 18:23:08 PoseEvaled: 7520815
+2025/01/10 18:23:08 Eval: -33(Bot perspecitve)
+2025/01/10 18:23:12 currentDepth: 6
+2025/01/10 18:23:12 PoseEvaled: 7671534
+2025/01/10 18:23:12 Eval: -59(Bot perspecitve)
+2025/01/10 18:23:16 currentDepth: 6
+2025/01/10 18:23:16 PoseEvaled: 7505685
+2025/01/10 18:23:16 Eval: -126(Bot perspecitve)
+2025/01/10 18:23:20 currentDepth: 6
+2025/01/10 18:23:20 PoseEvaled: 7131374
+2025/01/10 18:23:20 Eval: -59(Bot perspecitve)
+2025/01/10 18:23:24 currentDepth: 6
+2025/01/10 18:23:24 PoseEvaled: 6870220
+2025/01/10 18:23:24 Eval: -176(Bot perspecitve)
+2025/01/10 18:23:27 currentDepth: 6
+2025/01/10 18:23:27 PoseEvaled: 6502872
+2025/01/10 18:23:27 Eval: -409(Bot perspecitve)
+2025/01/10 18:23:31 currentDepth: 6
+2025/01/10 18:23:31 PoseEvaled: 6200495
+2025/01/10 18:23:31 Eval: -409(Bot perspecitve)
+2025/01/10 18:23:34 currentDepth: 6
+2025/01/10 18:23:34 PoseEvaled: 6450692
+2025/01/10 18:23:34 Eval: -447(Bot perspecitve)
+2025/01/10 18:23:38 currentDepth: 7
+2025/01/10 18:23:38 PoseEvaled: 6593640
+2025/01/10 18:23:38 Eval: -493(Bot perspecitve)
+2025/01/10 18:23:41 currentDepth: 8
+2025/01/10 18:23:41 PoseEvaled: 7305806
+2025/01/10 18:23:41 Eval: -512(Bot perspecitve)
+2025/01/10 18:23:44 currentDepth: 8
+2025/01/10 18:23:44 PoseEvaled: 7092606
+2025/01/10 18:23:44 Eval: -527(Bot perspecitve)
+2025/01/10 18:23:48 currentDepth: 8
+2025/01/10 18:23:48 PoseEvaled: 6877544
+2025/01/10 18:23:48 Eval: -577(Bot perspecitve)
+2025/01/10 18:23:51 currentDepth: 8
+2025/01/10 18:23:51 PoseEvaled: 6902951
+2025/01/10 18:23:51 Eval: -598(Bot perspecitve)
+2025/01/10 18:23:54 currentDepth: 8
+2025/01/10 18:23:54 PoseEvaled: 6645608
+2025/01/10 18:23:54 Eval: -631(Bot perspecitve)
+2025/01/10 18:23:57 currentDepth: 8
+2025/01/10 18:23:57 PoseEvaled: 6911160
+2025/01/10 18:23:57 Eval: -735(Bot perspecitve)
+2025/01/10 18:23:59 currentDepth: 8
+2025/01/10 18:23:59 PoseEvaled: 6977033
+2025/01/10 18:23:59 Eval: -99999999(Bot perspecitve)
+2025/01/10 18:24:00 currentDepth: 9
+2025/01/10 18:24:00 PoseEvaled: 7452823
+2025/01/10 18:24:00 Eval: -100000029(Bot perspecitve)
+2025/01/10 18:24:02 currentDepth: 9
+2025/01/10 18:24:02 PoseEvaled: 7524641
+2025/01/10 18:24:02 Eval: -100000039(Bot perspecitve)
+2025/01/10 18:24:03 currentDepth: 10
+2025/01/10 18:24:03 PoseEvaled: 7324870
+2025/01/10 18:24:03 Eval: -100000069(Bot perspecitve)
+2025/01/10 18:24:04 currentDepth: 14
+2025/01/10 18:24:04 PoseEvaled: 8643213
+2025/01/10 18:24:04 Eval: -100000129(Bot perspecitve)
+2025/01/10 18:24:06 currentDepth: 6
+2025/01/10 18:24:06 PoseEvaled: 3843206
+2025/01/10 18:24:06 Eval: -8(Bot perspecitve)
+2025/01/10 18:24:07 currentDepth: 6
+2025/01/10 18:24:07 PoseEvaled: 4039925
+2025/01/10 18:24:07 Eval: -21(Bot perspecitve)
+2025/01/10 18:24:11 currentDepth: 6
+2025/01/10 18:24:11 PoseEvaled: 16029172
+2025/01/10 18:24:11 Eval: -21(Bot perspecitve)
+2025/01/10 18:24:20 currentDepth: 6
+2025/01/10 18:24:20 PoseEvaled: 16105126
+2025/01/10 18:24:20 Eval: -23(Bot perspecitve)
+2025/01/10 18:24:24 currentDepth: 6
+2025/01/10 18:24:24 PoseEvaled: 15507344
+2025/01/10 18:24:24 Eval: -39(Bot perspecitve)
+2025/01/10 18:24:33 currentDepth: 6
+2025/01/10 18:24:33 PoseEvaled: 15284086
+2025/01/10 18:24:33 Eval: -177(Bot perspecitve)
+2025/01/10 18:24:41 currentDepth: 6
+2025/01/10 18:24:41 PoseEvaled: 15500353
+2025/01/10 18:24:41 Eval: -181(Bot perspecitve)
+2025/01/10 18:24:49 currentDepth: 6
+2025/01/10 18:24:49 PoseEvaled: 15090819
+2025/01/10 18:24:49 Eval: -202(Bot perspecitve)
+2025/01/10 18:24:57 currentDepth: 6
+2025/01/10 18:24:57 PoseEvaled: 14478392
+2025/01/10 18:24:57 Eval: -213(Bot perspecitve)
+2025/01/10 18:25:05 currentDepth: 6
+2025/01/10 18:25:05 PoseEvaled: 14101943
+2025/01/10 18:25:05 Eval: -223(Bot perspecitve)
+2025/01/10 18:25:12 currentDepth: 6
+2025/01/10 18:25:12 PoseEvaled: 14255051
+2025/01/10 18:25:12 Eval: -250(Bot perspecitve)
+2025/01/10 18:25:20 currentDepth: 6
+2025/01/10 18:25:20 PoseEvaled: 14204961
+2025/01/10 18:25:20 Eval: -198(Bot perspecitve)
+2025/01/10 18:25:27 currentDepth: 5
+2025/01/10 18:25:27 PoseEvaled: 14073372
+2025/01/10 18:25:27 Eval: -202(Bot perspecitve)
+2025/01/10 18:25:34 currentDepth: 6
+2025/01/10 18:25:34 PoseEvaled: 13523342
+2025/01/10 18:25:34 Eval: -194(Bot perspecitve)
+2025/01/10 18:25:40 currentDepth: 6
+2025/01/10 18:25:40 PoseEvaled: 12886039
+2025/01/10 18:25:40 Eval: -174(Bot perspecitve)
+2025/01/10 18:25:47 currentDepth: 6
+2025/01/10 18:25:47 PoseEvaled: 12831637
+2025/01/10 18:25:47 Eval: -202(Bot perspecitve)
+2025/01/10 18:25:54 currentDepth: 6
+2025/01/10 18:25:54 PoseEvaled: 11714747
+2025/01/10 18:25:54 Eval: -191(Bot perspecitve)
+2025/01/10 18:26:00 currentDepth: 6
+2025/01/10 18:26:00 PoseEvaled: 10833614
+2025/01/10 18:26:00 Eval: -208(Bot perspecitve)
+2025/01/10 18:26:06 currentDepth: 6
+2025/01/10 18:26:06 PoseEvaled: 10809915
+2025/01/10 18:26:06 Eval: -195(Bot perspecitve)
+2025/01/10 18:26:12 currentDepth: 6
+2025/01/10 18:26:12 PoseEvaled: 10553495
+2025/01/10 18:26:12 Eval: -162(Bot perspecitve)
+2025/01/10 18:26:18 currentDepth: 6
+2025/01/10 18:26:18 PoseEvaled: 10142365
+2025/01/10 18:26:18 Eval: -158(Bot perspecitve)
+2025/01/10 18:26:23 currentDepth: 6
+2025/01/10 18:26:23 PoseEvaled: 9520838
+2025/01/10 18:26:23 Eval: -143(Bot perspecitve)
+2025/01/10 18:26:29 currentDepth: 6
+2025/01/10 18:26:29 PoseEvaled: 9222477
+2025/01/10 18:26:29 Eval: -149(Bot perspecitve)
+2025/01/10 18:26:34 currentDepth: 6
+2025/01/10 18:26:34 PoseEvaled: 9036680
+2025/01/10 18:26:34 Eval: -122(Bot perspecitve)
+2025/01/10 18:26:40 currentDepth: 6
+2025/01/10 18:26:40 PoseEvaled: 9227160
+2025/01/10 18:26:40 Eval: -65(Bot perspecitve)
+2025/01/10 18:26:45 currentDepth: 6
+2025/01/10 18:26:45 PoseEvaled: 9393915
+2025/01/10 18:26:45 Eval: -69(Bot perspecitve)
+2025/01/10 18:26:50 currentDepth: 6
+2025/01/10 18:26:50 PoseEvaled: 9385696
+2025/01/10 18:26:50 Eval: -58(Bot perspecitve)
+2025/01/10 18:26:55 currentDepth: 6
+2025/01/10 18:26:55 PoseEvaled: 9232161
+2025/01/10 18:26:55 Eval: -26(Bot perspecitve)
+2025/01/10 18:26:59 currentDepth: 6
+2025/01/10 18:26:59 PoseEvaled: 8829010
+2025/01/10 18:26:59 Eval: -41(Bot perspecitve)
+2025/01/10 18:27:04 currentDepth: 6
+2025/01/10 18:27:04 PoseEvaled: 8502430
+2025/01/10 18:27:04 Eval: 7(Bot perspecitve)
+2025/01/10 18:27:09 currentDepth: 6
+2025/01/10 18:27:09 PoseEvaled: 8354561
+2025/01/10 18:27:09 Eval: 8(Bot perspecitve)
+2025/01/10 18:27:13 currentDepth: 6
+2025/01/10 18:27:13 PoseEvaled: 7855240
+2025/01/10 18:27:13 Eval: 15(Bot perspecitve)
+2025/01/10 18:27:17 currentDepth: 6
+2025/01/10 18:27:17 PoseEvaled: 7799920
+2025/01/10 18:27:17 Eval: 38(Bot perspecitve)
+2025/01/10 18:27:21 currentDepth: 6
+2025/01/10 18:27:21 PoseEvaled: 7842859
+2025/01/10 18:27:21 Eval: 13(Bot perspecitve)
+2025/01/10 18:27:26 currentDepth: 7
+2025/01/10 18:27:26 PoseEvaled: 6891649
+2025/01/10 18:27:26 Eval: 27(Bot perspecitve)
+2025/01/10 18:27:30 currentDepth: 7
+2025/01/10 18:27:30 PoseEvaled: 6958789
+2025/01/10 18:27:30 Eval: 28(Bot perspecitve)
+2025/01/10 18:27:33 currentDepth: 6
+2025/01/10 18:27:33 PoseEvaled: 7019578
+2025/01/10 18:27:33 Eval: 26(Bot perspecitve)
+2025/01/10 18:27:37 currentDepth: 7
+2025/01/10 18:27:37 PoseEvaled: 6330115
+2025/01/10 18:27:37 Eval: -14(Bot perspecitve)
+2025/01/10 18:27:41 currentDepth: 8
+2025/01/10 18:27:41 PoseEvaled: 6126960
+2025/01/10 18:27:41 Eval: 6(Bot perspecitve)
+2025/01/10 18:27:45 currentDepth: 6
+2025/01/10 18:27:45 PoseEvaled: 6221091
+2025/01/10 18:27:45 Eval: 40(Bot perspecitve)
+2025/01/10 18:27:48 currentDepth: 6
+2025/01/10 18:27:48 PoseEvaled: 6290403
+2025/01/10 18:27:48 Eval: 40(Bot perspecitve)
+2025/01/10 18:27:51 currentDepth: 6
+2025/01/10 18:27:51 PoseEvaled: 5834863
+2025/01/10 18:27:51 Eval: 136(Bot perspecitve)
+2025/01/10 18:27:55 currentDepth: 6
+2025/01/10 18:27:55 PoseEvaled: 5745025
+2025/01/10 18:27:55 Eval: -1342(Bot perspecitve)
+2025/01/10 18:27:58 currentDepth: 6
+2025/01/10 18:27:58 PoseEvaled: 5898153
+2025/01/10 18:27:58 Eval: 146(Bot perspecitve)
+2025/01/10 18:28:01 currentDepth: 6
+2025/01/10 18:28:01 PoseEvaled: 5682763
+2025/01/10 18:28:01 Eval: 139(Bot perspecitve)
+2025/01/10 18:28:04 currentDepth: 5
+2025/01/10 18:28:04 PoseEvaled: 5501727
+2025/01/10 18:28:04 Eval: 136(Bot perspecitve)
+2025/01/10 18:28:07 currentDepth: 6
+2025/01/10 18:28:07 PoseEvaled: 5057068
+2025/01/10 18:28:07 Eval: 161(Bot perspecitve)
+2025/01/10 18:28:10 currentDepth: 7
+2025/01/10 18:28:10 PoseEvaled: 4677621
+2025/01/10 18:28:10 Eval: 175(Bot perspecitve)
+2025/01/10 18:28:13 currentDepth: 6
+2025/01/10 18:28:13 PoseEvaled: 4489232
+2025/01/10 18:28:13 Eval: 175(Bot perspecitve)
+2025/01/10 18:28:16 currentDepth: 6
+2025/01/10 18:28:16 PoseEvaled: 4841439
+2025/01/10 18:28:16 Eval: 388(Bot perspecitve)
+2025/01/10 18:28:19 currentDepth: 8
+2025/01/10 18:28:19 PoseEvaled: 4772588
+2025/01/10 18:28:19 Eval: 402(Bot perspecitve)
+2025/01/10 18:28:21 currentDepth: 8
+2025/01/10 18:28:21 PoseEvaled: 4536508
+2025/01/10 18:28:21 Eval: 534(Bot perspecitve)
+2025/01/10 18:28:24 currentDepth: 8
+2025/01/10 18:28:24 PoseEvaled: 4784641
+2025/01/10 18:28:24 Eval: 601(Bot perspecitve)
+2025/01/10 18:28:27 currentDepth: 9
+2025/01/10 18:28:27 PoseEvaled: 5742652
+2025/01/10 18:28:27 Eval: 606(Bot perspecitve)
+2025/01/10 18:28:29 currentDepth: 7
+2025/01/10 18:28:29 PoseEvaled: 5415562
+2025/01/10 18:28:29 Eval: 627(Bot perspecitve)
+2025/01/10 18:28:31 currentDepth: 8
+2025/01/10 18:28:31 PoseEvaled: 5550279
+2025/01/10 18:28:31 Eval: 703(Bot perspecitve)
+2025/01/10 18:28:34 currentDepth: 7
+2025/01/10 18:28:34 PoseEvaled: 5539891
+2025/01/10 18:28:34 Eval: 744(Bot perspecitve)
+2025/01/10 18:28:36 currentDepth: 7
+2025/01/10 18:28:36 PoseEvaled: 5135239
+2025/01/10 18:28:36 Eval: 820(Bot perspecitve)
+2025/01/10 18:28:38 currentDepth: 7
+2025/01/10 18:28:38 PoseEvaled: 5297830
+2025/01/10 18:28:38 Eval: 820(Bot perspecitve)
+2025/01/10 18:28:40 currentDepth: 7
+2025/01/10 18:28:40 PoseEvaled: 5264456
+2025/01/10 18:28:40 Eval: 834(Bot perspecitve)
+2025/01/10 18:28:43 currentDepth: 8
+2025/01/10 18:28:43 PoseEvaled: 6711789
+2025/01/10 18:28:43 Eval: 890(Bot perspecitve)
+2025/01/10 18:28:45 currentDepth: 8
+2025/01/10 18:28:45 PoseEvaled: 6457526
+2025/01/10 18:28:45 Eval: 902(Bot perspecitve)
+2025/01/10 18:28:47 currentDepth: 8
+2025/01/10 18:28:47 PoseEvaled: 6407265
+2025/01/10 18:28:47 Eval: 915(Bot perspecitve)
+2025/01/10 18:28:49 currentDepth: 8
+2025/01/10 18:28:49 PoseEvaled: 6283480
+2025/01/10 18:28:49 Eval: 915(Bot perspecitve)
+2025/01/10 18:28:50 currentDepth: 9
+2025/01/10 18:28:50 PoseEvaled: 6418000
+2025/01/10 18:28:50 Eval: 915(Bot perspecitve)
+2025/01/10 18:28:52 currentDepth: 9
+2025/01/10 18:28:52 PoseEvaled: 6027420
+2025/01/10 18:28:52 Eval: 915(Bot perspecitve)
+2025/01/10 18:28:54 currentDepth: 9
+2025/01/10 18:28:54 PoseEvaled: 6338468
+2025/01/10 18:28:54 Eval: 950(Bot perspecitve)
+2025/01/10 18:28:56 currentDepth: 9
+2025/01/10 18:28:56 PoseEvaled: 5632418
+2025/01/10 18:28:56 Eval: 959(Bot perspecitve)
+2025/01/10 18:28:58 currentDepth: 9
+2025/01/10 18:28:58 PoseEvaled: 6364756
+2025/01/10 18:28:58 Eval: 99999999(Bot perspecitve)
+2025/01/10 18:28:58 Found Forced mate
+2025/01/10 18:28:58 Found Forced mate
+2025/01/10 18:28:58 Found Forced mate
+2025/01/10 18:28:58 Found Forced mate
+2025/01/10 18:28:58 Found Forced mate
+2025/01/10 18:28:59 currentDepth: 6
+2025/01/10 18:28:59 PoseEvaled: 3058565
+2025/01/10 18:28:59 Eval: 0(Bot perspecitve)
+2025/01/10 18:29:00 currentDepth: 6
+2025/01/10 18:29:00 PoseEvaled: 3515517
+2025/01/10 18:29:00 Eval: -18(Bot perspecitve)
+2025/01/10 18:29:01 currentDepth: 5
+2025/01/10 18:29:01 PoseEvaled: 2982272
+2025/01/10 18:29:01 Eval: 0(Bot perspecitve)
+2025/01/10 18:29:02 currentDepth: 5
+2025/01/10 18:29:02 PoseEvaled: 3705978
+2025/01/10 18:29:02 Eval: -32(Bot perspecitve)
+2025/01/10 18:29:03 currentDepth: 4
+2025/01/10 18:29:03 PoseEvaled: 2949306
+2025/01/10 18:29:03 Eval: 26(Bot perspecitve)
+2025/01/10 18:29:07 currentDepth: 5
+2025/01/10 18:29:07 PoseEvaled: 14610854
+2025/01/10 18:29:07 Eval: -31(Bot perspecitve)
+2025/01/10 18:29:12 currentDepth: 5
+2025/01/10 18:29:12 PoseEvaled: 15027489
+2025/01/10 18:29:12 Eval: 7(Bot perspecitve)
+2025/01/10 18:29:16 currentDepth: 5
+2025/01/10 18:29:16 PoseEvaled: 14124225
+2025/01/10 18:29:16 Eval: -26(Bot perspecitve)
+2025/01/10 18:29:21 currentDepth: 5
+2025/01/10 18:29:21 PoseEvaled: 14644142
+2025/01/10 18:29:21 Eval: 43(Bot perspecitve)
+2025/01/10 18:29:25 currentDepth: 5
+2025/01/10 18:29:25 PoseEvaled: 14179947
+2025/01/10 18:29:25 Eval: -33(Bot perspecitve)
+2025/01/10 18:29:29 currentDepth: 5
+2025/01/10 18:29:29 PoseEvaled: 14232272
+2025/01/10 18:29:29 Eval: 38(Bot perspecitve)
+2025/01/10 18:29:33 currentDepth: 5
+2025/01/10 18:29:33 PoseEvaled: 13779022
+2025/01/10 18:29:33 Eval: -26(Bot perspecitve)
+2025/01/10 18:29:37 currentDepth: 5
+2025/01/10 18:29:37 PoseEvaled: 13958532
+2025/01/10 18:29:37 Eval: 24(Bot perspecitve)
+2025/01/10 18:29:41 currentDepth: 6
+2025/01/10 18:29:41 PoseEvaled: 13180553
+2025/01/10 18:29:41 Eval: -15(Bot perspecitve)
+2025/01/10 18:29:45 currentDepth: 5
+2025/01/10 18:29:45 PoseEvaled: 14165741
+2025/01/10 18:29:45 Eval: 34(Bot perspecitve)
+2025/01/10 18:29:49 currentDepth: 6
+2025/01/10 18:29:49 PoseEvaled: 13084284
+2025/01/10 18:29:49 Eval: -11(Bot perspecitve)
+2025/01/10 18:29:53 currentDepth: 6
+2025/01/10 18:29:53 PoseEvaled: 12974050
+2025/01/10 18:29:53 Eval: 27(Bot perspecitve)
+2025/01/10 18:29:57 currentDepth: 6
+2025/01/10 18:29:57 PoseEvaled: 12546326
+2025/01/10 18:29:57 Eval: 0(Bot perspecitve)
+2025/01/10 18:30:01 currentDepth: 5
+2025/01/10 18:30:01 PoseEvaled: 13049007
+2025/01/10 18:30:01 Eval: 6(Bot perspecitve)
+2025/01/10 18:30:04 currentDepth: 5
+2025/01/10 18:30:04 PoseEvaled: 12441492
+2025/01/10 18:30:04 Eval: 20(Bot perspecitve)
+2025/01/10 18:30:08 currentDepth: 5
+2025/01/10 18:30:08 PoseEvaled: 13171919
+2025/01/10 18:30:08 Eval: -35(Bot perspecitve)
+2025/01/10 18:30:12 currentDepth: 7
+2025/01/10 18:30:12 PoseEvaled: 12011928
+2025/01/10 18:30:12 Eval: -8(Bot perspecitve)
+2025/01/10 18:30:15 currentDepth: 5
+2025/01/10 18:30:15 PoseEvaled: 12788447
+2025/01/10 18:30:15 Eval: 21(Bot perspecitve)
+2025/01/10 18:30:19 currentDepth: 6
+2025/01/10 18:30:19 PoseEvaled: 11477074
+2025/01/10 18:30:19 Eval: 3(Bot perspecitve)
+2025/01/10 18:30:22 currentDepth: 7
+2025/01/10 18:30:22 PoseEvaled: 12075809
+2025/01/10 18:30:22 Eval: 45(Bot perspecitve)
+2025/01/10 18:30:26 currentDepth: 6
+2025/01/10 18:30:26 PoseEvaled: 11404941
+2025/01/10 18:30:26 Eval: 25(Bot perspecitve)
+2025/01/10 18:30:29 currentDepth: 6
+2025/01/10 18:30:29 PoseEvaled: 11567517
+2025/01/10 18:30:29 Eval: 35(Bot perspecitve)
+2025/01/10 18:30:33 currentDepth: 8
+2025/01/10 18:30:33 PoseEvaled: 11386408
+2025/01/10 18:30:33 Eval: 67(Bot perspecitve)
+2025/01/10 18:30:36 currentDepth: 6
+2025/01/10 18:30:36 PoseEvaled: 11369398
+2025/01/10 18:30:36 Eval: -29(Bot perspecitve)
+2025/01/10 18:30:39 currentDepth: 7
+2025/01/10 18:30:39 PoseEvaled: 10932001
+2025/01/10 18:30:39 Eval: 63(Bot perspecitve)
+2025/01/10 18:30:43 currentDepth: 6
+2025/01/10 18:30:43 PoseEvaled: 11125729
+2025/01/10 18:30:43 Eval: 14(Bot perspecitve)
+2025/01/10 18:30:46 currentDepth: 7
+2025/01/10 18:30:46 PoseEvaled: 10805470
+2025/01/10 18:30:46 Eval: 26(Bot perspecitve)
+2025/01/10 18:30:49 currentDepth: 5
+2025/01/10 18:30:49 PoseEvaled: 11114306
+2025/01/10 18:30:49 Eval: 14(Bot perspecitve)
+2025/01/10 18:30:52 currentDepth: 8
+2025/01/10 18:30:52 PoseEvaled: 10424745
+2025/01/10 18:30:52 Eval: -82(Bot perspecitve)
+2025/01/10 18:30:55 currentDepth: 5
+2025/01/10 18:30:55 PoseEvaled: 10817361
+2025/01/10 18:30:55 Eval: 143(Bot perspecitve)
+2025/01/10 18:30:58 currentDepth: 6
+2025/01/10 18:30:58 PoseEvaled: 10062194
+2025/01/10 18:30:58 Eval: -99(Bot perspecitve)
+2025/01/10 18:31:01 currentDepth: 5
+2025/01/10 18:31:01 PoseEvaled: 10134995
+2025/01/10 18:31:01 Eval: 140(Bot perspecitve)
+2025/01/10 18:31:04 currentDepth: 8
+2025/01/10 18:31:04 PoseEvaled: 9390682
+2025/01/10 18:31:04 Eval: -114(Bot perspecitve)
+2025/01/10 18:31:07 currentDepth: 6
+2025/01/10 18:31:07 PoseEvaled: 9509793
+2025/01/10 18:31:07 Eval: 158(Bot perspecitve)
+2025/01/10 18:31:10 currentDepth: 8
+2025/01/10 18:31:10 PoseEvaled: 10418492
+2025/01/10 18:31:10 Eval: -123(Bot perspecitve)
+2025/01/10 18:31:13 currentDepth: 6
+2025/01/10 18:31:13 PoseEvaled: 10461904
+2025/01/10 18:31:13 Eval: 158(Bot perspecitve)
+2025/01/10 18:31:16 currentDepth: 7
+2025/01/10 18:31:16 PoseEvaled: 10094071
+2025/01/10 18:31:16 Eval: -126(Bot perspecitve)
+2025/01/10 18:31:19 currentDepth: 6
+2025/01/10 18:31:19 PoseEvaled: 10367403
+2025/01/10 18:31:19 Eval: 165(Bot perspecitve)
+2025/01/10 18:31:21 currentDepth: 6
+2025/01/10 18:31:21 PoseEvaled: 10312977
+2025/01/10 18:31:21 Eval: -121(Bot perspecitve)
+2025/01/10 18:31:24 currentDepth: 6
+2025/01/10 18:31:24 PoseEvaled: 10581076
+2025/01/10 18:31:24 Eval: 190(Bot perspecitve)
+2025/01/10 18:31:27 currentDepth: 7
+2025/01/10 18:31:27 PoseEvaled: 9623934
+2025/01/10 18:31:27 Eval: -133(Bot perspecitve)
+2025/01/10 18:31:29 currentDepth: 6
+2025/01/10 18:31:29 PoseEvaled: 9828580
+2025/01/10 18:31:29 Eval: 218(Bot perspecitve)
+2025/01/10 18:31:32 currentDepth: 7
+2025/01/10 18:31:32 PoseEvaled: 9504059
+2025/01/10 18:31:32 Eval: -245(Bot perspecitve)
+2025/01/10 18:31:35 currentDepth: 6
+2025/01/10 18:31:35 PoseEvaled: 9739935
+2025/01/10 18:31:35 Eval: 293(Bot perspecitve)
+2025/01/10 18:31:37 currentDepth: 7
+2025/01/10 18:31:37 PoseEvaled: 9133463
+2025/01/10 18:31:37 Eval: -260(Bot perspecitve)
+2025/01/10 18:31:40 currentDepth: 6
+2025/01/10 18:31:40 PoseEvaled: 9465118
+2025/01/10 18:31:40 Eval: 392(Bot perspecitve)
+2025/01/10 18:31:42 currentDepth: 6
+2025/01/10 18:31:42 PoseEvaled: 9600061
+2025/01/10 18:31:42 Eval: -414(Bot perspecitve)
+2025/01/10 18:31:45 currentDepth: 6
+2025/01/10 18:31:45 PoseEvaled: 9481713
+2025/01/10 18:31:45 Eval: 547(Bot perspecitve)
+2025/01/10 18:31:47 currentDepth: 7
+2025/01/10 18:31:47 PoseEvaled: 9922227
+2025/01/10 18:31:47 Eval: -506(Bot perspecitve)
+2025/01/10 18:31:50 currentDepth: 7
+2025/01/10 18:31:50 PoseEvaled: 9312604
+2025/01/10 18:31:50 Eval: 557(Bot perspecitve)
+2025/01/10 18:31:52 currentDepth: 7
+2025/01/10 18:31:52 PoseEvaled: 9555537
+2025/01/10 18:31:52 Eval: -510(Bot perspecitve)
+2025/01/10 18:31:54 currentDepth: 7
+2025/01/10 18:31:54 PoseEvaled: 9595615
+2025/01/10 18:31:54 Eval: 540(Bot perspecitve)
+2025/01/10 18:31:57 currentDepth: 8
+2025/01/10 18:31:57 PoseEvaled: 8990795
+2025/01/10 18:31:57 Eval: -530(Bot perspecitve)
+2025/01/10 18:31:59 currentDepth: 8
+2025/01/10 18:31:59 PoseEvaled: 9120983
+2025/01/10 18:31:59 Eval: 600(Bot perspecitve)
+2025/01/10 18:32:01 currentDepth: 8
+2025/01/10 18:32:01 PoseEvaled: 9004806
+2025/01/10 18:32:01 Eval: -545(Bot perspecitve)
+2025/01/10 18:32:03 currentDepth: 7
+2025/01/10 18:32:03 PoseEvaled: 9428961
+2025/01/10 18:32:03 Eval: 590(Bot perspecitve)
+2025/01/10 18:32:06 currentDepth: 10
+2025/01/10 18:32:06 PoseEvaled: 9184943
+2025/01/10 18:32:06 Eval: -560(Bot perspecitve)
+2025/01/10 18:32:08 currentDepth: 8
+2025/01/10 18:32:08 PoseEvaled: 8979544
+2025/01/10 18:32:08 Eval: 605(Bot perspecitve)
+2025/01/10 18:32:10 currentDepth: 9
+2025/01/10 18:32:10 PoseEvaled: 8727849
+2025/01/10 18:32:10 Eval: -585(Bot perspecitve)
+2025/01/10 18:32:12 currentDepth: 8
+2025/01/10 18:32:12 PoseEvaled: 8775882
+2025/01/10 18:32:12 Eval: 655(Bot perspecitve)
+2025/01/10 18:32:14 currentDepth: 10
+2025/01/10 18:32:14 PoseEvaled: 8414229
+2025/01/10 18:32:14 Eval: -630(Bot perspecitve)
+2025/01/10 18:32:16 currentDepth: 9
+2025/01/10 18:32:16 PoseEvaled: 8296235
+2025/01/10 18:32:16 Eval: 695(Bot perspecitve)
+2025/01/10 18:32:18 currentDepth: 11
+2025/01/10 18:32:18 PoseEvaled: 9349044
+2025/01/10 18:32:18 Eval: -650(Bot perspecitve)
+2025/01/10 18:32:20 currentDepth: 11
+2025/01/10 18:32:20 PoseEvaled: 9564858
+2025/01/10 18:32:20 Eval: 730(Bot perspecitve)
+2025/01/10 18:32:22 currentDepth: 11
+2025/01/10 18:32:22 PoseEvaled: 9123095
+2025/01/10 18:32:22 Eval: -705(Bot perspecitve)
+2025/01/10 18:32:24 currentDepth: 11
+2025/01/10 18:32:24 PoseEvaled: 9338105
+2025/01/10 18:32:24 Eval: 780(Bot perspecitve)
+2025/01/10 18:32:26 currentDepth: 11
+2025/01/10 18:32:26 PoseEvaled: 8738488
+2025/01/10 18:32:26 Eval: -730(Bot perspecitve)
+2025/01/10 18:32:28 currentDepth: 10
+2025/01/10 18:32:28 PoseEvaled: 8674389
+2025/01/10 18:32:28 Eval: 795(Bot perspecitve)
+2025/01/10 18:32:30 currentDepth: 11
+2025/01/10 18:32:30 PoseEvaled: 8362453
+2025/01/10 18:32:30 Eval: -750(Bot perspecitve)
+2025/01/10 18:32:32 currentDepth: 10
+2025/01/10 18:32:32 PoseEvaled: 8438657
+2025/01/10 18:32:32 Eval: 820(Bot perspecitve)
+2025/01/10 18:32:34 currentDepth: 11
+2025/01/10 18:32:34 PoseEvaled: 8149827
+2025/01/10 18:32:34 Eval: -770(Bot perspecitve)
+2025/01/10 18:32:35 currentDepth: 10
+2025/01/10 18:32:35 PoseEvaled: 8127516
+2025/01/10 18:32:35 Eval: 830(Bot perspecitve)
+2025/01/10 18:32:37 currentDepth: 11
+2025/01/10 18:32:37 PoseEvaled: 8085194
+2025/01/10 18:32:37 Eval: -795(Bot perspecitve)
+2025/01/10 18:32:39 currentDepth: 9
+2025/01/10 18:32:39 PoseEvaled: 8108453
+2025/01/10 18:32:39 Eval: 850(Bot perspecitve)
+2025/01/10 18:32:41 currentDepth: 11
+2025/01/10 18:32:41 PoseEvaled: 7818082
+2025/01/10 18:32:41 Eval: -815(Bot perspecitve)
+2025/01/10 18:32:43 currentDepth: 9
+2025/01/10 18:32:43 PoseEvaled: 7800925
+2025/01/10 18:32:43 Eval: 880(Bot perspecitve)
+2025/01/10 18:32:44 currentDepth: 11
+2025/01/10 18:32:44 PoseEvaled: 7967439
+2025/01/10 18:32:44 Eval: -860(Bot perspecitve)
+2025/01/10 18:32:46 currentDepth: 10
+2025/01/10 18:32:46 PoseEvaled: 7716699
+2025/01/10 18:32:46 Eval: 935(Bot perspecitve)
+2025/01/10 18:32:48 currentDepth: 11
+2025/01/10 18:32:48 PoseEvaled: 7690252
+2025/01/10 18:32:48 Eval: -850(Bot perspecitve)
+2025/01/10 18:32:49 currentDepth: 9
+2025/01/10 18:32:49 PoseEvaled: 7439669
+2025/01/10 18:32:49 Eval: 940(Bot perspecitve)
+2025/01/10 18:32:51 currentDepth: 10
+2025/01/10 18:32:51 PoseEvaled: 7972517
+2025/01/10 18:32:51 Eval: -870(Bot perspecitve)
+2025/01/10 18:32:52 currentDepth: 9
+2025/01/10 18:32:52 PoseEvaled: 8097887
+2025/01/10 18:32:52 Eval: 950(Bot perspecitve)
+2025/01/10 18:32:54 currentDepth: 10
+2025/01/10 18:32:54 PoseEvaled: 8396443
+2025/01/10 18:32:54 Eval: -1258(Bot perspecitve)
+2025/01/10 18:32:56 currentDepth: 9
+2025/01/10 18:32:56 PoseEvaled: 8233910
+2025/01/10 18:32:56 Eval: 985(Bot perspecitve)
+2025/01/10 18:32:57 currentDepth: 12
+2025/01/10 18:32:57 PoseEvaled: 8868622
+2025/01/10 18:32:57 Eval: -1558(Bot perspecitve)
+2025/01/10 18:32:59 currentDepth: 10
+2025/01/10 18:32:59 PoseEvaled: 8059576
+2025/01/10 18:32:59 Eval: 1343(Bot perspecitve)
+2025/01/10 18:33:00 currentDepth: 12
+2025/01/10 18:33:00 PoseEvaled: 8143942
+2025/01/10 18:33:00 Eval: -1678(Bot perspecitve)
+2025/01/10 18:33:02 currentDepth: 9
+2025/01/10 18:33:02 PoseEvaled: 7563659
+2025/01/10 18:33:02 Eval: 1645(Bot perspecitve)
+2025/01/10 18:33:03 currentDepth: 11
+2025/01/10 18:33:03 PoseEvaled: 8052566
+2025/01/10 18:33:03 Eval: -99999999(Bot perspecitve)
+2025/01/10 18:33:05 currentDepth: 8
+2025/01/10 18:33:05 PoseEvaled: 7416536
+2025/01/10 18:33:05 Eval: 1693(Bot perspecitve)
+2025/01/10 18:33:06 currentDepth: 9
+2025/01/10 18:33:06 PoseEvaled: 8202682
+2025/01/10 18:33:06 Eval: -99999999(Bot perspecitve)
+2025/01/10 18:33:07 currentDepth: 7
+2025/01/10 18:33:07 PoseEvaled: 8016261
+2025/01/10 18:33:07 Eval: 1693(Bot perspecitve)
+2025/01/10 18:33:09 currentDepth: 8
+2025/01/10 18:33:09 PoseEvaled: 8269368
+2025/01/10 18:33:09 Eval: -100000019(Bot perspecitve)
+2025/01/10 18:33:10 Found Forced mate
+2025/01/10 18:33:11 currentDepth: 9
+2025/01/10 18:33:11 PoseEvaled: 8100278
+2025/01/10 18:33:11 Eval: -100000019(Bot perspecitve)
+2025/01/10 18:33:11 Found Forced mate
+2025/01/10 18:33:12 currentDepth: 9
+2025/01/10 18:33:12 PoseEvaled: 7696003
+2025/01/10 18:33:12 Eval: -100000019(Bot perspecitve)
+2025/01/10 18:33:12 Found Forced mate
+2025/01/10 18:33:14 currentDepth: 9
+2025/01/10 18:33:14 PoseEvaled: 7462836
+2025/01/10 18:33:14 Eval: -100000019(Bot perspecitve)
+2025/01/10 18:33:14 Found Forced mate
+2025/01/10 18:33:15 currentDepth: 8
+2025/01/10 18:33:15 PoseEvaled: 7393332
+2025/01/10 18:33:15 Eval: -100000029(Bot perspecitve)
+2025/01/10 18:33:15 Found Forced mate
+2025/01/10 18:33:16 currentDepth: 9
+2025/01/10 18:33:16 PoseEvaled: 7415547
+2025/01/10 18:33:16 Eval: -100000039(Bot perspecitve)
+2025/01/10 18:33:16 Found Forced mate
+2025/01/10 18:33:17 currentDepth: 10
+2025/01/10 18:33:17 PoseEvaled: 6927177
+2025/01/10 18:33:17 Eval: -100000029(Bot perspecitve)
+2025/01/10 18:33:17 Found Forced mate
+2025/01/10 18:33:19 currentDepth: 9
+2025/01/10 18:33:19 PoseEvaled: 6722449
+2025/01/10 18:33:19 Eval: -100000029(Bot perspecitve)
+2025/01/10 18:33:19 Found Forced mate
+2025/01/10 18:33:20 currentDepth: 9
+2025/01/10 18:33:20 PoseEvaled: 6621626
+2025/01/10 18:33:20 Eval: -100000039(Bot perspecitve)
+2025/01/10 18:33:20 Found Forced mate
+2025/01/10 18:33:21 currentDepth: 9
+2025/01/10 18:33:21 PoseEvaled: 6567398
+2025/01/10 18:33:21 Eval: -100000039(Bot perspecitve)
+2025/01/10 18:33:21 Found Forced mate
+2025/01/10 18:33:22 currentDepth: 10
+2025/01/10 18:33:22 PoseEvaled: 6395888
+2025/01/10 18:33:22 Eval: -100000059(Bot perspecitve)
+2025/01/10 18:33:22 Found Forced mate
+2025/01/10 18:33:23 currentDepth: 10
+2025/01/10 18:33:23 PoseEvaled: 6424113
+2025/01/10 18:33:23 Eval: -100000079(Bot perspecitve)
+2025/01/10 18:33:23 Found Forced mate
+2025/01/10 18:33:24 currentDepth: 10
+2025/01/10 18:33:24 PoseEvaled: 6365533
+2025/01/10 18:33:24 Eval: -100000069(Bot perspecitve)
+2025/01/10 18:33:24 Found Forced mate
+2025/01/10 18:33:25 currentDepth: 9
+2025/01/10 18:33:25 PoseEvaled: 6347842
+2025/01/10 18:33:25 Eval: -100000049(Bot perspecitve)
+2025/01/10 18:33:25 Found Forced mate
+2025/01/10 18:33:26 currentDepth: 10
+2025/01/10 18:33:26 PoseEvaled: 6038783
+2025/01/10 18:33:26 Eval: -100000069(Bot perspecitve)
+2025/01/10 18:33:26 Found Forced mate
+2025/01/10 18:33:27 currentDepth: 9
+2025/01/10 18:33:27 PoseEvaled: 5845286
+2025/01/10 18:33:27 Eval: -100000059(Bot perspecitve)
+2025/01/10 18:33:27 Found Forced mate
+2025/01/10 18:33:28 currentDepth: 6
+2025/01/10 18:33:28 PoseEvaled: 2966028
+2025/01/10 18:33:28 Eval: 0(Bot perspecitve)
+2025/01/10 18:33:29 currentDepth: 6
+2025/01/10 18:33:29 PoseEvaled: 3764889
+2025/01/10 18:33:29 Eval: -14(Bot perspecitve)
+2025/01/10 18:33:30 currentDepth: 5
+2025/01/10 18:33:30 PoseEvaled: 3020488
+2025/01/10 18:33:30 Eval: 0(Bot perspecitve)
+2025/01/10 18:33:31 currentDepth: 6
+2025/01/10 18:33:31 PoseEvaled: 3903891
+2025/01/10 18:33:31 Eval: -10(Bot perspecitve)
+2025/01/10 18:33:32 currentDepth: 5
+2025/01/10 18:33:32 PoseEvaled: 2945166
+2025/01/10 18:33:32 Eval: 26(Bot perspecitve)
+2025/01/10 18:33:36 currentDepth: 6
+2025/01/10 18:33:36 PoseEvaled: 16356538
+2025/01/10 18:33:36 Eval: -3(Bot perspecitve)
+2025/01/10 18:33:41 currentDepth: 5
+2025/01/10 18:33:41 PoseEvaled: 14902951
+2025/01/10 18:33:41 Eval: 9(Bot perspecitve)
+2025/01/10 18:33:45 currentDepth: 6
+2025/01/10 18:33:45 PoseEvaled: 15921590
+2025/01/10 18:33:45 Eval: 2(Bot perspecitve)
+2025/01/10 18:33:49 currentDepth: 5
+2025/01/10 18:33:49 PoseEvaled: 14508058
+2025/01/10 18:33:49 Eval: 4(Bot perspecitve)
+2025/01/10 18:33:54 currentDepth: 6
+2025/01/10 18:33:54 PoseEvaled: 15607207
+2025/01/10 18:33:54 Eval: -9(Bot perspecitve)
+2025/01/10 18:33:58 currentDepth: 5
+2025/01/10 18:33:58 PoseEvaled: 14281985
+2025/01/10 18:33:58 Eval: -27(Bot perspecitve)
+2025/01/10 18:34:02 currentDepth: 6
+2025/01/10 18:34:02 PoseEvaled: 15699939
+2025/01/10 18:34:02 Eval: 3(Bot perspecitve)
+2025/01/10 18:34:06 currentDepth: 4
+2025/01/10 18:34:06 PoseEvaled: 14531967
+2025/01/10 18:34:06 Eval: 66(Bot perspecitve)
+2025/01/10 18:34:10 currentDepth: 6
+2025/01/10 18:34:10 PoseEvaled: 15718377
+2025/01/10 18:34:10 Eval: 2(Bot perspecitve)
+2025/01/10 18:34:14 currentDepth: 5
+2025/01/10 18:34:14 PoseEvaled: 13211381
+2025/01/10 18:34:14 Eval: 17(Bot perspecitve)
+2025/01/10 18:34:18 currentDepth: 6
+2025/01/10 18:34:18 PoseEvaled: 14489273
+2025/01/10 18:34:18 Eval: 16(Bot perspecitve)
+2025/01/10 18:34:22 currentDepth: 5
+2025/01/10 18:34:22 PoseEvaled: 13418092
+2025/01/10 18:34:22 Eval: 2(Bot perspecitve)
+2025/01/10 18:34:26 currentDepth: 5
+2025/01/10 18:34:26 PoseEvaled: 14966364
+2025/01/10 18:34:26 Eval: 0(Bot perspecitve)
+2025/01/10 18:34:30 currentDepth: 4
+2025/01/10 18:34:30 PoseEvaled: 13443864
+2025/01/10 18:34:30 Eval: 29(Bot perspecitve)
+2025/01/10 18:34:33 currentDepth: 4
+2025/01/10 18:34:33 PoseEvaled: 15099848
+2025/01/10 18:34:33 Eval: 0(Bot perspecitve)
+2025/01/10 18:34:37 currentDepth: 4
+2025/01/10 18:34:37 PoseEvaled: 13287807
+2025/01/10 18:34:37 Eval: 39(Bot perspecitve)
+2025/01/10 18:34:41 currentDepth: 5
+2025/01/10 18:34:41 PoseEvaled: 14319131
+2025/01/10 18:34:41 Eval: -5(Bot perspecitve)
+2025/01/10 18:34:44 currentDepth: 4
+2025/01/10 18:34:44 PoseEvaled: 11911036
+2025/01/10 18:34:44 Eval: 31(Bot perspecitve)
+2025/01/10 18:34:48 currentDepth: 5
+2025/01/10 18:34:48 PoseEvaled: 13726889
+2025/01/10 18:34:48 Eval: 1(Bot perspecitve)
+2025/01/10 18:34:51 currentDepth: 4
+2025/01/10 18:34:51 PoseEvaled: 12189494
+2025/01/10 18:34:51 Eval: 20(Bot perspecitve)
+2025/01/10 18:34:55 currentDepth: 5
+2025/01/10 18:34:55 PoseEvaled: 13328321
+2025/01/10 18:34:55 Eval: 9(Bot perspecitve)
+2025/01/10 18:34:58 currentDepth: 5
+2025/01/10 18:34:58 PoseEvaled: 12207236
+2025/01/10 18:34:58 Eval: -17(Bot perspecitve)
+2025/01/10 18:35:02 currentDepth: 5
+2025/01/10 18:35:02 PoseEvaled: 13191528
+2025/01/10 18:35:02 Eval: -10(Bot perspecitve)
+2025/01/10 18:35:05 currentDepth: 4
+2025/01/10 18:35:05 PoseEvaled: 11664106
+2025/01/10 18:35:05 Eval: -36(Bot perspecitve)
+2025/01/10 18:35:08 currentDepth: 5
+2025/01/10 18:35:08 PoseEvaled: 12662858
+2025/01/10 18:35:08 Eval: 0(Bot perspecitve)
+2025/01/10 18:35:11 currentDepth: 4
+2025/01/10 18:35:11 PoseEvaled: 11484810
+2025/01/10 18:35:11 Eval: -21(Bot perspecitve)
+2025/01/10 18:35:15 currentDepth: 6
+2025/01/10 18:35:15 PoseEvaled: 11610994
+2025/01/10 18:35:15 Eval: -2(Bot perspecitve)
+2025/01/10 18:35:18 currentDepth: 4
+2025/01/10 18:35:18 PoseEvaled: 11473971
+2025/01/10 18:35:18 Eval: -41(Bot perspecitve)
+2025/01/10 18:35:21 currentDepth: 5
+2025/01/10 18:35:21 PoseEvaled: 11887623
+2025/01/10 18:35:21 Eval: 45(Bot perspecitve)
+2025/01/10 18:35:24 currentDepth: 5
+2025/01/10 18:35:24 PoseEvaled: 10677949
+2025/01/10 18:35:24 Eval: -50(Bot perspecitve)
+2025/01/10 18:35:27 currentDepth: 5
+2025/01/10 18:35:27 PoseEvaled: 11789326
+2025/01/10 18:35:27 Eval: 55(Bot perspecitve)
+2025/01/10 18:35:30 currentDepth: 4
+2025/01/10 18:35:30 PoseEvaled: 10982727
+2025/01/10 18:35:30 Eval: -45(Bot perspecitve)
+2025/01/10 18:35:33 currentDepth: 5
+2025/01/10 18:35:33 PoseEvaled: 12385730
+2025/01/10 18:35:33 Eval: 59(Bot perspecitve)
+2025/01/10 18:35:36 currentDepth: 4
+2025/01/10 18:35:36 PoseEvaled: 10739270
+2025/01/10 18:35:36 Eval: -59(Bot perspecitve)
+2025/01/10 18:35:39 currentDepth: 5
+2025/01/10 18:35:39 PoseEvaled: 11900858
+2025/01/10 18:35:39 Eval: 69(Bot perspecitve)
+2025/01/10 18:35:42 currentDepth: 4
+2025/01/10 18:35:42 PoseEvaled: 10617919
+2025/01/10 18:35:42 Eval: -70(Bot perspecitve)
+2025/01/10 18:35:45 currentDepth: 5
+2025/01/10 18:35:45 PoseEvaled: 11522809
+2025/01/10 18:35:45 Eval: 126(Bot perspecitve)
+2025/01/10 18:35:47 currentDepth: 5
+2025/01/10 18:35:47 PoseEvaled: 10310665
+2025/01/10 18:35:47 Eval: -93(Bot perspecitve)
+2025/01/10 18:35:50 currentDepth: 6
+2025/01/10 18:35:50 PoseEvaled: 11144873
+2025/01/10 18:35:50 Eval: 125(Bot perspecitve)
+2025/01/10 18:35:53 currentDepth: 7
+2025/01/10 18:35:53 PoseEvaled: 9667655
+2025/01/10 18:35:53 Eval: -127(Bot perspecitve)
+2025/01/10 18:35:56 currentDepth: 6
+2025/01/10 18:35:56 PoseEvaled: 10749398
+2025/01/10 18:35:56 Eval: 125(Bot perspecitve)
+2025/01/10 18:35:58 currentDepth: 5
+2025/01/10 18:35:58 PoseEvaled: 9479728
+2025/01/10 18:35:58 Eval: -355(Bot perspecitve)
+2025/01/10 18:36:01 currentDepth: 6
+2025/01/10 18:36:01 PoseEvaled: 10200917
+2025/01/10 18:36:01 Eval: 359(Bot perspecitve)
+2025/01/10 18:36:04 currentDepth: 7
+2025/01/10 18:36:04 PoseEvaled: 8734869
+2025/01/10 18:36:04 Eval: -469(Bot perspecitve)
+2025/01/10 18:36:06 currentDepth: 6
+2025/01/10 18:36:06 PoseEvaled: 10081889
+2025/01/10 18:36:06 Eval: 681(Bot perspecitve)
+2025/01/10 18:36:09 currentDepth: 6
+2025/01/10 18:36:09 PoseEvaled: 8786157
+2025/01/10 18:36:09 Eval: -737(Bot perspecitve)
+2025/01/10 18:36:11 currentDepth: 6
+2025/01/10 18:36:11 PoseEvaled: 9732596
+2025/01/10 18:36:11 Eval: 715(Bot perspecitve)
+2025/01/10 18:36:14 currentDepth: 6
+2025/01/10 18:36:14 PoseEvaled: 8725229
+2025/01/10 18:36:14 Eval: -714(Bot perspecitve)
+2025/01/10 18:36:16 currentDepth: 7
+2025/01/10 18:36:16 PoseEvaled: 9017098
+2025/01/10 18:36:16 Eval: 744(Bot perspecitve)
+2025/01/10 18:36:18 currentDepth: 6
+2025/01/10 18:36:18 PoseEvaled: 8792531
+2025/01/10 18:36:18 Eval: -814(Bot perspecitve)
+2025/01/10 18:36:21 currentDepth: 5
+2025/01/10 18:36:21 PoseEvaled: 9152474
+2025/01/10 18:36:21 Eval: 744(Bot perspecitve)
+2025/01/10 18:36:23 currentDepth: 7
+2025/01/10 18:36:23 PoseEvaled: 8275650
+2025/01/10 18:36:23 Eval: -827(Bot perspecitve)
+2025/01/10 18:36:25 currentDepth: 6
+2025/01/10 18:36:25 PoseEvaled: 8765970
+2025/01/10 18:36:25 Eval: 100000039(Bot perspecitve)
+2025/01/10 18:36:28 currentDepth: 7
+2025/01/10 18:36:28 PoseEvaled: 7713411
+2025/01/10 18:36:28 Eval: -552(Bot perspecitve)
+2025/01/10 18:36:30 currentDepth: 6
+2025/01/10 18:36:30 PoseEvaled: 8609479
+2025/01/10 18:36:30 Eval: 486(Bot perspecitve)
+2025/01/10 18:36:32 currentDepth: 5
+2025/01/10 18:36:32 PoseEvaled: 7861783
+2025/01/10 18:36:32 Eval: -640(Bot perspecitve)
+2025/01/10 18:36:34 currentDepth: 6
+2025/01/10 18:36:34 PoseEvaled: 8099144
+2025/01/10 18:36:34 Eval: 531(Bot perspecitve)
+2025/01/10 18:36:37 currentDepth: 5
+2025/01/10 18:36:37 PoseEvaled: 7805441
+2025/01/10 18:36:37 Eval: -689(Bot perspecitve)
+2025/01/10 18:36:39 currentDepth: 5
+2025/01/10 18:36:39 PoseEvaled: 8527760
+2025/01/10 18:36:39 Eval: 533(Bot perspecitve)
+2025/01/10 18:36:41 currentDepth: 6
+2025/01/10 18:36:41 PoseEvaled: 7402502
+2025/01/10 18:36:41 Eval: -711(Bot perspecitve)
+2025/01/10 18:36:43 currentDepth: 5
+2025/01/10 18:36:43 PoseEvaled: 7941408
+2025/01/10 18:36:43 Eval: 559(Bot perspecitve)
+2025/01/10 18:36:45 currentDepth: 5
+2025/01/10 18:36:45 PoseEvaled: 7568339
+2025/01/10 18:36:45 Eval: -762(Bot perspecitve)
+2025/01/10 18:36:47 currentDepth: 6
+2025/01/10 18:36:47 PoseEvaled: 7671540
+2025/01/10 18:36:47 Eval: 573(Bot perspecitve)
+2025/01/10 18:36:49 currentDepth: 7
+2025/01/10 18:36:49 PoseEvaled: 6920042
+2025/01/10 18:36:49 Eval: -784(Bot perspecitve)
+2025/01/10 18:36:51 currentDepth: 6
+2025/01/10 18:36:51 PoseEvaled: 6977053
+2025/01/10 18:36:51 Eval: 630(Bot perspecitve)
+2025/01/10 18:36:53 currentDepth: 6
+2025/01/10 18:36:53 PoseEvaled: 6539475
+2025/01/10 18:36:53 Eval: -789(Bot perspecitve)
+2025/01/10 18:36:55 currentDepth: 6
+2025/01/10 18:36:55 PoseEvaled: 6785608
+2025/01/10 18:36:55 Eval: 741(Bot perspecitve)
+2025/01/10 18:36:57 currentDepth: 6
+2025/01/10 18:36:57 PoseEvaled: 6679685
+2025/01/10 18:36:57 Eval: -1175(Bot perspecitve)
+2025/01/10 18:36:59 currentDepth: 5
+2025/01/10 18:36:59 PoseEvaled: 6991458
+2025/01/10 18:36:59 Eval: 998(Bot perspecitve)
+2025/01/10 18:37:01 currentDepth: 8
+2025/01/10 18:37:01 PoseEvaled: 6381476
+2025/01/10 18:37:01 Eval: -1161(Bot perspecitve)
+2025/01/10 18:37:02 currentDepth: 6
+2025/01/10 18:37:02 PoseEvaled: 6748988
+2025/01/10 18:37:02 Eval: 1069(Bot perspecitve)
+2025/01/10 18:37:04 currentDepth: 7
+2025/01/10 18:37:04 PoseEvaled: 7164018
+2025/01/10 18:37:04 Eval: -1178(Bot perspecitve)
+2025/01/10 18:37:06 currentDepth: 6
+2025/01/10 18:37:06 PoseEvaled: 7386383
+2025/01/10 18:37:06 Eval: 1098(Bot perspecitve)
+2025/01/10 18:37:08 currentDepth: 7
+2025/01/10 18:37:08 PoseEvaled: 7112474
+2025/01/10 18:37:08 Eval: -1229(Bot perspecitve)
+2025/01/10 18:37:10 currentDepth: 6
+2025/01/10 18:37:10 PoseEvaled: 7207019
+2025/01/10 18:37:10 Eval: 1105(Bot perspecitve)
+2025/01/10 18:37:11 currentDepth: 8
+2025/01/10 18:37:11 PoseEvaled: 6774016
+2025/01/10 18:37:11 Eval: -1217(Bot perspecitve)
+2025/01/10 18:37:13 currentDepth: 7
+2025/01/10 18:37:13 PoseEvaled: 6978975
+2025/01/10 18:37:13 Eval: 1114(Bot perspecitve)
+2025/01/10 18:37:15 currentDepth: 7
+2025/01/10 18:37:15 PoseEvaled: 7708277
+2025/01/10 18:37:15 Eval: -1272(Bot perspecitve)
+2025/01/10 18:37:16 currentDepth: 7
+2025/01/10 18:37:16 PoseEvaled: 7308956
+2025/01/10 18:37:16 Eval: 1123(Bot perspecitve)
+2025/01/10 18:37:18 currentDepth: 7
+2025/01/10 18:37:18 PoseEvaled: 7487153
+2025/01/10 18:37:18 Eval: -1317(Bot perspecitve)
+2025/01/10 18:37:20 currentDepth: 7
+2025/01/10 18:37:20 PoseEvaled: 6987037
+2025/01/10 18:37:20 Eval: 1226(Bot perspecitve)
+2025/01/10 18:37:21 currentDepth: 8
+2025/01/10 18:37:21 PoseEvaled: 7051245
+2025/01/10 18:37:21 Eval: -1496(Bot perspecitve)
+2025/01/10 18:37:23 currentDepth: 8
+2025/01/10 18:37:23 PoseEvaled: 6458218
+2025/01/10 18:37:23 Eval: 1296(Bot perspecitve)
+2025/01/10 18:37:24 currentDepth: 8
+2025/01/10 18:37:24 PoseEvaled: 6716475
+2025/01/10 18:37:24 Eval: -1518(Bot perspecitve)
+2025/01/10 18:37:26 currentDepth: 7
+2025/01/10 18:37:26 PoseEvaled: 6534798
+2025/01/10 18:37:26 Eval: 1476(Bot perspecitve)
+2025/01/10 18:37:27 currentDepth: 8
+2025/01/10 18:37:27 PoseEvaled: 6644473
+2025/01/10 18:37:27 Eval: -100000009(Bot perspecitve)
+2025/01/10 18:37:29 Found Forced mate
+2025/01/10 18:37:30 currentDepth: 9
+2025/01/10 18:37:30 PoseEvaled: 6674175
+2025/01/10 18:37:30 Eval: -100000019(Bot perspecitve)
+2025/01/10 18:37:30 Found Forced mate
+2025/01/10 18:37:32 currentDepth: 7
+2025/01/10 18:37:32 PoseEvaled: 6407558
+2025/01/10 18:37:32 Eval: -100000029(Bot perspecitve)
+2025/01/10 18:37:32 Found Forced mate
+2025/01/10 18:37:33 currentDepth: 11
+2025/01/10 18:37:33 PoseEvaled: 8386531
+2025/01/10 18:37:33 Eval: -100000079(Bot perspecitve)
+2025/01/10 18:37:33 Found Forced mate
+2025/01/10 18:37:35 currentDepth: 15
+2025/01/10 18:37:35 PoseEvaled: 8081401
+2025/01/10 18:37:35 Eval: -100000129(Bot perspecitve)
+2025/01/10 18:37:35 Found Forced mate
+2025/01/10 18:37:36 currentDepth: 6
+2025/01/10 18:37:36 PoseEvaled: 3499083
+2025/01/10 18:37:36 Eval: 29(Bot perspecitve)
+2025/01/10 18:37:37 currentDepth: 6
+2025/01/10 18:37:37 PoseEvaled: 3517312
+2025/01/10 18:37:37 Eval: 72(Bot perspecitve)
+2025/01/10 18:37:42 currentDepth: 6
+2025/01/10 18:37:42 PoseEvaled: 14398294
+2025/01/10 18:37:42 Eval: 102(Bot perspecitve)
+2025/01/10 18:37:46 currentDepth: 6
+2025/01/10 18:37:46 PoseEvaled: 13559962
+2025/01/10 18:37:46 Eval: 104(Bot perspecitve)
+2025/01/10 18:37:50 currentDepth: 5
+2025/01/10 18:37:50 PoseEvaled: 12403772
+2025/01/10 18:37:50 Eval: 96(Bot perspecitve)
+2025/01/10 18:37:59 currentDepth: 5
+2025/01/10 18:37:59 PoseEvaled: 12746658
+2025/01/10 18:37:59 Eval: 99(Bot perspecitve)
+2025/01/10 18:38:07 currentDepth: 6
+2025/01/10 18:38:07 PoseEvaled: 12199143
+2025/01/10 18:38:07 Eval: 116(Bot perspecitve)
+2025/01/10 18:38:15 currentDepth: 6
+2025/01/10 18:38:15 PoseEvaled: 11867612
+2025/01/10 18:38:15 Eval: 120(Bot perspecitve)
+2025/01/10 18:38:23 currentDepth: 5
+2025/01/10 18:38:23 PoseEvaled: 11356856
+2025/01/10 18:38:23 Eval: 100(Bot perspecitve)
+2025/01/10 18:38:31 currentDepth: 6
+2025/01/10 18:38:31 PoseEvaled: 12687149
+2025/01/10 18:38:31 Eval: 154(Bot perspecitve)
+2025/01/10 18:38:39 currentDepth: 6
+2025/01/10 18:38:39 PoseEvaled: 12298289
+2025/01/10 18:38:39 Eval: 160(Bot perspecitve)
+2025/01/10 18:38:46 currentDepth: 6
+2025/01/10 18:38:46 PoseEvaled: 12077122
+2025/01/10 18:38:46 Eval: 138(Bot perspecitve)
+2025/01/10 18:38:53 currentDepth: 5
+2025/01/10 18:38:53 PoseEvaled: 11778504
+2025/01/10 18:38:53 Eval: 152(Bot perspecitve)
+2025/01/10 18:39:01 currentDepth: 6
+2025/01/10 18:39:01 PoseEvaled: 11335111
+2025/01/10 18:39:01 Eval: 146(Bot perspecitve)
+2025/01/10 18:39:07 currentDepth: 5
+2025/01/10 18:39:07 PoseEvaled: 11249703
+2025/01/10 18:39:07 Eval: 143(Bot perspecitve)
+2025/01/10 18:39:14 currentDepth: 5
+2025/01/10 18:39:14 PoseEvaled: 10940500
+2025/01/10 18:39:14 Eval: 146(Bot perspecitve)
+2025/01/10 18:39:21 currentDepth: 5
+2025/01/10 18:39:21 PoseEvaled: 10684697
+2025/01/10 18:39:21 Eval: 161(Bot perspecitve)
+2025/01/10 18:39:27 currentDepth: 5
+2025/01/10 18:39:27 PoseEvaled: 10462523
+2025/01/10 18:39:27 Eval: 154(Bot perspecitve)
+2025/01/10 18:39:33 currentDepth: 5
+2025/01/10 18:39:33 PoseEvaled: 10119192
+2025/01/10 18:39:33 Eval: 144(Bot perspecitve)
+2025/01/10 18:39:39 currentDepth: 4
+2025/01/10 18:39:39 PoseEvaled: 9890449
+2025/01/10 18:39:39 Eval: 157(Bot perspecitve)
+2025/01/10 18:39:45 currentDepth: 4
+2025/01/10 18:39:45 PoseEvaled: 9607062
+2025/01/10 18:39:45 Eval: 170(Bot perspecitve)
+2025/01/10 18:39:51 currentDepth: 4
+2025/01/10 18:39:51 PoseEvaled: 9567953
+2025/01/10 18:39:51 Eval: 162(Bot perspecitve)
+2025/01/10 18:39:57 currentDepth: 5
+2025/01/10 18:39:57 PoseEvaled: 9165695
+2025/01/10 18:39:57 Eval: 148(Bot perspecitve)
+2025/01/10 18:40:02 currentDepth: 7
+2025/01/10 18:40:02 PoseEvaled: 8121738
+2025/01/10 18:40:02 Eval: -58(Bot perspecitve)
+2025/01/10 18:40:07 currentDepth: 7
+2025/01/10 18:40:07 PoseEvaled: 7826925
+2025/01/10 18:40:07 Eval: -58(Bot perspecitve)
+2025/01/10 18:40:13 currentDepth: 7
+2025/01/10 18:40:13 PoseEvaled: 7869078
+2025/01/10 18:40:13 Eval: -87(Bot perspecitve)
+2025/01/10 18:40:18 currentDepth: 6
+2025/01/10 18:40:18 PoseEvaled: 7737399
+2025/01/10 18:40:18 Eval: -508(Bot perspecitve)
+2025/01/10 18:40:23 currentDepth: 6
+2025/01/10 18:40:23 PoseEvaled: 7768215
+2025/01/10 18:40:23 Eval: -509(Bot perspecitve)
+2025/01/10 18:40:27 currentDepth: 9
+2025/01/10 18:40:27 PoseEvaled: 7426424
+2025/01/10 18:40:27 Eval: -1137(Bot perspecitve)
+2025/01/10 18:40:30 currentDepth: 7
+2025/01/10 18:40:30 PoseEvaled: 7297435
+2025/01/10 18:40:30 Eval: -945(Bot perspecitve)
+2025/01/10 18:40:32 currentDepth: 7
+2025/01/10 18:40:32 PoseEvaled: 7552358
+2025/01/10 18:40:32 Eval: -100000019(Bot perspecitve)
+2025/01/10 18:40:34 currentDepth: 7
+2025/01/10 18:40:34 PoseEvaled: 8303371
+2025/01/10 18:40:34 Eval: -100000049(Bot perspecitve)
+2025/01/10 18:40:36 currentDepth: 7
+2025/01/10 18:40:36 PoseEvaled: 7795722
+2025/01/10 18:40:36 Eval: -1177(Bot perspecitve)
+2025/01/10 18:40:41 currentDepth: 7
+2025/01/10 18:40:41 PoseEvaled: 8028797
+2025/01/10 18:40:41 Eval: -99999999(Bot perspecitve)
+2025/01/10 18:40:43 currentDepth: 7
+2025/01/10 18:40:43 PoseEvaled: 7823078
+2025/01/10 18:40:43 Eval: -100000019(Bot perspecitve)
+2025/01/10 18:40:44 currentDepth: 10
+2025/01/10 18:40:44 PoseEvaled: 7718229
+2025/01/10 18:40:44 Eval: -100000059(Bot perspecitve)
+2025/01/10 18:40:46 currentDepth: 9
+2025/01/10 18:40:46 PoseEvaled: 8519388
+2025/01/10 18:40:46 Eval: -100000069(Bot perspecitve)
+2025/01/10 18:40:48 currentDepth: 9
+2025/01/10 18:40:48 PoseEvaled: 8145577
+2025/01/10 18:40:48 Eval: -100000079(Bot perspecitve)
+2025/01/10 18:40:49 currentDepth: 6
+2025/01/10 18:40:49 PoseEvaled: 3506851
+2025/01/10 18:40:49 Eval: 29(Bot perspecitve)
+2025/01/10 18:40:50 currentDepth: 6
+2025/01/10 18:40:50 PoseEvaled: 3682255
+2025/01/10 18:40:51 Eval: -14(Bot perspecitve)
+2025/01/10 18:40:52 currentDepth: 6
+2025/01/10 18:40:52 PoseEvaled: 3527259
+2025/01/10 18:40:52 Eval: 23(Bot perspecitve)
+2025/01/10 18:40:53 currentDepth: 6
+2025/01/10 18:40:53 PoseEvaled: 3932788
+2025/01/10 18:40:53 Eval: -10(Bot perspecitve)
+2025/01/10 18:40:57 currentDepth: 6
+2025/01/10 18:40:57 PoseEvaled: 14387637
+2025/01/10 18:40:57 Eval: 16(Bot perspecitve)
+2025/01/10 18:41:02 currentDepth: 6
+2025/01/10 18:41:02 PoseEvaled: 15943348
+2025/01/10 18:41:02 Eval: 29(Bot perspecitve)
+2025/01/10 18:41:06 currentDepth: 5
+2025/01/10 18:41:06 PoseEvaled: 13660866
+2025/01/10 18:41:06 Eval: -1(Bot perspecitve)
+2025/01/10 18:41:10 currentDepth: 5
+2025/01/10 18:41:10 PoseEvaled: 16141155
+2025/01/10 18:41:10 Eval: 12(Bot perspecitve)
+2025/01/10 18:41:15 currentDepth: 5
+2025/01/10 18:41:15 PoseEvaled: 13666687
+2025/01/10 18:41:15 Eval: -6(Bot perspecitve)
+2025/01/10 18:41:19 currentDepth: 5
+2025/01/10 18:41:19 PoseEvaled: 15481984
+2025/01/10 18:41:19 Eval: 30(Bot perspecitve)
+2025/01/10 18:41:23 currentDepth: 4
+2025/01/10 18:41:23 PoseEvaled: 13243711
+2025/01/10 18:41:23 Eval: 8(Bot perspecitve)
+2025/01/10 18:41:27 currentDepth: 5
+2025/01/10 18:41:27 PoseEvaled: 15666920
+2025/01/10 18:41:27 Eval: 49(Bot perspecitve)
+2025/01/10 18:41:31 currentDepth: 6
+2025/01/10 18:41:31 PoseEvaled: 11920154
+2025/01/10 18:41:31 Eval: -103(Bot perspecitve)
+2025/01/10 18:41:35 currentDepth: 6
+2025/01/10 18:41:35 PoseEvaled: 14698393
+2025/01/10 18:41:35 Eval: 81(Bot perspecitve)
+2025/01/10 18:41:39 currentDepth: 6
+2025/01/10 18:41:39 PoseEvaled: 12072076
+2025/01/10 18:41:39 Eval: -159(Bot perspecitve)
+2025/01/10 18:41:43 currentDepth: 6
+2025/01/10 18:41:43 PoseEvaled: 13903352
+2025/01/10 18:41:43 Eval: 91(Bot perspecitve)
+2025/01/10 18:41:47 currentDepth: 6
+2025/01/10 18:41:47 PoseEvaled: 12278120
+2025/01/10 18:41:47 Eval: -129(Bot perspecitve)
+2025/01/10 18:41:50 currentDepth: 6
+2025/01/10 18:41:50 PoseEvaled: 13310134
+2025/01/10 18:41:50 Eval: 113(Bot perspecitve)
+2025/01/10 18:41:54 currentDepth: 7
+2025/01/10 18:41:54 PoseEvaled: 12152080
+2025/01/10 18:41:54 Eval: -556(Bot perspecitve)
+2025/01/10 18:41:58 currentDepth: 6
+2025/01/10 18:41:58 PoseEvaled: 12928489
+2025/01/10 18:41:58 Eval: 148(Bot perspecitve)
+2025/01/10 18:42:02 currentDepth: 6
+2025/01/10 18:42:02 PoseEvaled: 11501009
+2025/01/10 18:42:02 Eval: -142(Bot perspecitve)
+2025/01/10 18:42:05 currentDepth: 5
+2025/01/10 18:42:05 PoseEvaled: 13130670
+2025/01/10 18:42:05 Eval: 151(Bot perspecitve)
+2025/01/10 18:42:09 currentDepth: 7
+2025/01/10 18:42:09 PoseEvaled: 11091980
+2025/01/10 18:42:09 Eval: -125(Bot perspecitve)
+2025/01/10 18:42:12 currentDepth: 5
+2025/01/10 18:42:12 PoseEvaled: 12243394
+2025/01/10 18:42:12 Eval: 144(Bot perspecitve)
+2025/01/10 18:42:16 currentDepth: 5
+2025/01/10 18:42:16 PoseEvaled: 10983102
+2025/01/10 18:42:16 Eval: -126(Bot perspecitve)
+2025/01/10 18:42:19 currentDepth: 5
+2025/01/10 18:42:19 PoseEvaled: 12257057
+2025/01/10 18:42:19 Eval: 129(Bot perspecitve)
+2025/01/10 18:42:23 currentDepth: 5
+2025/01/10 18:42:23 PoseEvaled: 10759901
+2025/01/10 18:42:23 Eval: -129(Bot perspecitve)
+2025/01/10 18:42:26 currentDepth: 6
+2025/01/10 18:42:26 PoseEvaled: 12725568
+2025/01/10 18:42:26 Eval: 160(Bot perspecitve)
+2025/01/10 18:42:29 currentDepth: 6
+2025/01/10 18:42:29 PoseEvaled: 10892813
+2025/01/10 18:42:29 Eval: -211(Bot perspecitve)
+2025/01/10 18:42:32 currentDepth: 5
+2025/01/10 18:42:32 PoseEvaled: 12763442
+2025/01/10 18:42:32 Eval: 184(Bot perspecitve)
+2025/01/10 18:42:36 currentDepth: 5
+2025/01/10 18:42:36 PoseEvaled: 10242150
+2025/01/10 18:42:36 Eval: -186(Bot perspecitve)
+2025/01/10 18:42:39 currentDepth: 5
+2025/01/10 18:42:39 PoseEvaled: 12063496
+2025/01/10 18:42:39 Eval: 177(Bot perspecitve)
+2025/01/10 18:42:42 currentDepth: 6
+2025/01/10 18:42:42 PoseEvaled: 10073392
+2025/01/10 18:42:42 Eval: -291(Bot perspecitve)
+2025/01/10 18:42:45 currentDepth: 6
+2025/01/10 18:42:45 PoseEvaled: 11884834
+2025/01/10 18:42:45 Eval: 185(Bot perspecitve)
+2025/01/10 18:42:48 currentDepth: 5
+2025/01/10 18:42:48 PoseEvaled: 10009300
+2025/01/10 18:42:48 Eval: -287(Bot perspecitve)
+2025/01/10 18:42:51 currentDepth: 5
+2025/01/10 18:42:51 PoseEvaled: 12144908
+2025/01/10 18:42:51 Eval: 198(Bot perspecitve)
+2025/01/10 18:42:54 currentDepth: 5
+2025/01/10 18:42:54 PoseEvaled: 9843230
+2025/01/10 18:42:54 Eval: -304(Bot perspecitve)
+2025/01/10 18:42:57 currentDepth: 5
+2025/01/10 18:42:57 PoseEvaled: 11795212
+2025/01/10 18:42:57 Eval: 184(Bot perspecitve)
+2025/01/10 18:43:00 currentDepth: 5
+2025/01/10 18:43:00 PoseEvaled: 9598655
+2025/01/10 18:43:00 Eval: -310(Bot perspecitve)
+2025/01/10 18:43:03 currentDepth: 5
+2025/01/10 18:43:03 PoseEvaled: 12090525
+2025/01/10 18:43:03 Eval: 208(Bot perspecitve)
+2025/01/10 18:43:06 currentDepth: 5
+2025/01/10 18:43:06 PoseEvaled: 9715233
+2025/01/10 18:43:06 Eval: -329(Bot perspecitve)
+2025/01/10 18:43:09 currentDepth: 5
+2025/01/10 18:43:09 PoseEvaled: 11956180
+2025/01/10 18:43:09 Eval: 285(Bot perspecitve)
+2025/01/10 18:43:11 currentDepth: 5
+2025/01/10 18:43:11 PoseEvaled: 9142374
+2025/01/10 18:43:11 Eval: -561(Bot perspecitve)
+2025/01/10 18:43:14 currentDepth: 5
+2025/01/10 18:43:14 PoseEvaled: 9875807
+2025/01/10 18:43:14 Eval: 583(Bot perspecitve)
+2025/01/10 18:43:17 currentDepth: 5
+2025/01/10 18:43:17 PoseEvaled: 9054347
+2025/01/10 18:43:17 Eval: -551(Bot perspecitve)
+2025/01/10 18:43:19 currentDepth: 5
+2025/01/10 18:43:19 PoseEvaled: 9129769
+2025/01/10 18:43:19 Eval: 682(Bot perspecitve)
+2025/01/10 18:43:22 currentDepth: 6
+2025/01/10 18:43:22 PoseEvaled: 8540550
+2025/01/10 18:43:22 Eval: -482(Bot perspecitve)
+2025/01/10 18:43:25 currentDepth: 7
+2025/01/10 18:43:25 PoseEvaled: 8969612
+2025/01/10 18:43:25 Eval: 690(Bot perspecitve)
+2025/01/10 18:43:27 currentDepth: 6
+2025/01/10 18:43:27 PoseEvaled: 8626599
+2025/01/10 18:43:27 Eval: -542(Bot perspecitve)
+2025/01/10 18:43:30 currentDepth: 8
+2025/01/10 18:43:30 PoseEvaled: 8781918
+2025/01/10 18:43:30 Eval: 699(Bot perspecitve)
+2025/01/10 18:43:32 currentDepth: 6
+2025/01/10 18:43:32 PoseEvaled: 8354948
+2025/01/10 18:43:32 Eval: -552(Bot perspecitve)
+2025/01/10 18:43:35 currentDepth: 6
+2025/01/10 18:43:35 PoseEvaled: 8685783
+2025/01/10 18:43:35 Eval: 794(Bot perspecitve)
+2025/01/10 18:43:37 currentDepth: 6
+2025/01/10 18:43:37 PoseEvaled: 8210695
+2025/01/10 18:43:37 Eval: -855(Bot perspecitve)
+2025/01/10 18:43:40 currentDepth: 7
+2025/01/10 18:43:40 PoseEvaled: 8807913
+2025/01/10 18:43:40 Eval: 1033(Bot perspecitve)
+2025/01/10 18:43:42 currentDepth: 6
+2025/01/10 18:43:42 PoseEvaled: 8929162
+2025/01/10 18:43:42 Eval: -908(Bot perspecitve)
+2025/01/10 18:43:44 currentDepth: 6
+2025/01/10 18:43:44 PoseEvaled: 8125833
+2025/01/10 18:43:44 Eval: 1023(Bot perspecitve)
+2025/01/10 18:43:47 currentDepth: 7
+2025/01/10 18:43:47 PoseEvaled: 8697642
+2025/01/10 18:43:47 Eval: -918(Bot perspecitve)
+2025/01/10 18:43:49 currentDepth: 6
+2025/01/10 18:43:49 PoseEvaled: 8826761
+2025/01/10 18:43:49 Eval: 1041(Bot perspecitve)
+2025/01/10 18:43:51 currentDepth: 8
+2025/01/10 18:43:51 PoseEvaled: 9012398
+2025/01/10 18:43:51 Eval: -923(Bot perspecitve)
+2025/01/10 18:43:53 currentDepth: 6
+2025/01/10 18:43:53 PoseEvaled: 8711816
+2025/01/10 18:43:53 Eval: 1054(Bot perspecitve)
+2025/01/10 18:43:56 currentDepth: 7
+2025/01/10 18:43:56 PoseEvaled: 8846029
+2025/01/10 18:43:56 Eval: -949(Bot perspecitve)
+2025/01/10 18:43:58 currentDepth: 7
+2025/01/10 18:43:58 PoseEvaled: 9037068
+2025/01/10 18:43:58 Eval: 1097(Bot perspecitve)
+2025/01/10 18:44:00 currentDepth: 8
+2025/01/10 18:44:00 PoseEvaled: 9061321
+2025/01/10 18:44:00 Eval: -956(Bot perspecitve)
+2025/01/10 18:44:02 currentDepth: 7
+2025/01/10 18:44:02 PoseEvaled: 9132664
+2025/01/10 18:44:02 Eval: 1123(Bot perspecitve)
+2025/01/10 18:44:04 currentDepth: 7
+2025/01/10 18:44:04 PoseEvaled: 8959526
+2025/01/10 18:44:04 Eval: -1051(Bot perspecitve)
+2025/01/10 18:44:06 currentDepth: 7
+2025/01/10 18:44:06 PoseEvaled: 9385672
+2025/01/10 18:44:06 Eval: 1178(Bot perspecitve)
+2025/01/10 18:44:08 currentDepth: 7
+2025/01/10 18:44:08 PoseEvaled: 8947830
+2025/01/10 18:44:08 Eval: -1126(Bot perspecitve)
+2025/01/10 18:44:10 currentDepth: 7
+2025/01/10 18:44:10 PoseEvaled: 9056741
+2025/01/10 18:44:10 Eval: 1220(Bot perspecitve)
+2025/01/10 18:44:12 currentDepth: 8
+2025/01/10 18:44:12 PoseEvaled: 8939794
+2025/01/10 18:44:12 Eval: -1311(Bot perspecitve)
+2025/01/10 18:44:14 currentDepth: 7
+2025/01/10 18:44:14 PoseEvaled: 8698321
+2025/01/10 18:44:14 Eval: 99999989(Bot perspecitve)
+2025/01/10 18:44:16 currentDepth: 7
+2025/01/10 18:44:16 PoseEvaled: 8952413
+2025/01/10 18:44:16 Eval: -99999999(Bot perspecitve)
+2025/01/10 18:44:16 Found Forced mate
+2025/01/10 18:44:18 currentDepth: 10
+2025/01/10 18:44:18 PoseEvaled: 8430469
+2025/01/10 18:44:18 Eval: -100000039(Bot perspecitve)
+2025/01/10 18:44:18 Found Forced mate
+2025/01/10 18:44:20 currentDepth: 9
+2025/01/10 18:44:20 PoseEvaled: 8590262
+2025/01/10 18:44:20 Eval: -100000049(Bot perspecitve)
+2025/01/10 18:44:20 Found Forced mate
+2025/01/10 18:44:22 currentDepth: 10
+2025/01/10 18:44:22 PoseEvaled: 7631785
+2025/01/10 18:44:22 Eval: -100000039(Bot perspecitve)
+2025/01/10 18:44:22 Found Forced mate
+2025/01/10 18:44:23 currentDepth: 9
+2025/01/10 18:44:23 PoseEvaled: 7898364
+2025/01/10 18:44:23 Eval: -100000049(Bot perspecitve)
+2025/01/10 18:44:23 Found Forced mate
+2025/01/10 18:44:25 currentDepth: 10
+2025/01/10 18:44:25 PoseEvaled: 7553963
+2025/01/10 18:44:25 Eval: -100000039(Bot perspecitve)
+2025/01/10 18:44:26 currentDepth: 5
+2025/01/10 18:44:26 PoseEvaled: 2981148
+2025/01/10 18:44:26 Eval: 10(Bot perspecitve)
+2025/01/10 18:44:27 currentDepth: 5
+2025/01/10 18:44:27 PoseEvaled: 2967525
+2025/01/10 18:44:27 Eval: 6(Bot perspecitve)
+2025/01/10 18:44:31 currentDepth: 6
+2025/01/10 18:44:31 PoseEvaled: 15088407
+2025/01/10 18:44:31 Eval: -3(Bot perspecitve)
+2025/01/10 18:44:40 currentDepth: 5
+2025/01/10 18:44:40 PoseEvaled: 15042849
+2025/01/10 18:44:40 Eval: -36(Bot perspecitve)
+2025/01/10 18:44:49 currentDepth: 4
+2025/01/10 18:44:49 PoseEvaled: 15020358
+2025/01/10 18:44:49 Eval: -23(Bot perspecitve)
+2025/01/10 18:44:57 currentDepth: 4
+2025/01/10 18:44:57 PoseEvaled: 14573877
+2025/01/10 18:44:57 Eval: -31(Bot perspecitve)
+2025/01/10 18:45:06 currentDepth: 4
+2025/01/10 18:45:06 PoseEvaled: 14122312
+2025/01/10 18:45:06 Eval: -54(Bot perspecitve)
+2025/01/10 18:45:14 currentDepth: 4
+2025/01/10 18:45:14 PoseEvaled: 14096249
+2025/01/10 18:45:14 Eval: -59(Bot perspecitve)
+2025/01/10 18:45:21 currentDepth: 5
+2025/01/10 18:45:21 PoseEvaled: 13676597
+2025/01/10 18:45:21 Eval: -28(Bot perspecitve)
+2025/01/10 18:45:29 currentDepth: 5
+2025/01/10 18:45:29 PoseEvaled: 13266205
+2025/01/10 18:45:29 Eval: -26(Bot perspecitve)
+2025/01/10 18:45:36 currentDepth: 5
+2025/01/10 18:45:36 PoseEvaled: 12987409
+2025/01/10 18:45:36 Eval: -22(Bot perspecitve)
+2025/01/10 18:45:44 currentDepth: 5
+2025/01/10 18:45:44 PoseEvaled: 12658704
+2025/01/10 18:45:44 Eval: -44(Bot perspecitve)
+2025/01/10 18:45:51 currentDepth: 5
+2025/01/10 18:45:51 PoseEvaled: 12171971
+2025/01/10 18:45:51 Eval: -47(Bot perspecitve)
+2025/01/10 18:45:58 currentDepth: 5
+2025/01/10 18:45:58 PoseEvaled: 11979787
+2025/01/10 18:45:58 Eval: -46(Bot perspecitve)
+2025/01/10 18:46:04 currentDepth: 5
+2025/01/10 18:46:04 PoseEvaled: 12009470
+2025/01/10 18:46:04 Eval: 77(Bot perspecitve)
+2025/01/10 18:46:11 currentDepth: 5
+2025/01/10 18:46:11 PoseEvaled: 11697611
+2025/01/10 18:46:11 Eval: 467(Bot perspecitve)
+2025/01/10 18:49:47 currentDepth: 7
+2025/01/10 18:49:47 PoseEvaled: 3621940
+2025/01/10 18:49:47 Eval: 15(Bot perspecitve)
+2025/01/10 18:49:48 currentDepth: 6
+2025/01/10 18:49:48 PoseEvaled: 3778525
+2025/01/10 18:49:48 Eval: 25(Bot perspecitve)
+2025/01/10 18:49:53 currentDepth: 6
+2025/01/10 18:49:53 PoseEvaled: 14811262
+2025/01/10 18:49:53 Eval: 41(Bot perspecitve)
+2025/01/10 18:49:57 currentDepth: 6
+2025/01/10 18:49:57 PoseEvaled: 14864102
+2025/01/10 18:49:57 Eval: 49(Bot perspecitve)
+2025/01/10 18:50:01 currentDepth: 5
+2025/01/10 18:50:01 PoseEvaled: 14752434
+2025/01/10 18:50:01 Eval: 24(Bot perspecitve)
+2025/01/10 18:50:34 currentDepth: 6
+2025/01/10 18:50:34 PoseEvaled: 2445145
+2025/01/10 18:50:34 Eval: 15(Bot perspecitve)
+2025/01/10 18:50:35 currentDepth: 5
+2025/01/10 18:50:35 PoseEvaled: 2575238
+2025/01/10 18:50:35 Eval: 0(Bot perspecitve)
+2025/01/10 18:50:38 currentDepth: 6
+2025/01/10 18:50:38 PoseEvaled: 10474344
+2025/01/10 18:50:38 Eval: 19(Bot perspecitve)
+2025/01/10 18:50:41 currentDepth: 6
+2025/01/10 18:50:41 PoseEvaled: 10407352
+2025/01/10 18:50:41 Eval: 21(Bot perspecitve)
+2025/01/10 18:50:47 currentDepth: 6
+2025/01/10 18:50:47 PoseEvaled: 9906378
+2025/01/10 18:50:47 Eval: 24(Bot perspecitve)
+2025/01/10 18:50:53 currentDepth: 6
+2025/01/10 18:50:53 PoseEvaled: 9978715
+2025/01/10 18:50:53 Eval: 29(Bot perspecitve)
+2025/01/10 18:50:58 currentDepth: 6
+2025/01/10 18:50:58 PoseEvaled: 9858840
+2025/01/10 18:50:58 Eval: 31(Bot perspecitve)
+2025/01/10 18:51:04 currentDepth: 6
+2025/01/10 18:51:04 PoseEvaled: 9473555
+2025/01/10 18:51:04 Eval: 55(Bot perspecitve)
+2025/01/10 18:51:09 currentDepth: 6
+2025/01/10 18:51:09 PoseEvaled: 10253642
+2025/01/10 18:51:09 Eval: 40(Bot perspecitve)
+2025/01/10 18:51:14 currentDepth: 5
+2025/01/10 18:51:14 PoseEvaled: 9969578
+2025/01/10 18:51:14 Eval: 31(Bot perspecitve)
+2025/01/10 18:51:19 currentDepth: 6
+2025/01/10 18:51:19 PoseEvaled: 9209417
+2025/01/10 18:51:19 Eval: 25(Bot perspecitve)
+2025/01/10 18:51:24 currentDepth: 6
+2025/01/10 18:51:24 PoseEvaled: 9334118
+2025/01/10 18:51:24 Eval: 12(Bot perspecitve)
+2025/01/10 18:51:29 currentDepth: 6
+2025/01/10 18:51:29 PoseEvaled: 8521604
+2025/01/10 18:51:29 Eval: 5(Bot perspecitve)
+2025/01/10 18:51:33 currentDepth: 6
+2025/01/10 18:51:33 PoseEvaled: 8939950
+2025/01/10 18:51:33 Eval: -2(Bot perspecitve)
+2025/01/10 18:51:38 currentDepth: 6
+2025/01/10 18:51:38 PoseEvaled: 8565614
+2025/01/10 18:51:38 Eval: 0(Bot perspecitve)
+2025/01/10 18:51:42 currentDepth: 6
+2025/01/10 18:51:42 PoseEvaled: 8338805
+2025/01/10 18:51:42 Eval: 14(Bot perspecitve)
+2025/01/10 18:51:46 currentDepth: 6
+2025/01/10 18:51:46 PoseEvaled: 8181763
+2025/01/10 18:51:46 Eval: 13(Bot perspecitve)
+2025/01/10 18:51:51 currentDepth: 6
+2025/01/10 18:51:51 PoseEvaled: 8093844
+2025/01/10 18:51:51 Eval: 6(Bot perspecitve)
+2025/01/10 18:51:55 currentDepth: 6
+2025/01/10 18:51:55 PoseEvaled: 8123419
+2025/01/10 18:51:55 Eval: -12(Bot perspecitve)
+2025/01/10 18:51:59 currentDepth: 6
+2025/01/10 18:51:59 PoseEvaled: 7753438
+2025/01/10 18:51:59 Eval: -24(Bot perspecitve)
+2025/01/10 18:52:03 currentDepth: 6
+2025/01/10 18:52:03 PoseEvaled: 7327516
+2025/01/10 18:52:03 Eval: -19(Bot perspecitve)
+2025/01/10 18:52:06 currentDepth: 6
+2025/01/10 18:52:06 PoseEvaled: 7211484
+2025/01/10 18:52:06 Eval: -16(Bot perspecitve)
+2025/01/10 18:52:10 currentDepth: 6
+2025/01/10 18:52:10 PoseEvaled: 6933402
+2025/01/10 18:52:10 Eval: -22(Bot perspecitve)
+2025/01/10 18:52:14 currentDepth: 5
+2025/01/10 18:52:14 PoseEvaled: 6978833
+2025/01/10 18:52:14 Eval: -14(Bot perspecitve)
+2025/01/10 18:52:17 currentDepth: 5
+2025/01/10 18:52:17 PoseEvaled: 6893053
+2025/01/10 18:52:17 Eval: -15(Bot perspecitve)
+2025/01/10 18:52:21 currentDepth: 6
+2025/01/10 18:52:21 PoseEvaled: 6633418
+2025/01/10 18:52:21 Eval: -18(Bot perspecitve)
+2025/01/10 18:52:24 currentDepth: 5
+2025/01/10 18:52:24 PoseEvaled: 6431911
+2025/01/10 18:52:24 Eval: -31(Bot perspecitve)
+2025/01/10 18:52:27 currentDepth: 6
+2025/01/10 18:52:27 PoseEvaled: 6315572
+2025/01/10 18:52:27 Eval: -8(Bot perspecitve)
+2025/01/10 18:52:30 currentDepth: 5
+2025/01/10 18:52:30 PoseEvaled: 5888539
+2025/01/10 18:52:30 Eval: 22(Bot perspecitve)
+2025/01/10 18:52:34 currentDepth: 5
+2025/01/10 18:52:34 PoseEvaled: 5925321
+2025/01/10 18:52:34 Eval: 33(Bot perspecitve)
+2025/01/10 18:52:37 currentDepth: 6
+2025/01/10 18:52:37 PoseEvaled: 5938380
+2025/01/10 18:52:37 Eval: 38(Bot perspecitve)
+2025/01/10 18:52:40 currentDepth: 6
+2025/01/10 18:52:40 PoseEvaled: 5752570
+2025/01/10 18:52:40 Eval: 65(Bot perspecitve)
+2025/01/10 18:52:42 currentDepth: 5
+2025/01/10 18:52:42 PoseEvaled: 5492406
+2025/01/10 18:52:42 Eval: 68(Bot perspecitve)
+2025/01/10 18:52:45 currentDepth: 5
+2025/01/10 18:52:45 PoseEvaled: 5342348
+2025/01/10 18:52:45 Eval: 68(Bot perspecitve)
+2025/01/10 18:52:48 currentDepth: 5
+2025/01/10 18:52:48 PoseEvaled: 5126671
+2025/01/10 18:52:48 Eval: 83(Bot perspecitve)
+2025/01/10 18:52:51 currentDepth: 5
+2025/01/10 18:52:51 PoseEvaled: 5021238
+2025/01/10 18:52:51 Eval: 87(Bot perspecitve)
+2025/01/10 18:52:53 currentDepth: 5
+2025/01/10 18:52:53 PoseEvaled: 4955769
+2025/01/10 18:52:53 Eval: 105(Bot perspecitve)
+2025/01/10 18:52:56 currentDepth: 7
+2025/01/10 18:52:56 PoseEvaled: 4331081
+2025/01/10 18:52:56 Eval: 127(Bot perspecitve)
+2025/01/10 18:52:58 currentDepth: 6
+2025/01/10 18:52:58 PoseEvaled: 4716835
+2025/01/10 18:52:58 Eval: 168(Bot perspecitve)
+2025/01/10 18:53:01 currentDepth: 6
+2025/01/10 18:53:01 PoseEvaled: 4525588
+2025/01/10 18:53:01 Eval: 189(Bot perspecitve)
+2025/01/10 18:53:03 currentDepth: 5
+2025/01/10 18:53:03 PoseEvaled: 4460691
+2025/01/10 18:53:03 Eval: 196(Bot perspecitve)
+2025/01/10 18:53:05 currentDepth: 7
+2025/01/10 18:53:05 PoseEvaled: 4253762
+2025/01/10 18:53:05 Eval: 575(Bot perspecitve)
+2025/01/10 18:53:07 currentDepth: 6
+2025/01/10 18:53:07 PoseEvaled: 4189507
+2025/01/10 18:53:07 Eval: 635(Bot perspecitve)
+2025/01/10 18:53:10 currentDepth: 6
+2025/01/10 18:53:10 PoseEvaled: 3948153
+2025/01/10 18:53:10 Eval: 664(Bot perspecitve)
+2025/01/10 18:53:12 currentDepth: 6
+2025/01/10 18:53:12 PoseEvaled: 3678186
+2025/01/10 18:53:12 Eval: 663(Bot perspecitve)
+2025/01/10 18:53:14 currentDepth: 6
+2025/01/10 18:53:14 PoseEvaled: 3217917
+2025/01/10 18:53:14 Eval: 1047(Bot perspecitve)
+2025/01/10 18:53:16 currentDepth: 10
+2025/01/10 18:53:16 PoseEvaled: 3041240
+2025/01/10 18:53:16 Eval: 1047(Bot perspecitve)
+2025/01/10 18:53:18 currentDepth: 10
+2025/01/10 18:53:18 PoseEvaled: 3150122
+2025/01/10 18:53:18 Eval: 1047(Bot perspecitve)
+2025/01/10 18:53:20 currentDepth: 10
+2025/01/10 18:53:20 PoseEvaled: 3767113
+2025/01/10 18:53:20 Eval: 1047(Bot perspecitve)
+2025/01/10 18:53:22 currentDepth: 10
+2025/01/10 18:53:22 PoseEvaled: 2936748
+2025/01/10 18:53:22 Eval: 1047(Bot perspecitve)
+2025/01/10 18:53:23 currentDepth: 10
+2025/01/10 18:53:23 PoseEvaled: 3373474
+2025/01/10 18:53:23 Eval: 1047(Bot perspecitve)
+2025/01/10 18:53:25 currentDepth: 10
+2025/01/10 18:53:25 PoseEvaled: 2767093
+2025/01/10 18:53:25 Eval: 1047(Bot perspecitve)
+2025/01/10 18:53:26 currentDepth: 6
+2025/01/10 18:53:26 PoseEvaled: 2523126
+2025/01/10 18:53:26 Eval: -14(Bot perspecitve)
+2025/01/10 18:53:27 currentDepth: 6
+2025/01/10 18:53:27 PoseEvaled: 2613364
+2025/01/10 18:53:27 Eval: -20(Bot perspecitve)
+2025/01/10 18:53:30 currentDepth: 6
+2025/01/10 18:53:30 PoseEvaled: 11099741
+2025/01/10 18:53:30 Eval: -16(Bot perspecitve)
+2025/01/10 18:53:33 currentDepth: 5
+2025/01/10 18:53:33 PoseEvaled: 10737829
+2025/01/10 18:53:33 Eval: -26(Bot perspecitve)
+2025/01/10 18:53:38 currentDepth: 5
+2025/01/10 18:53:38 PoseEvaled: 10679160
+2025/01/10 18:53:38 Eval: -22(Bot perspecitve)
+2025/01/10 18:53:44 currentDepth: 7
+2025/01/10 18:53:44 PoseEvaled: 10524727
+2025/01/10 18:53:44 Eval: -10(Bot perspecitve)
+2025/01/10 18:53:50 currentDepth: 5
+2025/01/10 18:53:50 PoseEvaled: 10522880
+2025/01/10 18:53:50 Eval: -20(Bot perspecitve)
+2025/01/10 18:53:55 currentDepth: 4
+2025/01/10 18:53:55 PoseEvaled: 10644872
+2025/01/10 18:53:55 Eval: -21(Bot perspecitve)
+2025/01/10 18:54:00 currentDepth: 6
+2025/01/10 18:54:00 PoseEvaled: 9892932
+2025/01/10 18:54:00 Eval: -41(Bot perspecitve)
+2025/01/10 18:54:05 currentDepth: 6
+2025/01/10 18:54:05 PoseEvaled: 9757301
+2025/01/10 18:54:05 Eval: -52(Bot perspecitve)
+2025/01/10 18:54:10 currentDepth: 5
+2025/01/10 18:54:10 PoseEvaled: 9586152
+2025/01/10 18:54:10 Eval: -41(Bot perspecitve)
+2025/01/10 18:54:15 currentDepth: 6
+2025/01/10 18:54:15 PoseEvaled: 9512992
+2025/01/10 18:54:15 Eval: -21(Bot perspecitve)
+2025/01/10 18:54:20 currentDepth: 4
+2025/01/10 18:54:20 PoseEvaled: 9691486
+2025/01/10 18:54:20 Eval: -1(Bot perspecitve)
+2025/01/10 18:54:25 currentDepth: 5
+2025/01/10 18:54:25 PoseEvaled: 9118529
+2025/01/10 18:54:25 Eval: -8(Bot perspecitve)
+2025/01/10 18:54:29 currentDepth: 4
+2025/01/10 18:54:29 PoseEvaled: 8942219
+2025/01/10 18:54:29 Eval: 0(Bot perspecitve)
+2025/01/10 18:54:34 currentDepth: 4
+2025/01/10 18:54:34 PoseEvaled: 8631016
+2025/01/10 18:54:34 Eval: -16(Bot perspecitve)
+2025/01/10 18:54:38 currentDepth: 6
+2025/01/10 18:54:38 PoseEvaled: 8264669
+2025/01/10 18:54:38 Eval: -17(Bot perspecitve)
+2025/01/10 18:54:42 currentDepth: 6
+2025/01/10 18:54:42 PoseEvaled: 7819522
+2025/01/10 18:54:42 Eval: 11(Bot perspecitve)
+2025/01/10 18:54:46 currentDepth: 6
+2025/01/10 18:54:46 PoseEvaled: 7761465
+2025/01/10 18:54:46 Eval: 21(Bot perspecitve)
+2025/01/10 18:54:50 currentDepth: 5
+2025/01/10 18:54:50 PoseEvaled: 7406119
+2025/01/10 18:54:50 Eval: 1(Bot perspecitve)
+2025/01/10 18:54:54 currentDepth: 6
+2025/01/10 18:54:54 PoseEvaled: 7140347
+2025/01/10 18:54:54 Eval: 27(Bot perspecitve)
+2025/01/10 18:54:58 currentDepth: 6
+2025/01/10 18:54:58 PoseEvaled: 6955841
+2025/01/10 18:54:58 Eval: 12(Bot perspecitve)
+2025/01/10 18:55:02 currentDepth: 6
+2025/01/10 18:55:02 PoseEvaled: 6656360
+2025/01/10 18:55:02 Eval: 16(Bot perspecitve)
+2025/01/10 18:55:05 currentDepth: 6
+2025/01/10 18:55:05 PoseEvaled: 6677604
+2025/01/10 18:55:05 Eval: 16(Bot perspecitve)
+2025/01/10 18:55:09 currentDepth: 7
+2025/01/10 18:55:09 PoseEvaled: 6339005
+2025/01/10 18:55:09 Eval: 50(Bot perspecitve)
+2025/01/10 18:55:12 currentDepth: 7
+2025/01/10 18:55:12 PoseEvaled: 6148356
+2025/01/10 18:55:12 Eval: 2(Bot perspecitve)
+2025/01/10 18:55:15 currentDepth: 6
+2025/01/10 18:55:15 PoseEvaled: 5590767
+2025/01/10 18:55:15 Eval: 63(Bot perspecitve)
+2025/01/10 18:55:19 currentDepth: 6
+2025/01/10 18:55:19 PoseEvaled: 5565963
+2025/01/10 18:55:19 Eval: 63(Bot perspecitve)
+2025/01/10 18:55:22 currentDepth: 6
+2025/01/10 18:55:22 PoseEvaled: 5249308
+2025/01/10 18:55:22 Eval: 66(Bot perspecitve)
+2025/01/10 18:55:25 currentDepth: 6
+2025/01/10 18:55:25 PoseEvaled: 5346218
+2025/01/10 18:55:25 Eval: 66(Bot perspecitve)
+2025/01/10 18:55:28 currentDepth: 6
+2025/01/10 18:55:28 PoseEvaled: 5243525
+2025/01/10 18:55:28 Eval: 75(Bot perspecitve)
+2025/01/10 18:55:31 currentDepth: 6
+2025/01/10 18:55:31 PoseEvaled: 5232335
+2025/01/10 18:55:31 Eval: 76(Bot perspecitve)
+2025/01/10 18:55:34 currentDepth: 6
+2025/01/10 18:55:34 PoseEvaled: 5113799
+2025/01/10 18:55:34 Eval: 56(Bot perspecitve)
+2025/01/10 18:55:37 currentDepth: 6
+2025/01/10 18:55:37 PoseEvaled: 4903180
+2025/01/10 18:55:37 Eval: 4(Bot perspecitve)
+2025/01/10 18:55:39 currentDepth: 6
+2025/01/10 18:55:39 PoseEvaled: 4734405
+2025/01/10 18:55:39 Eval: -45(Bot perspecitve)
+2025/01/10 18:55:42 currentDepth: 5
+2025/01/10 18:55:42 PoseEvaled: 4283774
+2025/01/10 18:55:42 Eval: -96(Bot perspecitve)
+2025/01/10 18:55:45 currentDepth: 6
+2025/01/10 18:55:45 PoseEvaled: 4150216
+2025/01/10 18:55:45 Eval: -144(Bot perspecitve)
+2025/01/10 18:55:47 currentDepth: 6
+2025/01/10 18:55:47 PoseEvaled: 3779457
+2025/01/10 18:55:47 Eval: -213(Bot perspecitve)
+2025/01/10 18:55:50 currentDepth: 6
+2025/01/10 18:55:50 PoseEvaled: 4219338
+2025/01/10 18:55:50 Eval: -291(Bot perspecitve)
+2025/01/10 18:55:52 currentDepth: 6
+2025/01/10 18:55:52 PoseEvaled: 4299541
+2025/01/10 18:55:52 Eval: -296(Bot perspecitve)
+2025/01/10 18:55:54 currentDepth: 7
+2025/01/10 18:55:54 PoseEvaled: 4065029
+2025/01/10 18:55:54 Eval: -214(Bot perspecitve)
+2025/01/10 18:55:57 currentDepth: 7
+2025/01/10 18:55:57 PoseEvaled: 4404345
+2025/01/10 18:55:57 Eval: -617(Bot perspecitve)
+2025/01/10 18:55:59 currentDepth: 6
+2025/01/10 18:55:59 PoseEvaled: 4187786
+2025/01/10 18:55:59 Eval: -1099(Bot perspecitve)
+2025/01/10 18:56:01 currentDepth: 8
+2025/01/10 18:56:01 PoseEvaled: 4817254
+2025/01/10 18:56:01 Eval: -784(Bot perspecitve)
+2025/01/10 18:56:03 currentDepth: 7
+2025/01/10 18:56:03 PoseEvaled: 4361477
+2025/01/10 18:56:03 Eval: -876(Bot perspecitve)
+2025/01/10 18:56:05 currentDepth: 7
+2025/01/10 18:56:05 PoseEvaled: 4050935
+2025/01/10 18:56:05 Eval: -1355(Bot perspecitve)
+2025/01/10 18:56:07 currentDepth: 7
+2025/01/10 18:56:07 PoseEvaled: 3803619
+2025/01/10 18:56:07 Eval: -1579(Bot perspecitve)
+2025/01/10 18:56:09 currentDepth: 7
+2025/01/10 18:56:09 PoseEvaled: 3525851
+2025/01/10 18:56:09 Eval: -99999999(Bot perspecitve)
+2025/01/10 18:56:11 currentDepth: 7
+2025/01/10 18:56:11 PoseEvaled: 3505803
+2025/01/10 18:56:11 Eval: -100000009(Bot perspecitve)
+2025/01/10 18:56:12 currentDepth: 8
+2025/01/10 18:56:12 PoseEvaled: 3238893
+2025/01/10 18:56:12 Eval: -100000039(Bot perspecitve)
+2025/01/10 18:56:13 currentDepth: 8
+2025/01/10 18:56:13 PoseEvaled: 3876870
+2025/01/10 18:56:13 Eval: -100000059(Bot perspecitve)
+2025/01/10 18:56:14 currentDepth: 11
+2025/01/10 18:56:14 PoseEvaled: 3899539
+2025/01/10 18:56:14 Eval: -100000089(Bot perspecitve)
+2025/01/10 18:56:14 currentDepth: 6
+2025/01/10 18:56:14 PoseEvaled: 2379340
+2025/01/10 18:56:14 Eval: 15(Bot perspecitve)
+2025/01/10 18:56:15 currentDepth: 6
+2025/01/10 18:56:15 PoseEvaled: 2514481
+2025/01/10 18:56:15 Eval: 48(Bot perspecitve)
+2025/01/10 18:56:18 currentDepth: 6
+2025/01/10 18:56:18 PoseEvaled: 9811080
+2025/01/10 18:56:18 Eval: 44(Bot perspecitve)
+2025/01/10 18:56:21 currentDepth: 6
+2025/01/10 18:56:21 PoseEvaled: 10339503
+2025/01/10 18:56:21 Eval: 60(Bot perspecitve)
+2025/01/10 18:56:24 currentDepth: 6
+2025/01/10 18:56:24 PoseEvaled: 9733683
+2025/01/10 18:56:24 Eval: 53(Bot perspecitve)
+2025/01/10 18:56:30 currentDepth: 6
+2025/01/10 18:56:30 PoseEvaled: 10174424
+2025/01/10 18:56:30 Eval: 52(Bot perspecitve)
+2025/01/10 18:56:35 currentDepth: 6
+2025/01/10 18:56:35 PoseEvaled: 9173050
+2025/01/10 18:56:35 Eval: 21(Bot perspecitve)
+2025/01/10 18:56:41 currentDepth: 6
+2025/01/10 18:56:41 PoseEvaled: 9087901
+2025/01/10 18:56:41 Eval: -3(Bot perspecitve)
+2025/01/10 18:56:46 currentDepth: 6
+2025/01/10 18:56:46 PoseEvaled: 8837773
+2025/01/10 18:56:46 Eval: 0(Bot perspecitve)
+2025/01/10 18:56:51 currentDepth: 5
+2025/01/10 18:56:51 PoseEvaled: 8631061
+2025/01/10 18:56:51 Eval: -14(Bot perspecitve)
+2025/01/10 18:56:56 currentDepth: 5
+2025/01/10 18:56:56 PoseEvaled: 9010884
+2025/01/10 18:56:56 Eval: -28(Bot perspecitve)
+2025/01/10 18:57:01 currentDepth: 5
+2025/01/10 18:57:01 PoseEvaled: 8828812
+2025/01/10 18:57:01 Eval: -11(Bot perspecitve)
+2025/01/10 18:57:06 currentDepth: 4
+2025/01/10 18:57:06 PoseEvaled: 8897397
+2025/01/10 18:57:06 Eval: 57(Bot perspecitve)
+2025/01/10 18:57:11 currentDepth: 4
+2025/01/10 18:57:11 PoseEvaled: 8880061
+2025/01/10 18:57:11 Eval: 57(Bot perspecitve)
+2025/01/10 18:57:15 currentDepth: 4
+2025/01/10 18:57:15 PoseEvaled: 9152408
+2025/01/10 18:57:15 Eval: 47(Bot perspecitve)
+2025/01/10 18:57:20 currentDepth: 5
+2025/01/10 18:57:20 PoseEvaled: 8696613
+2025/01/10 18:57:20 Eval: 48(Bot perspecitve)
+2025/01/10 18:57:24 currentDepth: 5
+2025/01/10 18:57:24 PoseEvaled: 8557453
+2025/01/10 18:57:24 Eval: 1(Bot perspecitve)
+2025/01/10 18:57:28 currentDepth: 4
+2025/01/10 18:57:28 PoseEvaled: 8544507
+2025/01/10 18:57:28 Eval: -9(Bot perspecitve)
+2025/01/10 18:57:33 currentDepth: 4
+2025/01/10 18:57:33 PoseEvaled: 8136064
+2025/01/10 18:57:33 Eval: 0(Bot perspecitve)
+2025/01/10 18:57:37 currentDepth: 6
+2025/01/10 18:57:37 PoseEvaled: 7558485
+2025/01/10 18:57:37 Eval: 2(Bot perspecitve)
+2025/01/10 18:57:41 currentDepth: 6
+2025/01/10 18:57:41 PoseEvaled: 7083181
+2025/01/10 18:57:41 Eval: -19(Bot perspecitve)
+2025/01/10 18:57:44 currentDepth: 6
+2025/01/10 18:57:44 PoseEvaled: 7256922
+2025/01/10 18:57:44 Eval: -17(Bot perspecitve)
+2025/01/10 18:57:48 currentDepth: 6
+2025/01/10 18:57:48 PoseEvaled: 6945418
+2025/01/10 18:57:48 Eval: 6(Bot perspecitve)
+2025/01/10 18:57:52 currentDepth: 6
+2025/01/10 18:57:52 PoseEvaled: 6722980
+2025/01/10 18:57:52 Eval: 9(Bot perspecitve)
+2025/01/10 18:57:55 currentDepth: 6
+2025/01/10 18:57:55 PoseEvaled: 6088840
+2025/01/10 18:57:55 Eval: 43(Bot perspecitve)
+2025/01/10 18:57:59 currentDepth: 6
+2025/01/10 18:57:59 PoseEvaled: 5778344
+2025/01/10 18:57:59 Eval: 18(Bot perspecitve)
+2025/01/10 18:58:02 currentDepth: 6
+2025/01/10 18:58:02 PoseEvaled: 5314044
+2025/01/10 18:58:02 Eval: 72(Bot perspecitve)
+2025/01/10 18:58:06 currentDepth: 9
+2025/01/10 18:58:06 PoseEvaled: 5752097
+2025/01/10 18:58:06 Eval: 113(Bot perspecitve)
+2025/01/10 18:58:09 currentDepth: 8
+2025/01/10 18:58:09 PoseEvaled: 5863321
+2025/01/10 18:58:09 Eval: 120(Bot perspecitve)
+2025/01/10 18:58:12 currentDepth: 7
+2025/01/10 18:58:12 PoseEvaled: 5891147
+2025/01/10 18:58:12 Eval: 129(Bot perspecitve)
+2025/01/10 18:58:15 currentDepth: 7
+2025/01/10 18:58:15 PoseEvaled: 5937281
+2025/01/10 18:58:15 Eval: 165(Bot perspecitve)
+2025/01/10 18:58:18 currentDepth: 7
+2025/01/10 18:58:18 PoseEvaled: 5922329
+2025/01/10 18:58:18 Eval: 180(Bot perspecitve)
+2025/01/10 18:58:21 currentDepth: 6
+2025/01/10 18:58:21 PoseEvaled: 5390159
+2025/01/10 18:58:21 Eval: 207(Bot perspecitve)
+2025/01/10 18:58:24 currentDepth: 6
+2025/01/10 18:58:24 PoseEvaled: 5128570
+2025/01/10 18:58:24 Eval: 203(Bot perspecitve)
+2025/01/10 18:58:26 currentDepth: 6
+2025/01/10 18:58:26 PoseEvaled: 5067607
+2025/01/10 18:58:26 Eval: 208(Bot perspecitve)
+2025/01/10 18:58:29 currentDepth: 6
+2025/01/10 18:58:29 PoseEvaled: 4919758
+2025/01/10 18:58:29 Eval: 198(Bot perspecitve)
+2025/01/10 18:58:32 currentDepth: 6
+2025/01/10 18:58:32 PoseEvaled: 4683125
+2025/01/10 18:58:32 Eval: 207(Bot perspecitve)
+2025/01/10 18:58:34 currentDepth: 6
+2025/01/10 18:58:34 PoseEvaled: 4686214
+2025/01/10 18:58:34 Eval: 242(Bot perspecitve)
+2025/01/10 18:58:37 currentDepth: 7
+2025/01/10 18:58:37 PoseEvaled: 4416641
+2025/01/10 18:58:37 Eval: 251(Bot perspecitve)
+2025/01/10 18:58:39 currentDepth: 6
+2025/01/10 18:58:39 PoseEvaled: 4420969
+2025/01/10 18:58:39 Eval: 285(Bot perspecitve)
+2025/01/10 18:58:42 currentDepth: 6
+2025/01/10 18:58:42 PoseEvaled: 4160580
+2025/01/10 18:58:42 Eval: 277(Bot perspecitve)
+2025/01/10 18:58:44 currentDepth: 6
+2025/01/10 18:58:44 PoseEvaled: 4245129
+2025/01/10 18:58:44 Eval: 271(Bot perspecitve)
+2025/01/10 18:58:46 currentDepth: 6
+2025/01/10 18:58:46 PoseEvaled: 3992076
+2025/01/10 18:58:46 Eval: 271(Bot perspecitve)
+2025/01/10 18:58:48 currentDepth: 6
+2025/01/10 18:58:48 PoseEvaled: 3952304
+2025/01/10 18:58:48 Eval: 286(Bot perspecitve)
+2025/01/10 18:58:51 currentDepth: 6
+2025/01/10 18:58:51 PoseEvaled: 3777108
+2025/01/10 18:58:51 Eval: 286(Bot perspecitve)
+2025/01/10 18:58:53 currentDepth: 6
+2025/01/10 18:58:53 PoseEvaled: 3790635
+2025/01/10 18:58:53 Eval: 286(Bot perspecitve)
+2025/01/10 18:58:55 currentDepth: 6
+2025/01/10 18:58:55 PoseEvaled: 3662946
+2025/01/10 18:58:55 Eval: 295(Bot perspecitve)
+2025/01/10 18:58:57 currentDepth: 6
+2025/01/10 18:58:57 PoseEvaled: 3470916
+2025/01/10 18:58:57 Eval: 295(Bot perspecitve)
+2025/01/10 18:58:59 currentDepth: 6
+2025/01/10 18:58:59 PoseEvaled: 3414600
+2025/01/10 18:58:59 Eval: 295(Bot perspecitve)
+2025/01/10 18:59:00 currentDepth: 6
+2025/01/10 18:59:00 PoseEvaled: 3146795
+2025/01/10 18:59:00 Eval: 295(Bot perspecitve)
+2025/01/10 18:59:02 currentDepth: 6
+2025/01/10 18:59:02 PoseEvaled: 3277464
+2025/01/10 18:59:02 Eval: 295(Bot perspecitve)
+2025/01/10 18:59:04 currentDepth: 6
+2025/01/10 18:59:04 PoseEvaled: 3197960
+2025/01/10 18:59:04 Eval: 295(Bot perspecitve)
+2025/01/10 18:59:06 currentDepth: 6
+2025/01/10 18:59:06 PoseEvaled: 2554458
+2025/01/10 18:59:06 Eval: -14(Bot perspecitve)
+2025/01/10 18:59:07 currentDepth: 6
+2025/01/10 18:59:07 PoseEvaled: 2613926
+2025/01/10 18:59:07 Eval: -20(Bot perspecitve)
+2025/01/10 18:59:09 currentDepth: 6
+2025/01/10 18:59:09 PoseEvaled: 10839989
+2025/01/10 18:59:09 Eval: 2(Bot perspecitve)
+2025/01/10 18:59:12 currentDepth: 6
+2025/01/10 18:59:12 PoseEvaled: 10661273
+2025/01/10 18:59:12 Eval: -15(Bot perspecitve)
+2025/01/10 18:59:15 currentDepth: 5
+2025/01/10 18:59:15 PoseEvaled: 10645496
+2025/01/10 18:59:15 Eval: -7(Bot perspecitve)
+2025/01/10 18:59:18 currentDepth: 5
+2025/01/10 18:59:18 PoseEvaled: 10538586
+2025/01/10 18:59:18 Eval: 7(Bot perspecitve)
+2025/01/10 18:59:24 currentDepth: 6
+2025/01/10 18:59:24 PoseEvaled: 10297303
+2025/01/10 18:59:24 Eval: -9(Bot perspecitve)
+2025/01/10 18:59:29 currentDepth: 6
+2025/01/10 18:59:29 PoseEvaled: 9643457
+2025/01/10 18:59:29 Eval: -42(Bot perspecitve)
+2025/01/10 18:59:35 currentDepth: 6
+2025/01/10 18:59:35 PoseEvaled: 9411721
+2025/01/10 18:59:35 Eval: -36(Bot perspecitve)
+2025/01/10 18:59:40 currentDepth: 5
+2025/01/10 18:59:40 PoseEvaled: 9542953
+2025/01/10 18:59:40 Eval: -44(Bot perspecitve)
+2025/01/10 18:59:45 currentDepth: 5
+2025/01/10 18:59:45 PoseEvaled: 9596024
+2025/01/10 18:59:45 Eval: -25(Bot perspecitve)
+2025/01/10 18:59:50 currentDepth: 6
+2025/01/10 18:59:50 PoseEvaled: 8847430
+2025/01/10 18:59:50 Eval: -58(Bot perspecitve)
+2025/01/10 18:59:55 currentDepth: 6
+2025/01/10 18:59:55 PoseEvaled: 9047645
+2025/01/10 18:59:55 Eval: -113(Bot perspecitve)
+2025/01/10 19:00:00 currentDepth: 6
+2025/01/10 19:00:00 PoseEvaled: 8434822
+2025/01/10 19:00:00 Eval: -113(Bot perspecitve)
+2025/01/10 19:00:04 currentDepth: 6
+2025/01/10 19:00:04 PoseEvaled: 8472389
+2025/01/10 19:00:04 Eval: -106(Bot perspecitve)
+2025/01/10 19:00:09 currentDepth: 6
+2025/01/10 19:00:09 PoseEvaled: 8407362
+2025/01/10 19:00:09 Eval: -107(Bot perspecitve)
+2025/01/10 19:00:13 currentDepth: 6
+2025/01/10 19:00:13 PoseEvaled: 7990538
+2025/01/10 19:00:13 Eval: -177(Bot perspecitve)
+2025/01/10 19:00:18 currentDepth: 5
+2025/01/10 19:00:18 PoseEvaled: 8044742
+2025/01/10 19:00:18 Eval: -154(Bot perspecitve)
+2025/01/10 19:00:22 currentDepth: 5
+2025/01/10 19:00:22 PoseEvaled: 7590526
+2025/01/10 19:00:22 Eval: -217(Bot perspecitve)
+2025/01/10 19:00:26 currentDepth: 7
+2025/01/10 19:00:26 PoseEvaled: 7229358
+2025/01/10 19:00:26 Eval: -229(Bot perspecitve)
+2025/01/10 19:00:30 currentDepth: 6
+2025/01/10 19:00:30 PoseEvaled: 6713352
+2025/01/10 19:00:30 Eval: -329(Bot perspecitve)
+2025/01/10 19:00:34 currentDepth: 6
+2025/01/10 19:00:34 PoseEvaled: 6981793
+2025/01/10 19:00:34 Eval: -360(Bot perspecitve)
+2025/01/10 19:00:38 currentDepth: 5
+2025/01/10 19:00:38 PoseEvaled: 6926437
+2025/01/10 19:00:38 Eval: -379(Bot perspecitve)
+2025/01/10 19:00:41 currentDepth: 5
+2025/01/10 19:00:41 PoseEvaled: 6486842
+2025/01/10 19:00:41 Eval: -446(Bot perspecitve)
+2025/01/10 19:00:45 currentDepth: 5
+2025/01/10 19:00:45 PoseEvaled: 6339955
+2025/01/10 19:00:45 Eval: -476(Bot perspecitve)
+2025/01/10 19:00:48 currentDepth: 5
+2025/01/10 19:00:48 PoseEvaled: 6145282
+2025/01/10 19:00:48 Eval: -537(Bot perspecitve)
+2025/01/10 19:00:52 currentDepth: 7
+2025/01/10 19:00:52 PoseEvaled: 6054199
+2025/01/10 19:00:52 Eval: -652(Bot perspecitve)
+2025/01/10 19:00:55 currentDepth: 6
+2025/01/10 19:00:55 PoseEvaled: 6096368
+2025/01/10 19:00:55 Eval: -706(Bot perspecitve)
+2025/01/10 19:00:58 currentDepth: 7
+2025/01/10 19:00:58 PoseEvaled: 6090901
+2025/01/10 19:00:58 Eval: -1141(Bot perspecitve)
+2025/01/10 19:01:02 currentDepth: 7
+2025/01/10 19:01:02 PoseEvaled: 5858088
+2025/01/10 19:01:02 Eval: -1344(Bot perspecitve)
+2025/01/10 19:01:05 currentDepth: 7
+2025/01/10 19:01:05 PoseEvaled: 6388449
+2025/01/10 19:01:05 Eval: -1405(Bot perspecitve)
+2025/01/10 19:01:08 currentDepth: 7
+2025/01/10 19:01:08 PoseEvaled: 6242387
+2025/01/10 19:01:08 Eval: -1589(Bot perspecitve)
+2025/01/10 19:01:09 currentDepth: 7
+2025/01/10 19:01:09 PoseEvaled: 6355855
+2025/01/10 19:01:09 Eval: -99999999(Bot perspecitve)
+2025/01/10 19:01:11 currentDepth: 7
+2025/01/10 19:01:11 PoseEvaled: 5985413
+2025/01/10 19:01:11 Eval: -100000049(Bot perspecitve)
+2025/01/10 19:01:12 currentDepth: 9
+2025/01/10 19:01:12 PoseEvaled: 6325382
+2025/01/10 19:01:12 Eval: -100000069(Bot perspecitve)

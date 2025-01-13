@@ -40,6 +40,9 @@ var mask_PawnAttack = [64]uint64{}
 var mask_RookAttack = [64]uint64{}
 var mask_BishAttack = [64]uint64{}
 
+var mask_RookAttackFull = [64]uint64{}
+var mask_BishAttackFull = [64]uint64{}
+
 var mask_passedPawn = [64 * 2]uint64{}
 var mask_adjacentFiles = [64]uint64{}
 var mask_sameFile = [64]uint64{}

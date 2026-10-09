@@ -161,6 +161,7 @@ func (board *board) init() {
 			}
 		}
 	}
+
 }
 
 func (board *board) subAttackNum(col bool, mask uint64) {

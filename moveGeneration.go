@@ -283,14 +283,15 @@ func (board *board) isCheck(col bool) bool {
 	bishopIndex := ((mask_BishAttack[targetIndex] & allPieces) * bishopMagics[targetIndex]) >> bishopShifts[targetIndex]
 	if BishMagicDict[targetIndex][bishopIndex]&opponentBishopsQueens > 0 {
 		return true
+
 	}
 
 	// Rook and Queen attacks
 	rookIndex := ((mask_RookAttack[targetIndex] & allPieces) * rookMagics[targetIndex]) >> rookShifts[targetIndex]
 	if RookMagicDict[targetIndex][rookIndex]&opponentRooksQueens > 0 {
 		return true
-	}
 
+	}
 	return false
 }
 

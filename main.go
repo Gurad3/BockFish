@@ -34,6 +34,7 @@ func main() {
 	// }()
 
 	reader := bufio.NewReader(os.Stdin)
+	start := false
 
 	// Loop to read commands from the GUI
 	for {
@@ -45,7 +46,7 @@ func main() {
 		}
 
 		command = strings.TrimSpace(command)
-		// writeToLogFile(command)
+		//writeToLogFile(command)
 
 		// Parse the command
 		parts := strings.Fields(command)
@@ -54,17 +55,28 @@ func main() {
 		}
 		switch parts[0] {
 		case "uci":
-			fmt.Println("id name Bock_Fish")
+			fmt.Println("id name BockFish")
 			fmt.Println("id author Gurad")
 			fmt.Println("uciok")
 		case "isready":
 			fmt.Println("readyok")
 		case "ucinewgame":
 			loadTables()
+			start = false
 		case "position":
 
-			if (len(parts) > 3 && parts[2] == "moves") || (len(parts) > 8 && parts[8] == "moves") {
-
+			if !start {
+				if parts[1] == "startpos" {
+					currentBoard.loadFromFEN(startfen)
+					if len(parts) == 4 {
+						//writeToLogFile(fmt.Sprintf("%s -> %04x flags=%x", parts[3], UCIMoveToEngineMove(parts[3]), UCIMoveToEngineMove(parts[3])&FlagMask))
+						currentBoard.PlayMove(currentBoard.generateCapFlag(UCIMoveToEngineMove(parts[3])))
+					}
+				} else {
+					currentBoard.loadFromFEN(strings.Join(parts[2:], " "))
+				}
+				start = true
+			} else {
 				StringMove := parts[len(parts)-1]
 				// Move := UCIMoveToEngineMove(StringMove)
 				// Move = currentBoard.generateCapFlag(Move)
@@ -72,26 +84,32 @@ func main() {
 				// currentBoard.PlayMove(Move)
 
 				currentBoard.PlayMove(currentBoard.generateCapFlag(UCIMoveToEngineMove(StringMove)))
-
-			} else {
-				if parts[1] == "startpos" {
-					currentBoard.loadFromFEN(startfen)
-				} else {
-					currentBoard.loadFromFEN(strings.Join(parts[2:], ""))
-				}
 			}
+
 		case "go":
 
 			t := 0
 
-			if currentBoard.isWhiteTurn {
+			if parts[1] == "depth" {
 				t, _ = strconv.Atoi(parts[2])
-			} else {
-				t, _ = strconv.Atoi(parts[4])
+				move := currentBoard.searchDept(t)
+				fmt.Println("bestmove " + engineMoveToUCIMove(move))
+				continue
 			}
 
-			if currentBoard.ply <= 5 {
-				t /= 4
+			if parts[1] == "movetime" {
+				t, _ = strconv.Atoi(parts[2])
+				t *= 40
+			} else {
+				if currentBoard.isWhiteTurn {
+					t, _ = strconv.Atoi(parts[2])
+				} else {
+					t, _ = strconv.Atoi(parts[4])
+				}
+
+				if currentBoard.ply <= 5 {
+					t /= 4
+				}
 			}
 
 			move := currentBoard.searchMove(int64(t / 40))
@@ -99,6 +117,7 @@ func main() {
 			if currentBoard.LastIrevPLY == currentBoard.ply {
 				currentBoard.repetion = currentBoard.repetion[:1]
 			}
+
 			fmt.Println("bestmove " + engineMoveToUCIMove(move))
 			// writeToLogFile(Itoa(currentBoard.ply) + " " + Itoa(int(currentBoard.pieceMask[0])) + " " + Itoa(int(currentBoard.pieceMask[1])))
 
@@ -134,8 +153,9 @@ func main() {
 			tmpPlayedMoveList = append(tmpPlayedMoveList, tmpStringToMove[parts[1]])
 			fmt.Println("done")
 
-		case "benchsearch":
-			benchsearch()
+		case "bench":
+			t, _ := strconv.Atoi(parts[1])
+			RunBench(t)
 
 		case "loaddef":
 			fen := startfen
@@ -178,6 +198,14 @@ func main() {
 	}
 
 }
+
+func loadT() {
+	loadPreCalculations(false)
+	loadZobrist()
+	eval_loadTables()
+	eval_init_tables()
+}
+
 func loadTables() {
 	currentBoard = board{transEntries: 1 << 20}
 	currentBoard.transpostionTable = make([]tranEntry, currentBoard.transEntries)
@@ -186,12 +214,19 @@ func loadTables() {
 
 	currentBoard.repetion = make([]uint64, 0, 80)
 	currentBoard.IrevPLYStack = make([]int, 0, 80)
+	loadT()
+}
 
-	loadPreCalculations(false)
-	eval_loadTables()
+func newBoard() board {
+	b := board{transEntries: 1 << 20}
+	b.transpostionTable = make([]tranEntry, b.transEntries)
+	b.quinTranspostionTable = make([]tranEntry, b.transEntries)
+	b.gameStateStack = make([]gameState, 0, 120)
 
-	eval_init_tables()
+	b.repetion = make([]uint64, 0, 80)
+	b.IrevPLYStack = make([]int, 0, 80)
 
+	return b
 }
 
 var tmpPlayedMoveList []uint16 = make([]uint16, 0, 100)

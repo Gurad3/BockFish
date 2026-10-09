@@ -47,6 +47,9 @@ var mask_sameFile = [64]uint64{}
 var RookMagicDict [][]uint64
 var BishMagicDict [][]uint64
 
+var zobrist_vals [2][7][64]uint64
+var zobrist_black uint64
+
 func mask_load() {
 	for i := 0; i < 9; i++ {
 		eval_isolatedPawnPenalties[i] /= 3
@@ -84,6 +87,18 @@ func mask_load() {
 
 	}
 
+}
+
+func loadZobrist() {
+	var zobristRng = rand.New(rand.NewSource(0x1234ABCD5678EF90))
+	for col := 0; col < 2; col++ {
+		for p := 1; p < 7; p++ { //first = empty
+			for sq := 0; sq < 64; sq++ {
+				zobrist_vals[col][p][sq] = zobristRng.Uint64()
+			}
+		}
+	}
+	zobrist_black = zobristRng.Uint64()
 }
 
 func loadPreCalculations(searchForMagic bool) {

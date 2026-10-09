@@ -1,13 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"math/bits"
 	"os"
 	"strconv"
 	"strings"
-	"time"
 )
 
 var startfen string = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
@@ -28,6 +26,15 @@ func isNumber(s string) bool {
 }
 
 func (board *board) loadFromFEN(fenS string) {
+
+	board.pieceMask = [2]uint64{}
+	board.pieceMasks = [2][7]uint64{}
+	board.squareTypeArray = [64]uint8{}
+	board.squareAttackNum = [64]uint8{}
+	board.castling, board.lastMove, board.zobrist = 0, 0, 0
+	board.gameStateStack = board.gameStateStack[:0]
+	board.repetion = board.repetion[:0]
+	board.IrevPLYStack = board.IrevPLYStack[:0]
 
 	fen := strings.Split(fenS, " ")
 
@@ -106,7 +113,7 @@ func (board *board) loadFromFEN(fenS string) {
 
 		x++
 	}
-
+	board.calcZobrist()
 	board.init()
 }
 
@@ -240,11 +247,11 @@ func UCIMoveToEngineMove(uciMove string) uint16 {
 		}
 
 		if currentBoard.lastMove&FlagMask == PawnTwoUpFlag {
-			if currentBoard.isWhiteTurn && TIndex-int(currentBoard.lastMove&MoveSourceMask) == -8 {
+			if currentBoard.isWhiteTurn && TIndex-int(currentBoard.lastMove&MoveSourceMask) == 8 {
 				Move |= EnPassant | CapFlag
 			}
 
-			if !currentBoard.isWhiteTurn && TIndex-int(currentBoard.lastMove&MoveSourceMask) == 8 {
+			if !currentBoard.isWhiteTurn && TIndex-int(currentBoard.lastMove&MoveSourceMask) == -8 {
 				Move |= EnPassant | CapFlag
 			}
 
@@ -308,62 +315,6 @@ func Itoa(i int) string {
 var ep = 0
 var capt = 0
 var prom = 0
-
-func benchsearch() {
-	fmt.Println("Benching")
-
-	// start := time.Now()
-
-	// totalPos := 0
-
-	// loadPreCalculations(false)
-	// eval_loadTables()
-
-	// // loadTables()
-	// // loadFen(strings.Split(startfen, " "))
-
-	// // for i := 1; i < 7; i++ {
-	// // 	ep = 0
-	// // 	capt = 0
-	// // 	prom = 0
-	// // 	fmt.Println(currentBoard.MoveGenTest(i), capt, ep, prom)
-	// // }
-
-	// // fmt.Println(time.Since(start), totalPos, capt, ep, prom)
-
-	// for i := 0; i < len(test_perftTestInts)/2; i++ {
-	// 	currentBoard = board{transEntries: 1}
-	// 	currentBoard.gameStateStack = make([]gameState, 0, 120)
-
-	// 	currentBoard.loadFromFEN(test_perfTestFen[i])
-
-	// 	totalPos = currentBoard.MoveGenTest(test_perftTestInts[i*2])
-
-	// 	fmt.Println(time.Since(start), totalPos, totalPos == test_perftTestInts[i*2+1], i+1)
-
-	// }
-
-	start := time.Now()
-	totalPos := 0
-	fen := startfen
-	loadTables()
-
-	currentBoard.loadFromFEN(fen)
-
-	//endTime := start.Add(time.Duration(5000) * time.Millisecond)
-
-	for i := 0; i < 5; i++ {
-		currentBoard.PlayMove(currentBoard.searchMove(5000))
-		totalPos += posEvaled
-	}
-
-	duration := time.Since(start)
-
-	fmt.Println(duration)
-
-	writeToLogFile("     BenchPosEvaled: " + Itoa(totalPos))
-
-}
 
 func (board *board) MoveGenTest(depth int) int {
 	if depth == 0 {

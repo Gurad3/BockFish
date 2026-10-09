@@ -251,6 +251,9 @@ func (board *board) isCheck(col bool) bool {
 	opCol := 1 - colID
 	// Get target king's position
 	targetIndex := popLSB(board.pieceMasks[colID][6])
+	if targetIndex == 64 {
+		return false
+	}
 
 	// Precompute combined opponent piece masks
 	allPieces := board.pieceMask[0] | board.pieceMask[1]

@@ -2,7 +2,6 @@ package main
 
 import (
 	"math"
-	"strconv"
 	"time"
 )
 
@@ -12,125 +11,144 @@ type tranEntry struct {
 	Move                uint16
 }
 
-var posEvaled = 0
 var global_currScore = 0
 
-func (board *board) searchMove(searchTime int64) uint16 {
-	posEvaled = 0
-	startTime := time.Now()
-	endTime := startTime.Add(time.Duration(searchTime) * time.Millisecond)
+const (
+	mateScore  = 99999999
+	lmrEnabled = true
+)
 
-	moves := make([]uint16, 0, 218)
-	moves = moves[:board.getLegalMoves(moves, false)]
-	// moves := board.getLegalMoves()
+// Bench
+func (board *board) searchDept(targetDepth int) uint16 {
+	return board.iterate(targetDepth, time.Now().Add(50*time.Minute))
+}
+
+// UCI
+func (board *board) searchMove(searchTime int64) uint16 {
+	endTime := time.Now().Add(time.Duration(searchTime) * time.Millisecond)
+	return board.iterate(64, endTime)
+}
+
+func (board *board) iterate(maxDepth int, endTime time.Time) uint16 {
+	//fmt.Printf("info string budget %v\n", time.Until(endTime))
+	board.nodes, board.qnodes, board.maxQDepth = 0, 0, 0
+	board.stop = false
+	//start := time.Now()
+	pseudo := make([]uint16, 0, 218)
+	pseudo = pseudo[:board.getLegalMoves(pseudo, false)]
+	moves := make([]uint16, 0, len(pseudo))
+	for _, m := range pseudo {
+		board.PlayMove(m)
+		if !board.isCheck(!board.isWhiteTurn) { // mover's king not attacked
+			moves = append(moves, m)
+		}
+		board.UndoMove(m)
+	}
+	if len(moves) == 0 {
+		return 0
+	}
 	quickSortStart(moves)
 
-	currMove := moves[0]
-
-	//White = true
 	col := -1
 	if board.isWhiteTurn {
 		col = 1
 	}
 
-	depth := 0 //2 - 1
+	best := moves[0]
+	for depth := 1; depth <= maxDepth; depth++ {
+		board.rootDepth = depth
 
-	currScore := 0 //* col
-	bestMoveID := 0
-	for {
-		depth++
-		currScore = (math.MinInt + 1)
-		for MoveID, Move := range moves {
+		alpha, beta := math.MinInt+1, math.MaxInt
+		iterBest, iterBestID := moves[0], 0
 
-			if depth > 1 && time.Now().After(endTime) {
-				// writeToLogFile("posEvaled: " + strconv.Itoa(posEvaled))
+		for id, m := range moves {
+			board.PlayMove(m)
+			score := -board.NegaMax(endTime, m, 1, depth-1, -beta, -alpha, -col, 0)
+			board.UndoMove(m)
 
-				writeToLogFile("currentDepth: " + strconv.Itoa(depth))
-				writeToLogFile("PoseEvaled: " + Itoa(posEvaled))
-				writeToLogFile("Eval: " + Itoa(global_currScore) + "(Bot perspecitve)")
-
-				return currMove
+			if board.stop {
+				if id > 0 {
+					best = iterBest
+				}
+				return best
 			}
-
-			board.PlayMove(Move)
-			score := -board.NegaMax(startTime, endTime, Move, 0, depth, math.MinInt+1, math.MaxInt, -col, 0)
-			board.UndoMove(Move)
-			if score > currScore {
-				currScore = score
-				currMove = Move
-				global_currScore = score
-				bestMoveID = MoveID
+			if score > alpha {
+				alpha = score
+				iterBest, iterBestID = m, id
 			}
 		}
 
-		if moves[0] != currMove {
-			moves[bestMoveID], moves[0] = moves[0], moves[bestMoveID]
-		}
-
-		if currScore >= 99999 {
+		best = iterBest
+		global_currScore = alpha
+		moves[iterBestID], moves[0] = moves[0], moves[iterBestID]
+		if alpha >= 99999 {
 			writeToLogFile("Found Forced mate")
-
-			return currMove
+			return best
 		}
+		// ms := time.Since(start).Milliseconds()
+		// nps := 0
+		// if ms > 0 {
+		// 	nps = board.nodes * 1000 / int(ms)
+		// }
+		//fmt.Printf("info depth %d score cp %d nodes %d nps %d time %d pv %s\n",depth, alpha, board.nodes, nps, ms, engineMoveToUCIMove(best))
 
 	}
-	// writeToLogFile(strconv.Itoa(int(currScore)) + " Col:" + strconv.Itoa(col))
-	// board.tmp()
-
+	return best
 }
 
-func (board *board) NegaMax(startTime time.Time, endTime time.Time, prevMove uint16, reverseDepth, depth, alpha, beta, col, numExtensions int) int {
+func (board *board) NegaMax(endTime time.Time, prevMove uint16, ply, depth, alpha, beta, col, numExtensions int) int {
+
+	if depth <= 0 {
+		//return board.EvalCurrentPos() * col
+		return board.QuinNegaMax(endTime, 0, alpha, beta, col)
+	}
+	board.nodes++
+
+	if board.nodes&2047 == 0 && board.rootDepth > 1 && time.Now().After(endTime) {
+		board.stop = true
+	}
+	if board.stop {
+		return 0
+	}
 
 	if board.isCheck(!board.isWhiteTurn) {
-		return 99999999 + depth*10
+		return mateScore + depth*10
 	}
 
 	if board.isRepeated() {
 		return 0
 	}
 
-	if depth <= 0 {
-		//return board.EvalCurrentPos() * col
-		return board.QuinNegaMax(startTime, endTime, reverseDepth, depth, alpha, beta, col)
-	}
+	origAlpha, origBeta := alpha, beta
+	idx := board.zobrist & (board.transEntries - 1)
+	entry := board.transpostionTable[idx]
+	tableMove := uint16(0)
 
-	origAlpha := alpha
-	entry := board.transpostionTable[board.zobrist&(board.transEntries-1)]
-	tableMove := entry.Move
+	if entry.key == board.zobrist {
+		tableMove = entry.Move
 
-	if entry.key == board.zobrist && entry.depth >= depth {
-
-		score := entry.score
-		// Exact
-		if entry.bound == 1 {
-			posEvaled++
-			return score
-		}
-
-		// Lowerbound
-		if entry.bound == 3 {
-			alpha = intMax(alpha, score)
-		} else { // Upperbound
-			beta = intMin(beta, score)
-		}
-
-		if alpha >= beta {
-			posEvaled++
-			return score
+		if entry.depth >= depth {
+			switch entry.bound {
+			case 1: // exact
+				return entry.score
+			case 3: // lower bound
+				alpha = intMax(alpha, entry.score)
+			default: // upper bound
+				beta = intMin(beta, entry.score)
+			}
+			if alpha >= beta {
+				return entry.score
+			}
 		}
 	}
-
+	isCheck := board.isCheck(board.isWhiteTurn)
 	extension := 0
-	if numExtensions <= 3 && (prevMove&isPromFlag > 0 || board.isCheck(board.isWhiteTurn)) {
+	if numExtensions <= 3 && (prevMove&isPromFlag > 0 || isCheck) {
 		extension = 1
 	}
 
 	moves := make([]uint16, 0, 218)
 	moves = moves[:board.getLegalMoves(moves, false)]
-	// moves := board.getLegalMoves()
-	if len(moves) == 0 {
-		return 0
-	}
 
 	if tableMove != 0 {
 		moveOrderWithBestMove(moves, tableMove)
@@ -138,145 +156,32 @@ func (board *board) NegaMax(startTime time.Time, endTime time.Time, prevMove uin
 	} else {
 		quickSortStart(moves)
 	}
-	bestMove := moves[0]
-
-	//MoveOrdering
-
-	depthReductionID := 7000
-	if reverseDepth > 3 {
-		if len(moves) > 6 {
-			depthReductionID = len(moves) - len(moves)/4
-		}
-	}
-
-	score := math.MinInt + 1
-	for id, Move := range moves {
-
-		if reverseDepth >= 1 && time.Now().After(endTime) {
-			break
-		}
-		depthReduction := 0
-		if id >= depthReductionID {
-			depthReduction = 1
-		}
-
-		board.PlayMove(Move)
-		NewScore := -board.NegaMax(startTime, endTime, Move, reverseDepth+1, depth-1+extension-depthReduction, -beta, -alpha, -col, numExtensions+extension)
-		board.UndoMove(Move)
-
-		if NewScore > score {
-			bestMove = Move
-			score = NewScore
-		}
-
-		alpha = intMax(alpha, score)
-		if alpha >= beta {
-			break
-		}
-
-	}
-
-	if time.Now().After(endTime) {
-		return score
-	}
-
-	bound := 1 //exakt
-
-	if score <= origAlpha {
-		bound = 2 //upper
-	} else if score >= beta {
-		bound = 3 //lower
-	}
-
-	board.transpostionTable[board.zobrist&(board.transEntries-1)] = tranEntry{
-		bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist,
-	}
-
-	return score
-}
-
-func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, reverseDepth, depth, alpha, beta, col int) int {
-
-	if board.isCheck(!board.isWhiteTurn) {
-		return 99999999 + depth*10
-	}
-
-	origAlpha := alpha
-	entry := board.quinTranspostionTable[board.zobrist&(board.transEntries-1)]
-	tableMove := entry.Move
-
-	if entry.key == board.zobrist && entry.depth >= depth {
-
-		score := entry.score
-		// Exact
-		if entry.bound == 1 {
-			posEvaled++
-			return score
-		}
-
-		// Lowerbound
-		if entry.bound == 3 {
-			alpha = intMax(alpha, score)
-		} else { // Upperbound
-			beta = intMin(beta, score)
-		}
-
-		if alpha >= beta {
-			posEvaled++
-			return score
-		}
-
-	}
-
-	posEvaled++
-	score := board.EvalCurrentPos() * col
-
-	if score >= beta {
-		return beta
-	}
-	alpha = intMax(alpha, score)
-
-	moves := make([]uint16, 0, 218)
-	moves = moves[:board.getLegalMoves(moves, true)]
-	// moves := board.getLegalMoves()
-
-	// quickSortStart(moves)
-
-	if len(moves) == 0 {
-		return score
-	}
-
-	if tableMove != 0 {
-		for id, Move := range moves {
-			if Move == tableMove {
-				moves[id], moves[0] = moves[0], moves[id]
-				break
-			}
-		}
-	}
-	bestMove := moves[0]
+	bestScore := math.MinInt + 1
+	bestMove := uint16(0)
+	legal := 0
+	newDepth := depth - 1 + extension
+	newExt := numExtensions + extension
 
 	for _, Move := range moves {
 
-		if time.Now().After(endTime) {
-			break
-		}
-
 		board.PlayMove(Move)
-
-		// if Move&CapFlag == 0 && !board.isCheck(board.isWhiteTurn) {
-		// 	board.UndoMove(Move)
-		// 	continue
-		// }
-
-		NewScore := -board.QuinNegaMax(startTime, endTime, reverseDepth+1, depth-1, -beta, -alpha, -col)
+		if board.isCheck(!board.isWhiteTurn) {
+			board.UndoMove(Move)
+			continue
+		}
+		legal++
+		var score int
+		score = -board.NegaMax(endTime, Move, ply+1, newDepth, -beta, -alpha, -col, newExt)
 		board.UndoMove(Move)
 
-		if NewScore > score {
-			bestMove = Move
-			score = NewScore
+		if board.stop {
+			return 0
 		}
 
+		if score > bestScore {
+			bestMove = Move
+			bestScore = score
+		}
 		alpha = intMax(alpha, score)
 		if alpha >= beta {
 			break
@@ -284,63 +189,137 @@ func (board *board) QuinNegaMax(startTime time.Time, endTime time.Time, reverseD
 
 	}
 
-	if time.Now().After(endTime) {
-		return score
+	if legal == 0 {
+		if isCheck {
+			return -(mateScore + depth*10)
+		}
+		return 0
 	}
 
 	bound := 1 //exakt
-	if score <= origAlpha {
+	if bestScore <= origAlpha {
 		bound = 2 //upper
-	} else if score >= beta {
+	} else if bestScore >= origBeta {
 		bound = 3 //lower
 	}
 
-	board.quinTranspostionTable[board.zobrist&(board.transEntries-1)] = tranEntry{
-		bound: bound, depth: depth, score: score, Move: bestMove, key: board.zobrist,
+	board.transpostionTable[idx] = tranEntry{
+		bound: bound, depth: depth, score: bestScore, Move: bestMove, key: board.zobrist,
 	}
 
-	return score
+	return bestScore
+}
+
+func (board *board) QuinNegaMax(endTime time.Time, qply, alpha, beta, col int) int {
+	board.nodes++
+	board.qnodes++
+
+	if qply >= board.maxQDepth {
+		board.maxQDepth = qply
+	}
+
+	if board.nodes&2047 == 0 && board.rootDepth > 1 && time.Now().After(endTime) {
+		board.stop = true
+	}
+	if board.stop {
+		return 0
+	}
+	if qply >= 24 {
+		return board.EvalCurrentPos() * col
+	}
+	origAlpha, origBeta := alpha, beta
+	idx := board.zobrist & (board.transEntries - 1)
+	entry := board.quinTranspostionTable[idx]
+	tableMove := uint16(0)
+
+	if entry.key == board.zobrist {
+		tableMove = entry.Move
+		switch entry.bound {
+		case 1:
+			return entry.score
+		case 3:
+			alpha = intMax(alpha, entry.score)
+		default:
+			beta = intMin(beta, entry.score)
+		}
+		if alpha >= beta {
+			return entry.score
+		}
+	}
+
+	standPat := board.EvalCurrentPos() * col
+	if standPat >= beta {
+		return standPat
+	}
+
+	best := standPat
+	if best > alpha {
+		alpha = best
+	}
+
+	moves := make([]uint16, 0, 218)
+	moves = moves[:board.getLegalMoves(moves, true)]
+
+	if tableMove != 0 {
+		moveOrderWithBestMove(moves, tableMove)
+	} else {
+		quickSortStart(moves)
+	}
+
+	bestMove := uint16(0)
+	for _, Move := range moves {
+		board.PlayMove(Move)
+		if board.isCheck(!board.isWhiteTurn) {
+			board.UndoMove(Move)
+			continue
+		}
+		// if Move&CapFlag == 0 && !board.isCheck(board.isWhiteTurn) {
+
+		score := -board.QuinNegaMax(endTime, qply+1, -beta, -alpha, -col)
+		board.UndoMove(Move)
+
+		if board.stop {
+			return 0
+		}
+		if score > best {
+			best = score
+			bestMove = Move
+		}
+		if score > alpha {
+			alpha = score
+		}
+		if alpha >= beta {
+			break
+		}
+	}
+
+	bound := 1
+	if best <= origAlpha {
+		bound = 2
+	} else if best >= origBeta {
+		bound = 3
+	}
+	board.quinTranspostionTable[idx] = tranEntry{
+		bound: bound, depth: 0, score: best, Move: bestMove, key: board.zobrist,
+	}
+
+	return best
 }
 
 func (board *board) isRepeated() bool {
-
-	// rep := board.repetion[board.ply-board.LastIrevPLY:]
-	// for _, v := range rep {
-	// 	if v == board.zobrist {
-	// 		return true
-	// 	}
-	// }
+	n := len(board.repetion)
+	sinceIrrev := board.ply - board.LastIrevPLY
+	limit := n - sinceIrrev
+	if limit < 0 {
+		limit = 0
+	}
+	for i := n - 2; i >= limit; i -= 2 {
+		if board.repetion[i] == board.zobrist {
+			return true
+		}
+	}
 	return false
-
-	// i := len(board.repetion) - 1
-	// for i >= board.ply-board.LastIrevPLY {
-	// 	if board.repetion[i] == board.zobrist {
-	// 		return true
-	// 	}
-
-	// 	i--
-	// }
-	// return false
 }
-
-// func (board *board) tmp() {
-
-// 	for colID, Allpieces := range board.pieceArrays {
-
-// 		for typID, pieceArray := range Allpieces {
-
-// 			for _, piece := range pieceArray {
-
-// 				d := "false"
-// 				if piece.dead {
-// 					d = "true"
-// 				}
-// 				writeToLogFile(strconv.Itoa(colID) + " " + strconv.Itoa(typID) + " " + d)
-// 			}
-
-// 		}
-// 	}
-// }
 
 func partition(arr []uint16, low, high int) int {
 	pivot := arr[high] // Choose the last element as pivot.
@@ -382,7 +361,7 @@ func moveOrderWithBestMove(arr []uint16, bestMove uint16) {
 		}
 	}
 	quickSortStart(arr)
-	if arr[0] == 0b1111111111111111 {
+	if len(arr) != 0 && arr[0] == 0b1111111111111111 {
 		arr[0] = bestMove
 	}
 }

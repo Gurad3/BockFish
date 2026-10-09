@@ -1,9 +1,5 @@
 package main
 
-import (
-	"math/rand"
-)
-
 /*
 
 0 = empty
@@ -36,9 +32,7 @@ type board struct {
 	fullMoves int
 	ply       int
 
-	zobrist      uint64
-	zobristVals  [2][7][64]uint64 // empty +
-	zobristBlack uint64
+	zobrist uint64
 
 	repetion     []uint64
 	IrevPLYStack []int
@@ -47,6 +41,14 @@ type board struct {
 	transEntries          uint64
 	transpostionTable     []tranEntry
 	quinTranspostionTable []tranEntry
+
+	nodes     int
+	qnodes    int
+	stop      bool
+	maxQDepth int
+	rootDepth int
+	posBase   string
+	posMoves  []string
 }
 
 type gameState struct {
@@ -111,11 +113,9 @@ const castle_BRKT uint16 = 5 //Black Rook KingSide Target
 const castle_BRQT uint16 = 3 //Black Rook QueenSide Target
 
 func (board *board) init() {
-	board.initZobristArray()
-	board.calcZobrist()
 	board.IrevPLYStack = append(board.IrevPLYStack, board.ply)
 	board.LastIrevPLY = board.ply
-	board.repetion = append(board.repetion, board.zobrist)
+	//board.repetion = append(board.repetion, board.zobrist)
 
 	for colID := 0; colID < 2; colID++ {
 		opCOl := 1 - colID
@@ -259,10 +259,17 @@ func (board *board) PlayMove(Move uint16) {
 	}
 
 	Irev := sourceType == 1
-
-	board.zobrist ^= board.zobristVals[srcCol][sourceType][sourceIndex]
-	board.zobrist ^= board.zobristVals[srcCol][sourceType][targetIndex]
-	board.zobrist ^= board.zobristBlack
+	if Move&FlagMask != CastleFlag {
+		board.zobrist ^= zobrist_vals[srcCol][sourceType][sourceIndex]
+		placed := sourceType
+		if Move&isPromFlag > 0 {
+			placed = uint8((Move&PromMask)>>12) - 2
+		}
+		board.zobrist ^= zobrist_vals[srcCol][placed][targetIndex]
+	}
+	//board.zobrist ^= zobrist_vals[srcCol][sourceType][sourceIndex]
+	//board.zobrist ^= zobrist_vals[srcCol][sourceType][targetIndex]
+	board.zobrist ^= zobrist_black
 
 	//Remove SourceBits.
 
@@ -283,7 +290,7 @@ func (board *board) PlayMove(Move uint16) {
 		board.pieceMasks[opCol][deadType] ^= 1 << deadIndex
 		board.pieceMask[opCol] ^= 1 << deadIndex
 
-		board.zobrist ^= board.zobristVals[opCol][deadType][deadIndex]
+		board.zobrist ^= zobrist_vals[opCol][deadType][deadIndex]
 
 		board.deadPieces = append(board.deadPieces, deadType)
 
@@ -300,6 +307,14 @@ func (board *board) PlayMove(Move uint16) {
 
 	if (Move & FlagMask) == CastleFlag {
 		Irev = true
+
+		kingTo, rookTo := sourceIndex+2, sourceIndex+1 // kingside
+		if targetIndex < sourceIndex {                 // queenside
+			kingTo, rookTo = sourceIndex-2, sourceIndex-1
+		}
+		board.zobrist ^= zobrist_vals[srcCol][6][sourceIndex] ^ zobrist_vals[srcCol][6][kingTo] ^
+			zobrist_vals[srcCol][4][targetIndex] ^ zobrist_vals[srcCol][4][rookTo]
+
 		board.pieceMasks[srcCol][targetType] ^= 1 << targetIndex
 		board.pieceMask[srcCol] ^= 1 << targetIndex
 
@@ -364,8 +379,8 @@ func (board *board) PlayMove(Move uint16) {
 	board.ply++
 
 	if Irev {
-		// board.IrevPLYStack = append(board.IrevPLYStack, board.ply)
-		// board.LastIrevPLY = board.ply
+		board.IrevPLYStack = append(board.IrevPLYStack, board.ply)
+		board.LastIrevPLY = board.ply
 	}
 
 }
@@ -391,9 +406,9 @@ func (board *board) UndoMove(Move uint16) {
 	board.zobrist = board.repetion[len(board.repetion)-1]
 	board.repetion = board.repetion[:len(board.repetion)-1]
 
-	// board.zobrist ^= board.zobristVals[srcCol][sourceType][sourceIndex]
-	// board.zobrist ^= board.zobristVals[srcCol][sourceType][targetIndex]
-	// board.zobrist ^= board.zobristBlack
+	// board.zobrist ^= zobrist_vals[srcCol][sourceType][sourceIndex]
+	// board.zobrist ^= zobrist_vals[srcCol][sourceType][targetIndex]
+	// board.zobrist ^= zobrist_black
 
 	board.pieceMasks[srcCol][sourceType] ^= 1 << sourceIndex
 	board.pieceMask[srcCol] ^= 1 << sourceIndex
@@ -500,28 +515,18 @@ func (board *board) UndoMove(Move uint16) {
 
 	}
 
-	// if board.ply == board.LastIrevPLY {
-	// 	board.IrevPLYStack = board.IrevPLYStack[:len(board.IrevPLYStack)-1]
-	// 	board.LastIrevPLY = board.IrevPLYStack[len(board.IrevPLYStack)-1]
-	// }
+	if board.ply == board.LastIrevPLY {
+		board.IrevPLYStack = board.IrevPLYStack[:len(board.IrevPLYStack)-1]
+		board.LastIrevPLY = board.IrevPLYStack[len(board.IrevPLYStack)-1]
+	}
 
 	board.isWhiteTurn = !board.isWhiteTurn
 	board.ply--
 
 }
 
-func (board *board) initZobristArray() {
-	for col := 0; col < 2; col++ {
-		for p := 1; p < 7; p++ { //first = empty
-			for sq := 0; sq < 64; sq++ {
-				board.zobristVals[col][p][sq] = rand.Uint64()
-			}
-		}
-	}
-	board.zobristBlack = rand.Uint64()
-}
-
 func (board *board) calcZobrist() {
+	board.zobrist = 0
 	for col := 0; col < 2; col++ {
 		for i := 1; i < 7; i++ {
 
@@ -530,9 +535,12 @@ func (board *board) calcZobrist() {
 			for mask > 0 {
 				sq := popLSB(mask)
 				mask &= mask - 1
-				board.zobrist ^= board.zobristVals[col][i][sq]
+				board.zobrist ^= zobrist_vals[col][i][sq]
 			}
 
 		}
+	}
+	if !board.isWhiteTurn {
+		board.zobrist ^= zobrist_black
 	}
 }

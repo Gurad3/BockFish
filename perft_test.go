@@ -180,3 +180,57 @@ func TestEPDirect(t *testing.T) {
 		t.Fatal("pawn not restored on d5 after UndoMove")
 	}
 }
+
+func TestNullMoveRestores(t *testing.T) {
+	fens := []string{
+		"r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+		"4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1",
+		"rnbqkbnr/ppp1pppp/8/8/3pP3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 3", // en passant available
+	}
+	for _, tc := range perftCases {
+		fens = append(fens, tc.fen)
+	}
+
+	for _, fen := range fens {
+		b := newBoardFromFEN(fen)
+
+		types, masks, mask, castling := b.squareTypeArray, b.pieceMasks, b.pieceMask, b.castling
+		hash, last, ply, irev, white := b.zobrist, b.lastMove, b.ply, b.LastIrevPLY, b.isWhiteTurn
+		nRep, nIrev, nState := len(b.repetion), len(b.IrevPLYStack), len(b.gameStateStack)
+
+		b.PlayNullMove()
+
+		if b.lastMove != 0 {
+			t.Errorf("%s: lastMove not cleared (en passant would leak through the pass)", fen)
+		}
+		if b.isWhiteTurn == white {
+			t.Errorf("%s: side to move not flipped", fen)
+		}
+		if b.squareTypeArray != types || b.pieceMasks != masks || b.pieceMask != mask || b.castling != castling {
+			t.Errorf("%s: a pass changed the pieces or castling rights", fen)
+		}
+		// The hash after a pass must equal a from-scratch recompute.
+		// (needs calcZobrist to include zobrist_black when black is to move)
+		saved := b.zobrist
+		b.calcZobrist()
+		if b.zobrist != saved {
+			t.Errorf("%s: hash after pass %016x != recomputed %016x", fen, saved, b.zobrist)
+		}
+		b.zobrist = saved
+
+		b.UndoNullMove()
+
+		if b.zobrist != hash || b.lastMove != last || b.isWhiteTurn != white {
+			t.Errorf("%s: hash, lastMove or side not restored", fen)
+		}
+		if b.squareTypeArray != types || b.pieceMasks != masks || b.pieceMask != mask || b.castling != castling {
+			t.Errorf("%s: pieces or castling not restored", fen)
+		}
+		if len(b.repetion) != nRep || len(b.IrevPLYStack) != nIrev || len(b.gameStateStack) != nState {
+			t.Errorf("%s: a stack length changed", fen)
+		}
+		if b.ply != ply || b.LastIrevPLY != irev {
+			t.Errorf("%s: ply bookkeeping not restored", fen)
+		}
+	}
+}

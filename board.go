@@ -49,6 +49,11 @@ type board struct {
 	rootDepth int
 	posBase   string
 	posMoves  []string
+
+	killers  [maxPly][2]uint16
+	history  [2][64][64]int32
+	moveBuf  [maxPly][218]uint16 // one move list per ply, no allocation
+	scoreBuf [maxPly][218]int32
 }
 
 type gameState struct {

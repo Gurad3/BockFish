@@ -214,6 +214,7 @@ func loadTables() {
 
 	currentBoard.repetion = make([]uint64, 0, 80)
 	currentBoard.IrevPLYStack = make([]int, 0, 80)
+	currentBoard.history = [2][64][64]int32{}
 	loadT()
 }
 
